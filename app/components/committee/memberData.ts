@@ -2,58 +2,88 @@
 
 export const executives: { name: string, role: string, image?: string, filter?: string }[] = [
   {
-    name: 'Nathan Luo',
+    name: 'Michael Ren',
     role: 'President',
-    image: '/people/2024/nathan-luo.png',
+    image: '/people/2024/michael-ren.jpg',
   },
   {
-    name: 'Hanshi Tang',
-    role: 'Vice President',
-    image: '/people/2024/hanshi-tang.jpg',
+    name: 'Hannah Luo',
+    role: 'Internal Vice President',
+    image: '',
   },
   {
-    name: 'Harshit Badam',
+    name: 'Danielle Tran',
+    role: 'External Vice President',
+    image: '',
+  },
+  {
+    name: 'Rania Aziz',
     role: 'Secretary',
-    image: '/people/2024/harshit-badam.jpg',
+    image: '',
     filter: 'contrast-[1.1] saturate-[0.7] brightness-150',
   },
   {
-    name: 'Georgina Qiu',
+    name: 'Shawn Kim',
     role: 'Treasurer',
-    image: '/people/2024/georgina-qiu.jpg',
+    image: '',
   },
 ]
 
 export const directors: { name: string, role: string, image?: string, filter?: string }[] = [
   {
-    name: 'Daksh Agrawal',
+    name: 'Jordan Chao',
     role: 'Education Director',
-    image: '/people/2024/daksh-agrawal.jpg',
+    image: '',
   },
   {
-    name: 'Hannah Luo',
-    role: 'Events Director',
-    image: '/people/2024/hannah-luo.jpg',
-  },
-  {
-    name: 'Kevin Tang',
-    role: 'Industry Director',
-    image: '/people/2024/kevin-tang.jpg',
-  },
-  {
-    name: 'Michael Ren',
+    name: 'Noah Say',
     role: 'IT Director',
-    image: '/people/2024/michael-ren.jpg',
+    image: '',
   },
   {
-    name: 'Ryan Li',
+    name: 'Jake Paul',
+    role: 'Events Director',
+    image: '',
+  },
+  {
+    name: 'Sarah Abusah',
+    role: 'Industry Director',
+    image: '',
+  },
+  {
+    name: '',
     role: 'Design Director',
-    image: '/people/2024/ryan-li.jpg',
+    image: '',
   },
   {
-    name: 'Danielle Tran',
+    name: 'Teresa Guo',
     role: 'Marketing Director',
-    image: '/people/2024/danielle-tran.png',
+    image: '',
+  },
+  {
+    name: 'Pranav Jayanty',
+    role: 'Portfolio Director',
+    image: '',
+  },
+  {
+    name: 'Elyse Lee',
+    role: 'HR Director',
+    image: '',
+  },
+  {
+    name: 'Jessica Zhao',
+    role: 'HR Director',
+    image: '',
+  },
+  {
+    name: 'Jessica Zhao',
+    role: 'HR Director',
+    image: '',
+  },
+  {
+    name: 'Dhruv Chaturvedi',
+    role: 'Project Lead',
+    image: '',
   },
 ]
 
