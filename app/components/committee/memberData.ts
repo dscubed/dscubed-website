@@ -4,28 +4,28 @@ export const executives: { name: string, role: string, image?: string, filter?: 
   {
     name: 'Michael Ren',
     role: 'President',
-    image: '/people/2024/michael-ren.jpg',
+    image: '/people/2025/michael-ren.jpg',
   },
   {
     name: 'Hannah Luo',
     role: 'Internal Vice President',
-    image: '',
+    image: '/people/2025/hannah-luo.jpg',
   },
   {
     name: 'Danielle Tran',
     role: 'External Vice President',
-    image: '',
+    image: '/people/2025/danielle-tran.png',
   },
   {
     name: 'Rania Aziz',
     role: 'Secretary',
-    image: '',
-    filter: 'contrast-[1.1] saturate-[0.7] brightness-150',
+    image: '/people/2025/rania_aziz.jpg',
+    filter: 'w-30 h-30 object-cover'
   },
   {
     name: 'Shawn Kim',
     role: 'Treasurer',
-    image: '',
+    image: '/people/2025/shawn-kim.png',
   },
 ]
 
@@ -33,12 +33,12 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Jordan Chao',
     role: 'Education Director',
-    image: '',
+    image: '/people/2025/jordan-chao.png',
   },
   {
     name: 'Noah Say',
     role: 'IT Director',
-    image: '',
+    image: '/people/2025/noah-say.png',
   },
   {
     name: 'Jake Paul',
@@ -48,17 +48,17 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Sarah Abusah',
     role: 'Industry Director',
-    image: '',
+    image: '/people/2025/sarah-abusah.png',
   },
   {
-    name: '',
+    name: 'Jamie Marks',
     role: 'Design Director',
-    image: '',
+    image: '/people/2025/jamie-marks.png',
   },
   {
     name: 'Teresa Guo',
     role: 'Marketing Director',
-    image: '',
+    image: '/people/2025/teresa-guo.jpg',
   },
   {
     name: 'Pranav Jayanty',
@@ -73,12 +73,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Jessica Zhao',
     role: 'HR Director',
-    image: '',
-  },
-  {
-    name: 'Jessica Zhao',
-    role: 'HR Director',
-    image: '',
+    image: '/people/2025/ziyu-zhao.jpg',
   },
   {
     name: 'Dhruv Chaturvedi',
