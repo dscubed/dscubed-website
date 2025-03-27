@@ -11,6 +11,7 @@ import RepresentativeSection from '@/app/components/committee/RepresentativeSect
 import TeamsSection from '@/app/components/committee/TeamsSection'
 
 /** 
+2024 Committee Old Code (move into a new file/page 'Past Committee' when button is clicked)
 export const metadata = {
   title: 'Committee | DSCubed',
   description: 'Meet the team behind DSCubed. Introducing our committee for 2024.',
