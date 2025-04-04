@@ -20,21 +20,22 @@ export const gold = [
     image: '/sponsors/logos/jane-street.png',
     link: 'https://www.janestreet.com/'
   },
-]
-
-export const silver = [
-  {
-    name: 'Aurora Energy Research',
-    category: 'Analytics',
-    image: '/sponsors/logos/aurora.png',
-    link: 'https://auroraer.com/',
-  },
   {
     name: 'Ernst & Young',
     category: 'Professional services',
     image: '/sponsors/logos/ey.svg',
     link: 'https://www.ey.com/'
   },
+]
+
+export const silver = [
+  {
+    name: 'Accenture',
+    category: 'Professional services',
+    image: '/sponsors/logos/accenture.png',
+    link: 'https://www.accenture.com/au-en',
+  },
+
 ]
 
 export const partners = [
