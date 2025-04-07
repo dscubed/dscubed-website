@@ -43,17 +43,12 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Jake Paul',
     role: 'Events Director',
-    image: '',
+    image: '/people/2025/jake-paul.jpg',
   },
   {
     name: 'Sarah Abusah',
     role: 'Industry Director',
     image: '/people/2025/sarah-abusah.png',
-  },
-  {
-    name: 'Jamie Marks',
-    role: 'Design Director',
-    image: '/people/2025/jamie-marks.png',
   },
   {
     name: 'Teresa Guo',
