@@ -4,7 +4,7 @@ import { ArrowLeftIcon } from '@heroicons/react/24/solid' // Use the left arrow 
 import Footer from '@/app/components/Footer'
 import Link from 'next/link'
 import Section from '@/app/components/Section'
-import committeePhoto from '@/public/people/committee.png'
+import committeePhoto from '@/public/people/committee2024.png'
 import ExecutiveSection from '@/app/components/committee/ExecutiveSection'
 import DirectorSection from '@/app/components/committee/DirectorSection'
 
@@ -53,6 +53,7 @@ export default function PastCommitteePage() {
 
         <ExecutiveSection />
         <DirectorSection />
+        <TeamsSection />
       </main>
 
       <Footer />

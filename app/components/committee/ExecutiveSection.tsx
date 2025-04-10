@@ -1,15 +1,17 @@
 import Section from '@/app/components/Section'
-import { executives } from '@/app/components/committee/memberData'
+import { executives } from '@/app/components/committee/memberData2025'
 import MemberCard from '@/app/components/committee/MemberCard'
 
 export default function ExecutiveSection () {
   return (
     <Section>
-      <h2 className="text-2xl">Executive Team</h2>
-      <div className="grid grid-cols-4 gap-4 lg:grid-cols-2 xs:grid-cols-1">
+      <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
+      <div className="flex flex-wrap justify-center gap-5">
         {executives.map((profile, index) => (
-          <MemberCard {...profile} key={index} />)
-        )}
+          <div key={index} className="flex justify-center ">
+            <MemberCard {...profile} key={index}/>
+          </div>
+        ))}
       </div>
     </Section>
   )

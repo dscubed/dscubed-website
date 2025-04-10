@@ -16,7 +16,7 @@ export default function MemberCard ({
   filter?: string
 }) {
   return (
-    <div className="flex flex-col gap-3 py-10 px-5 bg-background rounded-2xl">
+    <div className="flex flex-col gap-3 py-12 px-8 bg-background rounded-2xl">
       {image 
         ? (<Image
             className={clsx(
