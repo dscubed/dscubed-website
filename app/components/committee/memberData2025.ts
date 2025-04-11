@@ -4,12 +4,12 @@ export const executives: { name: string, role: string, image?: string, filter?: 
   {
     name: 'Michael Ren',
     role: 'President',
-    image: '/people/2025/michael-ren.jpg',
+    image: '/people/2025/michael-ren2.png',
   },
   {
     name: 'Hannah Luo',
     role: 'Internal Vice President',
-    image: '/people/2025/hannah-luo.jpg',
+    image: '/people/2025/hannah-luo2.png',
   },
   {
     name: 'Danielle Tran',
@@ -19,7 +19,7 @@ export const executives: { name: string, role: string, image?: string, filter?: 
   {
     name: 'Rania Aziz',
     role: 'Secretary',
-    image: '/people/2025/rania_aziz.jpg',
+    image: '/people/2025/rania-aziz.png',
     filter: 'w-30 h-30 object-cover'
   },
   {
@@ -43,7 +43,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Jake Paul',
     role: 'Events Director',
-    image: '/people/2025/jake-paul.jpg',
+    image: '/people/2025/jake-paul.png',
   },
   {
     name: 'Sarah Abusah',
@@ -68,7 +68,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Jessica Zhao',
     role: 'HR Director',
-    image: '/people/2025/ziyu-zhao.jpg',
+    image: '/people/2025/ziyu-zhao.png',
   },
   {
     name: 'Dhruv Chaturvedi',
@@ -78,12 +78,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
 ]
 
 export const representatives: { name: string, role: string, image?: string, filter?: string }[] = [
-  {
-    name: 'David Ponder',
-    role: 'Graduate Representative',
-    image: '/people/2024/david-ponder.jpg',
-    filter: 'contrast-[1.1] brightness-125',
-  },
+
   {
     name: 'Mohand Mender',
     role: 'Undegraduate Representative',
@@ -107,26 +102,26 @@ export const teams: {
     name: 'IT',
     image: '/people/2025-teams/IT-Team.JPG',
     members: [
-      { name: 'Paul Su', role: 'IT Officer' /* image: '' */ },
-      { name: 'Jamie Marks', role: 'IT Officer' /* image: '' */ },
-      { name: 'Kaylyn Pham', role: 'IT Officer' /* image: '' */ },
-      { name: 'Animesh Pandey', role: 'IT Officer' /* image: '' */ },
+      { name: 'Paul Su', role: 'IT Officer', image: '/people/2025/paul-su.png'  },
+      { name: 'Jamie Marks', role: 'IT Officer', image: '/people/2025/jamie-marks.png'},
+      { name: 'Kaylyn Pham', role: 'IT Officer' , image: '/people/2025/kaylyn-phan.png' },
+      { name: 'Animesh Pandey', role: 'IT Officer', image: '/people/2025/animesh-pandey.png' },
       { name: 'Ishan Deshpande', role: 'IT Officer' /* image: '' */ },
-      { name: 'Tanat Chanwangsa', role: 'IT Officer' /* image: '' */ },
-      { name: 'Irene Chiam', role: 'IT Officer' /* image: '' */ },
+      { name: 'Tanat Chanwangsa', role: 'IT Officer', image: '/people/2025/tanat-chanwangsa.png' },
+      { name: 'Irene Chiam', role: 'IT Officer', image: '/people/2025/irene-chiam.png' },
       { name: 'Dhruv Verma', role: 'IT Officer' /* image: '' */ },
-      { name: 'Lachlan Chue', role: 'IT Officer' /* image: '' */ },
+      { name: 'Lachlan Chue', role: 'IT Officer', image: '/people/2025/lachlan-chue.png' },
       { name: 'Eddie Li', role: 'IT Officer' /* image: '' */ },
-      { name: 'Simon Nguyen', role: 'IT Officer' /* image: '' */ },
+      { name: 'Simon Nguyen', role: 'IT Officer', image: '/people/2025/simon-nguyen.png' },
     ],
   },
   {
     name: 'Marketing', // Includes Graphic Designers based on typical structure
+    image: '/people/2025-teams/Marketing-Team.png',
     members: [
-      { name: 'Jedi', role: 'Graphic Designer' /* image: '' */ },
-      { name: 'Terry Yu', role: 'Marketing Designer' /* image: '' */ },
-      { name: 'Eric Qiu', role: 'Marketing Officer' /* image: '' */ },
-      { name: 'Wan Azlan', role: 'Marketing Officer' /* image: '' */ },
+      { name: 'Terry Yu', role: 'Marketing Designer', image: '/people/2025/terry-yu.png' },
+      { name: 'Eric Qiu', role: 'Marketing Officer', image: '/people/2025/eric-qiu.png' },
+      { name: 'Wan Azlan', role: 'Marketing Officer', image: '/people/2025/azlan-wan.png' },
       { name: 'Stephanie Doan', role: 'Marketing Officer' /* image: '' */ },
       { name: 'Rudra Tiwa', role: 'Marketing Officer' /* image: '' */ },
       { name: 'Chi Nguyen', role: 'Marketing Officer' /* image: '' */ },
@@ -138,9 +133,9 @@ export const teams: {
     name: 'Events',
     image: '/people/2025-teams/Events-Team.JPG',
     members: [
-      { name: 'Charmaine Yang', role: 'Events Officer' /* image: '' */ },
+      { name: 'Charmaine Yang', role: 'Events Officer', image: '/people/2025/charmaine-yang.png'},
       { name: 'Hayden Ma', role: 'Events Officer' /* image: '' */ },
-      { name: 'Angus Chan', role: 'Events Officer' /* image: '' */ }, // Note: Old image path removed, update if needed
+      { name: 'Angus Chan', role: 'Events Officer', image: '/people/2025/angus-chan.png' }, // Note: Old image path removed, update if needed
       { name: 'Pavan Dev', role: 'Events Officer' /* image: '' */ },
       { name: 'Anthea Lee', role: 'Events Officer' /* image: '' */ },
       { name: 'Eric He', role: 'Events Officer' /* image: '' */ },
@@ -153,7 +148,7 @@ export const teams: {
     name: 'Industry',
     image: '/people/2025-teams/Industry-Team.JPG',
     members: [
-      { name: 'Chris Gee', role: 'Industry Officer' /* image: '' */ },
+      { name: 'Chris Gee', role: 'Industry Officer', image: '/people/2025/chris-gee.png' },
       { name: 'Ruby Nguyen', role: 'Industry Officer' /* image: '' */ },
       { name: 'Anton Huynh', role: 'Industry Officer' /* image: '' */ },
       { name: 'Jesselyn Lim', role: 'Industry Officer' /* image: '' */ },
@@ -168,12 +163,12 @@ export const teams: {
     name: 'Education',
     image: '/people/2025-teams/Education-Team.JPG',
     members: [
-      { name: 'Mark Sesuraj', role: 'Education Officer' /* image: '' */ },
+      { name: 'Mark Sesuraj', role: 'Education Officer' , image: '/people/2025/mark-sesuraj.png' },
       { name: 'Bike Pham', role: 'Education Officer' /* image: '' */ },
       { name: 'Nick Muir', role: 'Education Officer' /* image: '' */ },
       { name: 'Aditya Yadav', role: 'Education Officer' /* image: '' */ },
       { name: 'Keith Howan', role: 'Education Officer' /* image: '' */ },
-      { name: 'Stanley', role: 'Education Officer' /* image: '' */ }, // Assuming Stanley is Education Officer
+      { name: 'Stanley', role: 'Education Officer' /* image: '' */ },
       { name: 'Frank Ngo', role: 'Education Officer' /* image: '' */ },
     ],
   },
