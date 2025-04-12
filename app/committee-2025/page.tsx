@@ -7,9 +7,10 @@ import Section from '@/app/components/Section'
 import committeePhoto from '@/public/people/committee2025.jpg'
 import ExecutiveSection from '@/app/components/committee/ExecutiveSection'
 import DirectorSection from '@/app/components/committee/DirectorSection'
-import RepresentativeSection from '@/app/components/committee/RepresentativeSection'
 import TeamsSection from '@/app/components/committee/TeamsSection'
 
+// Import member data
+import { executives, directors } from '@/app/components/committee/memberData2025'
 
 export const metadata = {
   title: 'Committee | DSCubed',
@@ -47,7 +48,6 @@ export default function CommitteePage() {
           </div>
         </Section>
 
-
         <div className="px-2 mx-auto max-w-screen-xl">
           <Image
             className="w-full max-w-screen-2xl min-h-80 aspect-video mx-auto rounded-2xl object-cover brightness-[1.1] saturate-[1.2]"
@@ -57,8 +57,15 @@ export default function CommitteePage() {
           ></Image>
         </div>
 
-        <ExecutiveSection />
-        <DirectorSection />
+        {/* Pass data to the ExecutiveSection */}
+        <ExecutiveSection
+          executives={executives}
+          teamPhoto="/people/2025-teams/Execs-Directors.png"
+        />
+
+        {/* Pass data to the DirectorSection */}
+        <DirectorSection directors={directors} />
+
         {/* <RepresentativeSection /> */}
         <TeamsSection />
       </main>
@@ -67,5 +74,3 @@ export default function CommitteePage() {
     </>
   )
 }
-
-

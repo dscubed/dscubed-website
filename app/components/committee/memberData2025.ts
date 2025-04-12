@@ -63,7 +63,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Elyse Lee',
     role: 'HR Director',
-    image: '/people/2025/elyse-lee.JPG',
+    image: '/people/2025/elyse-lee.png',
   },
   {
     name: 'Jessica Zhao',
@@ -75,15 +75,16 @@ export const directors: { name: string, role: string, image?: string, filter?: s
     role: 'Project Lead',
     image: '/people/2025/dhruv-chaturvedi.png',
   },
+  {
+    name: 'Mohand Mender',
+    role: 'Undegraduate Representative',
+    image: '/people/2025/mohand-mender.png',
+  },
 ]
 
 export const representatives: { name: string, role: string, image?: string, filter?: string }[] = [
 
-  {
-    name: 'Mohand Mender',
-    role: 'Undegraduate Representative',
-    // image: '',
-  },
+
 ]
 
 // The default role for team members is set to '<Team name> Officer', so don't need to set it manually here
@@ -109,7 +110,7 @@ export const teams: {
       { name: 'Ishan Deshpande', role: 'IT Officer' /* image: '' */ },
       { name: 'Tanat Chanwangsa', role: 'IT Officer', image: '/people/2025/tanat-chanwangsa.png' },
       { name: 'Irene Chiam', role: 'IT Officer', image: '/people/2025/irene-chiam.png' },
-      { name: 'Dhruv Verma', role: 'IT Officer' /* image: '' */ },
+      { name: 'Dhruv Verma', role: 'IT Officer', image: '/people/2025/dhruv-verma.png'},
       { name: 'Lachlan Chue', role: 'IT Officer', image: '/people/2025/lachlan-chue.png' },
       { name: 'Eddie Li', role: 'IT Officer' /* image: '' */ },
       { name: 'Simon Nguyen', role: 'IT Officer', image: '/people/2025/simon-nguyen.png' },
@@ -122,11 +123,11 @@ export const teams: {
       { name: 'Terry Yu', role: 'Marketing Designer', image: '/people/2025/terry-yu.png' },
       { name: 'Eric Qiu', role: 'Marketing Officer', image: '/people/2025/eric-qiu.png' },
       { name: 'Wan Azlan', role: 'Marketing Officer', image: '/people/2025/azlan-wan.png' },
-      { name: 'Stephanie Doan', role: 'Marketing Officer' /* image: '' */ },
+      { name: 'Stephanie Doan', role: 'Marketing Officer', image: '/people/2025/stephanie-doan.png' },
       { name: 'Rudra Tiwa', role: 'Marketing Officer' /* image: '' */ },
-      { name: 'Chi Nguyen', role: 'Marketing Officer' /* image: '' */ },
-      { name: 'Carmen Wong', role: 'Marketing Officer' /* image: '' */ },
-      { name: 'Addie Nguyen', role: 'Marketing Officer' /* image: '' */ },
+      { name: 'Chi Nguyen', role: 'Marketing Officer', image: '/people/2025/chi-nguyen.png' },
+      { name: 'Carmen Wong', role: 'Marketing Officer', image: '/people/2025/carmen-wong.png' },
+      { name: 'Addie Nguyen', role: 'Marketing Officer', image: '/people/2025/addie-nguyen.png' },
     ],
   },
   {
@@ -135,12 +136,12 @@ export const teams: {
     members: [
       { name: 'Charmaine Yang', role: 'Events Officer', image: '/people/2025/charmaine-yang.png'},
       { name: 'Hayden Ma', role: 'Events Officer' /* image: '' */ },
-      { name: 'Angus Chan', role: 'Events Officer', image: '/people/2025/angus-chan.png' }, // Note: Old image path removed, update if needed
-      { name: 'Pavan Dev', role: 'Events Officer' /* image: '' */ },
-      { name: 'Anthea Lee', role: 'Events Officer' /* image: '' */ },
-      { name: 'Eric He', role: 'Events Officer' /* image: '' */ },
-      { name: 'Jiacheng Zheng', role: 'Events Officer' /* image: '' */ },
-      { name: 'Soaham Chauhan', role: 'Marketing Officer' /* image: '' */ },
+      { name: 'Angus Chan', role: 'Events Officer', image: '/people/2025/angus-chan.png' }, 
+      { name: 'Pavan Dev', role: 'Events Officer', image: '/people/2025/pavan-dev.png' },
+      { name: 'Anthea Lee', role: 'Events Officer', image: '/people/2025/anthea-lee.png'},
+      { name: 'Eric He', role: 'Events Officer', image: '/people/2025/eric-he.png' },
+      { name: 'Jiacheng Zheng', role: 'Events Officer', image: '/people/2025/jiacheng-zheng.png' },
+      { name: 'Soaham Chauhan', role: 'Marketing Officer', image: '/people/2025/soaham-chauhan.png' },
       { name: 'Damien Trinh', role: 'Industry Officer' /* image: '' */ },
     ],
   },
@@ -150,10 +151,10 @@ export const teams: {
     members: [
       { name: 'Chris Gee', role: 'Industry Officer', image: '/people/2025/chris-gee.png' },
       { name: 'Ruby Nguyen', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Anton Huynh', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Jesselyn Lim', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Ethan Cheng', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Andy Li', role: 'Industry Officer' /* image: '' */ },
+      { name: 'Anton Huynh', role: 'Industry Officer', image: '/people/2025/anton-huynh.png'},
+      { name: 'Jesselyn Lim', role: 'Industry Officer', image: '/people/2025/jesselyn-lim.png' },
+      { name: 'Ethan Cheng', role: 'Industry Officer', image: '/people/2025/ethan-cheng.png' },
+      { name: 'Andy Li', role: 'Industry Officer', image: '/people/2025/andy-li.png' },
       { name: 'Gurshan Nanda', role: 'Industry Officer' /* image: '' */ },
       { name: 'Paige Nguyen', role: 'Industry Officer' /* image: '' */ },
       { name: 'Dharani Baskaran', role: 'Industry Officer' /* image: '' */ },
@@ -164,12 +165,12 @@ export const teams: {
     image: '/people/2025-teams/Education-Team.JPG',
     members: [
       { name: 'Mark Sesuraj', role: 'Education Officer' , image: '/people/2025/mark-sesuraj.png' },
-      { name: 'Bike Pham', role: 'Education Officer' /* image: '' */ },
-      { name: 'Nick Muir', role: 'Education Officer' /* image: '' */ },
-      { name: 'Aditya Yadav', role: 'Education Officer' /* image: '' */ },
-      { name: 'Keith Howan', role: 'Education Officer' /* image: '' */ },
-      { name: 'Stanley', role: 'Education Officer' /* image: '' */ },
-      { name: 'Frank Ngo', role: 'Education Officer' /* image: '' */ },
+      { name: 'Bike Pham', role: 'Education Officer', image: '/people/2025/bike-pham.png' },
+      { name: 'Nick Muir', role: 'Education Officer', image: '/people/2025/nick-muir.png' },
+      { name: 'Aditya Yadav', role: 'Education Officer', image: '/people/2025/aditya-yadav.png' },
+      { name: 'Keith Howan', role: 'Education Officer', image: '/people/2025/keith-howan.png' },
+      { name: 'Stanley', role: 'Education Officer', image: '/people/2025/stanley-zaranski.png' },
+      { name: 'Frank Ngo', role: 'Education Officer', image: '/people/2025/frank-ngo.png' },
     ],
   },
   {
