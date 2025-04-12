@@ -8,6 +8,9 @@ import committeePhoto from '@/public/people/committee2024.png'
 import ExecutiveSection from '@/app/components/committee/ExecutiveSection'
 import DirectorSection from '@/app/components/committee/DirectorSection'
 
+// Import member data for 2024
+import { executives, directors } from '@/app/components/committee/memberData2024'
+
 export const metadata = {
   title: 'Past Committee | DSCubed',
   description: 'Meet the team behind DSCubed. Introducing our past committee for 2024.',
@@ -51,9 +54,11 @@ export default function PastCommitteePage() {
           ></Image>
         </div>
 
-        <ExecutiveSection />
-        <DirectorSection />
-        <TeamsSection />
+        {/* Pass data to the ExecutiveSection */}
+        <ExecutiveSection executives={executives} />
+
+        {/* Pass data to the DirectorSection */}
+        <DirectorSection directors={directors} />
       </main>
 
       <Footer />
