@@ -1,15 +1,16 @@
 import Section from '@/app/components/Section'
-import { directors } from '@/app/components/committee/memberData'
 import MemberCard from '@/app/components/committee/MemberCard'
 
-export default function DirectorSection () {
+export default function DirectorSection({ directors }: { directors: { name: string, role: string, image?: string }[] }) {
   return (
     <Section>
-      <h2 className="text-2xl">Directors</h2>
-      <div className="grid grid-cols-4 gap-4 lg:grid-cols-2 xs:grid-cols-1">
+      <h2 className="text-4xl font-bold text-center mb-8">Directors</h2>
+      <div className="flex flex-wrap justify-center gap-5">
         {directors.map((profile, index) => (
-          <MemberCard {...profile} key={index} />)
-        )}
+          <div key={index} className="flex justify-center">
+            <MemberCard {...profile} />
+          </div>
+        ))}
       </div>
     </Section>
   )
