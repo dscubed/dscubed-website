@@ -100,6 +100,14 @@ export const teams: {
   }[]
 }[] = [
   {
+    name: 'HR',
+    image: "/people/2025-teams/HR-Team.png",
+    members: [
+      { name: 'Ojas Manocha', role: 'HR Officer', image: '/people/2025/ojas-manocha.png' },
+      { name: 'Prathiksha Ashok', role: 'HR Officer', image: '/people/2025/prathiksha-ashok.png' },
+    ],
+  },
+  {
     name: 'IT',
     image: '/people/2025-teams/IT-Team.JPG',
     members: [
@@ -107,12 +115,13 @@ export const teams: {
       { name: 'Jamie Marks', role: 'IT Officer', image: '/people/2025/jamie-marks.png'},
       { name: 'Kaylyn Pham', role: 'IT Officer' , image: '/people/2025/kaylyn-phan.png' },
       { name: 'Animesh Pandey', role: 'IT Officer', image: '/people/2025/animesh-pandey.png' },
-      { name: 'Ishan Deshpande', role: 'IT Officer' /* image: '' */ },
+      { name: 'Geoffery Chen', role: 'IT Officer', image: '/people/2025/geoffery-chen.png'},
+      { name: 'Ishan Deshpande', role: 'IT Officer', image: '/people/2025/ishan-deshpande.png'},
       { name: 'Tanat Chanwangsa', role: 'IT Officer', image: '/people/2025/tanat-chanwangsa.png' },
       { name: 'Irene Chiam', role: 'IT Officer', image: '/people/2025/irene-chiam.png' },
       { name: 'Dhruv Verma', role: 'IT Officer', image: '/people/2025/dhruv-verma.png'},
       { name: 'Lachlan Chue', role: 'IT Officer', image: '/people/2025/lachlan-chue.png' },
-      { name: 'Eddie Li', role: 'IT Officer' /* image: '' */ },
+      { name: 'Eddie Li', role: 'IT Officer', image: '/people/2025/eddie-li.png'},
       { name: 'Simon Nguyen', role: 'IT Officer', image: '/people/2025/simon-nguyen.png' },
     ],
   },
@@ -124,7 +133,7 @@ export const teams: {
       { name: 'Eric Qiu', role: 'Marketing Officer', image: '/people/2025/eric-qiu.png' },
       { name: 'Wan Azlan', role: 'Marketing Officer', image: '/people/2025/azlan-wan.png' },
       { name: 'Stephanie Doan', role: 'Marketing Officer', image: '/people/2025/stephanie-doan.png' },
-      { name: 'Rudra Tiwa', role: 'Marketing Officer' /* image: '' */ },
+      { name: 'Rudra Tiwa', role: 'Marketing Officer', image: '/people/2025/rudra-tiwa.png'},
       { name: 'Chi Nguyen', role: 'Marketing Officer', image: '/people/2025/chi-nguyen.png' },
       { name: 'Carmen Wong', role: 'Marketing Officer', image: '/people/2025/carmen-wong.png' },
       { name: 'Addie Nguyen', role: 'Marketing Officer', image: '/people/2025/addie-nguyen.png' },
@@ -150,14 +159,13 @@ export const teams: {
     image: '/people/2025-teams/Industry-Team.JPG',
     members: [
       { name: 'Chris Gee', role: 'Industry Officer', image: '/people/2025/chris-gee.png' },
-      { name: 'Ruby Nguyen', role: 'Industry Officer' /* image: '' */ },
       { name: 'Anton Huynh', role: 'Industry Officer', image: '/people/2025/anton-huynh.png'},
       { name: 'Jesselyn Lim', role: 'Industry Officer', image: '/people/2025/jesselyn-lim.png' },
       { name: 'Ethan Cheng', role: 'Industry Officer', image: '/people/2025/ethan-cheng.png' },
       { name: 'Andy Li', role: 'Industry Officer', image: '/people/2025/andy-li.png' },
-      { name: 'Gurshan Nanda', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Paige Nguyen', role: 'Industry Officer' /* image: '' */ },
-      { name: 'Dharani Baskaran', role: 'Industry Officer' /* image: '' */ },
+      { name: 'Paige Nguyen', role: 'Industry Officer', image: '/people/2025/paige-nguyen.png' },
+      { name: 'Dharani Baskaran', role: 'Industry Officer', image: '/people/2025/dharani-baskaran.png'},
+      { name: 'Harshit Badam', role: 'Industry Officer', image: '/people/2025/harshit-badam.png'  },
     ],
   },
   {
@@ -177,11 +185,13 @@ export const teams: {
     name: 'AI',
     image: "/people/2025-teams/AI-Team.JPG",
     members: [
-      { name: 'Henry Routson', role: 'AI @ DSCubed' /* image: '' */ },
+      { name: 'Henry Routson', role: 'AI @ DSCubed', image: '/people/2025/henry-routson.png' },
       { name: 'Leo Liao', role: 'AI @ DSCubed' /* image: '' */ },
-      { name: 'Aishwary Shee', role: 'AI @ DSCubed' /* image: '' */ },
-      { name: 'Shayomi Sudarshan', role: 'AI @ DSCubed' /* image: '' */ },
-      { name: 'Lorraine Sanares', role: 'AI @ DSCubed' /* image: '' */ },
+      { name: 'Pranav Jayanty', role: 'AI @ DSCubed', image: '/people/2025/pranav-jayanty.png' },
+      { name: 'Lorraine Sanares', role: 'AI @ DSCubed', image: '/people/2025/lorraine-sanares.png' },
+      { name: 'Even Zhang', role: 'AI @ DSCubed', image: '/people/2025/yiwen.png' },
+      { name: 'Antione Dulauroy', role: 'AI @ DSCubed', image: '/people/2025/antione-dulauroy.png' },
+      { name: 'Alina Noor', role: 'AI @ DSCubed' /* image: '' */ },
     ],
   },
 ];
