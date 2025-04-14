@@ -29,7 +29,7 @@ export const executives: { name: string, role: string, image?: string, filter?: 
   },
 ]
 
-export const directors: { name: string, role: string, image?: string, filter?: string }[] = [
+export const directors: { name: string, team?: string, role: string, image?: string, filter?: string }[] = [
   {
     name: 'Jordan Chao',
     role: 'Education Director',
@@ -151,7 +151,7 @@ export const teams: {
       { name: 'Eric He', role: 'Events Officer', image: '/people/2025/eric-he.png' },
       { name: 'Jiacheng Zheng', role: 'Events Officer', image: '/people/2025/jiacheng-zheng.png' },
       { name: 'Soaham Chauhan', role: 'Marketing Officer', image: '/people/2025/soaham-chauhan.png' },
-      { name: 'Damien Trinh', role: 'Industry Officer' /* image: '' */ },
+      { name: 'Damien Trinh', role: 'Industry Officer', image: '/people/2025/damien-trinh.png' },
     ],
   },
   {
