@@ -133,7 +133,7 @@ export const teams: {
       { name: 'Eric Qiu', role: 'Marketing Officer', image: '/people/2025/eric-qiu.png' },
       { name: 'Wan Azlan', role: 'Marketing Officer', image: '/people/2025/azlan-wan.png' },
       { name: 'Stephanie Doan', role: 'Marketing Officer', image: '/people/2025/stephanie-doan.png' },
-      { name: 'Rudra Tiwa', role: 'Marketing Officer', image: '/people/2025/rudra-tiwa.png'},
+      { name: 'Rudra Tiwari', role: 'Marketing Officer', image: '/people/2025/rudra-tiwa.png'},
       { name: 'Chi Nguyen', role: 'Marketing Officer', image: '/people/2025/chi-nguyen.png' },
       { name: 'Carmen Wong', role: 'Marketing Officer', image: '/people/2025/carmen-wong.png' },
       { name: 'Addie Nguyen', role: 'Marketing Officer', image: '/people/2025/addie-nguyen.png' },
