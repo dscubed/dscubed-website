@@ -1,5 +1,5 @@
 import Section from '@/app/components/Section'
-import { representatives } from '@/app/components/committee/memberData'
+import { representatives } from '@/app/components/committee/memberData2025'
 import MemberCard from '@/app/components/committee/MemberCard'
 
 export default function RepresentativeSection () {
