@@ -26,7 +26,7 @@ export default function MemberList({ teams }: { teams: { name: string, members: 
                     key={`director-${directorIndex}`}
                     className="w-70 flex-col items-center text-center"
                   >
-                    <MemberListItem role={director.role} {...director} />
+                    <MemberListItem {...director} />
                   </div>
                 ))}
               </div>
