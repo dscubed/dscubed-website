@@ -30,6 +30,7 @@ export default function CompetitionsPage() {
       </main>
 
       <Footer />
+      <p>Paul is awesome</p>
     </>
   )
 }
