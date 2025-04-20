@@ -1,6 +1,7 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
+import FAQSection from '../components/home/FAQSection'
 
 export const metadata = {
   title: 'Competitions | DSCubed',
@@ -25,8 +26,12 @@ export default function CompetitionsPage() {
     <>
       <Navbar />
 
-      <main className="flex items-center justify-center min-h-screen">
-        <h1 className="text-5xl font-bold text-center">Competitions</h1>
+      <main className="relative bg-background-secondary z-10">
+        <div className="text-center my-8">
+          <h1 className="text-2xl font-bold">Competitions</h1>
+        </div>
+        <hr className="border-0 border-b border-border" />
+          <FAQSection />
       </main>
 
       <Footer />
