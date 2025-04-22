@@ -1,7 +1,7 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
-import FAQSection from '../components/home/FAQSection'
+import FAQSection from '../components/competitions/FAQ/FAQSection'
 
 export const metadata = {
   title: 'Competitions | DSCubed',

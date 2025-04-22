@@ -1,4 +1,4 @@
-import FAQItem from '@/app/components/faq/FAQItem'
+import FAQItem from '@/app/components/competitions/FAQ/FAQItem'
 
 const data = [
   {
@@ -19,7 +19,7 @@ const data = [
   },
 ]
 
-export default function FAQListComp () {
+export default function FAQList () {
   return (
     <div className="flex flex-col">
       {data.map((item, index) => (
