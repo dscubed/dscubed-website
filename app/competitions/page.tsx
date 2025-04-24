@@ -1,36 +1,36 @@
-import Footer from '@/app/components/Footer'
-import Navbar from '@/app/components/Navbar'
-import Section from '@/app/components/Section'
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/Navbar";
+import Section from "@/app/components/Section";
+import Workshop from "@/app/components/competitions/workshop";
 
 export const metadata = {
-  title: 'Competitions | DSCubed',
-  description: 'Explore our competitions and challenges.',
+  title: "Competitions | DSCubed",
+  description: "Explore our competitions and challenges.",
   openGraph: {
-    title: 'Competitions | DSCubed',
-    description: 'Explore our competitions and challenges.',
-    url: '/competitions',
-    siteName: 'DSCubed',
-    locale: 'en_AU',
-    type: 'website',
+    title: "Competitions | DSCubed",
+    description: "Explore our competitions and challenges.",
+    url: "/competitions",
+    siteName: "DSCubed",
+    locale: "en_AU",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "Competitions | DSCubed",
-    description: 'Explore our competitions and challenges.',
+    description: "Explore our competitions and challenges.",
   },
-}
+};
 
 export default function CompetitionsPage() {
   return (
     <>
       <Navbar />
 
-      <main className="flex items-center justify-center min-h-screen">
-        <h1 className="text-5xl font-bold text-center">Competitions</h1>
+      <main className="bg-black text-white min-h-screen px-4 py-16 flex justify-center items-start">
+        <Workshop />
       </main>
 
       <Footer />
-      <p>Paul is awesome</p>
     </>
-  )
+  );
 }
