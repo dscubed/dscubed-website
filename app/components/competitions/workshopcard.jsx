@@ -1,11 +1,23 @@
+"use client";
+
+import YouTube from "react-youtube";
+
 export default function WorkshopCard({
   title,
   subtitle,
   description,
-  image,
+  videoId,
   date,
   time,
 }) {
+  const opts = {
+    height: "200",
+    width: "100%",
+    playerVars: {
+      autoplay: 0, // Disable autoplay
+    },
+  };
+
   return (
     <div className="flex-1 min-w-[18rem] max-w-[28rem] bg-[#1e1e1e] text-white rounded-xl border border-[#333] p-6 flex flex-col gap-4 shadow-md">
       <div>
@@ -15,11 +27,9 @@ export default function WorkshopCard({
         </h4>
         <p className="text-sm text-gray-300">{description}</p>
       </div>
-      <img
-        src={image}
-        alt={title}
-        className="rounded-md w-full h-auto object-cover"
-      />
+      <div className="rounded-md w-full h-auto overflow-hidden">
+        <YouTube videoId={videoId} opts={opts} />
+      </div>
       <div className="text-sm text-white font-semibold">
         <p>{date}</p>
         <p>{time}</p>
