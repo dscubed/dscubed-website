@@ -34,7 +34,7 @@ export default function Workshop() {
         </div>
 
         {/* Cards */}
-        <div className="flex flex-wrap gap-10 justify-center">
+        <div className="flex flex-wrap gap-6 justify-center sm:justify-between">
           {workshops.map((workshop, index) => (
             <WorkshopCard key={index} {...workshop} />
           ))}

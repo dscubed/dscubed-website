@@ -19,7 +19,7 @@ export default function WorkshopCard({
   };
 
   return (
-    <div className="flex-1 min-w-[18rem] max-w-[28rem] bg-[#1e1e1e] text-white rounded-xl border border-[#333] p-6 flex flex-col gap-4 shadow-md">
+    <div className="flex-1 sm:w-[calc(50%-1rem)] max-w-[28rem] bg-[#1e1e1e] text-white rounded-xl border border-[#333] p-6 flex flex-col gap-4 shadow-md">
       <div>
         <h3 className="text-[clamp(1.25rem,2vw,1.5rem)] font-bold">{title}</h3>
         <h4 className="text-[clamp(1.125rem,1.8vw,1.25rem)] font-semibold">
