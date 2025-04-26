@@ -26,8 +26,11 @@ export default function CompetitionsPage() {
     <>
       <Navbar />
 
-      <main className="bg-black text-white min-h-screen px-4 py-16 flex justify-center items-start">
-        <Workshop />
+      <main className="relative bg-background-secondary z-10">
+        <Section>
+        <hr className="border-0 border-b border-border" />
+          <Workshop />
+        </Section>
       </main>
 
       <Footer />
