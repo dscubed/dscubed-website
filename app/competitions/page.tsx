@@ -1,6 +1,9 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
+import KaggleIntro from '@/app/components/competitions/KaggleIntro'
+import WhatsInItForMeSection from '@/app/components/competitions/WhatsInItForMeSection'
+
 
 export const metadata = {
   title: 'Competitions | DSCubed',
@@ -29,8 +32,16 @@ export default function CompetitionsPage() {
         <h1 className="text-5xl font-bold text-center">Competitions</h1>
       </main>
 
+      <KaggleIntro />
+
+      {/* will fix this when we add everyone's components together */}
+      <br></br>
+      <br></br>
+
+      <WhatsInItForMeSection />
+
+
       <Footer />
-      <p>Paul is awesome</p>
     </>
   )
 }
