@@ -27,15 +27,10 @@ export default function CompetitionsPage() {
       <Navbar />
 
       <main className="relative bg-background-secondary z-10">
-        <div className="text-center my-8">
-          <h1 className="text-2xl font-bold">Competitions</h1>
-        </div>
-        <hr className="border-0 border-b border-border" />
           <EventTimeline />
       </main>
 
       <Footer />
-      <p>Paul is awesome</p>
     </>
   )
 }
