@@ -1,6 +1,7 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
+import FAQSection from '../components/competitions/FAQ/FAQSection'
 import Title from '@/app/components/competitions/Title'
 
 export const metadata = {
@@ -25,7 +26,14 @@ export default function CompetitionsPage() {
   return (
     <>
       <Navbar />
-      <Title/>
+      <main className="relative bg-background-secondary z-10">
+        <div className="text-center my-8">
+          <h1 className="text-2xl font-bold">Competitions</h1>
+        </div>
+        <hr className="border-0 border-b border-border" />
+        <Title />
+        <FAQSection />
+      </main>
       <Footer />
       <p>Paul is awesome</p>
     </>

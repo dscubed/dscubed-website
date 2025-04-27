@@ -19,7 +19,7 @@ const data = [
   },
 ]
 
-export default function FAQList () {
+export default function FAQListHome () {
   return (
     <div className="flex flex-col">
       {data.map((item, index) => (
