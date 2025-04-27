@@ -1,7 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export default function KaggleIntro() {
@@ -64,13 +63,10 @@ type AnimatedTextProps = {
   className?: string;
   once?: boolean;
   repeatDelay?: number;
-  animation?: {
-    hidden: Variant;
-    visible: Variant;
-  };
+  animation?: Variants; // Updated type
 };
 
-const defaultAnimations = {
+const defaultAnimations: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -116,7 +112,7 @@ export const AnimatedText = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [isInView]);
+  }, [isInView, controls, repeatDelay]);
 
   return (
     <Wrapper className={className}>
@@ -126,8 +122,8 @@ export const AnimatedText = ({
         initial="hidden"
         animate={controls}
         variants={{
-          visible: { transition: { staggerChildren: 0.02 } }, // Reduced stagger for faster typing
-          hidden: {},
+          hidden: animation.hidden, // Fixed variants structure
+          visible: animation.visible, // Fixed variants structure
         }}
         aria-hidden
       >
