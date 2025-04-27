@@ -3,7 +3,9 @@ import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
 import KaggleIntro from '@/app/components/competitions/KaggleIntro'
 import WhatsInItForMeSection from '@/app/components/competitions/WhatsInItForMeSection'
-
+import FAQSection from '../components/competitions/FAQ/FAQSection'
+import Title from '@/app/components/competitions/Title'
+import ScrollUpButton from '@/app/components/competitions/ScrollUpButton'
 
 export const metadata = {
   title: 'Competitions | DSCubed',
@@ -27,21 +29,15 @@ export default function CompetitionsPage() {
   return (
     <>
       <Navbar />
-
-      <main className="flex items-center justify-center min-h-screen">
-        <h1 className="text-5xl font-bold text-center">Competitions</h1>
+      <main className="relative bg-background-secondary z-10">
+        <Title />
+        <hr className="border-0 border-b border-border" />
+        <FAQSection />
+        <KaggleIntro />
+        <WhatsInItForMeSection />
       </main>
-
-      <KaggleIntro />
-
-      {/* will fix this when we add everyone's components together */}
-      <br></br>
-      <br></br>
-
-      <WhatsInItForMeSection />
-
-
       <Footer />
+      <ScrollUpButton />
     </>
   )
 }
