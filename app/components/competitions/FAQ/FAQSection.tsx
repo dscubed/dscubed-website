@@ -15,9 +15,7 @@ export default function FAQSection () {
         transition={{ duration: 2.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-5xl sm:text-4xl text-center !leading-tight font-bold">
-          FREQUENTLY ASKED QUESTIONS
-        </h2>
+        <h1 className="text-3xl font-bold mb-2">FREQUENTLY ASKED QUESTIONS</h1>
         <div className="w-full flex justify-start">
           <FAQListComp />
         </div>
@@ -27,6 +25,15 @@ export default function FAQSection () {
             href="mailto:hello@dscubed.org.au"
           >
             <span className="my-auto">Get In Touch</span>
+            <ArrowRightIcon className="w-6 h-6 my-auto" />
+          </Link>
+        </div>
+        <div className="flex gap-4 ">
+          <Link
+            className="flex gap-2 text-xl text-theme my-auto"
+            href="https://linktr.ee/dscubed"
+          >
+            <span className="my-auto">Linktree Signup</span>
             <ArrowRightIcon className="w-6 h-6 my-auto" />
           </Link>
         </div>

@@ -12,7 +12,7 @@ function PrizeCounter({ value, isInView }: { value: number; isInView: boolean })
   useEffect(() => {
     if (isInView) {
       const animation = animate(count, value, {
-        duration: 2,
+        duration: 6,
       });
 
       return animation.stop;
