@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import ScrollToTop from 'react-scroll-to-top';
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
 

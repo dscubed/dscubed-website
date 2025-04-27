@@ -27,9 +27,26 @@ export default function Prizes() {
 
   return (
     <Section>
-      <div className="flex flex-col items-center text-center px-5">
-        <h1 className="text-3xl font-bold mb-2">PRIZES</h1>
-        <p className="text-lg font-medium pb-5">Lorem ipsum dolores</p>
+    {/* Header */}
+      <div className="text-center mb-12">
+        <motion.h2
+          className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          PRIZES
+        </motion.h2>
+        <motion.p
+          className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          short description
+        </motion.p>
       </div>
 
       <div className="align-center text-center m-auto prize-font font-mono font-bold text-3xl text-white">

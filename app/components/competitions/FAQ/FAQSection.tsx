@@ -15,7 +15,27 @@ export default function FAQSection () {
         transition={{ duration: 2.5 }}
         viewport={{ once: true }}
       >
-        <h1 className="text-3xl font-bold mb-2">FREQUENTLY ASKED QUESTIONS</h1>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <motion.h2
+            className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            FREQUENTLY ASKED QUESTIONS
+          </motion.h2>
+          <motion.p
+            className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            short description
+          </motion.p>
+        </div>
         <div className="w-full flex justify-start">
           <FAQListComp />
         </div>
