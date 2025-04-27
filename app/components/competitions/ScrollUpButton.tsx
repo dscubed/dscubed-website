@@ -8,12 +8,12 @@ export default function ScrollUpButton() {
       smooth
       component={<ArrowUpIcon />}
       style={{
-        backgroundColor: '#2a4dd0',
-        borderRadius: '30%',
+        backgroundColor: '#1e3a8a', // Dark blue background
+        borderRadius: '50%',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
         zIndex: 1000,
-        width: '60px', // Adjusted width
-        height: '60px', // Adjusted height
+        width: '40px', // Adjusted width
+        height: '40px', // Adjusted height
       }}
     />
   );
