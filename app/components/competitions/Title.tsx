@@ -65,7 +65,7 @@ export default function Title() {
                     </h1>
 
                     <p className="mt-4 max-w-2xl text-lg sm:hidden">
-                    Join us for DSCubed&rsquo;s flagship data competition! Whether you&#39;re a footy fanatic,
+                    Join us for our flagship data competition! Whether youre a footy fanatic,
                     a data science enthusiast, or just keen to try something new, this is the perfect
                     chance to sharpen your skills, build your portfolio, and connect with a vibrant
                     community. No prior experience needed – just bring your curiosity and team spirit!
