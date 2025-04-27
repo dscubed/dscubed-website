@@ -49,8 +49,8 @@ export default function CompetitionsPage() {
           <FAQSection />
         </div>
       </main>
-      <Footer />
       <ScrollUpButton />
+      <Footer />
     </>
   )
 }
