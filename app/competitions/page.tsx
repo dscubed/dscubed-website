@@ -1,5 +1,7 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
+import Section from '@/app/components/Section'
+import EventTimeline from '../components/competitions/timeline'
 import KaggleIntro from '@/app/components/competitions/KaggleIntro'
 import WhatsInItForMeSection from '@/app/components/competitions/WhatsInItForMeSection'
 import FAQSection from '../components/competitions/FAQ/FAQSection'
@@ -39,6 +41,9 @@ export default function CompetitionsPage() {
         </div>
         <div className="mt-36">
           <Prizes />
+        </div>
+        <div className="mt-36">
+          <EventTimeline />
         </div>
         <div className="mt-36">
           <FAQSection />
