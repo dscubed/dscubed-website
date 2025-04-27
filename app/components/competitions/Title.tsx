@@ -1,17 +1,18 @@
 'use client'
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Title() {
     const [expanded, setExpanded] = useState(false);
     const [timerText, setTimerText] = useState("");
     const [timerColor, setTimerColor] = useState("text-red-500");
 
-    const fullText = `Join us for DSCubed’s flagship data competition! Whether you're a footy fanatic, 
+    const fullText = `Join us for DSCubed&rsquo;s flagship data competition! Whether you&#39;re a footy fanatic, 
     a data science enthusiast, or just keen to try something new, this is the perfect chance to sharpen 
     your skills, build your portfolio, and connect with a vibrant community. No prior experience needed – 
     just bring your curiosity and team spirit!`;
   
-    const previewText = `Join us for DSCubed’s flagship data competition! Whether you're a footy fanatic, 
+    const previewText = `Join us for DSCubed&rsquo;s flagship data competition! Whether you&#39;re a footy fanatic, 
     a data science enthusiast, or just keen to try something new...`;
 
     useEffect(() => {
@@ -47,7 +48,14 @@ export default function Title() {
     return (
         <>
             <div className="w-[100vw] h-[90vh] sm:h-[50vh] flex relative items-center justify-center">
-                <img src="/competitions/banner.png" alt="Kaggle banner image" className="h-[90vh] sm:h-[50vh] w-full object-cover object-bottom"/>
+                <Image 
+                    src="/competitions/banner.png" 
+                    alt="Kaggle banner image" 
+                    className="h-[90vh] sm:h-[50vh] w-full object-cover object-bottom"
+                    width={1920}
+                    height={1080}
+                    priority
+                />
                 <div className="absolute flex flex-col justify-center mx-20 sm:mx-5 text-white">
                     <h2 className="sm:text-lg text-4xl font-semibold text-[#4ea6e9]">kaggle <span className="text-white">COMPETITION</span></h2>
 
@@ -57,7 +65,7 @@ export default function Title() {
                     </h1>
 
                     <p className="mt-4 max-w-2xl text-lg sm:hidden">
-                    Join us for DSCubed’s flagship data competition! Whether you're a footy fanatic,
+                    Join us for DSCubed&rsquo;s flagship data competition! Whether you&#39;re a footy fanatic,
                     a data science enthusiast, or just keen to try something new, this is the perfect
                     chance to sharpen your skills, build your portfolio, and connect with a vibrant
                     community. No prior experience needed – just bring your curiosity and team spirit!
