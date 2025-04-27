@@ -24,13 +24,15 @@ function executePrizeAnimation(value: number) {
 export default function Prizes() {
   return (
     <Section>
-      <h1 className="text-3xl font-bold mb-2">WHY THIS IS FOR YOU</h1>
-      <p className="text-lg font-medium pb-12">
-        Gain practical experience and career-boosting opportunities
-      </p>
+      <div className="flex flex-col items-center text-center px-5">
+        <h1 className="text-3xl font-bold mb-2">PRIZES</h1>
+        <p className="text-lg font-medium pb-5">Lorem ipsum dolores</p>
+      </div>
 
       <div className="align-center text-center m-auto prize-font font-mono font-bold text-3xl text-white">
         <div className="flex color-white relative h-96">
+          {/* Framer Motion Scroll Reveal Animation; adapted from Saleh Mubashar
+          https://codesandbox.io/p/sandbox/framer-motion-scroll-reveal-animation-3lvdm5?file=%2Fsrc%2FCard.js%3A17%2C36&from-embed} */}
           <motion.div
             className="text-center relative mx-5 top-1/4"
             initial={{
@@ -54,7 +56,6 @@ export default function Prizes() {
               2ND PRIZE
             </div>
           </motion.div>
-
           <motion.div
             className="text-center relative mx-2"
             initial={{
@@ -78,7 +79,6 @@ export default function Prizes() {
               1ST PRIZE
             </div>
           </motion.div>
-
           <motion.div
             className="text-center relative mx-5 top-1/2"
             initial={{
