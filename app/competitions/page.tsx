@@ -1,11 +1,11 @@
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
-import Section from '@/app/components/Section'
 import KaggleIntro from '@/app/components/competitions/KaggleIntro'
 import WhatsInItForMeSection from '@/app/components/competitions/WhatsInItForMeSection'
 import FAQSection from '../components/competitions/FAQ/FAQSection'
 import Title from '@/app/components/competitions/Title'
 import ScrollUpButton from '@/app/components/competitions/ScrollUpButton'
+import Prizes from '../components/competitions/prizes'
 
 export const metadata = {
   title: 'Competitions | DSCubed',
@@ -31,10 +31,18 @@ export default function CompetitionsPage() {
       <Navbar />
       <main className="relative bg-background-secondary z-10">
         <Title />
-        <hr className="border-0 border-b border-border" />
-        <FAQSection />
-        <KaggleIntro />
-        <WhatsInItForMeSection />
+        <div className="mt-36">
+          <KaggleIntro />
+        </div>
+        <div className="mt-36">
+          <WhatsInItForMeSection />
+        </div>
+        <div className="mt-36">
+          <Prizes />
+        </div>
+        <div className="mt-36">
+          <FAQSection />
+        </div>
       </main>
       <Footer />
       <ScrollUpButton />
