@@ -63,7 +63,7 @@ export default function CompetitionsPage() {
         <Section>
           <hr className="border-0 border-b border-border" />
           <CreditsSection />
-        </Section>
+          </Section>
       </main>
       <ScrollUpButton />
       <Footer />
