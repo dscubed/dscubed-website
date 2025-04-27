@@ -40,20 +40,23 @@ export default function CompetitionsPage() {
         <div className="mt-36">
           <WhatsInItForMeSection />
         </div>
-        <div className="mt-36">
-          <Prizes />
-        </div>
-        <div className="mt-36">
-          <EventTimeline />
-        </div>
-        <div className="mt-36">
+        < Section>
+            <hr className="border-0 border-b border-border" />
+            <Prizes />
+          </Section>
+          <Section>
+            <hr className="border-0 border-b border-border" />
+            <EventTimeline />
+          </Section>
           <Section>
             <hr className="border-0 border-b border-border" />
             <Workshop />
           </Section>
-        </div>
-        <div className="mt-36">
-          <FAQSection />
+        <div className="mt-24">
+        < Section>
+            <hr className="border-0 border-b border-border" />
+            <FAQSection />
+          </Section>
         </div>
       </main>
       <ScrollUpButton />
