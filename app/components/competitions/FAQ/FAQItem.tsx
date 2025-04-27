@@ -2,6 +2,11 @@
 import { PlusIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
+import { TypeAnimation } from 'react-type-animation'
+
+// Dynamically import motion to avoid "use client" issues
+const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: false })
 
 export default function FAQItem ({
   question,
@@ -13,18 +18,36 @@ export default function FAQItem ({
   const [showAnswer, toggleAnswer] = useState(false)
 
   return (
-    <div
-      className="flex flex-col border-b border-border py-6 transition-all cursor-pointer overflow-hidden"
-      onClick={e => toggleAnswer(showAnswer ? false : true)}
+    <MotionDiv
+      className="w-full border-b border-border py-6 transition-all cursor-pointer overflow-hidden"
+      onClick={() => toggleAnswer(!showAnswer)}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <div className="grid grid-cols-[max-content,1fr] gap-x-4">
-        {/* Set icon height to line height */}
-        <PlusIcon className={`w-7 h-[calc(1.25rem*1.625)] text-text-secondary transition-all ${showAnswer ? 'rotate-45' : 'rotate-0'}`} />
+      <div className="grid grid-cols-[max-content,1fr] gap-x-4 max-w-screen-xl mx-auto">
+        <PlusIcon
+          className={`w-7 h-[calc(1.25rem*1.625)] text-text-secondary transition-all ${
+            showAnswer ? 'rotate-45' : 'rotate-0'
+          }`}
+        />
         <h3 className="text-xl leading-relaxed my-auto">{question}</h3>
-        <p className={`transition-all duration-300 text-xl sm:text-lg text-text-secondary !leading-relaxed col-start-2 ${showAnswer ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <span className="block pt-4">{answer}</span>
-        </p>
+        <div
+          className={`transition-all duration-300 text-xl sm:text-lg text-text-secondary !leading-relaxed col-start-2 ${
+            showAnswer ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          {showAnswer && (
+            <TypeAnimation
+              sequence={[answer]}
+              speed={80} // Typing speed
+              wrapper="span"
+              cursor={false}
+              className="block pt-4"
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </MotionDiv>
   )
 }
