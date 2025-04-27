@@ -19,11 +19,11 @@ export default function FAQItem ({
 
   return (
     <MotionDiv
-      className="w-full border-b border-border py-6 transition-all cursor-pointer overflow-hidden"
+      className="w-full border-border py-6 transition-all cursor-pointer overflow-hidden"
       onClick={() => toggleAnswer(!showAnswer)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 2 }}
     >
       <div className="grid grid-cols-[max-content,1fr] gap-x-4 max-w-screen-xl mx-auto">
         <PlusIcon

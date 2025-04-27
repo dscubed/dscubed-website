@@ -12,7 +12,7 @@ export default function FAQSection () {
         className="flex flex-col gap-10 items-center"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 2.5 }}
         viewport={{ once: true }}
       >
         <h2 className="text-5xl sm:text-4xl text-center !leading-tight font-bold">

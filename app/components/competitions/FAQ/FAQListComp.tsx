@@ -19,7 +19,7 @@ const data = [
   },
   {
     question: 'How do I sign up?',
-    answer: 'You can sign up through our Linktree (link in bio) or other registration links provided on our social media.',
+    answer: 'You can sign up through our Linktree or other registration links provided on our social media.',
   },
   {
     question: 'What are the prizes?',
@@ -33,7 +33,7 @@ export default function FAQList () {
       className="flex flex-col"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 2 }}
       viewport={{ once: true }}
     >
       {data.map((item, index) => (

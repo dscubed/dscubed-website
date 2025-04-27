@@ -3,6 +3,7 @@ import Navbar from '@/app/components/Navbar'
 import Section from '@/app/components/Section'
 import FAQSection from '../components/competitions/FAQ/FAQSection'
 import Title from '@/app/components/competitions/Title'
+import ScrollUpButton from '@/app/components/competitions/ScrollUpButton'
 
 export const metadata = {
   title: 'Competitions | DSCubed',
@@ -27,15 +28,13 @@ export default function CompetitionsPage() {
     <>
       <Navbar />
       <main className="relative bg-background-secondary z-10">
-        <div className="text-center my-8">
-          <h1 className="text-2xl font-bold">Competitions</h1>
-        </div>
-        <hr className="border-0 border-b border-border" />
         <Title />
+
+        <hr className="border-0 border-b border-border" />
         <FAQSection />
       </main>
       <Footer />
-      <p>Paul is awesome</p>
+      <ScrollUpButton />
     </>
   )
 }
