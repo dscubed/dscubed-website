@@ -24,32 +24,84 @@ function executePrizeAnimation(value: number) {
 export default function Prizes() {
   return (
     <Section>
+      <h1 className="text-3xl font-bold mb-2">WHY THIS IS FOR YOU</h1>
+      <p className="text-lg font-medium pb-12">
+        Gain practical experience and career-boosting opportunities
+      </p>
+
       <div className="align-center text-center m-auto prize-font font-mono font-bold text-3xl text-white">
         <div className="flex color-white relative h-96">
-          <div className="text-center relative mx-5 top-1/4">
+          <motion.div
+            className="text-center relative mx-5 top-1/4"
+            initial={{
+              opacity: 0,
+              // if odd index card,slide from right instead of left
+              x: 1 % 2 === 0 ? 50 : -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0, // Slide in to its original position
+              transition: {
+                duration: 1, // Animation duration
+              },
+            }}
+            viewport={{ once: true }}
+          >
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-1 mb-3 bg-blue-700">
               ${executePrizeAnimation(50)}
             </div>
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-3/4">
               2ND PRIZE
             </div>
-          </div>
-          <div className="text-center relative mx-2">
+          </motion.div>
+
+          <motion.div
+            className="text-center relative mx-2"
+            initial={{
+              opacity: 0,
+              // if odd index card,slide from right instead of left
+              y: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0, // Slide in to its original position
+              transition: {
+                duration: 1, // Animation duration
+              },
+            }}
+            viewport={{ once: true }}
+          >
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 mb-3 bg-blue-700">
               ${executePrizeAnimation(100)}
             </div>
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-full">
               1ST PRIZE
             </div>
-          </div>
-          <div className="text-center relative mx-5 top-1/2">
+          </motion.div>
+
+          <motion.div
+            className="text-center relative mx-5 top-1/2"
+            initial={{
+              opacity: 0,
+              // if odd index card,slide from right instead of left
+              x: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0, // Slide in to its original position
+              transition: {
+                duration: 1, // Animation duration
+              },
+            }}
+            viewport={{ once: true }}
+          >
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 mb-3 bg-blue-700">
               ${executePrizeAnimation(25)}
             </div>
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-1/2">
               3RD PRIZE
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </Section>
