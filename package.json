@@ -26,6 +26,7 @@
     "clsx": "^2.0.0",
     "compressorjs": "^1.2.1",
     "eslint": "^8.56.0",
+    "framer-motion": "^12.9.2",
     "geist": "^1.0.0",
     "lodash": "^4.17.21",
     "next": "^14.2.5",
