@@ -4,7 +4,6 @@ import Section from "@/app/components/Section";
 import { motion, useMotionValue, animate, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Function to animate the prize value
 function PrizeCounter({ value, isInView }: { value: number; isInView: boolean }) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
@@ -27,7 +26,7 @@ export default function Prizes() {
 
   return (
     <Section>
-    {/* Header */}
+      {/* Header */}
       <div className="text-center mb-12">
         <motion.h2
           className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
