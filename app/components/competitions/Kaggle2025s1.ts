@@ -72,3 +72,27 @@ export const titleCard = {
       answer: '',
     },
   ]
+
+
+  export const credits: {
+    name: string,
+    image?: string,
+    members: {
+      name: string,
+      role?: string,
+      image?: string,
+      filter?: string
+    }[]
+  }[] = [
+    {
+      name: 'IT',
+      members: [
+        { name: 'Noah Say', role: 'IT Director', image: '/people/2025/noah-say.png'},
+        { name: 'Paul Su', role: 'IT Officer', image: '/people/2025/paul-su.png'  },
+        { name: 'Kaylyn Pham', role: 'IT Officer' , image: '/people/2025/kaylyn-phan.png' },
+        { name: 'Animesh Pandey', role: 'IT Officer', image: '/people/2025/animesh-pandey.png' },
+        { name: 'Irene Chiam', role: 'IT Officer', image: '/people/2025/irene-chiam.png' },
+        { name: 'Lachlan Chue', role: 'IT Officer', image: '/people/2025/lachlan-chue.png' },
+      ],
+    },
+  ]

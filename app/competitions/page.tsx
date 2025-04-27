@@ -9,6 +9,7 @@ import FAQSection from "../components/competitions/FAQ/FAQSection";
 import Title from "@/app/components/competitions/Title";
 import ScrollUpButton from "@/app/components/competitions/ScrollUpButton";
 import Prizes from "../components/competitions/prizes";
+import CreditsSection from "@/app/components/competitions/credits"; // Corrected import path
 
 export const metadata = {
   title: "Competitions | DSCubed",
@@ -40,24 +41,29 @@ export default function CompetitionsPage() {
         <div className="mt-36">
           <WhatsInItForMeSection />
         </div>
-        < Section>
-            <hr className="border-0 border-b border-border" />
-            <Prizes />
-          </Section>
-          <Section>
-            <hr className="border-0 border-b border-border" />
-            <EventTimeline />
-          </Section>
-          <Section>
-            <hr className="border-0 border-b border-border" />
-            <Workshop />
-          </Section>
+        <Section>
+          <hr className="border-0 border-b border-border" />
+          <Prizes />
+        </Section>
+        <Section>
+          <hr className="border-0 border-b border-border" />
+          <EventTimeline />
+        </Section>
+        <Section>
+          <hr className="border-0 border-b border-border" />
+          <Workshop />
+        </Section>
         <div className="mt-24">
-        < Section>
+          <Section>
             <hr className="border-0 border-b border-border" />
             <FAQSection />
           </Section>
         </div>
+        {/* Add the Credits Section */}
+        <Section>
+          <hr className="border-0 border-b border-border" />
+          <CreditsSection />
+        </Section>
       </main>
       <ScrollUpButton />
       <Footer />

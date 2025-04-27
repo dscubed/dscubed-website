@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import WorkshopCard from "./WorkshopCard";
 
 const workshops = [
@@ -25,20 +28,47 @@ export default function Workshop() {
       <div className="max-w-screen-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight">
+          <motion.h2
+            className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             WORKSHOPS
-          </h2>
-          <p className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2">
+          </motion.h2>
+          <motion.p
+            className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             short description
-          </p>
+          </motion.p>
         </div>
 
         {/* Cards */}
-        <div className="flex flex-wrap gap-6 justify-center sm:justify-between">
+        <motion.div
+          className="flex flex-wrap gap-6 justify-center sm:justify-between"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {workshops.map((workshop, index) => (
-            <WorkshopCard key={index} {...workshop} />
+            <motion.div
+              key={index}
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <WorkshopCard {...workshop} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
