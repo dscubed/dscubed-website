@@ -33,7 +33,7 @@ export default function KaggleIntro() {
             "Kaggle is the world’s leading platform for data science and machine learning. It hosts real-world datasets, challenges and competitions where individuals and teams build solutions to complex problems. For our flagship competition, we source Kaggle datasets to provide you with practical, industry-relevant experience.",
           ]}
           el="p"
-          className="text-lg leading-relaxed"
+          className="text-xl font-bold leading-relaxed" // Increased font size and bolded text
           once
         />
       </motion.div>
@@ -79,7 +79,7 @@ const defaultAnimations = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.04, // Reduced duration for faster typing
+      duration: 0.02, // Reduced duration for faster typing
     },
   },
 };
@@ -126,7 +126,7 @@ export const AnimatedText = ({
         initial="hidden"
         animate={controls}
         variants={{
-          visible: { transition: { staggerChildren: 0.04 } }, // Reduced stagger for faster typing
+          visible: { transition: { staggerChildren: 0.02 } }, // Reduced stagger for faster typing
           hidden: {},
         }}
         aria-hidden
