@@ -1,31 +1,32 @@
-import Footer from '@/app/components/Footer'
-import Navbar from '@/app/components/Navbar'
-import Section from '@/app/components/Section'
-import EventTimeline from '../components/competitions/timeline'
-import KaggleIntro from '@/app/components/competitions/KaggleIntro'
-import WhatsInItForMeSection from '@/app/components/competitions/WhatsInItForMeSection'
-import FAQSection from '../components/competitions/FAQ/FAQSection'
-import Title from '@/app/components/competitions/Title'
-import ScrollUpButton from '@/app/components/competitions/ScrollUpButton'
-import Prizes from '../components/competitions/prizes'
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/Navbar";
+import Section from "@/app/components/Section";
+import Workshop from "@/app/components/competitions/workshop";
+import EventTimeline from "../components/competitions/timeline";
+import KaggleIntro from "@/app/components/competitions/KaggleIntro";
+import WhatsInItForMeSection from "@/app/components/competitions/WhatsInItForMeSection";
+import FAQSection from "../components/competitions/FAQ/FAQSection";
+import Title from "@/app/components/competitions/Title";
+import ScrollUpButton from "@/app/components/competitions/ScrollUpButton";
+import Prizes from "../components/competitions/prizes";
 
 export const metadata = {
-  title: 'Competitions | DSCubed',
-  description: 'Explore our competitions and challenges.',
+  title: "Competitions | DSCubed",
+  description: "Explore our competitions and challenges.",
   openGraph: {
-    title: 'Competitions | DSCubed',
-    description: 'Explore our competitions and challenges.',
-    url: '/competitions',
-    siteName: 'DSCubed',
-    locale: 'en_AU',
-    type: 'website',
+    title: "Competitions | DSCubed",
+    description: "Explore our competitions and challenges.",
+    url: "/competitions",
+    siteName: "DSCubed",
+    locale: "en_AU",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "Competitions | DSCubed",
-    description: 'Explore our competitions and challenges.',
+    description: "Explore our competitions and challenges.",
   },
-}
+};
 
 export default function CompetitionsPage() {
   return (
@@ -46,11 +47,17 @@ export default function CompetitionsPage() {
           <EventTimeline />
         </div>
         <div className="mt-36">
+          <Section>
+            <hr className="border-0 border-b border-border" />
+            <Workshop />
+          </Section>
+        </div>
+        <div className="mt-36">
           <FAQSection />
         </div>
       </main>
       <ScrollUpButton />
       <Footer />
     </>
-  )
+  );
 }
