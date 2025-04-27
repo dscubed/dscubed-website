@@ -1,0 +1,54 @@
+body {
+    align-items: center;
+}
+
+.col {
+    text-align: center;
+}
+
+.container {
+    background-color: white;
+    display: flex;
+    color: white;
+    font-family: 'Press Start 2P';
+    position: relative;
+}
+
+.col-row {
+    background-color: #0472FD;
+}
+
+
+.col-row-2 {
+    background-color: #373737;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+}
+
+.row {
+    margin: 0.3rem;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1rem;
+}
+
+.row-first {
+    height: 10rem;
+}
+
+.row-second {
+    height: 5rem;
+}
+
+.row-third {
+    height: 2.5rem;
+}
+
+.col-second {
+    position: relative;
+    bottom: -5rem;
+}
+
+.col-third {
+    position: relative;
+    bottom: -7.5rem;
+}
