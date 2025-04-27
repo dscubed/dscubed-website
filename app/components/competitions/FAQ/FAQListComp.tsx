@@ -1,4 +1,8 @@
 import FAQItem from '@/app/components/competitions/FAQ/FAQItem'
+import dynamic from 'next/dynamic'
+
+// Dynamically import motion to avoid "use client" issues
+const MotionDiv = dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: false })
 
 const data = [
   {
@@ -25,7 +29,13 @@ const data = [
 
 export default function FAQList () {
   return (
-    <div className="flex flex-col">
+    <MotionDiv
+      className="flex flex-col"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      viewport={{ once: true }}
+    >
       {data.map((item, index) => (
         <FAQItem
           question={item.question}
@@ -33,6 +43,6 @@ export default function FAQList () {
           key={index}
         />
       ))}
-    </div>
+    </MotionDiv>
   )
 }
