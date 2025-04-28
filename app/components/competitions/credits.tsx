@@ -1,5 +1,5 @@
 import MemberListItem from '@/app/components/committee/MemberListItem'
-import { credits } from '@/app/components/competitions/kaggle2025s1'
+import { credits } from '@/app/components/competitions/aflkaggle'
 
 export default function CreditsSection() {
   return (

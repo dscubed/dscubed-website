@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import WorkshopCard from "./WorkshopCard";
+import WorkshopCard from "@/app/components/competitions/workshopcard";
 
 const workshops = [
   {
