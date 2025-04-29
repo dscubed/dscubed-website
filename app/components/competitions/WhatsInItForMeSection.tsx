@@ -10,19 +10,19 @@ export default function WhatsInItForMeSection() {
           className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          WHY THIS IS FOR YOU
+          WHATS IN IT FOR YOU
         </motion.h2>
         <motion.p
           className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Gain practical experience and career-boosting opportunities
+          Gain practical experience and career-boosting opportunities!
         </motion.p>
       </div>
 

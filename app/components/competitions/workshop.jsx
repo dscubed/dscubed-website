@@ -1,22 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import WorkshopCard from "./WorkshopCard";
+import WorkshopCard from "@/app/components/competitions/workshopcard";
 
 const workshops = [
   {
     title: "Workshop 1",
     subtitle: "Explanatory Data Analysis",
-    description: "short description of the workshop",
-    videoId: "j2fbOAyNOpM",
+    description: "This workshop will guide you through exploring, cleaning and preparing your data for machine learning",
+    videoId: "",
     date: "30 April 2025",
     time: "3 – 4:30 pm",
   },
   {
     title: "Workshop 2",
     subtitle: "Model Building & Evaluation",
-    description: "short description of the project",
-    videoId: "j2fbOAyNOpM",
+    description: "This workshop will teach you how to build an evaluate different machine learning models to best solve a problem",
+    videoId: "",
     date: "2 May 2025",
     time: "5 – 6:30 pm",
   },
@@ -32,7 +32,7 @@ export default function Workshop() {
             className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             WORKSHOPS
@@ -41,10 +41,10 @@ export default function Workshop() {
             className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
           >
-            short description
+            Unlock your potential with our guided workshops!
           </motion.p>
         </div>
 

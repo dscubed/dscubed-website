@@ -95,4 +95,16 @@ export const titleCard = {
         { name: 'Lachlan Chue', role: 'IT Officer', image: '/people/2025/lachlan-chue.png' },
       ],
     },
+    {
+      name: 'Education',
+      members: [
+        { name: 'Jordan Chao', role: 'Education Director', image: '/people/2025/jordan-chao.png'},
+        { name: 'Mark Sesuraj', role: 'Education Officer' , image: '/people/2025/mark-sesuraj.png' },
+        { name: 'Bike Pham', role: 'Education Officer', image: '/people/2025/bike-pham.png' },
+        { name: 'Nick Muir', role: 'Education Officer', image: '/people/2025/nick-muir.png' },
+        { name: 'Keith Howan', role: 'Education Officer', image: '/people/2025/keith-howan.png' },
+        { name: 'Stanley', role: 'Education Officer', image: '/people/2025/stanley-zaranski.png' },
+        { name: 'Frank Ngo', role: 'Education Officer', image: '/people/2025/frank-ngo.png' },
+      ],
+    },
   ]

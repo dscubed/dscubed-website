@@ -21,7 +21,7 @@ export default function FAQSection () {
             className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             FREQUENTLY ASKED QUESTIONS
@@ -30,10 +30,10 @@ export default function FAQSection () {
             className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
           >
-            short description
+            Find answers to common questions about the competition and get the information you need
           </motion.p>
         </div>
         <div className="w-full flex justify-start">
@@ -42,9 +42,9 @@ export default function FAQSection () {
         <div className="flex gap-4 py-8">
           <Link
             className="flex gap-2 text-xl text-theme my-auto"
-            href="mailto:hello@dscubed.org.au"
+            href="https://discord.gg/fQf2BfnV"
           >
-            <span className="my-auto">Get In Touch</span>
+            <span className="my-auto">Ask questions to the Education team in our Discord server</span>
             <ArrowRightIcon className="w-6 h-6 my-auto" />
           </Link>
         </div>
@@ -53,10 +53,11 @@ export default function FAQSection () {
             className="flex gap-2 text-xl text-theme my-auto"
             href="https://linktr.ee/dscubed"
           >
-            <span className="my-auto">Linktree Signup</span>
+            <span className="my-auto">Linktree</span>
             <ArrowRightIcon className="w-6 h-6 my-auto" />
           </Link>
         </div>
+        
       </motion.div>
     </Section>
   )
