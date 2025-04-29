@@ -11,7 +11,7 @@ const data = [
   },
   {
     question: 'What if I don’t have any prior experience?',
-    answer: 'No problem! We’ll host several workshops to equip you with the skills needed to tackle real-world challenges. Additionally, our Education Officers will be available on the day to provide support and guidance.',
+    answer: 'No problem! We’ll host several workshops to equip you with the skills needed to tackle real-world challenges. Additionally, our Education Officers will be available on the day to provide support and guidance. Also, feel free to drop in any questions in our Discord server below!',
   },
   {
     question: 'Can I attend online?',
@@ -23,7 +23,11 @@ const data = [
   },
   {
     question: 'What are the prizes?',
-    answer: 'Check out our prize details on Instagram for the full breakdown of what’s up for grabs!',
+    answer: 'Check out our prize details on Instagram or scroll up our competitions page on our website for the full breakdown of what’s up for grabs!',
+  },
+  {
+    question: 'What if I missed out?',
+    answer: 'Don’t worry! Keep an eye on our Instagram page and Discord announcements for updates on future competitions. You’re also welcome to attend our workshops to build your skills and prepare for the next event!',
   },
 ]
 

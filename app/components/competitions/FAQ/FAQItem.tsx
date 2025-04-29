@@ -40,9 +40,9 @@ export default function FAQItem ({
           {showAnswer && (
             <TypeAnimation
               sequence={[answer]}
-              speed={80} // Typing speed
+              speed={90} // Typing speed
               wrapper="span"
-              cursor={false}
+              cursor={true}
               className="block pt-4"
             />
           )}

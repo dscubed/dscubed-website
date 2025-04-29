@@ -1,7 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
-import { useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 export default function KaggleIntro() {
@@ -33,7 +32,7 @@ export default function KaggleIntro() {
             "Kaggle is the world’s leading platform for data science and machine learning. It hosts real-world datasets, challenges and competitions where individuals and teams build solutions to complex problems. For our flagship competition, we source Kaggle datasets to provide you with practical, industry-relevant experience.",
           ]}
           el="p"
-          className="text-lg leading-relaxed"
+          className="text-xl font-bold leading-relaxed" // Increased font size and bolded text
           once
         />
       </motion.div>
@@ -64,13 +63,10 @@ type AnimatedTextProps = {
   className?: string;
   once?: boolean;
   repeatDelay?: number;
-  animation?: {
-    hidden: Variant;
-    visible: Variant;
-  };
+  animation?: Variants; // Updated type
 };
 
-const defaultAnimations = {
+const defaultAnimations: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
@@ -79,7 +75,7 @@ const defaultAnimations = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.04, // Reduced duration for faster typing
+      duration: 0.02, // Reduced duration for faster typing
     },
   },
 };
@@ -116,7 +112,7 @@ export const AnimatedText = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [isInView]);
+  }, [isInView, controls, repeatDelay]);
 
   return (
     <Wrapper className={className}>
@@ -126,8 +122,8 @@ export const AnimatedText = ({
         initial="hidden"
         animate={controls}
         variants={{
-          visible: { transition: { staggerChildren: 0.04 } }, // Reduced stagger for faster typing
-          hidden: {},
+          hidden: animation.hidden, // Fixed variants structure
+          visible: animation.visible, // Fixed variants structure
         }}
         aria-hidden
       >
