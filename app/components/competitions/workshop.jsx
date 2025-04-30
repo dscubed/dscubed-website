@@ -24,7 +24,7 @@ const workshops = [
 
 export default function Workshop() {
   return (
-    <section className="w-full px-6 py-16">
+    <section className="w-full px-6 py-16 overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
