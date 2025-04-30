@@ -35,6 +35,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
 
             {/* Desktop links */}
             <div className="flex gap-6 md:hidden">
+              <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/visualiser">Visualiser</Link>
               <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/events">Events</Link>
               <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/committee-2025">Committee</Link>
               <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/sponsors">Sponsors</Link>
@@ -84,6 +85,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
         <div className={clsx("absolute hidden flex-col w-full bg-background-secondary top-full border-t border-border", {
           'md:flex': showMenu,
         })}>
+          <Link className="p-4 border-b border-border " href="/visualiser">Visualiser</Link>
           <Link className="p-4 border-b border-border " href="/events">Events</Link>
           <Link className="p-4 border-b border-border " href="/committee-2025">Committee</Link>
           <Link className="p-4 border-b border-border " href="/sponsors">Sponsors</Link>

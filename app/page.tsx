@@ -10,6 +10,7 @@ import EventSection from '@/app/components/home/EventSection'
 import GallerySection from '@/app/components/home/GallerySection'
 import FAQSection from '@/app/components/home/FAQSection'
 import AboutSection from '@/app/components/home/AboutSection'
+import FrontPageEmbed from '@/app/components/visualiser/frontpageembed'
 
 export default function Index() {
   return (
@@ -18,6 +19,8 @@ export default function Index() {
       <Navbar />
 
       <main className="relative bg-background-secondary z-10">
+        <FrontPageEmbed />
+        <hr className="border-0 border-b border-border" />
         <IntroSection />
         <hr className="border-0 border-b border-border" />
         <WhatWeDoSection />
