@@ -10,14 +10,18 @@ import EventSection from '@/app/components/home/EventSection'
 import GallerySection from '@/app/components/home/GallerySection'
 import FAQSection from '@/app/components/home/FAQSection'
 import AboutSection from '@/app/components/home/AboutSection'
+import Embeddings from '@/app/components/home/Embeddings' 
 
 export default function Index() {
   return (
     <>
       <HeroSection />
       <Navbar />
+       {/* Add the placeholder component here */}
 
       <main className="relative bg-background-secondary z-10">
+        <Embeddings />
+        <hr className="border-0 border-b border-border" />
         <IntroSection />
         <hr className="border-0 border-b border-border" />
         <WhatWeDoSection />
