@@ -50,7 +50,7 @@ export default function Workshop() {
 
         {/* Cards */}
         <motion.div
-          className="flex flex-wrap gap-6 justify-center sm:justify-between"
+          className="flex flex-wrap gap-10 justify-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
