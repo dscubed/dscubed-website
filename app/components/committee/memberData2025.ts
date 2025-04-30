@@ -112,6 +112,7 @@ export const teams: {
     image: '/people/2025-teams/IT-Team.JPG',
     members: [
       { name: 'Paul Su', role: 'IT Officer', image: '/people/2025/paul-su.png'  },
+      { name: 'Zim Do', role: 'IT Officer', image: '/people/2025/zim-do.jpeg'  },
       { name: 'Jamie Marks', role: 'IT Officer', image: '/people/2025/jamie-marks.png'},
       { name: 'Kaylyn Pham', role: 'IT Officer' , image: '/people/2025/kaylyn-phan.png' },
       { name: 'Animesh Pandey', role: 'IT Officer', image: '/people/2025/animesh-pandey.png' },
