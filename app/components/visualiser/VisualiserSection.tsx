@@ -1,0 +1,30 @@
+"use client";
+
+import React, { useState } from "react";
+import Visualiser from "@/app/components/visualiser/Visualiser";
+import { useEmbeddings } from "@/app/hooks/useEmbeddings";
+import vocab from "@/public/visualiser/vocab.json";
+import Section from "../Section";
+
+export default function VisualiserSection() {
+  const [words] = useState<string[]>(vocab as string[]);
+  const embeddings = useEmbeddings(words);
+
+  if (!embeddings)
+    return (
+      <Section>
+        {/* <div className="text-center justify-center px-2 py-5 mx-auto">
+          Loading embeddings...
+        </div> */}
+        <h1 className="text-3xl text-center">Loading embeddings...</h1>
+      </Section>
+    );
+
+  return (
+    <Section>
+      <div className="flex justify-center">
+        <Visualiser vocab={words} embeddings={embeddings} />
+      </div>
+    </Section>
+  );
+}
