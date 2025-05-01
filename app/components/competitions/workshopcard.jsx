@@ -9,6 +9,7 @@ export default function WorkshopCard({
   videoId,
   date,
   time,
+  pdfLink,
 }) {
   const opts = {
     height: "200",
@@ -36,6 +37,16 @@ export default function WorkshopCard({
         <p>{date}</p>
         <p>{time}</p>
       </div>
+
+      {pdfLink && (
+        <a
+          href={pdfLink}
+          download
+          className="mt-2 inline-block text-sm font-medium bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition"
+        >
+          Download Slides
+        </a>
+      )}
     </div>
   );
 }
