@@ -1,7 +1,7 @@
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import Section from "@/app/components/Section";
-import VisualiserSection from "../components/visualiser/VisualiserSection";
+import VisualiserSection from "@/app/components/visualiser/VisualiserSection";
 
 export const metadata = {
   title: "Visualiser | DSCubed",
