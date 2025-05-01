@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Visualiser from "@/app/components/visualiser/Visualiser";
 import { useEmbeddings } from "@/app/hooks/useEmbeddings";
 import vocab from "@/public/visualiser/vocab.json";
-import Section from "../Section";
+import Section from "@/app/components/Section";
 
 export default function VisualiserSection() {
   const [words] = useState<string[]>(vocab as string[]);
