@@ -11,6 +11,7 @@ const workshops = [
     videoId: "",
     date: "30 April 2025",
     time: "3 – 4:30 pm",
+    pdfLink: '/competitions/Workshop1Slides.pdf',
   },
   {
     title: "Workshop 2",
@@ -24,7 +25,7 @@ const workshops = [
 
 export default function Workshop() {
   return (
-    <section className="w-full px-6 py-16">
+    <section className="w-full px-6 py-16 overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
