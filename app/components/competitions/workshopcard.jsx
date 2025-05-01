@@ -9,6 +9,7 @@ export default function WorkshopCard({
   videoId,
   date,
   time,
+  pdfLink,
 }) {
   const opts = {
     height: "200",
@@ -19,7 +20,7 @@ export default function WorkshopCard({
   };
 
   return (
-    <div className="w-[28rem] bg-[#1e1e1e] text-white rounded-xl border border-[#333] p-6 flex flex-col gap-4 shadow-md">
+    <div className="w-[25rem] bg-[#1e1e1e] text-white rounded-xl border border-[#333] p-6 flex flex-col gap-4 shadow-md">
       <div>
         <h3 className="text-[clamp(1.25rem,2vw,1.5rem)] font-bold">{title}</h3>
         <h4 className="text-[clamp(1.125rem,1.8vw,1.25rem)] font-semibold">
@@ -36,6 +37,16 @@ export default function WorkshopCard({
         <p>{date}</p>
         <p>{time}</p>
       </div>
+
+      {pdfLink && (
+        <a
+          href={pdfLink}
+          download
+          className="mt-2 inline-block text-sm font-medium bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition"
+        >
+          Download Slides
+        </a>
+      )}
     </div>
   );
 }
