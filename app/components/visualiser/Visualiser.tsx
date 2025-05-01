@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Line } from "@react-three/drei";
+import { OrbitControls, Line, Html } from "@react-three/drei";
 import { UMAP } from "umap-js";
 import * as use from "@tensorflow-models/universal-sentence-encoder";
 
@@ -191,15 +191,15 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     <div className="w-screen h-screen flex-col flex">
       {/* Display model loading status */}
       {isModelLoading ? (
-        <div className="text-center px-2 py-5 mx-auto">
+        <div className="text-center px-2 pb-5 mx-auto">
           Loading embedding model...
         </div>
       ) : model ? (
-        <div className="text-center px-2 py-5 mx-auto">
+        <div className="text-center px-2 pb-5 mx-auto">
           Using Universal Sentence Encoder
         </div>
       ) : (
-        <div className="text-center px-2 py-5 mx-auto">
+        <div className="text-center px-2 pb-5 mx-auto">
           Using fallback embeddings
         </div>
       )}
@@ -277,52 +277,51 @@ export default function Visualiser({ vocab, embeddings }: Props) {
               }
               return null;
             })}
+
+          <Html fullscreen zIndexRange={[100, 0]}>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+              {/* 'Add Word' button and Floating input UI*/}
+              {!isInputVisible ? (
+                <button
+                  onClick={() => setIsInputVisible(true)}
+                  className="px-4 py-2 bg-blue-600 rounded-xl hover:bg-blue-700"
+                >
+                  Add Word
+                </button>
+              ) : (
+                <div className="flex items-center space-x-2 bg-opacity-90 rounded">
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Enter word"
+                    className="px-4 py-2 border rounded-xl w-40"
+                    disabled={isProcessing}
+                  />
+                  <button
+                    onClick={handleAddWord}
+                    className="px-4 py-2 bg-green-600 rounded-xl hover:bg-green-700 disabled:opacity-50"
+                    disabled={isProcessing}
+                  >
+                    {isProcessing ? "..." : "Add"}
+                  </button>
+                  <button
+                    onClick={() => setIsInputVisible(false)}
+                    className="px-4 py-2 bg-red-600 rounded-xl hover:bg-red-700"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+              {validationError && (
+                <div className="text-red-600 text-sm text-center mt-2">
+                  {validationError}
+                </div>
+              )}
+            </div>
+          </Html>
         </Canvas>
       </div>
-
-      {/* Add Word button */}
-      {!isInputVisible && (
-        <button
-          onClick={() => setIsInputVisible(true)}
-          className="inline-block px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
-        >
-          Add Word
-        </button>
-      )}
-
-      {/* Floating input UI */}
-      {isInputVisible && (
-        <div className="">
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Enter word"
-              className="px-4 py-2 border border-gray-300 rounded w-52"
-              disabled={isProcessing}
-            />
-            <button
-              onClick={handleAddWord}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50"
-              disabled={isProcessing}
-            >
-              {isProcessing ? "Processing..." : "Add"}
-            </button>
-            <button
-              onClick={() => setIsInputVisible(false)}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 disabled:opacity-50"
-              disabled={isProcessing}
-            >
-              Cancel
-            </button>
-          </div>
-
-          {validationError && (
-            <div className="text-red-500">{validationError}</div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
