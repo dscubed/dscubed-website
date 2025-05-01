@@ -13,18 +13,11 @@ export default function VisualiserSection() {
   if (!embeddings)
     return (
       <Section>
-        {/* <div className="text-center justify-center px-2 py-5 mx-auto">
-          Loading embeddings...
-        </div> */}
         <h1 className="text-3xl text-center">Loading embeddings...</h1>
       </Section>
     );
 
   return (
-    <Section>
-      <div className="flex justify-center">
-        <Visualiser vocab={words} embeddings={embeddings} />
-      </div>
-    </Section>
+    <Visualiser vocab={words} embeddings={embeddings} />
   );
 }

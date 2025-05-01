@@ -27,11 +27,9 @@ export default function VisualiserPage() {
       <Navbar />
 
       <main className="flex-col items-center justify-center min-h-screen">
-        <Section>
-          <h1 className="text-5xl sm:text-4xl text-center mx-auto mb-5 !leading-tight">
-            3D Word Embeddings Visualiser
-          </h1>
-        </Section>
+        <h1 className="text-5xl sm:text-4xl text-center mx-auto mb-5 !leading-tight pt-5">
+          3D Word Embeddings Visualiser
+        </h1>
         <VisualiserSection />
       </main>
 
