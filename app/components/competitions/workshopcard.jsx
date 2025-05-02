@@ -2,6 +2,14 @@
 
 import YouTube from "react-youtube";
 
+function WorkshopVideo(videoId) {
+  if (videoId) {
+    return <iframe width="100%" height="100%" src={videoId} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>;
+  } else {
+    return <div className="text-gray-400 font-bold text-2xl mb-[4.385rem] mt-[4.385rem]">Coming Soon</div>;
+  }
+}
+
 export default function WorkshopCard({
   title,
   subtitle,
@@ -28,14 +36,16 @@ export default function WorkshopCard({
         </h4>
         <p className="text-sm text-gray-300">{description}</p>
       </div>
-      <div className="rounded-md w-full h-auto overflow-hidden">
-        <div className="text-center text-gray-400 font-bold text-2xl">
-          <p>COMING SOON {date}</p>
+      <div className="text-sm text-white font-semibold">
+        <div className="flex justify-between">
+          <span>{date}</span>
+          <span>{time}</span>
         </div>
       </div>
-      <div className="text-sm text-white font-semibold">
-        <p>{date}</p>
-        <p>{time}</p>
+      <div className="rounded-md w-full h-auto overflow-hidden">
+        <div className="text-center text-gray-400 font-bold text-2xl">
+          {WorkshopVideo(videoId)}
+        </div>
       </div>
 
       {pdfLink && (
@@ -44,7 +54,12 @@ export default function WorkshopCard({
           download
           className="mt-2 inline-block text-sm font-medium bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition"
         >
-          Download Slides
+          <div className="flex items-center gap-2">
+            <span>Download Slides</span>
+            <span>
+              <img src="/competitions/download.png" alt="Download" width="10rem" height="10rem" />
+            </span>
+          </div>
         </a>
       )}
     </div>
