@@ -20,6 +20,7 @@ const workshops = [
     videoId: "",
     date: "2 May 2025",
     time: "5 – 6:30 pm",
+    pdfLink: '/competitions/Workshop2Slides.pdf',
   },
 ];
 
