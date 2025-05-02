@@ -24,7 +24,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
       <nav {...rest} className={clsx('relative w-full bg-background-secondary bg-opacity-70 border-b border-border pt-px', className)}>
-        <div className="px-5 py-3.5">
+        <div className="px-5 py-3">
           <div className="relative max-w-screen-xl flex justify-between gap-2 mx-auto">
             {/* Logo */}
             <div className="flex">
@@ -35,10 +35,11 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
 
             {/* Desktop links */}
             <div className="flex gap-6 md:hidden">
-              <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/events">Events</Link>
-              <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/committee-2025">Committee</Link>
-              <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/sponsors">Sponsors</Link>
-              <Link className="my-auto text-xl text-opacity-50 transition-transform transform hover:scale-110" href="/competitions"> Competitions [NEW] </Link>
+              <Link className="my-auto text-l text-opacity-50 transition-transform transform hover:scale-110" href="/projects">Projects Initiative</Link>
+              <Link className="my-auto text-l text-opacity-50 transition-transform transform hover:scale-110" href="/events">Events</Link>
+              <Link className="my-auto text-l text-opacity-50 transition-transform transform hover:scale-110" href="/committee-2025">Committee</Link>
+              <Link className="my-auto text-l text-opacity-50 transition-transform transform hover:scale-110" href="/sponsors">Sponsors</Link>
+              <Link className="my-auto text-l text-opacity-50 transition-transform transform hover:scale-110" href="/competitions"> Competitions [NEW] </Link>
 
               <ThemeButton className="transition-transform transform hover:scale-110" showText={false} state={themeState} />
               <div className="block h-1/2 w-0 border-l border-border my-auto"></div>
@@ -84,6 +85,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
         <div className={clsx("absolute hidden flex-col w-full bg-background-secondary top-full border-t border-border", {
           'md:flex': showMenu,
         })}>
+          <Link className="p-4 border-b border-border " href="/projects">Projects Initiative</Link>
           <Link className="p-4 border-b border-border " href="/events">Events</Link>
           <Link className="p-4 border-b border-border " href="/committee-2025">Committee</Link>
           <Link className="p-4 border-b border-border " href="/sponsors">Sponsors</Link>
