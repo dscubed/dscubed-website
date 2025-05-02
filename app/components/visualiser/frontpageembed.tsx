@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 
 const pulseAnimation = {
   animate: {
-    opacity: [0.2, 0.9, 0.2],
+    opacity: [0.5, 0.9, 0.5],
   },
   transition: {
     duration: 5,
@@ -45,7 +45,7 @@ export default function FrontPageEmbed() {
             <motion.div
               {...pulseAnimation}
               style={{
-                filter: 'blur(16px)',
+                filter: 'blur(18px)',
                 position: 'absolute',
                 width: '100%',
                 height: '100%'
@@ -71,29 +71,29 @@ export default function FrontPageEmbed() {
         />
         {/* Left Section */}
         <div className="absolute left-0 w-1/3 h-screen flex flex-col items-center z-10">
-          <div className="flex-1 flex flex-col items-center justify-center gap-5 relative">
-            <div className="relative flex flex-col items-center gap-5">
-              <h1 className="text-3xl font-bold">
-                Welcome to DSCubed!
-              </h1>
-              <p className="mx-10 text-center">
-                The Leading Data Science Club at The University of Melbourne.
-              </p>
-              <button
-                onClick={handleButtonClick}
-                className="bg-white text-black px-4 py-2 rounded-md w-1/2 text-sm font-medium hover:bg-gray-100 transition-colors"
-              >
-                Go to Embeddings Visualiser
-              </button>
-            </div>
+          <div className="flex-1 flex flex-col items-center justify-center gap-5">
+            <h1 className="text-3xl font-bold text-center">
+              Welcome to DSCubed!
+            </h1>
+            <p className="mx-10 text-center">
+              The Leading Data Science Club at The University of Melbourne.
+            </p>
+            <button
+              onClick={handleButtonClick}
+              className="bg-white text-black px-4 py-2 rounded-md w-1/2 text-sm font-medium hover:bg-gray-100 transition-colors"
+            >
+              Go to Embeddings Visualiser
+            </button>
           </div>
-          <div className="flex mb-8 text-center gap-2">
-            <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
-          </div>
+        </div>
+        {/* Bottom Section */}
+        <div className="absolute bottom-0 w-screen flex items-center justify-center mb-4 text-center gap-2">
+          <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
         </div>
         {/* Right Section */}
         <div className="absolute right-0 w-1/3 h-screen flex flex-col items-center z-10">
           <div className="flex-1 flex flex-col items-center justify-center w-full relative">
+            {/* Logo with pulse animation */}
             <motion.div
               {...pulseAnimation}
               style={{
@@ -103,9 +103,10 @@ export default function FrontPageEmbed() {
                 height: 'auto'
               }}
             >
-              <Logo className="w-full h-auto opacity-80" />
+              <Logo className="w-full h-auto opacity-40" />
             </motion.div>
-            <Logo className="w-3/5 h-auto opacity-80 relative" />
+            {/* Main logo */}
+            <Logo className="w-3/5 h-auto opacity-10 relative" />
           </div>
         </div>
       </div>
