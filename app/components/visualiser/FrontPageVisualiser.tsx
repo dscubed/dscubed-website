@@ -63,12 +63,92 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
     const coords3d = useMemo(() => {
         const umap = new UMAP({
             nComponents: 3,
-            nNeighbors: Math.min(5, currentEmbeddings.length - 1),
+            nNeighbors: Math.min(15, currentEmbeddings.length - 1),
             spread: 5,
-            minDist: 0.8,
+            minDist: 0.5,
         });
         return umap.fit(currentEmbeddings);
     }, [currentEmbeddings]);
+
+    // Calculate bounds and define cube edges
+    const cubeEdges = useMemo(() => {
+        if (coords3d.length === 0) return [];
+
+        let minX = Infinity, maxX = -Infinity;
+        let minY = Infinity, maxY = -Infinity;
+        let minZ = Infinity, maxZ = -Infinity;
+
+        // Find min and max for each dimension
+        coords3d.forEach(([x, y, z]) => {
+            minX = Math.min(minX, x);
+            maxX = Math.max(maxX, x);
+            minY = Math.min(minY, y);
+            maxY = Math.max(maxY, y);
+            minZ = Math.min(minZ, z);
+            maxZ = Math.max(maxZ, z);
+        });
+
+        // Add a small padding to the bounds
+        const padding = 5; // Adjust padding as needed
+        minX -= padding; maxX += padding;
+        minY -= padding; maxY += padding;
+        minZ -= padding; maxZ += padding;
+
+        // Calculate current dimensions
+        const width = maxX - minX;
+        const height = maxY - minY;
+        const depth = maxZ - minZ;
+
+        // Find the maximum dimension to form a cube
+        const maxDim = Math.max(width, height, depth);
+
+        // Calculate how much to expand each dimension to match the max dimension
+        const expandX = maxDim - width;
+        const expandY = maxDim - height;
+        const expandZ = maxDim - depth;
+
+        // Adjust the min/max bounds to form a cube, centered around the original bounds
+        const cubeMinX = minX - expandX / 2;
+        const cubeMaxX = maxX + expandX / 2;
+        const cubeMinY = minY - expandY / 2;
+        const cubeMaxY = maxY + expandY / 2;
+        const cubeMinZ = minZ - expandZ / 2;
+        const cubeMaxZ = maxZ + expandZ / 2;
+
+
+        // Define the 8 vertices of the cube
+        const vertices = [
+            new THREE.Vector3(cubeMinX, cubeMinY, cubeMinZ), // 0: bottom-front-left
+            new THREE.Vector3(cubeMaxX, cubeMinY, cubeMinZ), // 1: bottom-front-right
+            new THREE.Vector3(cubeMinX, cubeMaxY, cubeMinZ), // 2: bottom-back-left
+            new THREE.Vector3(cubeMaxX, cubeMaxY, cubeMinZ), // 3: bottom-back-right
+            new THREE.Vector3(cubeMinX, cubeMinY, cubeMaxZ), // 4: top-front-left
+            new THREE.Vector3(cubeMaxX, cubeMinY, cubeMaxZ), // 5: top-front-right
+            new THREE.Vector3(cubeMinX, cubeMaxY, cubeMaxZ), // 6: top-back-left
+            new THREE.Vector3(cubeMaxX, cubeMaxY, cubeMaxZ), // 7: top-back-right
+        ];
+
+        // Define the 12 edges by connecting vertices
+        const edges = [
+            [vertices[0], vertices[1]], // Bottom front
+            [vertices[0], vertices[2]], // Bottom left
+            [vertices[1], vertices[3]], // Bottom right
+            [vertices[2], vertices[3]], // Bottom back
+
+            [vertices[4], vertices[5]], // Top front
+            [vertices[4], vertices[6]], // Top left
+            [vertices[5], vertices[7]], // Top right
+            [vertices[6], vertices[7]], // Top back
+
+            [vertices[0], vertices[4]], // Front left vertical
+            [vertices[1], vertices[5]], // Front right vertical
+            [vertices[2], vertices[6]], // Back left vertical
+            [vertices[3], vertices[7]], // Back right vertical
+        ];
+
+        return edges;
+    }, [coords3d]);
+
 
     // Zoom to a specific word
     const zoomToWord = (word: string) => {
@@ -83,9 +163,11 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                 const startTarget = controls.target.clone();
                 const startPosition = camera.position.clone();
 
-                // Calculate final positions
+                // Calculate final positions (offset slightly from the word)
+                const offset = new THREE.Vector3(5, 5, 5); // Adjust offset as needed
                 const endTarget = new THREE.Vector3(x, y, z);
-                const endPosition = new THREE.Vector3(x + 5, y + 5, z + 5);
+                const endPosition = endTarget.clone().add(offset);
+
 
                 // Animation parameters
                 const duration = 1000; // 1000ms (1 second)
@@ -96,8 +178,8 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                     const elapsed = Date.now() - startTime;
                     const progress = Math.min(elapsed / duration, 1);
 
-                    // Easing function for smooth animation
-                    const easeProgress = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
+                    // Easing function for smooth animation (Cubic ease-out)
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
 
                     // Smooth transition to final position
                     controls.target.lerpVectors(startTarget, endTarget, easeProgress);
@@ -134,13 +216,23 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
             <directionalLight position={[10, 10, 10]} intensity={0.8} />
             <SpaceDust />
 
+            {/* Add the cube edges */}
+            {cubeEdges.map((edge, index) => (
+                <Line
+                    key={index}
+                    points={edge} // Pass the two points for the edge
+                    color={"#1F2B47"} // Glowing sky blue color
+                    lineWidth={1} // Adjust thickness as needed
+                />
+            ))}
+
             <OrbitControls
                 ref={controlsRef}
-                enableZoom={false}
+                enableZoom={false} // Keep zoom disabled for the initial view
                 minDistance={5}
                 maxDistance={200}
                 autoRotate={true}
-                autoRotateSpeed={5}
+                autoRotateSpeed={0.5} // Slower auto-rotate
                 enableDamping={true}
                 dampingFactor={0.05}
                 enablePan={true}
@@ -153,6 +245,7 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                     word={currentVocab[i]}
                     position={[x, y, z]}
                     onSelect={(word) => {
+                        // You might want to add zoomToWord(word) here
                         setHighlightedWord(word);
                     }}
                 />

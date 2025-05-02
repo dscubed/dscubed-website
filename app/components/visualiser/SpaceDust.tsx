@@ -6,10 +6,10 @@ const SpaceDust: React.FC = () => {
   return (
     <Sparkles
       count={500}
-      size={5}
+      size={15}
       speed={1}
       scale={[100, 100, 100]}
-      color="white"
+      color="#78A0FD"
       position={[0, 0, 0]}
     />
   );
