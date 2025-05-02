@@ -8,7 +8,7 @@ const workshops = [
     title: "Workshop 1",
     subtitle: "Explanatory Data Analysis",
     description: "This workshop will guide you through exploring, cleaning and preparing your data for machine learning",
-    videoId: "",
+    videoId: "https://www.youtube.com/embed/i3Slu6B63rs?si=EHexWYQ-fC7XH_rn",
     date: "30 April 2025",
     time: "3 – 4:30 pm",
     pdfLink: '/competitions/Workshop1Slides.pdf',
