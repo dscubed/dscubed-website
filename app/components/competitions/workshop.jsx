@@ -17,7 +17,7 @@ const workshops = [
     title: "Workshop 2",
     subtitle: "Model Building & Evaluation",
     description: "This workshop will teach you how to build an evaluate different machine learning models to best solve a problem",
-    videoId: "",
+    videoId: "https://www.youtube.com/embed/cZBt3JWpO0k?si=UaRBMoNqBXZOWv4s",
     date: "2 May 2025",
     time: "5 – 6:30 pm",
     pdfLink: '/competitions/Workshop2Slides.pdf',
