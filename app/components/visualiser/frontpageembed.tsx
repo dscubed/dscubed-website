@@ -60,8 +60,16 @@ export default function FrontPageEmbed() {
       </section>
     );
 
+  // Define the background color for the gradient
+  const backgroundColor = '#0d1117';
+
   return (
     <section className="relative h-screen">
+      {/* Disclaimer Text */}
+      <div className="absolute top-0 right-0 mt-4 mr-4 text-xs text-gray-400 z-50">
+        Disclaimer: This is our first prototype and may contain issues or bugs.
+      </div>
+
       <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto h-full">
         {/* Main Visualiser */}
         <FrontPageVisualiser
@@ -71,27 +79,27 @@ export default function FrontPageEmbed() {
         />
         {/* Left Section */}
         <div className="absolute left-0 w-1/3 h-screen flex flex-col items-center z-10">
-          <div className="flex-1 flex flex-col items-center justify-center gap-5">
-            <h1 className="text-3xl font-bold text-center">
+          <div className="flex-1 flex flex-col justify-center gap-5">
+            <h1 className="text-3xl font-bold text-left">
               Welcome to DSCubed!
             </h1>
-            <p className="mx-10 text-center">
-              The Leading Data Science Club at The University of Melbourne.
+            <p className="text-left">
+              Empowering Future Data Scientists and Data Enthusiasts
             </p>
             <button
               onClick={handleButtonClick}
-              className="bg-white text-black px-4 py-2 rounded-md w-1/2 text-sm font-medium hover:bg-gray-100 transition-colors"
+              className="bg-white text-black px-4 py-2 rounded-md w-1/2 text-sm font-medium hover:bg-gray-100 animate transition-colors"
             >
-              Go to Embeddings Visualiser
+              Explore Data Science with our Embeddings Visualiser
             </button>
           </div>
         </div>
-        {/* Bottom Section */}
-        <div className="absolute bottom-0 w-screen flex items-center justify-center mb-4 text-center gap-2">
+        {/* Bottom Section (positioned below the gradient) */}
+        <div className="absolute bottom-0 w-screen flex items-center justify-center mb-4 text-center gap-2 z-20"> {/* Increased z-index to be above gradient */}
           <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
         </div>
         {/* Right Section */}
-        <div className="absolute right-0 w-1/3 h-screen flex flex-col items-center z-10">
+        <div className="absolute right-0 w-1/3 h-screen flex flex-col items-center z-100">
           <div className="flex-1 flex flex-col items-center justify-center w-full relative">
             {/* Logo with pulse animation */}
             <motion.div
