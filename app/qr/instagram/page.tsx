@@ -1,8 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function InstagramRedirect() {
+  const router = useRouter()
+
   useEffect(() => {
     // Send event to Google Analytics (adjust if using a different GA setup)
     if (typeof window !== 'undefined' && 'gtag' in window) {
@@ -14,11 +17,11 @@ export default function InstagramRedirect() {
 
     // Redirect after short delay to ensure GA has time
     const timeout = setTimeout(() => {
-      window.location.replace('https://www.instagram.com/dscubed.unimelb/');
+      router.push('/ssr-redirect/instagram')
     }, 500) // 500ms is usually safe
 
     return () => clearTimeout(timeout)
-  }, [])
+  }, [router])
 
   return (
     <div className="bg-background-secondary w-full h-svh flex items-center justify-center">
