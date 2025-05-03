@@ -5,21 +5,12 @@ import FrontPageVisualiser from './FrontPageVisualiser'
 import { useEmbeddings } from '@/app/hooks/useEmbeddings';
 import vocab from '@/public/visualiser/vocab.json';
 import Section from '@/app/components/Section'
+import GlowingLogo, { pulseAnimation } from './GlowingLogo';
 import Logo from "../Logo";
 import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-
-const pulseAnimation = {
-  animate: {
-    opacity: [0.5, 0.9, 0.5],
-  },
-  transition: {
-    duration: 5,
-    repeat: Infinity,
-    ease: "easeInOut"
-  }
-};
+import FrontPageLayout from './FrontPageLayout';
 
 export default function FrontPageEmbed() {
   const [words] = useState<string[]>(vocab as string[]);
@@ -65,9 +56,15 @@ export default function FrontPageEmbed() {
 
   return (
     <section className="relative h-screen">
-      {/* Disclaimer Text */}
-      <div className="absolute top-0 right-0 mt-4 mr-4 text-xs text-gray-400 z-50">
-        Disclaimer: This is our first prototype and may contain issues or bugs.
+      <div className="absolute top-0 right-0 w-full mt-4 mr-4 text-xs text-gray-400 z-50 flex flex-col items-center gap-5">
+        {/* Disclaimer Text*/}
+        <p className="text-right w-full">
+          Disclaimer: This is our first prototype and may contain issues or bugs.
+        </p>
+        {/* Logo container for XS screens*/}
+        <div className="hidden xs:flex relative w-1/3 items-center justify-center">
+          <GlowingLogo />
+        </div>
       </div>
 
       <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto h-full">
@@ -77,45 +74,44 @@ export default function FrontPageEmbed() {
           embeddings={embeddings}
           initialWord={selectedWord}
         />
-        {/* Left Section */}
-        <div className="absolute left-0 w-1/3 h-screen flex flex-col items-center z-10">
-          <div className="flex-1 flex flex-col justify-center gap-5">
-            <h1 className="text-3xl font-bold text-left">
+
+        {/* Layout */}
+        <div className='xs:hidden'>
+          <FrontPageLayout handleButtonClick={handleButtonClick} />
+        </div>
+
+        {/* Bottom Section */}
+        <div className="absolute bottom-0 w-screen flex flex-col items-center justify-center mb-4 text-center gap-10 z-20">
+          {/* Content for XS and lower */}
+          <div className="hidden xs:flex flex-col items-center w-full">
+            <h1 className="text-3xl font-bold mt-4">
               Welcome to DSCubed!
             </h1>
-            <p className="text-left">
+            <p className="mt-2">
               Empowering Future Data Scientists and Data Enthusiasts
             </p>
             <button
               onClick={handleButtonClick}
-              className="bg-white text-black px-4 py-2 rounded-md w-1/2 text-sm font-medium hover:bg-gray-100 animate transition-colors"
+              className="bg-white text-black px-4 py-2 rounded-md w-3/4 mt-4 text-sm font-medium hover:bg-gray-100 animate transition-colors"
             >
               Explore Data Science with our Embeddings Visualiser
             </button>
           </div>
-        </div>
-        {/* Bottom Section (positioned below the gradient) */}
-        <div className="absolute bottom-0 w-screen flex items-center justify-center mb-4 text-center gap-2 z-20"> {/* Increased z-index to be above gradient */}
-          <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
-        </div>
-        {/* Right Section */}
-        <div className="absolute right-0 w-1/3 h-screen flex flex-col items-center z-100">
-          <div className="flex-1 flex flex-col items-center justify-center w-full relative">
-            {/* Logo with pulse animation */}
-            <motion.div
-              {...pulseAnimation}
-              style={{
-                filter: 'blur(16px)',
-                position: 'absolute',
-                width: '60%',
-                height: 'auto'
-              }}
-            >
-              <Logo className="w-full h-auto opacity-40" />
-            </motion.div>
-            {/* Main logo */}
-            <Logo className="w-3/5 h-auto opacity-10 relative" />
-          </div>
+          {/* Scroll Indicator */}
+          <motion.div
+            animate={{
+              y: [0, -10, 0, -10, 0],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatDelay: 6,
+              ease: "easeInOut"
+            }}
+            className="flex items-center gap-2"
+          >
+            <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
+          </motion.div>
         </div>
       </div>
     </section>

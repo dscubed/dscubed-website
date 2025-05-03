@@ -199,7 +199,7 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
     return (
         <Canvas
             className="h-full w-full"
-            camera={{ position: [0, 0, 40], fov: 75 }}
+            camera={{ position: [0, 0, 50], fov: 75 }}
             style={{
                 background: "#0d1117",
                 height: "100vh",
@@ -222,13 +222,14 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                     key={index}
                     points={edge} // Pass the two points for the edge
                     color={"#1F2B47"} // Glowing sky blue color
-                    lineWidth={1} // Adjust thickness as needed
+                    lineWidth={4} // Adjust thickness as needed
                 />
             ))}
 
             <OrbitControls
                 ref={controlsRef}
                 enableZoom={false} // Keep zoom disabled for the initial view
+                target={new THREE.Vector3(0, 0, 0)}
                 minDistance={5}
                 maxDistance={200}
                 autoRotate={true}
