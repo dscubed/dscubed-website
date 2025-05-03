@@ -244,7 +244,7 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                     key={index}
                     points={edge} // Pass the two points for the edge
                     color={"#1F2B47"} // Glowing sky blue color
-                    lineWidth={4} // Adjust thickness as needed
+                    lineWidth={1} // Adjust thickness as needed
                 />
             ))}
 
