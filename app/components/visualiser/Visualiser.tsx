@@ -32,6 +32,21 @@ export default function Visualiser({ vocab, embeddings }: Props) {
   const [model, setModel] = useState<use.UniversalSentenceEncoder | null>(null);
   const [isModelLoading, setIsModelLoading] = useState(false);
 
+  const [profanityList, setProfanityList] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function loadProfanityList() {
+      try {
+        const response = await fetch("/visualiser/words.json");
+        const data = await response.json();
+        setProfanityList(data);
+      } catch (error) {
+        console.error("Error loading profanity list:", error);
+      }
+    }
+    loadProfanityList();
+  }, []);
+
   // Load Universal Sentence Encoder (USE) model only once
   useEffect(() => {
     async function loadUSEModel() {
@@ -85,6 +100,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
   };
 
   // Validate input string for acceptable format
+  // Validate input string for acceptable format and profanity
   const validateWord = (word: string) => {
     if (!word.trim()) {
       setValidationError("Please enter a word.");
@@ -94,12 +110,19 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     const valid = /^[a-zA-Z]+$/.test(word); // Only letters
     if (!valid) {
       setValidationError("Invalid word. Please use only letters.");
-    } else {
-      setValidationError("");
+      return false;
     }
-    return valid;
-  };
 
+    // Check for profanity
+    if (profanityList.includes(word.toLowerCase())) {
+      setValidationError("Inappropriate input detected.");
+      return false;
+    }
+
+    setValidationError("");
+    return true;
+  };
+  
   // Add a new word using the USE model
   const addWord = async (newWord: string) => {
     if (!validateWord(newWord)) return;
