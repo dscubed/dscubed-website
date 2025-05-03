@@ -58,7 +58,7 @@ export default function FrontPageEmbed() {
     <section className="relative h-screen">
       <div className="absolute top-0 right-0 w-full mt-4 mr-4 text-xs text-gray-400 z-50 flex flex-col items-center gap-5">
         {/* Disclaimer Text*/}
-        <p className="text-right w-full">
+        <p className="text-right w-full xs:text-[10px]">
           Disclaimer: This is our first prototype and may contain issues or bugs.
         </p>
         {/* Logo container for XS screens*/}
