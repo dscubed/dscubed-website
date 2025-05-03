@@ -2,23 +2,23 @@
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { sendGTMEvent } from '@next/third-parties/google';
 
 export default function InstagramRedirect() {
   const router = useRouter()
 
   useEffect(() => {
-    // Send event to Google Analytics (adjust if using a different GA setup)
-    if (typeof window !== 'undefined' && 'gtag' in window) {
-      window.gtag('event', 'qr_scan', {
-        event_category: 'QR',
-        event_label: 'Instagram QR - Michael',
-      })
-    }
+    // Send GTM event for QR scan
+    sendGTMEvent({
+      event: 'qr_scan',
+      event_category: 'QR',
+      event_label: `Instagram QR - Poster - Michael`,
+    });
 
     // Redirect after short delay to ensure GA has time
     const timeout = setTimeout(() => {
       router.push('/ssr-redirect/instagram')
-    }, 500) // 500ms is usually safe
+    }, 1000) // 1000ms is usually safe
 
     return () => clearTimeout(timeout)
   }, [router])
