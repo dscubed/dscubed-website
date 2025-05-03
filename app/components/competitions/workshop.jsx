@@ -8,23 +8,25 @@ const workshops = [
     title: "Workshop 1",
     subtitle: "Explanatory Data Analysis",
     description: "This workshop will guide you through exploring, cleaning and preparing your data for machine learning",
-    videoId: "",
+    videoId: "https://www.youtube.com/embed/i3Slu6B63rs?si=EHexWYQ-fC7XH_rn",
     date: "30 April 2025",
     time: "3 – 4:30 pm",
+    pdfLink: '/competitions/Workshop1Slides.pdf',
   },
   {
     title: "Workshop 2",
     subtitle: "Model Building & Evaluation",
     description: "This workshop will teach you how to build an evaluate different machine learning models to best solve a problem",
-    videoId: "",
+    videoId: "https://www.youtube.com/embed/cZBt3JWpO0k?si=UaRBMoNqBXZOWv4s",
     date: "2 May 2025",
     time: "5 – 6:30 pm",
+    pdfLink: '/competitions/Workshop2Slides.pdf',
   },
 ];
 
 export default function Workshop() {
   return (
-    <section className="w-full px-6 py-16">
+    <section className="w-full px-6 py-16 overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
