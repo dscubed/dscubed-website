@@ -14,7 +14,7 @@ export default function InstagramRedirect() {
 
     // Redirect after short delay to ensure GA has time
     const timeout = setTimeout(() => {
-      window.location.href = 'https://www.instagram.com/dscubed.unimelb/'
+      window.location.replace('https://www.instagram.com/dscubed.unimelb/');
     }, 500) // 500ms is usually safe
 
     return () => clearTimeout(timeout)
