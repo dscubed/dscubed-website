@@ -21,7 +21,6 @@ interface Props {
 export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
     // Variables for vocab embeddings and state for highlighted word
     const currentVocab = vocab;
-    const currentEmbeddings = embeddings;
     const [highlightedWord, setHighlightedWord] = useState<string | null>(null);
 
     // TensorFlow model state
@@ -61,14 +60,37 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
 
     // Project high-dimensional embeddings to 3D using UMAP
     const coords3d = useMemo(() => {
+        if (!embeddings || embeddings.length === 0) {
+            return [];
+        }
         const umap = new UMAP({
             nComponents: 3,
-            nNeighbors: Math.min(15, currentEmbeddings.length - 1),
+            nNeighbors: Math.min(15, embeddings.length - 1),
             spread: 5,
             minDist: 0.5,
         });
-        return umap.fit(currentEmbeddings);
-    }, [currentEmbeddings]);
+        return umap.fit(embeddings);
+    }, [embeddings]);
+
+    // Calculate the center using a for...of loop
+    const center = useMemo(() => {
+        if (!coords3d || coords3d.length === 0) {
+            return new THREE.Vector3(0, 0, 0);
+        }
+        // Find sum of x y and z coordinates of all points
+        let sumX = 0;
+        let sumY = 0;
+        let sumZ = 0;
+        for (const coord of coords3d) {
+            const [x, y, z] = coord;
+            sumX += x;
+            sumY += y;
+            sumZ += z;
+        }
+        const count = coords3d.length;
+        // Returns average of all points as center
+        return new THREE.Vector3(sumX / count, sumY / count, sumZ / count);
+    }, [coords3d]);
 
     // Calculate bounds and define cube edges
     const cubeEdges = useMemo(() => {
@@ -229,7 +251,7 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
             <OrbitControls
                 ref={controlsRef}
                 enableZoom={false} // Keep zoom disabled for the initial view
-                target={new THREE.Vector3(0, 0, 0)}
+                target={center}
                 minDistance={5}
                 maxDistance={200}
                 autoRotate={true}
