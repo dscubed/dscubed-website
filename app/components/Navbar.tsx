@@ -91,7 +91,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
             className="p-4 border-b border-border text-lg font-bold "
             href="/competitions"
           >
-            Competitions [NEW]
+            Competitions
           </Link>
           <Link className="p-4 border-b border-border " href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
           <ThemeButton className="p-4 border-b border-border " state={themeState} />
