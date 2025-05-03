@@ -11,7 +11,7 @@ export default function InstagramRedirect() {
     if (typeof window !== 'undefined' && 'gtag' in window) {
       window.gtag('event', 'qr_scan', {
         event_category: 'QR',
-        event_label: 'Instagram QR - Michael',
+        event_label: 'Instagram QR - Azlan',
       })
     }
 
