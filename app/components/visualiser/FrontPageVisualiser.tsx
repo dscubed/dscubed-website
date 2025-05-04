@@ -248,6 +248,26 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
                 />
             ))}
 
+            {/* Connect all word nodes with lines */}
+            {coords3d.map(([x1, y1, z1], i) =>
+                coords3d.map(([x2, y2, z2], j) => {
+                    if (i < j) {
+                        return (
+                            <Line
+                                key={`${i}-${j}`}
+                                points={[
+                                    [x1, y1, z1],
+                                    [x2, y2, z2],
+                                ]}
+                                color={"#9EC4F0"} // Line color
+                                lineWidth={1} // Line thickness
+                            />
+                        );
+                    }
+                    return null;
+                })
+            )}
+
             <OrbitControls
                 ref={controlsRef}
                 enableZoom={false} // Keep zoom disabled for the initial view
