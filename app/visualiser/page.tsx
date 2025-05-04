@@ -33,7 +33,7 @@ export default function VisualiserPage() {
         <footer className="absolute bottom-4 right-4 text-white rounded-lg shadow-lg p-4 z-10">
           <div className="flex flex-col items-end gap-4 text-right">
             <p className="text-sm opacity-30">
-              Disclaimer: This is our first prototype and may contain issues or bugs.
+              Disclaimer: This is our first prototype and may contain loading, performance issues, and/or bugs.
             </p>
             <p className="text-sm opacity-30">
               © {new Date().getFullYear()} DSCubed · Data Science Student Society
