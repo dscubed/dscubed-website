@@ -36,6 +36,10 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
     handlePointerMove,
     handlePointerUp,
     handlePointerLeave,
+    handleTouchMove,
+    handleTouchStart,
+    handleTouchEnd,
+    handleTouchCancel,
   } = useRotation();
 
   // Effect to handle initial word zoom
@@ -240,11 +244,16 @@ export default function Visualiser({ vocab, embeddings, initialWord }: Props) {
         top: 0,
         left: 0,
         zIndex: 0,
+        touchAction: "none",
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchCancel}
     >
       <color attach="background" args={["#0d1117"]} />
       <fog attach="fog" args={["#0d1117", 60, 200]} />
