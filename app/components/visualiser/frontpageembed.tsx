@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import FrontPageVisualiser from './FrontPageVisualiser'
 import { useEmbeddings } from '@/app/hooks/useEmbeddings';
-import vocab from '@/public/visualiser/vocab.json';
+import vocab from '@/public/visualiser/front.json';
 import Section from '@/app/components/Section'
 import GlowingLogo, { pulseAnimation } from './GlowingLogo';
 import Logo from "../Logo";
@@ -55,19 +55,19 @@ export default function FrontPageEmbed() {
   const backgroundColor = '#0d1117';
 
   return (
-    <section className="relative h-screen">
-      <div className="absolute top-0 right-0 w-full mt-4 mr-4 text-xs text-gray-400 z-50 flex flex-col items-center gap-5">
+    <section className="relative h-screen overflow-hidden">
+      <div className="absolute top-0 right-0 w-full mt-4 mr-4 text-xs text-gray-400 z-50 flex flex-col items-center gap-5 overflow-hidden">
         {/* Disclaimer Text*/}
-        <p className="text-right w-full xs:text-[10px]">
+        <p className="text-right w-full xs:text-[10px] overflow-hidden">
           Disclaimer: This is our first prototype and may contain issues or bugs.
         </p>
         {/* Logo container for XS screens*/}
-        <div className="hidden xs:flex relative w-1/3 items-center justify-center">
+        <div className="hidden xs:flex relative w-1/3 items-center justify-center overflow-hidden">
           <GlowingLogo />
         </div>
       </div>
 
-      <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto h-full">
+      <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto h-full overflow-hidden">
         {/* Main Visualiser */}
         <FrontPageVisualiser
           vocab={words}
@@ -88,7 +88,7 @@ export default function FrontPageEmbed() {
               Welcome to DSCubed!
             </h1>
             <p className="mt-2">
-              Empowering Future Data Scientists and Data Enthusiasts
+              Empowering Future Data Scientists 
             </p>
             <button
               onClick={handleButtonClick}
