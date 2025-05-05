@@ -110,7 +110,7 @@ export default function FrontPageEmbed() {
         {/* Bottom Section */}
         <div className="absolute bottom-0 w-screen flex flex-col items-center justify-center mb-4 text-center gap-10 z-20">
           {/* Content for SM and lower */}
-          <div className="hidden sm:flex flex-row items-center w-full gap-2 px-20">
+          <div className="hidden sm:flex flex-row items-center w-full gap-4 px-20 xs:px-10">
             <button
               onClick={handleButtonClick}
               className="bg-white text-black px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full"

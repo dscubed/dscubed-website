@@ -20,10 +20,14 @@ export default function useRotation() {
     y: 0,
   });
   const [dynamicXOffset, setDynamicXOffset] = useState(20); // Default offset
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
+    null
+  );
 
   // Auto-rotation - much slower speed, always active
-  const autoRotationSpeed = useRef(0.00005); // Significantly reduced speed
+  const autoRotationSpeed = useRef(0.00005);
   const lastFrameTime = useRef(Date.now());
+  const rotationSensitivity = 0.005;
 
   // Update offset based on window width, set to 0 for small screens
   useEffect(() => {
@@ -54,9 +58,9 @@ export default function useRotation() {
 
     // Cleanup listener on component unmount
     return () => window.removeEventListener("resize", updateOffset);
-  }, []); // Empty dependency array ensures this runs only on mount and unmount
+  }, []);
 
-  // Always-on auto-rotation animation at very slow speed
+  // Auto-rotation animation
   useEffect(() => {
     let animationFrameId: number;
 
@@ -115,7 +119,6 @@ export default function useRotation() {
       const deltaY = event.clientY - previousPosition.y;
 
       // Adjust sensitivity as needed (lower value = less sensitive)
-      const rotationSensitivity = 0.005;
       const newRotation = {
         x: rotation.x + deltaY * rotationSensitivity,
         y: rotation.y + deltaX * rotationSensitivity,
@@ -159,6 +162,51 @@ export default function useRotation() {
     [isDragging]
   );
 
+  // --- Touch event handlers for mobile support ---
+
+  const handleTouchStart = useCallback((event: React.TouchEvent) => {
+    if (event.touches.length === 1) {
+      setIsDragging(true);
+      setTouchStart({
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY,
+      });
+    }
+  }, []);
+
+  const handleTouchMove = useCallback(
+    (event: React.TouchEvent) => {
+      if (!isDragging || !touchStart || !groupRef.current) return;
+      if (event.touches.length !== 1) return;
+
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - touchStart.x;
+      const deltaY = touch.clientY - touchStart.y;
+
+      const newRotation = {
+        x: rotation.x + deltaY * rotationSensitivity,
+        y: rotation.y + deltaX * rotationSensitivity,
+      };
+
+      setRotation(newRotation);
+      groupRef.current.rotation.x = newRotation.x;
+      groupRef.current.rotation.y = newRotation.y;
+
+      setTouchStart({ x: touch.clientX, y: touch.clientY });
+    },
+    [isDragging, touchStart, rotation]
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+    setTouchStart(null);
+  }, []);
+
+  const handleTouchCancel = useCallback(() => {
+    setIsDragging(false);
+    setTouchStart(null);
+  }, []);
+
   return {
     groupRef,
     rotation,
@@ -167,5 +215,9 @@ export default function useRotation() {
     handlePointerMove,
     handlePointerUp,
     handlePointerLeave,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+    handleTouchCancel,
   };
 }
