@@ -17,7 +17,5 @@ export default function VisualiserSection() {
       </Section>
     );
 
-  return (
-    <Visualiser vocab={words} embeddings={embeddings} />
-  );
+  return <Visualiser vocab={words} embeddings={embeddings} />;
 }

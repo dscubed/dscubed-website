@@ -34,8 +34,6 @@ export default function Visualiser({ vocab, embeddings }: Props) {
 
   const [profanityList, setProfanityList] = useState<string[]>([]);
 
-  const [showWelcome, setShowWelcome] = useState(true);
-
   useEffect(() => {
     async function loadProfanityList() {
       try {
@@ -124,7 +122,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     setValidationError("");
     return true;
   };
-  
+
   // Add a new word using the USE model
   const addWord = async (newWord: string) => {
     if (!validateWord(newWord)) return;
@@ -213,20 +211,14 @@ export default function Visualiser({ vocab, embeddings }: Props) {
   const [nearestIndexes, setNearestIndexes] = useState<number[]>([]);
 
   return (
-    <div className="w-screen h-screen flex-col flex">
+    <div className="w-screen h-screen flex-col flex text-center font-bold">
       {/* Display model loading status */}
       {isModelLoading ? (
-        <div className="text-center px-2 p-5 mx-auto">
-          Loading embedding model...
-        </div>
+        <div className="p-3 mx-auto">Loading embedding model...</div>
       ) : model ? (
-        <div className="text-center px-2 p-5 mx-auto">
-          Using Universal Sentence Encoder
-        </div>
+        <div className="p-3 mx-auto">Using Universal Sentence Encoder</div>
       ) : (
-        <div className="text-center px-2 p-5 mx-auto">
-          Using fallback embeddings
-        </div>
+        <div className="p-3 mx-auto">Using fallback embeddings</div>
       )}
 
       {/* Main 3D visualization canvas */}

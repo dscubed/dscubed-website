@@ -17,11 +17,11 @@ export default function VisualiserPage() {
       {showWelcomeModal && (
         <div className="fixed inset-0 z-[999] bg-black bg-opacity-80 flex items-center justify-center">
           <div className="bg-background text-foreground rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-            <h1 className="text-3xl font-bold mb-4">
+            <h1 className="text-3xl font-bold mb-6">
               Welcome to the <br />
               3D Word Embeddings Visualiser
             </h1>
-            <p className="mb-4">
+            <p className="mb-6">
               This interactive tool lets you explore how words relate to each
               other using high-dimensional embeddings, projected into 3D space.
               It’s powered by the Universal Sentence Encoder (USE), a model used
@@ -29,8 +29,9 @@ export default function VisualiserPage() {
               ChatGPT.
             </p>
             <p className="mb-6">
-              Click on orbs to find similar words. You can also add your own
-              word to see how it fits into the space!
+              Use your mouse to rotate and zoom. Click on orbs to find similar
+              words (5 nearest neighbours). You can also add your own word to
+              see how it fits into the space!
             </p>
             <button
               onClick={() => setShowWelcomeModal(false)}
@@ -46,7 +47,7 @@ export default function VisualiserPage() {
         {/* Overlayed Back Button */}
         <button
           onClick={() => router.push("/")}
-          className="absolute top-20 left-4 flex gap-2 text-text-secondary hover:text-text-primary transition mt-auto z-10 "
+          className="absolute top-20 left-4 flex gap-2 text-text-secondary hover:text-text-primary transition mt-auto z-10"
         >
           <ArrowLeftIcon className="w-4 h-4 my-auto" />
           <span className="my-auto">Back</span>
