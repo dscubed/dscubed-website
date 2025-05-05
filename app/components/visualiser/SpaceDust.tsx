@@ -11,6 +11,7 @@ const SpaceDust: React.FC = () => {
       scale={[100, 100, 100]}
       color="#78A0FD"
       position={[0, 0, 0]}
+      noise={0}
     />
   );
 };
