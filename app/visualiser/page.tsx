@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import VisualiserSection from "@/app/components/visualiser/VisualiserSection";
 import VisNavbar from "@/app/components/visualiser/vis-navbar"; // Import the VisNavbar component
 import { useRouter } from "next/navigation";
@@ -45,16 +44,8 @@ export default function VisualiserPage() {
       )}
 
       <main className="relative flex-col items-center justify-center min-h-screen">
-        {/* Overlayed Back Button */}
-        <button
-          onClick={() => router.push("/")}
-          className="absolute top-20 left-4 flex gap-2 text-text-secondary hover:text-text-primary transition mt-auto z-10"
-        >
-          <ArrowLeftIcon className="w-4 h-4 my-auto" />
-          <span className="my-auto">Back</span>
-        </button>
         {/* Sidebar */}
-        <VisNavbar /> {/* Overlayed Sidebar */}
+        <VisNavbar onInfoClick={() => setShowWelcomeModal(true)} /> {/* Overlayed Sidebar */}
 
         {/* Overlayed Title */}
         <h1 className="absolute font-bold top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl sm:text-4xl text-center mx-auto mb-2 !leading-tight text-white z-10">
