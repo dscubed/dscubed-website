@@ -16,6 +16,18 @@ export const titleCard = {
     prize2: '',
     prize3: '',
   }
+
+  export const winners = {
+    first: {
+      names: ["Dimitri Micha von Benckendorff", "Lakshminarasimhan Sudarshan"],
+    },
+    second: {
+      names: ["Lee Han Hsiang", "Muhammad Azad bin Mohamed Afif"],
+    },
+    third: {
+      names: ["Ebyn Chan"],
+    },
+  };
   
   export const timelineCard = {
     beforeEvent: [
