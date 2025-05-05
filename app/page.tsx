@@ -20,9 +20,7 @@ export default function Index() {
 
       <main className="relative bg-background-secondary z-10">
         <FrontPageEmbed />
-        <hr className="border-0 border-b border-border" />
-        <IntroSection />
-        <hr className="border-0 border-b border-border" />
+
         <WhatWeDoSection />
         <hr className="border-0 border-b border-border" />
         <AimsSection />
