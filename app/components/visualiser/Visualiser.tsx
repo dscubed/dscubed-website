@@ -34,6 +34,8 @@ export default function Visualiser({ vocab, embeddings }: Props) {
 
   const [profanityList, setProfanityList] = useState<string[]>([]);
 
+  const [showWelcome, setShowWelcome] = useState(true);
+
   useEffect(() => {
     async function loadProfanityList() {
       try {
@@ -214,15 +216,15 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     <div className="w-screen h-screen flex-col flex">
       {/* Display model loading status */}
       {isModelLoading ? (
-        <div className="text-center px-2 pb-5 mx-auto">
+        <div className="text-center px-2 p-5 mx-auto">
           Loading embedding model...
         </div>
       ) : model ? (
-        <div className="text-center px-2 pb-5 mx-auto">
+        <div className="text-center px-2 p-5 mx-auto">
           Using Universal Sentence Encoder
         </div>
       ) : (
-        <div className="text-center px-2 pb-5 mx-auto">
+        <div className="text-center px-2 p-5 mx-auto">
           Using fallback embeddings
         </div>
       )}
@@ -307,30 +309,30 @@ export default function Visualiser({ vocab, embeddings }: Props) {
               {!isInputVisible ? (
                 <button
                   onClick={() => setIsInputVisible(true)}
-                  className="px-4 py-2 bg-blue-600 rounded-xl hover:bg-blue-700"
+                  className="bg-foreground text-background px-6 py-3 font-medium rounded-full"
                 >
                   Add Word
                 </button>
               ) : (
-                <div className="flex items-center space-x-2 bg-opacity-90 rounded">
+                <div className="flex items-center space-x-2 bg-opacity-90">
                   <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Enter word"
-                    className="px-4 py-2 border rounded-xl w-40"
+                    className="rounded-full px-4 py-2 border outline-foregroundw-40"
                     disabled={isProcessing}
                   />
                   <button
                     onClick={handleAddWord}
-                    className="px-4 py-2 bg-green-600 rounded-xl hover:bg-green-700 disabled:opacity-50"
+                    className="rounded-full px-4 py-2 bg-foreground text-background disabled:opacity-50 border"
                     disabled={isProcessing}
                   >
                     {isProcessing ? "..." : "Add"}
                   </button>
                   <button
                     onClick={() => setIsInputVisible(false)}
-                    className="px-4 py-2 bg-red-600 rounded-xl hover:bg-red-700"
+                    className="rounded-full px-4 py-2 bg-foreground text-background border"
                   >
                     Cancel
                   </button>
