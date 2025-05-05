@@ -18,9 +18,12 @@ export default function VisualiserPage() {
         <div className="fixed inset-0 z-[999] bg-black bg-opacity-80 flex items-center justify-center">
           <div className="bg-background text-foreground rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
             <h1 className="text-3xl font-bold mb-6">
-              Welcome to the <br />
+              Welcome to DSCubed's <br />
               3D Word Embeddings Visualiser
             </h1>
+            <p className="text-xl font-bold text-yellow-200 mb-6">
+              This experience works best for desktop users!
+            </p>
             <p className="mb-6">
               This interactive tool lets you explore how words relate to each
               other using high-dimensional embeddings, projected into 3D space.
@@ -53,7 +56,7 @@ export default function VisualiserPage() {
         </h1>
 
         {/* Subtext Placeholder */}
-        <p className="absolute top-[14%] left-1/2 transform -translate-x-1/2 text-lg sm:text-md text-center mx-auto text-gray-300 z-10">
+        <p className="absolute top-[14%] left-1/2 transform -translate-x-1/2 text-lg sm:text-md sm:top-[20%] text-center mx-auto text-gray-300 z-10">
           Explore Machine Learning using our Word Embeddings Visualiser
         </p>
 
@@ -63,10 +66,10 @@ export default function VisualiserPage() {
         </div>
 
         {/* Overlayed Footer */}
-        <footer className="absolute bottom-4 right-4 text-white rounded-lg shadow-lg p-4 z-10">
-          <div className="flex flex-col items-end gap-4 text-right">
-            <p className="text-sm opacity-30">
-              Disclaimer: This is our first prototype and may contain loading, performance issues, and/or bugs.
+        <footer className="absolute bottom-4 right-4 text-white rounded-lg shadow-lg p-4 z-10 sm:bottom-24 sm:right-0 sm:left-0 sm:mx-auto sm:w-full sm:items-center sm:text-center">
+          <div className="flex flex-col items-end gap-4 text-right sm:items-center sm:text-center">
+            <p className="text-sm font-bold opacity-30">
+              Disclaimer: This is our first prototype and may contain  <br /> loading, performance issues, and/or bugs.
             </p>
             <p className="text-sm opacity-30">
               © {new Date().getFullYear()} DSCubed · Data Science Student Society
