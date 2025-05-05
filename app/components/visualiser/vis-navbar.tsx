@@ -21,7 +21,11 @@ const CustomTooltip = styled(({ className, ...props }) => (
   },
 }));
 
-export default function VisNavbar() {
+export default function VisNavbar({
+  onInfoClick,
+}: {
+  onInfoClick: () => void;
+}) {
   const router = useRouter(); // Initialize the router
 
   return (
@@ -33,7 +37,7 @@ export default function VisNavbar() {
         transform: "translateY(-50%)",
         zIndex: 10,
         backgroundColor: "rgba(0, 0, 0, 0)", // Transparent background
-        padding: "1rem",
+        padding: "2rem",
         borderRadius: "0 8px 8px 0",
       }}
     >
@@ -53,7 +57,10 @@ export default function VisNavbar() {
 
         {/* Icon 3 with Tooltip */}
         <CustomTooltip title="Info" placement="right" arrow>
-          <Icon.InfoCircleFill className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform" />
+          <Icon.InfoCircleFill
+            className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform"
+            onClick={onInfoClick}
+          />
         </CustomTooltip>
       </div>
     </div>
