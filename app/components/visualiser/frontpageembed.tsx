@@ -88,7 +88,7 @@ export default function FrontPageEmbed() {
               Welcome to DSCubed!
             </h1>
             <p className="mt-2">
-              Empowering Future Data Scientists and Data Enthusiasts
+              Empowering Future Data Scientists 
             </p>
             <button
               onClick={handleButtonClick}

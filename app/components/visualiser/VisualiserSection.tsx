@@ -13,11 +13,11 @@ export default function VisualiserSection() {
   if (!embeddings)
     return (
       <Section>
-        <h1 className="text-3xl text-center">Loading embeddings...</h1>
+        <div className="flex justify-center items-center h-screen">
+          <h1 className="text-3xl text-center">Loading embeddings...</h1>
+        </div>
       </Section>
     );
 
-  return (
-    <Visualiser vocab={words} embeddings={embeddings} />
-  );
+  return <Visualiser vocab={words} embeddings={embeddings} />;
 }

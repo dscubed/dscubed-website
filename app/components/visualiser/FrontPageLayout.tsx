@@ -2,6 +2,7 @@
 import GlowingLogo from './GlowingLogo';
 import { TypeAnimation } from 'react-type-animation';
 import { useState, useEffect, useRef } from 'react';
+import FancyText from '@carefully-coded/react-text-gradient';
 
 interface FrontPageLayoutProps {
     handleButtonClick: () => void;
@@ -46,9 +47,15 @@ export default function FrontPageLayout({ handleButtonClick }: FrontPageLayoutPr
                             <GlowingLogo />
                         </div>
                     </div>
-                    <h1 className="text-3xl font-bold text-left">
+                    {/* Gradient Text */}
+                    <FancyText
+                        gradient={{ from: '#1A5194', to: '#FFFFFF', type: 'radial' }}
+                        animateTo={{ from: '#0F2FA6', to: '#FFFFFF' }}
+                        animateDuration={2000}
+                        className="text-4xl font-bold text-left"
+                    >
                         Welcome to DSCubed!
-                    </h1>
+                    </FancyText>
                     {isInView ? (
                         <TypeAnimation
                             sequence={[
@@ -66,7 +73,7 @@ export default function FrontPageLayout({ handleButtonClick }: FrontPageLayoutPr
                     )}
                     <button
                         onClick={handleButtonClick}
-                        className="bg-white text-black px-4 py-2 rounded-md w-3/4 text-sm font-medium hover:bg-gray-100 animate transition-colors lg:w-full sm:w-full"
+                        className="bg-white text-black px-4 py-2 rounded-md w-3/4 text-sm font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full"
                     >
                         Explore Data Science with our Embeddings Visualiser
                     </button>
