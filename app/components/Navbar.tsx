@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import clsx from 'clsx'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import Logo from '@/app/components/Logo'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const ThemeButton = dynamic(
   () => import('@/app/components/ThemeButton'),
@@ -45,31 +46,32 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
               <div className="block h-1/2 w-0 border-l border-border my-auto"></div>
               
               {/* Discord Icon Button with Framer Motion */}
-              <Link
-                href="https://discord.gg/fQf2BfnV"
-                target="_blank"
-                className="my-auto"
-              >
-                <motion.div
-                  className="w-8 h-8"
-                  animate={{
-                    rotate: [0, 360], // Full rotation
-                    scale: [1, 1.5, 1], // Slight scaling effect
-                  }}
-                  transition={{
-                    duration: 1, // Animation duration
-                    repeat: Infinity, // Infinite loop
-                    repeatDelay: 2, // 2 seconds delay between animations
-                  }}
+                <Link
+                  href="https://discord.gg/fQf2BfnV"
+                  target="_blank"
+                  className="my-auto"
                 >
-                  <img
-                    src="/competitions/discordicon.png"
-                    alt="Discord"
+                  <motion.div
                     className="w-8 h-8"
-                  />
-                </motion.div>
-              </Link>
-
+                    animate={{
+                      rotate: [0, 360], // Full rotation
+                      scale: [1, 1.5, 1], // Slight scaling effect
+                    }}
+                    transition={{
+                      duration: 1, // Animation duration
+                      repeat: Infinity, // Infinite loop
+                      repeatDelay: 2, // 2 seconds delay between animations
+                    }}
+                  >
+                    <Image
+                      src="/competitions/discordicon.png"
+                      alt="Discord"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8"
+                    />
+                  </motion.div>
+                </Link>
               {/* Membership Button */}
               <Link className="my-auto px-4 py-2 bg-foreground text-background rounded-full transition-transform transform hover:scale-110" href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
             </div>
