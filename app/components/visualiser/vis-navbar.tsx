@@ -52,7 +52,7 @@ export default function VisNavbar({
 
         {/* Icon 2 with Tooltip */}
         <CustomTooltip title="Settings" placement="right" arrow>
-          <Icon.GearFill className="text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform" />
+          <Icon.GearFill className="opacity-30 text-white w-8 h-8 cursor-pointer hover:scale-110 transition-transform" />
         </CustomTooltip>
 
         {/* Icon 3 with Tooltip */}
