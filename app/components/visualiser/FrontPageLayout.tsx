@@ -4,6 +4,10 @@ import { TypeAnimation } from "react-type-animation";
 import { useState, useEffect, useRef } from "react";
 import FancyText from "@carefully-coded/react-text-gradient";
 
+import { pulseAnimation } from "./GlowingLogo";
+import Logo from "../Logo";
+import { motion } from "framer-motion";
+
 interface FrontPageLayoutProps {
   handleButtonClick: () => void;
 }
@@ -11,6 +15,20 @@ interface FrontPageLayoutProps {
 export function WelcomeText({ isInView }: { isInView: boolean }) {
   return (
     <>
+      <div className="relative bottom-0 w-2/5 h-2/5">
+        <motion.div
+          {...pulseAnimation}
+          style={{
+            filter: "blur(18px)",
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Logo className="w-full h-full opacity-80" />
+        </motion.div>
+        <Logo className="w-full h-full opacity-80 relative" />
+      </div>
       <FancyText
         gradient={{ from: "#1A5194", to: "#FFFFFF", type: "radial" }}
         animateTo={{ from: "#0F2FA6", to: "#FFFFFF" }}
