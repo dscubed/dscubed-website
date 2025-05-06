@@ -78,7 +78,7 @@ export default function FrontPageEmbed() {
   const backgroundColor = "#0d1117";
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen ">
       <div
         ref={sectionRef}
         className="absolute top-0 right-0 w-full mt-4 mr-4 text-sm text-gray-400 z-50 flex flex-col items-center gap-5 overflow-hidden"
@@ -121,7 +121,7 @@ export default function FrontPageEmbed() {
               onClick={handleButtonClick}
               className="bg-blue-950 text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-blue-800 hover:shadow-lg lg:w-full sm:w-full"
             >
-              Join DSCubed Today!
+              Click here to get your free DSCubed Membership
             </button>
           </div>
           {/* Scroll Indicator */}
