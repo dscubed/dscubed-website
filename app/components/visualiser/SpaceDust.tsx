@@ -7,9 +7,10 @@ const SpaceDust: React.FC = () => {
     <Sparkles
       count={1500}
       size={15}
-      speed={1}
-      scale={[100, 100, 100]}
-      color="#78A0FD"
+      // speed={1}
+      // scale={[100, 100, 100]}
+      color="#FFFFFF"
+      opacity={0.5}
       position={[0, 0, 0]}
     />
   );
