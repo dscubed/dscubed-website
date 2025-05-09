@@ -45,30 +45,26 @@ const WordPoint: React.FC<WordPointProps> = ({
       }}
     >
       <mesh>
-        <sphereGeometry args={[0.5, 64, 64]} />
+        <sphereGeometry args={[0.1, 64, 64]} />
         <meshStandardMaterial
-          color={
-            isHighlighted
-              ? new THREE.Color(1, 0.5, 0)
-              : new THREE.Color(0, 0, 0)
-          }
-          emissive={emissiveColor}
-          emissiveIntensity={0.7}
+          color={"#FFFFFF"}
+          // emissive={emissiveColor}
+          // emissiveIntensity={0.7}
           transparent
-          opacity={0.3 + noiseFactor * 0.4}
-          roughness={0.85}
-          metalness={0}
+          opacity={1}
+          // roughness={0.85}
+          // metalness={0}
         />
       </mesh>
       {/* Word label above the sphere */}
       <Html distanceFactor={20} position={[0, 0.6, 0]}>
         <div
           style={{
-            backgroundColor: "rgba(0,0,0,0.5)",
-            padding: "0.1rem 0.4rem",
-            borderRadius: "0.25rem",
+            backgroundColor: "rgba(255,255,255,0.05)",
+            padding: "0.5rem 1rem",
+            borderRadius: "5rem",
             color: "white",
-            fontSize: "2.5rem",
+            fontSize: "1.2rem",
             whiteSpace: "nowrap",
             backdropFilter: "blur(4px)",
           }}

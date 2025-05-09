@@ -65,7 +65,7 @@ export default function ThemeToggle ({
   }
   
   return (
-    <button onClick={cycleTheme} className={clsx("flex gap-2 text-text-secondary", className)}>
+    <button onClick={cycleTheme} className={clsx("flex gap-2", className)}>
       {(() => {
         if (theme === 'dark') {
           return <MoonIcon className="w-6 h-6 my-auto" />
