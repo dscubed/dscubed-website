@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animated Gradient for Hero Visualiser bg */
+@import "./animated-gradient-1.css"; 
+
 @layer base {
   .colors-light {
     --theme: 21 146 255;
@@ -112,3 +115,4 @@ html {
     opacity: 0;
   }
 }
+

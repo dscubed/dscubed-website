@@ -9,20 +9,27 @@ export default function useRotation() {
   // Ref for the main group to be rotated
   const groupRef = useRef<Group>(null);
 
-  // State for rotation and offset
+  // Touch handlers
   const [isDragging, setIsDragging] = useState(false);
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
+    null
+  );
+
+  // State for rotation and offset
   const [previousPosition, setPreviousPosition] = useState<{
     x: number;
     y: number;
   } | null>(null);
+  const [autoRotateEnabled, setAutoRotateEnabled] = useState(true);
   const [rotation, setRotation] = useState<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
-  const [dynamicXOffset, setDynamicXOffset] = useState(20); // Default offset
-  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
-    null
-  );
+
+  // Dyanamic Offsets
+  const [dynamicXOffset, setDynamicXOffset] = useState(20);
+  const [dynamicYOffset, setDynamicYOffset] = useState(0);
+  const [dynamicZOffset, setDynamicZOffset] = useState(0);
 
   // Auto-rotation - much slower speed, always active
   const autoRotationSpeed = useRef(0.00005);
@@ -32,7 +39,7 @@ export default function useRotation() {
   // Update offset based on window width, set to 0 for small screens
   useEffect(() => {
     const referenceWidth = 1280;
-    const referenceOffset = 20;
+    const referenceOffset = 14;
 
     const updateOffset = () => {
       const currentWidth = window.innerWidth;
@@ -40,13 +47,17 @@ export default function useRotation() {
       // Set offset to 0 for small screens (< 640px)
       if (currentWidth < 640) {
         setDynamicXOffset(0);
+        setDynamicYOffset(-5);
+        setDynamicZOffset(-10);
       } else {
         // For larger screens, calculate scaled offset
         const scaledOffset = Math.max(
           0,
-          (currentWidth / referenceWidth) * referenceOffset
+          (currentWidth / referenceWidth) * referenceOffset + 2
         );
         setDynamicXOffset(scaledOffset);
+        setDynamicYOffset(0);
+        setDynamicZOffset(0);
       }
     };
 
@@ -65,7 +76,7 @@ export default function useRotation() {
     let animationFrameId: number;
 
     const autoRotate = () => {
-      if (groupRef.current && !isDragging) {
+      if (groupRef.current && !isDragging && autoRotateEnabled) {
         // Calculate time elapsed since last frame for smooth rotation regardless of framerate
         const now = Date.now();
         const deltaTime = now - lastFrameTime.current;
@@ -96,7 +107,7 @@ export default function useRotation() {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isDragging]);
+  }, [isDragging, autoRotateEnabled]);
 
   // Pointer down handler
   const handlePointerDown = useCallback(
@@ -105,7 +116,6 @@ export default function useRotation() {
       setPreviousPosition({ x: event.clientX, y: event.clientY });
       // Capture the pointer
       (event.target as HTMLDivElement).setPointerCapture(event.pointerId);
-      (event.target as HTMLDivElement).style.cursor = "grabbing";
     },
     []
   );
@@ -141,7 +151,6 @@ export default function useRotation() {
         setPreviousPosition(null);
         // Release the pointer capture
         (event.target as HTMLDivElement).releasePointerCapture(event.pointerId);
-        (event.target as HTMLDivElement).style.cursor = "grab";
       }
     },
     [isDragging]
@@ -156,7 +165,6 @@ export default function useRotation() {
         setPreviousPosition(null);
         // Release the pointer capture
         (event.target as HTMLDivElement).releasePointerCapture(event.pointerId);
-        (event.target as HTMLDivElement).style.cursor = "grab";
       }
     },
     [isDragging]
@@ -211,6 +219,8 @@ export default function useRotation() {
     groupRef,
     rotation,
     dynamicXOffset,
+    dynamicYOffset,
+    dynamicZOffset,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,
@@ -219,5 +229,6 @@ export default function useRotation() {
     handleTouchMove,
     handleTouchEnd,
     handleTouchCancel,
+    setAutoRotateEnabled,
   };
 }

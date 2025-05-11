@@ -5,7 +5,7 @@ import { Sparkles } from "@react-three/drei";
 const SpaceDust: React.FC = () => {
   return (
     <Sparkles
-      count={1499}
+      count={1000}
       size={15}
       speed={1}
       scale={[100, 100, 100]}
