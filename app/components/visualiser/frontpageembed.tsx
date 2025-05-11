@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import FrontPageVisualiser from "./FrontPageVisualiser";
 import { useEmbeddings } from "@/app/hooks/useEmbeddings";
 import vocab from "@/public/visualiser/front.json";
@@ -15,40 +15,15 @@ export default function FrontPageEmbed() {
   const [words] = useState<string[]>(vocab as string[]);
   const embeddings = useEmbeddings(words);
   const router = useRouter();
-  const [selectedWord, setSelectedWord] = useState<string | null>(null);
-
-  const [isInView, setIsInView] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.5 } // Trigger when 50% of the component is in view
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+  const [triggerAnimation, setTriggerAnimation] = useState<boolean>(false);
 
   const handleButtonClick = () => {
     // Zoom to word
-    const wordToZoom = "data";
-    setSelectedWord(wordToZoom);
+    setTriggerAnimation(true);
     // Wait for zoom then route to visualiser
     setTimeout(() => {
       router.push("/visualiser");
-    }, 1000); // 1 second delay to match the zoom animation duration
+    }, 1500); // 1.5 second delay to match the zoom animation duration
   };
 
   if (!embeddings)
@@ -74,15 +49,9 @@ export default function FrontPageEmbed() {
       </section>
     );
 
-  // Define the background color for the gradient
-  const backgroundColor = "#0d1117";
-
   return (
     <section className="relative h-screen ">
-      <div
-        ref={sectionRef}
-        className="absolute top-0 right-0 w-full mt-4 mr-4 text-sm text-gray-400 z-50 flex flex-col items-center gap-5 overflow-hidden"
-      >
+      <div className="absolute top-0 right-0 w-full mt-4 mr-4 text-sm text-gray-400 z-50 flex flex-col items-center gap-5 overflow-hidden">
         {/* Disclaimer Text*/}
         <p className="text-right w-full sm:text-[10px] overflow-hidden">
           Disclaimer: This is our first prototype and may contain issues or
@@ -90,57 +59,64 @@ export default function FrontPageEmbed() {
         </p>
         {/* Content for sm screens*/}
         <div className="hidden sm:flex flex-col relative w-full items-center justify-center overflow-hidden">
-          <WelcomeText isInView={true} /> {/* Set to true for now */}
+          <WelcomeText /> {/* Set to true for now */}
         </div>
       </div>
 
-      <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto h-full overflow-hidden">
-        {/* Main Visualiser */}
-        <FrontPageVisualiser
-          vocab={words}
-          embeddings={embeddings}
-          initialWord={selectedWord}
+      <div className="animated-gradient-1 absolute inset-0 w-full h-full z-[0] opacity-50"></div>
+      {/* Main Visualiser */}
+      <FrontPageVisualiser
+        vocab={words}
+        embeddings={embeddings}
+        triggerAnimation={triggerAnimation}
+      />
+
+      {/* Layout */}
+      <div className="sm:hidden left-layout">
+        <FrontPageLayout
+          handleButtonClick={handleButtonClick}
+          triggerAnimation={triggerAnimation}
         />
+      </div>
 
-        {/* Layout */}
-        <div className="sm:hidden left-layout">
-          <FrontPageLayout handleButtonClick={handleButtonClick} />
-        </div>
-
-        {/* Bottom Section */}
-        <div className="absolute bottom-0 w-screen flex flex-col items-center justify-center mb-4 text-center gap-10 z-20">
-          {/* Content for SM and lower */}
-          <div className="hidden sm:flex flex-row items-center w-full gap-4 px-20 xs:px-10">
-            <button
-              onClick={handleButtonClick}
-              className="bg-white text-black px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full"
-            >
-              Explore Data Science with our Embeddings Visualiser
-            </button>
-            <button
-              onClick={handleButtonClick}
-              className="bg-blue-950 text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-blue-800 hover:shadow-lg lg:w-full sm:w-full"
-            >
-              Click here to get your free DSCubed Membership
-            </button>
-          </div>
-          {/* Scroll Indicator */}
-          <motion.div
-            animate={{
-              y: [0, -10, 0, -10, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatDelay: 6,
-              ease: "easeInOut",
-            }}
-            className="flex items-center gap-2"
+      {/* Bottom Section */}
+      <div className="absolute bottom-0 w-screen flex flex-col items-center justify-center mb-4 text-center gap-10 z-20">
+        {/* Content for SM and lower */}
+        <div className="hidden sm:flex flex-row items-center w-full gap-4 px-20 xs:px-10">
+          <button
+            onClick={handleButtonClick}
+            className="bg-white text-black px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full"
           >
-            <p>Scroll to browse </p>{" "}
-            <ChevronDoubleDownIcon className="w-6 h-6" />
-          </motion.div>
+            Click here to get your free DSCubed Membership
+          </button>
+          <button
+            onClick={handleButtonClick}
+            className={`${
+              triggerAnimation == true
+                ? "bg-gray-600"
+                : "bg-blue-900 hover:scale-105 hover:bg-blue-800 hover:shadow-lg"
+            } text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform lg:w-full sm:w-full`}
+          >
+            {triggerAnimation == true
+              ? "Redirecting to Visualiser...."
+              : " Explore our Embeddings Visualiser"}
+          </button>
         </div>
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{
+            y: [0, -10, 0, -10, 0],
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatDelay: 6,
+            ease: "easeInOut",
+          }}
+          className="flex items-center gap-2"
+        >
+          <p>Scroll to browse </p> <ChevronDoubleDownIcon className="w-6 h-6" />
+        </motion.div>
       </div>
     </section>
   );
