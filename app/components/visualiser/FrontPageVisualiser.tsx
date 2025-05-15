@@ -7,7 +7,7 @@ import { UMAP } from "umap-js";
 import * as THREE from "three";
 import useRotation from "@/app/hooks/useRotation";
 
-import WordPoint from "./WordPoint";
+import WordPoint from "./WordPointFront";
 import SpaceDust from "./SpaceDust";
 
 // Props expected: vocab list and precomputed embeddings
@@ -24,7 +24,6 @@ export default function Visualiser({
   triggerAnimation,
 }: Props) {
   const currentVocab = vocab;
-  const [highlightedWord, setHighlightedWord] = useState<string | null>(null);
 
   const zoomAnimationIdRef = useRef<number | null>(null);
   const hasZoomedInitiallyRef = useRef(false); // To ensure one-time execution
@@ -227,9 +226,6 @@ export default function Visualiser({
                 number
               ]
             }
-            onSelect={(word) => {
-              setHighlightedWord(word);
-            }}
           />
         ))}
       </group>

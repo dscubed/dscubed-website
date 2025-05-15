@@ -1,0 +1,44 @@
+import React from "react";
+import { Html } from "@react-three/drei";
+
+interface WordPointProps {
+  word: string;
+  position: [number, number, number];
+  onSelect?: (word: string) => void;
+}
+
+// Component that renders a single word as a glowing, animated sphere with a text label
+const WordPoint: React.FC<WordPointProps> = ({ word, position, onSelect }) => {
+  return (
+    <group
+      position={position}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (onSelect) onSelect(word);
+      }}
+    >
+      <mesh>
+        <sphereGeometry args={[0.3, 32, 32]} />
+        <meshStandardMaterial color={"#b9bcc4"} transparent />
+      </mesh>
+      {/* Word label above the sphere */}
+      <Html distanceFactor={20} position={[0, 0.6, 0]}>
+        <div
+          style={{
+            backgroundColor: "rgba(46, 46, 48, 0.3)",
+            padding: "0.5rem 0.8rem",
+            borderRadius: "2.0rem",
+            color: "white",
+            fontSize: "2.5rem",
+            whiteSpace: "nowrap",
+            backdropFilter: "blur(4px)",
+          }}
+        >
+          <p>{word}</p>
+        </div>
+      </Html>
+    </group>
+  );
+};
+
+export default WordPoint;
