@@ -23,6 +23,7 @@ const WordPoint: React.FC<WordPointProps> = ({
   const r = normalize(x);
   const g = normalize(y);
   const b = normalize(z);
+  const emissiveColor = new THREE.Color(r * 0.3, g * 0.3, b * 0.6);
 
   const [noiseFactor, setNoiseFactor] = useState(0);
 
@@ -44,23 +45,35 @@ const WordPoint: React.FC<WordPointProps> = ({
       }}
     >
       <mesh>
-        <sphereGeometry args={[0.3, 32, 32]} />
-        <meshStandardMaterial color={"#b9bcc4"} transparent />
+        <sphereGeometry args={[0.5, 64, 64]} />
+        <meshStandardMaterial
+          color={
+            isHighlighted
+              ? new THREE.Color(1, 0.5, 0)
+              : new THREE.Color(0, 0, 0)
+          }
+          emissive={emissiveColor}
+          emissiveIntensity={0.7}
+          transparent
+          opacity={0.3 + noiseFactor * 0.4}
+          roughness={0.85}
+          metalness={0}
+        />
       </mesh>
       {/* Word label above the sphere */}
       <Html distanceFactor={20} position={[0, 0.6, 0]}>
         <div
           style={{
-            backgroundColor: "rgba(46, 46, 48, 0.3)",
-            padding: "0.5rem 0.8rem",
-            borderRadius: "2.0rem",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            padding: "0.1rem 0.4rem",
+            borderRadius: "0.25rem",
             color: "white",
             fontSize: "2.5rem",
             whiteSpace: "nowrap",
             backdropFilter: "blur(4px)",
           }}
         >
-          <p>{word}</p>
+          {word}
         </div>
       </Html>
     </group>

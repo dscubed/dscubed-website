@@ -20,11 +20,9 @@ export function WelcomeText() {
           >
             Leading
           </FancyText>
-          <br className="sm:hidden" />
-          Data Science Club
         </h1>
         <h1 className="text-4xl font-medium text-left sm:text-center">
-          at the University of Melbourne
+          Data Science Club at the University of Melbourne
         </h1>
       </div>
 
