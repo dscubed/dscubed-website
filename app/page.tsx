@@ -19,7 +19,7 @@ export default function Index() {
       <Navbar />
 
       <main className="relative bg-background-secondary z-10">
-        <IntroSection />
+        {/* <IntroSection /> */}
         <hr className="border-0 border-b border-border" />
         <WhatWeDoSection />
         <hr className="border-0 border-b border-border" />
@@ -36,7 +36,7 @@ export default function Index() {
         <hr className="border-0 border-b border-border" />
         <GallerySection />
         <hr className="border-0 border-b border-border" />
-        {/* <MapSection /> */}
+        <MapSection />
         {/* <hr className="border-0 border-b border-border" /> */}
         <FAQSection />
       </main>

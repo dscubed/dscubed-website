@@ -1,45 +1,39 @@
-import Image from 'next/image'
-import Section from '@/app/components/Section'
-import briefcaseImage from '@/public/home/briefcase.png'
-import tabletopImage from '@/public/home/tabletop.png'
-import peopleImage from '@/public/home/people.png'
+import { Briefcase, Laptop, Users } from "lucide-react"; // Importing icons from lucide-react
+import Section from "@/app/components/Section";
 
 export default function WhatWeDoSection() {
   return (
     <Section>
-      <h2 className="text-5xl sm:text-4xl">What We Do</h2>
+      <h2 className="text-6xl sm:text-5xl mb-10 text-center">What We Do</h2>
 
-      <div className="grid grid-cols-3 lg:grid-cols-1 gap-10 lg:gap-20 sm:gap-10">
-        <div className="grid gap-4 h-max">
-          <h3 className="text-xl">Industry Opportunities</h3>
-          <Image
-            className="rounded-2xl object-cover w-full aspect-video"
-            src={briefcaseImage}
-            alt=""
-          ></Image>
-          <p className="text-lg leading-relaxed">As the go-to hub for industry opportunities in data science, we offer comprehensive support for your career journey. Our program includes hosting recruitment talks with industry leaders throughout the academic year and sharing exclusive data science job opportunities in our newsletters.</p>
+      <div className="flex justify-around items-center gap-14 lg:flex-col lg:gap-10">
+        <div className="flex flex-col items-center gap-6">
+          <Briefcase className="w-28 h-28 text-white" />
+          <h3 className="text-2xl font-semibold">Industry Opportunities</h3>
+          <p className="text-lg text-center max-w-xs">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque vitae sapien ac eros.
+          </p>
         </div>
 
-        <div className="grid gap-4 h-max">
-          <h3 className="text-xl">Technical Workshops</h3>
-          <Image
-            className="rounded-2xl object-cover w-full aspect-video"
-            src={tabletopImage}
-            alt=""
-          ></Image>
-          <p className="text-lg leading-relaxed">We explore data science topics and organise technical workshops for our fellow members. From creating data visualisation dashboards to building E2E Machine Learning pipelines, we got you covered for any essential skills that you may require during your AI/ML career.</p>
+        <div className="flex flex-col items-center gap-6">
+          <Laptop className="w-28 h-28 text-white" />
+          <h3 className="text-2xl font-semibold">Technical Workshops</h3>
+          <p className="text-lg text-center max-w-xs">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque vitae sapien ac eros.
+          </p>
         </div>
 
-        <div className="grid gap-4 h-max">
-          <h3 className="text-xl">Student Networking</h3>
-          <Image
-            className="rounded-2xl object-cover w-full aspect-video"
-            src={peopleImage}
-            alt=""
-          ></Image>
-          <p className="text-lg leading-relaxed">We organize student community events and here’s your chance to meet and network with other like-minded students. Apart from the get-along events, we also host revision workshop for common data science subjects with past tutors.</p>
+        <div className="flex flex-col items-center gap-6">
+          <Users className="w-28 h-28 text-white" />
+          <h3 className="text-2xl font-semibold">Student Networking</h3>
+          <p className="text-lg text-center max-w-xs">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque vitae sapien ac eros.
+          </p>
         </div>
-      </div>  
+      </div>
     </Section>
-  )
+  );
 }
