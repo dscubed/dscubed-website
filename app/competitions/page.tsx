@@ -9,6 +9,7 @@ import FAQSection from "../components/competitions/FAQ/FAQSection";
 import Title from "@/app/components/competitions/Title";
 import ScrollUpButton from "@/app/components/competitions/ScrollUpButton";
 import Prizes from "../components/competitions/prizes";
+import Leaderboard from "../components/competitions/Leaderboard";
 import CreditsSection from "@/app/components/competitions/credits"; // Corrected import path
 
 export const metadata = {
@@ -43,7 +44,7 @@ export default function CompetitionsPage() {
         </div>
         <Section>
           <hr className="border-0 border-b border-border" />
-          <Prizes />
+          <Leaderboard />
         </Section>
         <Section>
           <hr className="border-0 border-b border-border" />
@@ -63,7 +64,7 @@ export default function CompetitionsPage() {
         <Section>
           <hr className="border-0 border-b border-border" />
           <CreditsSection />
-          </Section>
+        </Section>
       </main>
       <ScrollUpButton />
       <Footer />
