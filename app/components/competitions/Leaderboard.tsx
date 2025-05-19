@@ -17,7 +17,7 @@ function PrizeCounter({
   useEffect(() => {
     if (isInView) {
       const animation = animate(count, value, {
-        duration: 6,
+        duration: 3.5,
       });
 
       return animation.stop;
@@ -82,9 +82,7 @@ export default function Prizes() {
                 alt="Silver Trophy"
                 className="w-full h-full object-contain"
               />
-              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-[#181818]">
-                2
-              </span>
+              <p>2.62481</p>
             </div>
 
             {/* Pillar content */}
@@ -129,9 +127,7 @@ export default function Prizes() {
                 alt="Gold Trophy"
                 className="w-full h-full object-contain"
               />
-              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-[#181818]">
-                1
-              </span>
+              <p>2.58684</p>
             </div>
 
             {/* Pillar content */}
@@ -139,7 +135,7 @@ export default function Prizes() {
               <span className="font-bold text-white text-2xl font-['Press Start 2P'] mb-2">
                 1ST PRIZE
               </span>
-              <p className="font-bold text-white text-xl text-center font-['Press Start 2P'] whitespace-pre-line break-words mb-3">
+              <p className="leading-relaxed mb-3">
                 Dimitri Micha
                 <br />
                 von Benckendorff
@@ -182,9 +178,7 @@ export default function Prizes() {
                 alt="Bronze Trophy"
                 className="w-full h-full object-contain"
               />
-              <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-[#181818]">
-                3
-              </span>
+              <p>2.64055</p>
             </div>
 
             {/* Pillar content */}
