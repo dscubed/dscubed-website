@@ -166,7 +166,7 @@ export const teams: {
       { name: 'Andy Li', role: 'Industry Officer', image: '/people/2025/andy-li.png' },
       { name: 'Paige Nguyen', role: 'Industry Officer', image: '/people/2025/paige-nguyen.png' },
       { name: 'Dharani Baskaran', role: 'Industry Officer', image: '/people/2025/dharani-baskaran.png'},
-      { name: 'Harshit Badam', role: 'Industry Officer', image: '/people/2025/harshit-badam.png'  },
+      // { name: 'Harshit Badam', role: 'Industry Officer', image: '/people/2025/harshit-badam.png'  }, // No longer wants to be on the website.
     ],
   },
   {
