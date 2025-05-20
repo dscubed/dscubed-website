@@ -15,6 +15,7 @@
     "@next/third-parties": "^14.2.5",
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-intersection": "^0.2.0",
+    "@splinetool/react-spline": "^4.0.0",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@tailwindcss/line-clamp": "^0.4.4",

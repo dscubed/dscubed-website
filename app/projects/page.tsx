@@ -2,6 +2,7 @@ import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
 import Section from "@/app/components/Section";
 import Workshop from "@/app/components/competitions/workshop";
+import ProjectsHero from "../components/projects/ProjectsHero";
 
 export const metadata = {
   title: "Projects Initiative | DSCubed",
@@ -25,11 +26,13 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
+      <ProjectsHero />
+
       <main className="relative bg-background-secondary z-10">
         <div className="text-center my-8">
           <h1 className="text-2xl font-bold">Projects Initiative</h1>
         </div>
-      <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b border-border" />
       </main>
       <Footer />
     </>
