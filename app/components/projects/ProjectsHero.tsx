@@ -19,7 +19,7 @@ export default function ProjectsHero() {
           className="absolute top-0 left-0 w-full h-3/5 flex flex-col gap-4 items-center justify-end pointer-events-none"
           style={{ fontFamily: "'Akira Expanded', sans-serif" }}
         >
-          <h1 className="text-white text-6xl font-black">
+          <h1 className="text-white text-6xl font-black text-center">
             PROJECTS INITIATIVE
           </h1>
           <p className="w-3/5 text-center">
