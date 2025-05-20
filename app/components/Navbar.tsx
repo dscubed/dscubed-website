@@ -87,12 +87,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
           <Link className="p-4 border-b border-border " href="/events">Events</Link>
           <Link className="p-4 border-b border-border " href="/committee-2025">Committee</Link>
           <Link className="p-4 border-b border-border " href="/sponsors">Sponsors</Link>
-          <Link
-            className="p-4 border-b border-border text-lg font-bold "
-            href="/competitions"
-          >
-            Competitions
-          </Link>
+          <Link className="p-4 border-b border-border " href="/competitions">Competitions</Link>
           <Link className="p-4 border-b border-border " href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
           <ThemeButton className="p-4 border-b border-border " state={themeState} />
         </div>
