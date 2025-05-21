@@ -58,7 +58,7 @@ export default function Prizes() {
       <div className="flex color-white relative h-96 items-end justify-center">
         {/* 2ND PRIZE */}
         <motion.div
-          className="text-center relative mx-5"
+          className="text-center relative mx-5 top-1/3"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{
             opacity: 1,
@@ -70,25 +70,20 @@ export default function Prizes() {
         >
           <div className="w-72 flex flex-col items-center">
             {/* TROPHY: Centered above the pillar */}
-            <div
-              className="relative mb-2"
-              style={{
-                width: "calc(0.2678571429 * 18rem)", // 18rem = w-72
-                aspectRatio: "1 / 1",
-              }}
-            >
+            <div className="relative mb-2 w-24">
               <img
                 src="/competitions/trophy-silver.svg"
                 alt="Silver Trophy"
                 className="w-full h-full object-contain"
               />
+            </div>
+            <div className="pb-2">
               <p>2.62481</p>
             </div>
-
             {/* Pillar content */}
-            <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-3 w-full">
+            <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-3 w-full h-80">
               <div className="font-bold text-lg mb-2">2ND PRIZE</div>
-              <p className="leading-relaxed mb-3">
+              <p className="leading-relaxed mb-3 text-[#C4C4C4]">
                 Lee Han Hsiang <br />
                 <br />
                 Muhammad Azad bin <br />
@@ -103,7 +98,7 @@ export default function Prizes() {
 
         {/* 1ST PRIZE */}
         <motion.div
-          className="text-center relative mx-2 -mt-16" // negative margin to lift 1st pillar
+          className="text-center relative mx-2 -mt-16 top-1/3" // negative margin to lift 1st pillar
           initial={{ opacity: 0, y: -50 }}
           whileInView={{
             opacity: 1,
@@ -115,27 +110,23 @@ export default function Prizes() {
         >
           <div className="w-72 flex flex-col items-center">
             {/* TROPHY: Centered above the pillar */}
-            <div
-              className="relative mb-2"
-              style={{
-                width: "calc(0.2678571429 * 18rem)",
-                aspectRatio: "1 / 1",
-              }}
-            >
+            <div className="relative mb-2 w-24">
               <img
                 src="/competitions/trophy-gold.svg"
                 alt="Gold Trophy"
                 className="w-full h-full object-contain"
               />
+            </div>
+            <div className="pb-2">
               <p>2.58684</p>
             </div>
 
             {/* Pillar content */}
-            <div className="rounded-xl bg-[#0472FD] text-sm text-white text-center py-4 px-3 w-full flex flex-col items-center">
+            <div className="rounded-xl bg-[#0472FD] text-sm text-white text-center py-4 px-3 w-full flex flex-col items-center h-[26rem]">
               <span className="font-bold text-white text-2xl font-['Press Start 2P'] mb-2">
                 1ST PRIZE
               </span>
-              <p className="leading-relaxed mb-3">
+              <p className="leading-relaxed mb-3 text-[#B5D5FE]">
                 Dimitri Micha
                 <br />
                 von Benckendorff
@@ -154,7 +145,7 @@ export default function Prizes() {
 
         {/* 3RD PRIZE */}
         <motion.div
-          className="text-center relative mx-5"
+          className="text-center relative mx-5 top-1/3"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{
             opacity: 1,
@@ -166,25 +157,21 @@ export default function Prizes() {
         >
           <div className="w-72 flex flex-col items-center">
             {/* TROPHY: Centered above the pillar */}
-            <div
-              className="relative mb-2"
-              style={{
-                width: "calc(0.2678571429 * 18rem)",
-                aspectRatio: "1 / 1",
-              }}
-            >
+            <div className="relative mb-2 w-24">
               <img
                 src="/competitions/trophy-bronze.svg"
                 alt="Bronze Trophy"
                 className="w-full h-full object-contain"
               />
+            </div>
+            <div className="pb-2">
               <p>2.64055</p>
             </div>
 
             {/* Pillar content */}
-            <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-3 w-full">
+            <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-3 w-full h-64">
               <div className="font-bold text-lg mb-2">3RD PRIZE</div>
-              <p className="leading-relaxed mb-3">Ebyn chan</p>
+              <p className="leading-relaxed mb-3 text-[#C4C4C4]">Ebyn chan</p>
               <div className="text-xl font-bold">
                 $<PrizeCounter value={100} isInView={isInView} />
               </div>
