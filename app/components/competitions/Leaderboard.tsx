@@ -19,6 +19,7 @@ function useMediaQuery(query: string): boolean {
   return matches;
 }
 
+// animates prize numbers to increase over time
 function PrizeCounter({
   value,
   isInView,
@@ -87,6 +88,7 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="w-60 flex flex-col items-center">
+              {/* trophy img */}
               <div className="relative mb-2 w-24">
                 <img
                   src="/competitions/trophy-silver.svg"
@@ -94,9 +96,11 @@ export default function Prizes() {
                   className="w-full h-full object-contain"
                 />
               </div>
+              {/* score */}
               <div className="pb-2 text-xl font-bold">
                 <p>2.62481</p>
               </div>
+              {/* winner names */}
               <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-4 w-64 h-80">
                 <div className="font-bold text-2xl mt-3 mb-2">2ND PRIZE</div>
                 <div className="leading-relaxed mb-3 text-[#C4C4C4] text-lg text-center top-1/2">
@@ -106,6 +110,7 @@ export default function Prizes() {
                     Mohamed Afif
                   </p>
                 </div>
+                {/* Prize */}
                 <div className="h-40 flex flex-col justify-end pb-11">
                   <div className="text-4xl font-bold">
                     $<PrizeCounter value={150} isInView={isInView} />
@@ -127,6 +132,7 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="w-60 flex flex-col items-center">
+              {/* trophy img */}
               <div className="relative mb-2 w-24">
                 <img
                   src="/competitions/trophy-gold.svg"
@@ -134,6 +140,7 @@ export default function Prizes() {
                   className="w-full h-full object-contain"
                 />
               </div>
+              {/* score */}
               <div className="pb-2 text-xl font-bold">
                 <p>2.58684</p>
               </div>
@@ -141,6 +148,7 @@ export default function Prizes() {
                 <span className="font-bold text-white text-3xl font-['Press Start 2P'] mt-5 mb-2">
                   1ST PRIZE
                 </span>
+                {/* winner names */}
                 <p className="leading-relaxed mb-3 text-[#B5D5FE] text-xl text-center">
                   Dimitri Micha
                   <br />
@@ -150,6 +158,7 @@ export default function Prizes() {
                   <br />
                   Sudarshan
                 </p>
+                {/* prize amount */}
                 <div className="text-4xl font-bold self-center pb-4">
                   $<PrizeCounter value={200} isInView={isInView} />
                 </div>
@@ -169,6 +178,7 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="w-60 flex flex-col items-center">
+              {/* trophy img */}
               <div className="relative mb-2 w-24">
                 <img
                   src="/competitions/trophy-bronze.svg"
@@ -176,14 +186,17 @@ export default function Prizes() {
                   className="w-full h-full object-contain"
                 />
               </div>
+              {/* score */}
               <div className="pb-2 text-xl font-bold">
                 <p>2.64055</p>
               </div>
               <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-4 w-64 h-64">
                 <div className="font-bold text-2xl mt-3 mb-2">3RD PRIZE</div>
+                {/* Winner names */}
                 <p className="leading-relaxed mb-3 text-[#C4C4C4] text-lg text-center">
                   Ebyn Chan
                 </p>
+                {/* prize amount */}
                 <div className="h-40 flex flex-col justify-end pb-10">
                   <div className="text-4xl font-bold">
                     $<PrizeCounter value={100} isInView={isInView} />
@@ -211,14 +224,18 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="rounded-xl bg-[#0472FD] text-white text-center py-6 px-4 flex flex-col items-center shadow-lg">
+              {/* trophy img */}
               <img
                 src="/competitions/trophy-gold.svg"
                 alt="Gold Trophy"
                 className="w-14 h-14 object-contain mb-2"
               />
               <span className="font-bold text-2xl mb-1">1ST PRIZE</span>
-              <span className="text-md font-bold mb-1">2.58684</span>
+              <span className="text-md font-bold mb-1">2.58684</span>{" "}
+              {/* score */}
               <p className="text-[#B5D5FE] text-base mb-2">
+                {" "}
+                {/* winner names */}
                 Dimitri Micha
                 <br />
                 von Benckendorff
@@ -228,7 +245,8 @@ export default function Prizes() {
                 Sudarshan
               </p>
               <div className="text-3xl font-bold">
-                $<PrizeCounter value={200} isInView={isInView} />
+                $<PrizeCounter value={200} isInView={isInView} />{" "}
+                {/* prize amount */}
               </div>
             </div>
           </motion.div>
@@ -245,20 +263,25 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="rounded-xl bg-[#373737] text-white text-center py-6 px-4 flex flex-col items-center shadow-md">
+              {/* trophy img */}
               <img
                 src="/competitions/trophy-silver.svg"
                 alt="Silver Trophy"
                 className="w-14 h-14 object-contain mb-2"
               />
               <span className="font-bold text-2xl mb-1">2ND PRIZE</span>
-              <span className="text-md font-bold mb-1">2.62481</span>
+              <span className="text-md font-bold mb-1">2.62481</span>{" "}
+              {/* score */}
               <p className="text-[#C4C4C4] text-base mb-2">
+                {" "}
+                {/* winner names */}
                 Lee Han Hsiang <br />
                 Muhammad Azad bin <br />
                 Mohamed Afif
               </p>
               <div className="text-3xl font-bold">
-                $<PrizeCounter value={150} isInView={isInView} />
+                $<PrizeCounter value={150} isInView={isInView} />{" "}
+                {/* prize amount */}
               </div>
             </div>
           </motion.div>
@@ -275,16 +298,19 @@ export default function Prizes() {
             onViewportEnter={() => setIsInView(true)}
           >
             <div className="rounded-xl bg-[#373737] text-white text-center py-6 px-4 flex flex-col items-center shadow-md">
+              {/* trophy img */}
               <img
                 src="/competitions/trophy-bronze.svg"
                 alt="Bronze Trophy"
                 className="w-14 h-14 object-contain mb-2"
               />
               <span className="font-bold text-2xl mb-1">3RD PRIZE</span>
-              <span className="text-md font-bold mb-1">2.64055</span>
-              <p className="text-[#C4C4C4] text-base mb-2">Ebyn Chan</p>
+              <span className="text-md font-bold mb-1">2.64055</span>{" "}
+              {/* score */}
+              <p className="text-[#C4C4C4] text-base mb-2">Ebyn Chan</p>{" "}
+              {/* winner names */}
               <div className="text-3xl font-bold">
-                $<PrizeCounter value={100} isInView={isInView} />
+                $<PrizeCounter value={100} isInView={isInView} /> {/* score */}
               </div>
             </div>
           </motion.div>
