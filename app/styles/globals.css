@@ -62,7 +62,7 @@
       color-scheme: dark;
     }
   }
-  
+
   html {
     font-size: 14px;
   }
@@ -107,7 +107,8 @@ html {
 }
 
 @keyframes location-ping {
-  75%, 100% {
+  75%,
+  100% {
     transform: translate(-50%, -50%) scale(2);
     opacity: 0;
   }
