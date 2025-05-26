@@ -13,10 +13,11 @@ import SpaceDust from "./SpaceDust";
 interface Props {
   vocab: string[];
   embeddings: number[][];
+  onLoaded?: () => void;
 }
 
 // Main scene component that renders the 3D embedding space
-export default function Visualiser({ vocab, embeddings }: Props) {
+export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
   // State variables for dynamic vocab and their embeddings
   const [currentVocab, setCurrentVocab] = useState(vocab);
   const [currentEmbeddings, setCurrentEmbeddings] = useState(embeddings);
@@ -67,6 +68,12 @@ export default function Visualiser({ vocab, embeddings }: Props) {
 
     loadUSEModel();
   }, [model, isModelLoading]);
+
+  useEffect(() => {
+  if (!isModelLoading) {
+    onLoaded?.(); // Notify parent when done loading
+  }
+}, [isModelLoading, onLoaded]);
 
   // Project high-dimensional embeddings to 3D using UMAP
   const coords3d = useMemo(() => {
