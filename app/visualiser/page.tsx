@@ -55,14 +55,14 @@ export default function VisualiserPage() {
           <>
             <button
               onClick={() => setShowWelcomeModal(true)}
-              className="absolute bottom-12 left-0 flex gap-2 text-text-secondary hover:text-text-primary transition z-10 px-8"
+              className="absolute bottom-8 left-0 flex gap-2 text-text-secondary hover:text-text-primary transition z-10 px-9"
             >
-              <InformationCircleIcon className="w-10 h-10 my-auto" />
+              <InformationCircleIcon className="w-8 h-8 my-auto" />
             </button>
 
             <button
               onClick={() => router.push("/")}
-              className="absolute top-3 left-0 flex gap-2 text-text-secondary hover:text-text-primary transition z-10 px-4"
+              className="absolute top-7 left-0 flex gap-2 text-text-secondary hover:text-text-primary transition z-10 px-6"
             >
               <ArrowLeftIcon className="w-4 h-4 my-auto" />
               <span className="my-auto">Back</span>
