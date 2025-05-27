@@ -2,9 +2,31 @@
 import { useState } from "react";
 import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
+import Carousel from "@/app/components/projects/carousel";
+import Section from "../Section";
+import ThemeButton from "../ThemeButton";
+import { describe } from "node:test";
 
 export default function ProjectsHero() {
   const [loading, setLoading] = useState(true);
+
+  const slideData = [
+        {
+      title: "Lung Cancer Classification",
+      description: "AI-based classification of lung cancer types from chest CT scans",
+      button: "More Info",
+      src: "/projects/xray.png",
+      link: "/components/projects/cancer"
+    },
+    {
+      title: "Stock Forecasting",
+      description: "Using machine learning models to predict stock prices and market trends",
+      button: "More Info",
+      src: "/projects/stock.png",
+      link: "/components/projects/stock"
+    },
+  ];
+
   return (
     <>
       <style jsx global>{`
@@ -16,6 +38,8 @@ export default function ProjectsHero() {
           font-display: swap;
         }
       `}</style>
+
+      {/* Hero Section */}
       <div className="w-screen h-screen relative">
         <Spline
           scene="https://prod.spline.design/eQqi6a4D3kJA8Xri/scene.splinecode"
@@ -23,14 +47,12 @@ export default function ProjectsHero() {
           onError={() => setLoading(false)}
         />
         {loading ? (
-          // Loading Scene
           <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/40">
             <span className="text-white text-xl font-bold animate-pulse">
               Loading...
             </span>
           </div>
         ) : (
-          // Hero content
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,6 +74,11 @@ export default function ProjectsHero() {
           </motion.div>
         )}
       </div>
+
+      <Section>
+        <h2 className="text-3xl font-semibold mb-6 text-center">Explore Our Projects</h2>
+        <Carousel slides={slideData} />
+      </Section>
     </>
   );
 }
