@@ -70,10 +70,10 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
   }, [model, isModelLoading]);
 
   useEffect(() => {
-  if (!isModelLoading) {
-    onLoaded?.(); // Notify parent when done loading
-  }
-}, [isModelLoading, onLoaded]);
+    if (!isModelLoading) {
+      onLoaded?.(); // Notify parent when done loading
+    }
+  }, [isModelLoading, onLoaded]);
 
   // Project high-dimensional embeddings to 3D using UMAP
   const coords3d = useMemo(() => {
@@ -229,11 +229,19 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
       )}
 
       {/* Main 3D visualization canvas */}
+      <div className="animated-gradient-1 absolute inset-0 w-full h-full z-[1] opacity-20 pointer-events-none"></div>
       <div className="h-full w-full mb-5">
         <Canvas
-          className="items-center h-full w-full"
-          camera={{ position: [0, 0, 100], fov: 75 }}
-          style={{ background: "#0d1117" }}
+          className="h-full w-full"
+          camera={{ position: [0, 10, 45], fov: 50 }}
+          style={{
+            background: "transparent",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+            touchAction: "none",
+          }}
         >
           <color attach="background" args={["#0d1117"]} />
           <fog attach="fog" args={["#0d1117", 60, 200]} />
