@@ -15,15 +15,11 @@ export default function FrontPageEmbed() {
   const [words] = useState<string[]>(vocab as string[]);
   const embeddings = useEmbeddings(words);
   const router = useRouter();
-  const [triggerAnimation, setTriggerAnimation] = useState<boolean>(false);
+  const [redirecting, setRedirecting] = useState<boolean>(false);
 
-  const handleButtonClick = () => {
-    // Zoom to word
-    setTriggerAnimation(true);
-    // Wait for zoom then route to visualiser
-    setTimeout(() => {
-      router.push("/visualiser");
-    }, 1500); // 1.5 second delay to match the zoom animation duration
+  const handleVisualiserRedirect = () => {
+    router.push("/visualiser");
+    setRedirecting(true);
   };
 
   if (!embeddings)
@@ -65,17 +61,13 @@ export default function FrontPageEmbed() {
 
       <div className="animated-gradient-1 absolute inset-0 w-full h-full z-[0] opacity-50"></div>
       {/* Main Visualiser */}
-      <FrontPageVisualiser
-        vocab={words}
-        embeddings={embeddings}
-        triggerAnimation={triggerAnimation}
-      />
+      <FrontPageVisualiser vocab={words} embeddings={embeddings} />
 
       {/* Layout */}
       <div className="sm:hidden left-layout">
         <FrontPageLayout
-          handleButtonClick={handleButtonClick}
-          triggerAnimation={triggerAnimation}
+          handleButtonClick={handleVisualiserRedirect}
+          redirecting={redirecting}
         />
       </div>
 
@@ -83,21 +75,18 @@ export default function FrontPageEmbed() {
       <div className="absolute bottom-0 w-screen flex flex-col items-center justify-center mb-4 text-center gap-10 z-20">
         {/* Content for SM and lower */}
         <div className="hidden sm:flex flex-row items-center w-full gap-4 px-20 xs:px-10">
-          <button
-            onClick={handleButtonClick}
-            className="bg-white text-black px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full"
-          >
+          <button className="bg-white text-black px-4 py-2 rounded-md text-xs font-medium transition-transform transform hover:scale-105 hover:bg-gray-200 hover:shadow-lg lg:w-full sm:w-full">
             Click here to get your free DSCubed Membership
           </button>
           <button
-            onClick={handleButtonClick}
+            onClick={handleVisualiserRedirect}
             className={`${
-              triggerAnimation == true
+              redirecting == true
                 ? "bg-gray-600"
                 : "bg-blue-900 hover:scale-105 hover:bg-blue-800 hover:shadow-lg"
             } text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform lg:w-full sm:w-full`}
           >
-            {triggerAnimation == true
+            {redirecting == true
               ? "Redirecting to Visualiser...."
               : " Explore our Embeddings Visualiser"}
           </button>

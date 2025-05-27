@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
 import { UMAP } from "umap-js";
@@ -14,19 +14,11 @@ import SpaceDust from "./SpaceDust";
 interface Props {
   vocab: string[];
   embeddings: number[][];
-  triggerAnimation: boolean; // New prop to trigger the animation
 }
 
 // Main scene component that renders the 3D embedding space
-export default function Visualiser({
-  vocab,
-  embeddings,
-  triggerAnimation,
-}: Props) {
+export default function Visualiser({ vocab, embeddings }: Props) {
   const currentVocab = vocab;
-
-  const zoomAnimationIdRef = useRef<number | null>(null);
-  const hasZoomedInitiallyRef = useRef(false); // To ensure one-time execution
 
   // Use the rotation hook for rotation handling and dynamic offset
   const {
@@ -79,74 +71,6 @@ export default function Visualiser({
     // Returns average of all points as center
     return new THREE.Vector3(sumX / count, sumY / count, sumZ / count);
   }, [coords3d]);
-
-  // Effect for the one-time zoom animation
-  useEffect(() => {
-    // Ensure all conditions are met and animation hasn't happened yet
-    if (
-      triggerAnimation &&
-      !hasZoomedInitiallyRef.current && // Check the flag
-      groupRef.current && // Check if the group is mounted
-      coords3d &&
-      coords3d.length > 0 // Check if coordinates are ready
-    ) {
-      const targetPosition = new THREE.Vector3(0, 10, 45); // Target center for the zoom
-      const duration = 1500; // Animation duration in ms
-      let startTime = 0;
-
-      // Disable auto-rotation and lock rotation
-      setAutoRotateEnabled(false);
-      const initialRotation = { ...rotation }; // Capture the current rotation
-      groupRef.current.rotation.set(initialRotation.x, initialRotation.y, 0);
-
-      const animate = (timestamp: number) => {
-        if (startTime === 0) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = 1 - Math.pow(1 - progress, 4); // Quartic ease-out
-
-        const currentPosition = new THREE.Vector3().lerpVectors(
-          center,
-          targetPosition,
-          easeProgress
-        );
-
-        // Update the group's position relative to the center
-        groupRef.current?.position.set(
-          currentPosition.x,
-          currentPosition.y,
-          currentPosition.z
-        );
-        // Lock the group's rotation during each frame
-        groupRef.current?.rotation.set(initialRotation.x, initialRotation.y, 0);
-
-        if (progress < 1) {
-          zoomAnimationIdRef.current = requestAnimationFrame(animate);
-        } else {
-          groupRef.current?.position.set(
-            targetPosition.x,
-            targetPosition.y,
-            targetPosition.z
-          ); // Ensure final position
-          zoomAnimationIdRef.current = null;
-          hasZoomedInitiallyRef.current = true; // Set flag: animation is done
-          console.log("Enter visualiser animation complete.");
-        }
-      };
-
-      if (zoomAnimationIdRef.current)
-        cancelAnimationFrame(zoomAnimationIdRef.current);
-      startTime = 0;
-      zoomAnimationIdRef.current = requestAnimationFrame(animate);
-    }
-
-    // Cleanup animation frame if component unmounts during animation
-    return () => {
-      if (zoomAnimationIdRef.current) {
-        cancelAnimationFrame(zoomAnimationIdRef.current);
-      }
-    };
-  }, [triggerAnimation, groupRef, coords3d, center, setAutoRotateEnabled]); // Dependencies: all values from component scope used inside the effect
 
   return (
     <Canvas
