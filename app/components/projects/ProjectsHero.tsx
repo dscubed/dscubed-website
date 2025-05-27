@@ -68,17 +68,29 @@ export default function ProjectsHero() {
               LEVERAGE THE POWER OF DATA ANALYTICS TOOLS TO CREATE HIGH-IMPACT
               RESEARCH PROJECTS THAT SOLVE REAL LIFE PROBLEMS
             </p>
-            <button className="mt-3 px-6 py-2 rounded-2xl bg-white text-black text-lg font-extrabold shadow-lg hover:bg-cyan-100 transition-colors duration-200 pointer-events-auto">
-              MORE INFO
+
+            <button
+              className="mt-3 px-6 py-2 rounded-2xl bg-white text-black text-lg font-extrabold shadow-lg hover:bg-cyan-100 transition-colors duration-200 pointer-events-auto"
+              onClick={() => {
+                const nextSection = document.getElementById('carousel-section');
+                if (nextSection) {
+                  nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              explore projects
             </button>
           </motion.div>
         )}
       </div>
 
-      <Section>
-        <h2 className="text-3xl font-semibold mb-6 text-center">Explore Our Projects</h2>
-        <Carousel slides={slideData} />
-      </Section>
+      
+      <div id="carousel-section">
+        <Section>
+          <h2 className="text-3xl font-semibold mb-6 text-center">Explore Our Projects</h2>
+          <Carousel slides={slideData} />
+        </Section>
+      </div>
     </>
   );
 }
