@@ -3,7 +3,7 @@ import FancyText from "@carefully-coded/react-text-gradient";
 
 interface FrontPageLayoutProps {
   handleButtonClick: () => void;
-  triggerAnimation: boolean;
+  redirecting: boolean;
 }
 
 export function WelcomeText() {
@@ -36,7 +36,7 @@ export function WelcomeText() {
 
 export default function FrontPageLayout({
   handleButtonClick,
-  triggerAnimation,
+  redirecting,
 }: FrontPageLayoutProps) {
   return (
     <div className="absolute left-0 w-1/3 h-screen flex flex-col items-center z-10 lg:w-1/2">
@@ -53,12 +53,12 @@ export default function FrontPageLayout({
           <button
             onClick={handleButtonClick}
             className={`${
-              triggerAnimation == true
+              redirecting == true
                 ? "bg-gray-600"
                 : "bg-blue-900 hover:scale-105 hover:bg-blue-800 hover:shadow-lg"
             } w-1/2 text-white px-4 py-2 rounded-lg text-xs font-medium transition-transform transform lg:w-full sm:w-full`}
           >
-            {triggerAnimation == true
+            {redirecting == true
               ? "Redirecting to Visualiser...."
               : " Explore our Embeddings Visualiser"}
           </button>
