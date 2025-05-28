@@ -206,33 +206,6 @@ export default function Visualiser({ vocab, embeddings }: Props) {
   );
 }
 
-function screenToWorldTranslation(
-  screenX,
-  screenY,
-  screenWidth,
-  screenHeight,
-  camera,
-  depth = 0
-) {
-  // Convert screen (pixel) to Normalized Device Coordinates (NDC)
-  const ndcX = (screenX / screenWidth) * 2 - 1;
-  const ndcY = -(screenY / screenHeight) * 2 + 1; // Invert Y for WebGL
-
-  // Create a vector at the desired depth
-  const ndc = new THREE.Vector3(ndcX, ndcY, 0.5); // z = 0.5 (default mid-depth)
-  ndc.unproject(camera); // Convert to world space
-
-  // Direction from camera to unprojected point
-  const direction = ndc.clone().sub(camera.position).normalize();
-
-  // Set distance from camera
-  const distance = Math.abs(depth - camera.position.z);
-  const worldPos = camera.position.clone().add(direction.multiplyScalar(distance));
-
-  // Return the translation needed to move the object at (0,0,0) to that point
-  return worldPos;
-}
-
 function getTranslationToScreenPixel(
   screenX: number,
   screenY: number,
