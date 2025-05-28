@@ -12,7 +12,7 @@ export default function InstagramRedirect() {
     sendGTMEvent({
       event: 'qr_scan',
       event_category: 'QR',
-      event_label: `Instagram QR - Poster - Michael`,
+      event_label: `Instagram QR - Poster - Azlan`,
     });
 
     // Redirect after short delay to ensure GA has time
