@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
 import { UMAP } from "umap-js";
@@ -18,6 +18,9 @@ interface Props {
 // Main scene component that renders the 3D embedding space
 export default function Visualiser({ vocab, embeddings }: Props) {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [showSpaceDust, setShowSpaceDust] = useState(true);
+  const [cameraZ, setCameraZ] = useState(-40);
   const currentVocab = vocab;
 
   // Use the rotation hook for rotation handling and dynamic offset
@@ -82,13 +85,37 @@ export default function Visualiser({ vocab, embeddings }: Props) {
 
   useEffect(() => {
     function updateGroupPosition() {
-      if (!cameraRef.current) return;
+      if (!cameraRef.current || !canvasRef.current) return;
+
+      let canvasRect = canvasRef.current.getBoundingClientRect();
+
+      if (window.innerWidth >= 1024) {
+        // > lg
+        screenX = canvasRect.width / 2 + Math.min(1280, canvasRect.width) / 5;
+        screenY = canvasRect.height / 2 - 20;
+        setCameraZ(-40);
+      } else if (window.innerWidth >= 640) {
+        // md - lg
+        screenX = canvasRect.width / 2;
+        screenY = 63 + 96 * 2 + 450 + 100;
+        setCameraZ(-60);
+      } else if (window.innerWidth >= 480) {
+        // sm
+        screenX = canvasRect.width / 2;
+        screenY = 63 + 96 * 2 + 450 + 40;
+        setCameraZ(-70);
+      } else {
+        // xs
+        screenX = canvasRect.width / 2;
+        screenY = 63 + 96 * 2 + 450 + 10;
+        setCameraZ(-70);
+      }
 
       const pos = getTranslationToScreenPixel(
-        window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5,
-        window.innerHeight / 2,
-        window.innerWidth,
-        window.innerHeight,
+        screenX,
+        screenY,
+        canvasRect.width,
+        canvasRect.height,
         cameraRef.current,
         0
       );
@@ -100,39 +127,29 @@ export default function Visualiser({ vocab, embeddings }: Props) {
       requestAnimationFrame(updateGroupPosition);
     };
 
-    if (cameraRef.current) updateGroupPosition();
+    if (cameraRef.current && canvasRef.current) updateGroupPosition();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [cameraRef.current, canvasRef.current]);
 
 
   return (
     <Canvas
-      className="h-full w-full"
-      camera={{ position: [0, 0, -40], fov: 50 }}
+      key={cameraZ}
+      ref={canvasRef}
+      camera={{ position: [0, 0, cameraZ], fov: 50 }}
+      className="lg:!pointer-events-none select-none"
       style={{
         background: "transparent",
-        height: "calc(100svh - 63px)",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
         top: 0,
         left: 0,
         zIndex: 0,
         touchAction: "none",
       }}
-      onCreated={({ camera }) => {
-        cameraRef.current = camera;
-
-        const pos = getTranslationToScreenPixel(
-          window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5.5,
-          window.innerHeight / 2,
-          window.innerWidth,
-          window.innerHeight,
-          camera,
-          0
-        );
-        updateDynamicOffset(pos.x, pos.y, pos.z);
-      }}
+      onCreated={({ camera }) => cameraRef.current = camera}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -153,7 +170,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
         rotation={[rotation.x, rotation.y, 0]}
       >
         {/* Rotating dust layer inside the group - will rotate with the scene */}
-        <SpaceDust />
+        {showSpaceDust && (<SpaceDust />)}
 
         {/* Connect all word nodes with lines - adjust points relative to center */}
         {coords3d.map(([x1, y1, z1], i) =>
