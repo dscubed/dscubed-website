@@ -16,12 +16,12 @@ export default function FrontPageEmbed() {
   // router.push("/visualiser");
 
   return (
-    <div className="relative w-full min-h-svh mt-[-63px] shadow-[0_0_200px_50px_rgba(20,15,30,1)] border-b-2 border-b-background-secondary">
+    <div className="relative w-full min-h-svh mt-[-63px] shadow-[0_0_200px_50px_rgba(20,15,30,1)] border-b-2 border-b-[rgb(44,44,54)]">
       {/* Gradient background */}
       <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-50"></div>
 
       {/* Noise filter */}
-      <div className="noise-filter absolute inset-0 w-full h-full opacity-70 pointer-events-none z-10"></div>
+      <div className="noise-filter absolute inset-0 w-full h-full opacity-50 pointer-events-none z-10"></div>
       
       {/* Take up navbar space */}
       <div className="h-[63px]"></div>
