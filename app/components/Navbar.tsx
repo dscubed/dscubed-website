@@ -3,10 +3,12 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import Banner from '@/app/components/Banner'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import Logo from '@/app/components/Logo'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
+import path from 'path'
 
 const ThemeButton = dynamic(
   () => import('@/app/components/ThemeButton'),
@@ -17,13 +19,31 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
   const [showMenu, setShowMenu] = useState(false)
   // Share the same state across both theme buttons
   const themeState = useState('')
+  const [blurNav, setBlurNav] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => {
+    function toggleBlurNav () {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
+
+      // On home page, only blur if scrolled down past the first viewport height
+      setBlurNav(pathname !== '/' || scrollTop > window.innerHeight)
+    }
+
+    toggleBlurNav()
+
+    window.addEventListener('scroll', toggleBlurNav)
+    return () => window.removeEventListener('scroll', toggleBlurNav)
+  }, [])
 
   return (
     // Use top: -1px to remove gap on some browsers
     <div className="sticky top-[-1px] z-20" id="navbar">
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
-      <nav {...rest} className={clsx('relative w-full pt-px backdrop-blur-lg bg-background-secondary/80', className)}>
+      <nav {...rest} className={clsx('relative w-full pt-px', {
+        "backdrop-blur-lg bg-background-secondary/70": blurNav
+      }, className)}>
         <div className="px-5 py-3">
           <div className="relative max-w-screen-xl flex justify-between gap-3 mx-auto">
             {/* Logo */}
