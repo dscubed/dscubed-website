@@ -10,19 +10,8 @@ export function WelcomeText() {
   return (
     <>
       <div className="mb-5 mx-5 flex flex-col sm:items-center">
-        <h1 className="text-4xl font-medium sm:text-center min-w-[290px] sm:min-w-full">
-          The
-          <FancyText
-            gradient={{ from: "#1A5194", to: "#FFFFFF", type: "radial" }}
-            animateTo={{ from: "#0F2FA6", to: "#FFFFFF" }}
-            animateDuration={2000}
-            className="text-4xl font-semibold text-left mx-2"
-          >
-            Leading
-          </FancyText>
-        </h1>
-        <h1 className="text-4xl font-medium text-left sm:text-center">
-          Data Science Club at the University of Melbourne
+        <h1 className="text-5xl font-medium text-left sm:text-center">
+          The Leading<br/> Data Science Club at The University of Melbourne.
         </h1>
       </div>
 
