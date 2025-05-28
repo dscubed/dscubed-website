@@ -9,7 +9,8 @@ const SpaceDust: React.FC = () => {
       size={15}
       speed={1}
       scale={[100, 100, 100]}
-      color="#78A0FD"
+      color="#ffffff"
+      opacity={0.5}
       position={[0, 0, 0]}
       noise={0}
     />
