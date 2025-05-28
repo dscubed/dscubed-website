@@ -27,12 +27,10 @@ const WordPoint: React.FC<WordPointProps> = ({ word, position, onSelect }) => {
         position={[0, 0.6, 0]}
       >
         <div
+          className="py-[0.5rem] px-[1rem] sm:py-[0.4rem] sm:px-[0.8rem] text-[1.2rem] sm:text[1.1rem] xs:text-[1rem] rounded-full"
           style={{
-             backgroundColor: "rgba(255,255,255,0.05)",
-            padding: "0.5rem 1rem",
-            borderRadius: "5rem",
+            backgroundColor: "rgba(255,255,255,0.05)",
             color: "white",
-            fontSize: "1.2rem",
             whiteSpace: "nowrap",
             backdropFilter: "blur(4px)",
           }}
