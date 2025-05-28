@@ -113,7 +113,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
       camera={{ position: [0, 0, -40], fov: 50 }}
       style={{
         background: "transparent",
-        height: "100svh",
+        height: "calc(100svh - 63px)",
         width: "100vw",
         top: 0,
         left: 0,
