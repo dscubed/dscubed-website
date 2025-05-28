@@ -144,7 +144,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
       onTouchEnd={handleTouchEnd}
       onTouchCancel={handleTouchCancel}
     >
-      <fog attach="fog" args={["#0d1117", 60, 200]} />
+      {/* <fog attach="fog" args={["#0d1117", 60, 200]} /> */}
       <ambientLight intensity={0.6} />
       <directionalLight position={[10, 10, 10]} intensity={0.8} />
 
@@ -176,9 +176,10 @@ export default function Visualiser({ vocab, embeddings }: Props) {
                 <Line
                   key={`conn-${i}-${j}`}
                   points={[p1, p2]} // Use adjusted points as tuples
-                  color={"#87898c"}
+                  color={"#ffffff"}
                   lineWidth={1}
-                  opacity={0.6}
+                  opacity={0.4}
+                  transparent
                 />
               );
             }

@@ -19,17 +19,20 @@ const WordPoint: React.FC<WordPointProps> = ({ word, position, onSelect }) => {
     >
       <mesh>
         <sphereGeometry args={[0.3, 32, 32]} />
-        <meshStandardMaterial color={"#b9bcc4"} transparent />
+        <meshStandardMaterial color={"#ffffff"} transparent />
       </mesh>
       {/* Word label above the sphere */}
-      <Html distanceFactor={20} position={[0, 0.6, 0]}>
+      <Html
+        // distanceFactor={20} 
+        position={[0, 0.6, 0]}
+      >
         <div
           style={{
-            backgroundColor: "rgba(46, 46, 48, 0.3)",
-            padding: "0.5rem 0.8rem",
-            borderRadius: "2.0rem",
+             backgroundColor: "rgba(255,255,255,0.05)",
+            padding: "0.5rem 1rem",
+            borderRadius: "5rem",
             color: "white",
-            fontSize: "2.5rem",
+            fontSize: "1.2rem",
             whiteSpace: "nowrap",
             backdropFilter: "blur(4px)",
           }}
