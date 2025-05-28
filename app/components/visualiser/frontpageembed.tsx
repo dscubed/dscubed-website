@@ -28,7 +28,7 @@ export default function FrontPageEmbed() {
 
       {/* sm:h-[calc(63px+96px*2+450px+200px)] xs:h-[calc(63px+96px*2+450px+200px)] */}
       <div className="relative w-full flex flex-col min-h-[calc(100svh-63px)] lg:min-h-max lg:h-[calc(63px+96px*2+450px+450px)] sm:h-[calc(63px+96px*2+450px+350px)] xs:h-[calc(63px+96px*2+450px+300px)]">
-        <div className="relative px-5 py-40 lg:py-24 lg:pb-8 my-auto lg:my-0">
+        <div className="z-10 relative px-5 py-40 lg:py-24 lg:pb-8 my-auto lg:my-0 pointer-events-none">
           <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-[500px] mx-auto">
             <div className="grid gap-20 sm:gap-10">
               <div className="flex flex-col gap-10 my-auto max-w-xl">
@@ -42,7 +42,7 @@ export default function FrontPageEmbed() {
                 <Link 
                   target="_blank"
                   href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/"
-                  className="w-max bg-foreground text-background px-8 py-4 font-medium rounded-full"
+                  className="w-max bg-foreground text-background px-8 py-4 font-medium rounded-full pointer-events-auto"
                 >
                   Become a Member
                 </Link>
