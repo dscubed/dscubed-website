@@ -27,7 +27,7 @@ export default function useRotation() {
   });
 
   // Dyanamic Offsets
-  const [dynamicXOffset, setDynamicXOffset] = useState(20);
+  const [dynamicXOffset, setDynamicXOffset] = useState(0);
   const [dynamicYOffset, setDynamicYOffset] = useState(0);
   const [dynamicZOffset, setDynamicZOffset] = useState(0);
 
@@ -37,38 +37,47 @@ export default function useRotation() {
   const rotationSensitivity = 0.005;
 
   // Update offset based on window width, set to 0 for small screens
-  useEffect(() => {
-    const referenceWidth = 1280;
-    const referenceOffset = 14;
+  // useEffect(() => {
+    // const referenceWidth = 1280;
+    // const referenceOffset = 14;
 
-    const updateOffset = () => {
-      const currentWidth = window.innerWidth;
+    // const updateOffset = () => {
+    //   const currentWidth = window.innerWidth;
 
-      // Set offset to 0 for small screens (< 640px)
-      if (currentWidth < 640) {
-        setDynamicXOffset(0);
-        setDynamicYOffset(-5);
-        setDynamicZOffset(-10);
-      } else {
-        // For larger screens, calculate scaled offset
-        const scaledOffset = Math.max(
-          0,
-          (currentWidth / referenceWidth) * referenceOffset + 2
-        );
-        setDynamicXOffset(scaledOffset);
-        setDynamicYOffset(0);
-        setDynamicZOffset(0);
-      }
-    };
+    //   // Set offset to 0 for small screens (< 640px)
+    //   if (currentWidth < 640) {
+    //     setDynamicXOffset(0);
+    //     setDynamicYOffset(-5);
+    //     setDynamicZOffset(-10);
+    //   } else {
+    //     // For larger screens, calculate scaled offset
+    //     const scaledOffset = Math.max(
+    //       0,
+    //       (currentWidth / referenceWidth) * referenceOffset + 2
+    //     );
+    //     setDynamicXOffset(scaledOffset);
+    //     setDynamicYOffset(0);
+    //     setDynamicZOffset(0);
+    //   }
+    // };
 
     // Set initial offset
-    updateOffset();
+    // updateOffset();
+
+    // console.log(window.innerWidth / 4)
+    // setDynamicXOffset(10);
 
     // Add resize listener
-    window.addEventListener("resize", updateOffset);
+    // window.addEventListener("resize", updateOffset);
 
     // Cleanup listener on component unmount
-    return () => window.removeEventListener("resize", updateOffset);
+    // return () => window.removeEventListener("resize", updateOffset);
+  // }, []);
+
+  const updateDynamicOffset = useCallback((x: number, y: number, z: number) => {
+    setDynamicXOffset(x);
+    setDynamicYOffset(y);
+    setDynamicZOffset(z);
   }, []);
 
   // Auto-rotation animation
@@ -218,6 +227,7 @@ export default function useRotation() {
   return {
     groupRef,
     rotation,
+    updateDynamicOffset,
     dynamicXOffset,
     dynamicYOffset,
     dynamicZOffset,

@@ -1,29 +1,32 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
 import { UMAP } from "umap-js";
 import * as THREE from "three";
 import useRotation from "@/app/hooks/useRotation";
-
 import WordPoint from "./WordPointFront";
 import SpaceDust from "./SpaceDust";
 
 // Props expected: vocab list and precomputed embeddings
 interface Props {
   vocab: string[];
-  embeddings: number[][];
+  embeddings: number[][] | null;
 }
 
 // Main scene component that renders the 3D embedding space
 export default function Visualiser({ vocab, embeddings }: Props) {
+  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
+
+
   const currentVocab = vocab;
 
   // Use the rotation hook for rotation handling and dynamic offset
   const {
     groupRef,
     rotation,
+    updateDynamicOffset,
     dynamicXOffset,
     dynamicYOffset,
     dynamicZOffset,
@@ -35,21 +38,28 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     handleTouchStart,
     handleTouchEnd,
     handleTouchCancel,
-    setAutoRotateEnabled,
   } = useRotation();
 
   // Project high-dimensional embeddings to 3D using UMAP
   const coords3d = useMemo(() => {
-    if (!embeddings || embeddings.length === 0) {
-      return [];
-    }
-    const umap = new UMAP({
-      nComponents: 3,
-      nNeighbors: Math.min(15, embeddings.length - 1),
-      spread: 12,
-      minDist: 0.5,
-    });
-    return umap.fit(embeddings);
+    // if (!embeddings || embeddings.length === 0) {
+    //   return [];
+    // }
+
+    // const umap = new UMAP({
+    //   nComponents: 3,
+    //   nNeighbors: Math.min(15, embeddings.length - 1),
+    //   spread: 12,
+    //   minDist: 0.5,
+    // });
+
+    // // Get coordinates
+    // // console.log(JSON.stringify(umap.fit(embeddings)))
+
+    // return umap.fit(embeddings);
+
+    // Return cached results to improve performance, suggested by @Tchanwangsa
+    return [[5.398126341474347,12.104259447220764,1.8080497581650483],[-1.981195477859582,6.763470758628738,9.060538942506216],[10.229667072486562,-0.15082564874835605,0.2561293094734186],[-8.230095896621705,3.207715060996656,-1.898982044488417],[4.982734172556226,-1.3711144563192816,9.712204659786991],[-1.8230601053545095,4.463904107174396,-7.883693960037585],[3.917340945751632,-7.609676182384553,1.256398542081088],[-3.937883504745913,13.061277763883474,-0.6022948786244067]]
   }, [embeddings]);
 
   // Calculate the center
@@ -72,19 +82,58 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     return new THREE.Vector3(sumX / count, sumY / count, sumZ / count);
   }, [coords3d]);
 
+  useEffect(() => {
+    function updateGroupPosition() {
+      if (!cameraRef.current) return;
+
+      const pos = getTranslationToScreenPixel(
+        window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5,
+        window.innerHeight / 2,
+        window.innerWidth,
+        window.innerHeight,
+        cameraRef.current,
+        0
+      );
+
+      updateDynamicOffset(pos.x, pos.y, pos.z);
+    }
+
+    const handleResize = () => {
+      requestAnimationFrame(updateGroupPosition);
+    };
+
+    if (cameraRef.current) updateGroupPosition();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   return (
     <Canvas
       className="h-full w-full"
-      camera={{ position: [0, 10, 45], fov: 50 }}
+      camera={{ position: [0, 0, -35], fov: 50 }}
       style={{
         background: "transparent",
-        height: "100vh",
+        height: "100svh",
         width: "100vw",
-        position: "absolute",
         top: 0,
         left: 0,
         zIndex: 0,
         touchAction: "none",
+      }}
+      onCreated={({ camera }) => {
+        cameraRef.current = camera;
+
+        const pos = getTranslationToScreenPixel(
+          window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5,
+          window.innerHeight / 2,
+          window.innerWidth,
+          window.innerHeight,
+          camera,
+          0
+        );
+        updateDynamicOffset(pos.x, pos.y, pos.z);
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -155,4 +204,58 @@ export default function Visualiser({ vocab, embeddings }: Props) {
       </group>
     </Canvas>
   );
+}
+
+function screenToWorldTranslation(
+  screenX,
+  screenY,
+  screenWidth,
+  screenHeight,
+  camera,
+  depth = 0
+) {
+  // Convert screen (pixel) to Normalized Device Coordinates (NDC)
+  const ndcX = (screenX / screenWidth) * 2 - 1;
+  const ndcY = -(screenY / screenHeight) * 2 + 1; // Invert Y for WebGL
+
+  // Create a vector at the desired depth
+  const ndc = new THREE.Vector3(ndcX, ndcY, 0.5); // z = 0.5 (default mid-depth)
+  ndc.unproject(camera); // Convert to world space
+
+  // Direction from camera to unprojected point
+  const direction = ndc.clone().sub(camera.position).normalize();
+
+  // Set distance from camera
+  const distance = Math.abs(depth - camera.position.z);
+  const worldPos = camera.position.clone().add(direction.multiplyScalar(distance));
+
+  // Return the translation needed to move the object at (0,0,0) to that point
+  return worldPos;
+}
+
+function getTranslationToScreenPixel(
+  screenX: number,
+  screenY: number,
+  screenWidth: number,
+  screenHeight: number,
+  camera: THREE.Camera,
+  objectWorldZ = 0 // z-position of the object (default at origin)
+): THREE.Vector3 {
+  // Convert pixel to Normalised Device Coordinates (NDC)
+  const ndcX = (screenX / screenWidth) * 2 - 1;
+  const ndcY = -(screenY / screenHeight) * 2 + 1;
+
+  // Create a point in NDC at the object's Z-depth
+  const ndc = new THREE.Vector3(ndcX, ndcY, 0.5);
+  ndc.unproject(camera);
+
+  // Ray from camera to unprojected point
+  const dir = ndc.sub(camera.position).normalize();
+
+  // Compute intersection with object's Z plane
+  const distance = (objectWorldZ - camera.position.z) / dir.z;
+  const targetWorldPos = camera.position.clone().add(dir.multiplyScalar(distance));
+
+  // Offset from origin (0,0,0) to required position
+  return targetWorldPos; // This is the translation to apply to the object
 }
