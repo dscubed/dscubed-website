@@ -80,11 +80,10 @@ export default function FrontPageEmbed() {
           </button>
           <button
             onClick={handleVisualiserRedirect}
-            className={`${
-              redirecting == true
-                ? "bg-gray-600"
-                : "bg-blue-900 hover:scale-105 hover:bg-blue-800 hover:shadow-lg"
-            } text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform lg:w-full sm:w-full`}
+            className={`${redirecting == true
+              ? "bg-gray-600"
+              : "bg-blue-900 hover:scale-105 hover:bg-blue-800 hover:shadow-lg"
+              } text-white px-4 py-2 rounded-md text-xs font-medium transition-transform transform lg:w-full sm:w-full`}
           >
             {redirecting == true
               ? "Redirecting to Visualiser...."

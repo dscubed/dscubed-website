@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -9,6 +9,8 @@ interface WordPointProps {
   onSelect?: (word: string) => void;
 }
 
+const normalize = (v: number) => (v + 50) / 100;
+
 // Component that renders a single word as a glowing, animated sphere with a text label
 const WordPoint: React.FC<WordPointProps> = ({
   word,
@@ -18,12 +20,12 @@ const WordPoint: React.FC<WordPointProps> = ({
 }) => {
   const [x, y, z] = position;
 
-  // Normalize x/y/z to color ranges for emissive glow
-  const normalize = (v: number) => (v + 50) / 100;
-  const r = normalize(x);
-  const g = normalize(y);
-  const b = normalize(z);
-  const emissiveColor = new THREE.Color(r * 0.3, g * 0.3, b * 0.6);
+  const emissiveColor = useMemo(() => {
+    const r = normalize(x);
+    const g = normalize(y);
+    const b = normalize(z);
+    return new THREE.Color(r * 0.3, g * 0.3, b * 0.6);
+  }, [x, y, z]);
 
   const [noiseFactor, setNoiseFactor] = useState(0);
 
@@ -36,14 +38,13 @@ const WordPoint: React.FC<WordPointProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  const handleClick = useCallback((e: any) => {
+    e.stopPropagation();
+    if (onSelect) onSelect(word);
+  }, [onSelect, word]);
+
   return (
-    <group
-      position={position}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (onSelect) onSelect(word);
-      }}
-    >
+    <group position={position} onClick={handleClick}>
       <mesh>
         <sphereGeometry args={[0.5, 64, 64]} />
         <meshStandardMaterial
