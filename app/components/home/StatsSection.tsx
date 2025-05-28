@@ -8,21 +8,21 @@ const stats = [
     number: 123,
     title: "Title?",
     description:
-      "Through hands-on sessions in Python, data analysis, ML, and AI, DSCubed members gain practical skills, grow in confidence, and connect with peers in a supportive, collaborative learning environment.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae sapien ac eros.",
   },
   {
     id: "degrees",
     number: 123,
     title: "Title?",
     description:
-      "DSCubed connects passionate students in Data Science and AI through social events, workshops, and competitions, fostering a supportive community that builds valuable connections with peers and industry professionals.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae sapien ac eros.",
   },
   {
     id: "events",
     number: 123,
     title: "Title?",
     description:
-      "Kick-start your career in data science through our industry opportunities! We regularly host networking events with industry leaders and skill-building workshops. Members also gain early insights into internships and exclusive job listings through our newsletter.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae sapien ac eros.",
   },
 ];
 
@@ -40,7 +40,6 @@ export default function StatsSection() {
   return (
     <Section>
       <div className="grid grid-cols-[1fr,1fr] lg:grid-cols-1 lg:gap-20 sm:gap-10">
-        {/* Left side - About Us title */}
         <div>
           <div className="sticky max-w-sm sm:max-w-none top-[calc(102.55px+20px)]">
             <h2 className="text-5xl sm:text-4xl !leading-tight mb-10">
@@ -53,12 +52,11 @@ export default function StatsSection() {
           </div>
         </div>
 
-        {/* Right side - Stats with bolder dividers */}
         <div className="grid grid-cols-1 gap-0 max-w-xl lg:max-w-none">
           {stats.map((stat, index) => (
             <div key={stat.id}>
               <div className="flex flex-col gap-4 rounded-md py-10">
-                <h3 className="text-[8rem] sm:text-[6rem] font-bold tracking-tight leading-none">
+                <h3 className="text-[6rem] sm:text-[6rem] font-bold tracking-tight leading-none">
                   {formatNumber(stat.number)}
                 </h3>
                 <h4 className="text-xl">{stat.title}</h4>
@@ -66,7 +64,6 @@ export default function StatsSection() {
                   {stat.description}
                 </p>
               </div>
-              {/* Add bolder divider except after last item */}
               {index < stats.length - 1 && (
                 <hr className="border-t-2 border-white border-opacity-40" />
               )}
