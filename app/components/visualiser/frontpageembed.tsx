@@ -16,34 +16,39 @@ export default function FrontPageEmbed() {
   // router.push("/visualiser");
 
   return (
-    <div className="relative w-full min-h-[calc(100svh-63px)] flex">
-      {/* <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-50"></div> */}
+    <div className="relative w-full min-h-svh mt-[-63px]">
+      <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-50"></div>
+      
+      {/* Take up navbar space */}
+      <div className="h-[63px]"></div>
 
-      <div className="relative flex-1 px-5 py-40 sm:py-24 my-auto">
-        <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto">
-          <div className="grid gap-20 sm:gap-10">
-            <div className="flex flex-col gap-10 my-auto max-w-xl lg:max-w-xl">
-              <h1 className="text-5xl sm:text-4xl font-medium">
-                <span className="block leading-tight xl:leading-snug">The Leading </span>
-                <span className="block leading-tight xl:leading-snug">Data Science Club at </span>
-                <span className="block leading-tight xl:leading-snug">The University of </span>
-                <span className="block leading-tight xl:leading-snug">Melbourne.</span>
-              </h1>
-              <p className="text-xl sm:text-lg leading-relaxed">We are committed in our mission to connect and empower data enthusiasts, providing an unparalleled platform for students who are passionate about Data Science.</p>
-              <Link 
-                target="_blank"
-                href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/"
-                className="w-max bg-foreground text-background px-8 py-4 font-medium rounded-full"
-              >
-                Become a Member
-              </Link>
+      <div className="relative w-full min-h-[calc(100svh-63px)] flex">
+        <div className="relative flex-1 px-5 py-40 sm:py-24 my-auto">
+          <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-screen-sm mx-auto">
+            <div className="grid gap-20 sm:gap-10">
+              <div className="flex flex-col gap-10 my-auto max-w-xl lg:max-w-xl">
+                <h1 className="text-5xl sm:text-4xl font-medium">
+                  <span className="block leading-tight xl:leading-snug">The Leading </span>
+                  <span className="block leading-tight xl:leading-snug">Data Science Club at </span>
+                  <span className="block leading-tight xl:leading-snug">The University of </span>
+                  <span className="block leading-tight xl:leading-snug">Melbourne.</span>
+                </h1>
+                <p className="text-xl sm:text-lg leading-relaxed">We are committed in our mission to connect and empower data enthusiasts, providing an unparalleled platform for students who are passionate about Data Science.</p>
+                <Link 
+                  target="_blank"
+                  href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/"
+                  className="w-max bg-foreground text-background px-8 py-4 font-medium rounded-full"
+                >
+                  Become a Member
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute top-0 left-0 w-full h-full select-none cursor-pointer">
-        <FrontPageVisualiser vocab={words} embeddings={embeddings} />
+        <div className="absolute top-0 left-0 w-full h-full select-none cursor-pointer">
+          <FrontPageVisualiser vocab={words} embeddings={embeddings} />
+        </div>
       </div>
     </div>
   )
