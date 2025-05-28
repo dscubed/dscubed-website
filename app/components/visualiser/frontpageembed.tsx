@@ -16,7 +16,7 @@ export default function FrontPageEmbed() {
   // router.push("/visualiser");
 
   return (
-    <div className="relative w-full min-h-svh flex">
+    <div className="relative w-full min-h-[calc(100svh-63px)] flex">
       {/* <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-50"></div> */}
 
       <div className="relative flex-1 px-5 py-40 sm:py-24 my-auto">
