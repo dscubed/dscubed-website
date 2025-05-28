@@ -112,7 +112,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
   return (
     <Canvas
       className="h-full w-full"
-      camera={{ position: [0, 0, -35], fov: 50 }}
+      camera={{ position: [0, 0, -40], fov: 50 }}
       style={{
         background: "transparent",
         height: "100svh",
@@ -126,7 +126,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
         cameraRef.current = camera;
 
         const pos = getTranslationToScreenPixel(
-          window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5,
+          window.innerWidth / 2 + Math.min(1280, window.innerWidth) / 5.5,
           window.innerHeight / 2,
           window.innerWidth,
           window.innerHeight,
