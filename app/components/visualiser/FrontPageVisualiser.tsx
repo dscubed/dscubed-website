@@ -18,8 +18,6 @@ interface Props {
 // Main scene component that renders the 3D embedding space
 export default function Visualiser({ vocab, embeddings }: Props) {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);
-
-
   const currentVocab = vocab;
 
   // Use the rotation hook for rotation handling and dynamic offset
