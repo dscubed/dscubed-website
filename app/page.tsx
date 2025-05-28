@@ -15,11 +15,12 @@ import FrontPageEmbed from "./components/visualiser/frontpageembed";
 export default function Index() {
   return (
     <>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <Navbar />
 
       <main className="relative bg-background-secondary z-10">
         <FrontPageEmbed />
+        {/* <IntroSection /> */}
 
         <WhatWeDoSection />
         <hr className="border-0 border-b border-border" />
