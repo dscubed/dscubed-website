@@ -36,44 +36,6 @@ export default function useRotation() {
   const lastFrameTime = useRef(Date.now());
   const rotationSensitivity = 0.005;
 
-  // Update offset based on window width, set to 0 for small screens
-  // useEffect(() => {
-    // const referenceWidth = 1280;
-    // const referenceOffset = 14;
-
-    // const updateOffset = () => {
-    //   const currentWidth = window.innerWidth;
-
-    //   // Set offset to 0 for small screens (< 640px)
-    //   if (currentWidth < 640) {
-    //     setDynamicXOffset(0);
-    //     setDynamicYOffset(-5);
-    //     setDynamicZOffset(-10);
-    //   } else {
-    //     // For larger screens, calculate scaled offset
-    //     const scaledOffset = Math.max(
-    //       0,
-    //       (currentWidth / referenceWidth) * referenceOffset + 2
-    //     );
-    //     setDynamicXOffset(scaledOffset);
-    //     setDynamicYOffset(0);
-    //     setDynamicZOffset(0);
-    //   }
-    // };
-
-    // Set initial offset
-    // updateOffset();
-
-    // console.log(window.innerWidth / 4)
-    // setDynamicXOffset(10);
-
-    // Add resize listener
-    // window.addEventListener("resize", updateOffset);
-
-    // Cleanup listener on component unmount
-    // return () => window.removeEventListener("resize", updateOffset);
-  // }, []);
-
   const updateDynamicOffset = useCallback((x: number, y: number, z: number) => {
     setDynamicXOffset(x);
     setDynamicYOffset(y);
