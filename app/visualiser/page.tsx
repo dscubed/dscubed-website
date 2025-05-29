@@ -76,17 +76,17 @@ export default function VisualiserPage() {
         </div>
 
         {/* Overlayed Footer */}
-        <footer className="absolute bottom-4 right-4 text-white rounded-lg shadow-lg p-4 z-10 sm:bottom-24 sm:right-0 sm:left-0 sm:mx-auto sm:w-full sm:items-center sm:text-center">
-          <div className="flex flex-col items-end gap-4 text-right sm:items-center sm:text-center">
-            <p className="text-sm font-bold opacity-30">
+        <footer className="absolute bottom-4 right-4 text-text-primary rounded-lg shadow-lg p-4 z-10 sm:bottom-24 sm:right-0 sm:left-0 sm:mx-auto sm:w-full sm:items-center sm:text-center">
+          <div className="flex flex-col items-end gap-4 text-text-secondary text-right sm:items-center sm:text-center">
+            <p className="text-sm font-bold">
               Disclaimer: This is our first prototype and may contain <br />{" "}
               loading, performance issues, and/or bugs.
             </p>
-            <p className="text-sm opacity-30">
+            <p className="text-sm">
               © {new Date().getFullYear()} DSCubed · Data Science Student
               Society
             </p>
-            <div className="flex gap-4 opacity-30">
+            <div className="flex gap-4">
               <a
                 href="mailto:hello@dscubed.org.au"
                 target="_blank"
