@@ -3,7 +3,7 @@ import * as Icon from 'react-bootstrap-icons'
 
 export default function Footer () {
   return (
-    <footer className="relative z-20 px-5 py-8 bg-background-secondary">
+    <footer className="relative z-20 px-5 py-8 bg-background/40">
       <div className="flex flex-col gap-10 max-w-screen-xl mx-auto">
         <div className="flex md:flex-col gap-4 md:gap-5 justify-between text-text-secondary">
           <p className="md:text-center">© {(new Date).getFullYear()} DSCubed · Data Science Student Society</p>
