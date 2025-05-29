@@ -49,9 +49,9 @@ export default function Prizes() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <Section>
+    <Section className="mb-80">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center">
         <motion.h2
           className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
           initial={{ opacity: 0, y: -50 }}
