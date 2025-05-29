@@ -9,6 +9,7 @@ import Logo from '@/app/components/Logo'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import path from 'path'
+import { cn } from '../lib/utils'
 
 const ThemeButton = dynamic(
   () => import('@/app/components/ThemeButton'),
@@ -41,9 +42,10 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
     <div className="sticky top-[-1px] z-20" id="navbar">
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
-      <nav {...rest} className={clsx('relative w-full pt-px backdrop-blur-lg duration-500 transition-colors', {
-        "bg-background-secondary/70": blurNav
-      }, className)}>
+      <nav {...rest} className={cn('relative w-full pt-px backdrop-blur-lg duration-500 transition-colors', {
+        "bg-background-secondary/70": blurNav,
+        "bg-background-secondary duration-0": showMenu,
+      } as any, className)}>
         <div className="px-5 py-3">
           <div className="relative max-w-screen-xl flex justify-between gap-3 mx-auto">
             {/* Logo */}
@@ -100,7 +102,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
           <Link className="p-4 border-b border-border" href="/committee">Committee</Link>
           <Link className="p-4 border-b border-border" href="/sponsors">Sponsors</Link>
           <Link className="p-4 border-b border-border" href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
-          <ThemeButton className="p-4 border-b border-border" state={themeState} />
+          {/* <ThemeButton className="p-4 border-b-2 border-border" state={themeState} /> */}
         </div>
       </nav>
     </div>
