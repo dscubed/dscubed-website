@@ -6,6 +6,7 @@ import FrontPageVisualiser from "./FrontPageVisualiser";
 import vocab from "@/public/visualiser/front.json";
 import { useRouter } from "next/navigation";
 import Link from 'next/link'
+import Section from "../Section";
 
 export default function FrontPageEmbed() {
   const [words] = useState<string[]>(vocab as string[]);
@@ -42,9 +43,9 @@ export default function FrontPageEmbed() {
                 <Link 
                   target="_blank"
                   href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/"
-                  className="w-max bg-foreground text-background px-8 py-4 font-medium rounded-full pointer-events-auto"
+                  className="w-max bg-foreground text-background px-6 py-3.5 font-medium rounded-full pointer-events-auto"
                 >
-                  Become a Member
+                  Get Membership
                 </Link>
               </div>
             </div>
