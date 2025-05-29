@@ -232,7 +232,7 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
       <div className="animated-gradient-1 absolute inset-0 w-full h-full z-[1] opacity-20 pointer-events-none"></div>
       <div className="h-full w-full mb-5">
         <Canvas
-          className="h-full w-full"
+          className="h-full w-full select-none"
           camera={{ position: [0, 10, 45], fov: 50 }}
           style={{
             background: "transparent",
