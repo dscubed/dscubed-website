@@ -1,6 +1,7 @@
 'use client'
 import React from "react";
 import { motion, useInView } from "framer-motion";
+import Section from "@/app/components/Section";
 
 type TimelineItem = {
   date: string;
@@ -64,64 +65,66 @@ export default function EventTimeline() {
   const isTimelineInView = useInView(timelineRef, { once: true });
 
   return (
-    <div className="flex flex-col items-center px-6 py-8">
-      {/* Heading Section */}
-      <div className="px-8 py-4 rounded-2xl mb-12">
-        {/* Header */}
-      <div className="text-center mb-12">
-        <motion.h2
-          className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          EVENT TIMELINE
-        </motion.h2>
-        <motion.p
-          className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          From workshops to competition day—follow the timeline to success!
-        </motion.p>
-      </div>
-      </div>
+    <Section>
+      <div className="flex flex-col items-center px-6">
+        {/* Heading Section */}
+        <div className="px-8 rounded-2xl mb-12">
+          {/* Header */}
+        <div className="text-center mb-12">
+          <motion.h2
+            className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            EVENT TIMELINE
+          </motion.h2>
+          <motion.p
+            className="text-[clamp(1rem,2vw,1.25rem)] text-gray-300 mt-2"
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            From workshops to competition day—follow the timeline to success!
+          </motion.p>
+        </div>
+        </div>
 
-      {/* Timeline Container */}
-      <div ref={timelineRef} className="relative w-full max-w-6xl">
-        <div className="flex flex-col items-center relative">
-          {/* Line */}
-          <motion.div
-            className="absolute w-1 z-0"
-            animate={isTimelineInView ? { height: "100%" } : { height: 0 }}
-            transition={{ duration: 3.2, ease: "easeInOut" }}
-            style={{
-              top: "2rem",
-              left: "50%",
-              transform: "translateX(-50%)",
-              background: isTimelineInView
-                ? "linear-gradient(to bottom, white 0%, #3B82F6 90%, rgb(36,36,36) 100%)"
-                : "linear-gradient(to bottom, black 0%, #3B82F6 90%, rgb(255,255,255)",
-            }}
-          />
+        {/* Timeline Container */}
+        <div ref={timelineRef} className="relative w-full max-w-6xl">
+          <div className="flex flex-col items-center relative">
+            {/* Line */}
+            <motion.div
+              className="absolute w-1 z-0"
+              animate={isTimelineInView ? { height: "100%" } : { height: 0 }}
+              transition={{ duration: 3.2, ease: "easeInOut" }}
+              style={{
+                top: "2rem",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: isTimelineInView
+                  ? "linear-gradient(to bottom, white 0%, #3B82F6 90%, rgb(36,36,36) 100%)"
+                  : "linear-gradient(to bottom, black 0%, #3B82F6 90%, rgb(255,255,255)",
+              }}
+            />
 
-          {/* Timeline Items */}
-          <div className="space-y-12 z-12">
-            {timelineData.map((item, idx) => (
-              <TimelineItemComponent
-                key={idx}
-                item={item}
-                idx={idx}
-                isTimelineInView={isTimelineInView}
-              />
-            ))}
+            {/* Timeline Items */}
+            <div className="space-y-12 z-12">
+              {timelineData.map((item, idx) => (
+                <TimelineItemComponent
+                  key={idx}
+                  item={item}
+                  idx={idx}
+                  isTimelineInView={isTimelineInView}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }
 
