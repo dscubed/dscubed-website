@@ -32,7 +32,7 @@ export default function useRotation() {
   const [dynamicZOffset, setDynamicZOffset] = useState(0);
 
   // Auto-rotation - much slower speed, always active
-  const autoRotationSpeed = useRef(0.00005);
+  const autoRotationSpeed = useRef(0.0005);
   const lastFrameTime = useRef(Date.now());
   const rotationSensitivity = 0.005;
 
