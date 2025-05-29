@@ -93,7 +93,7 @@ export default function WhatWeDoSection() {
 
           <h3 className="text-lg">Datathons</h3>
           <p className="text-lg text-text-secondary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+            We support friendly competition at DSCubed by hosting various Datathons throughout the year, including our semesterly flagship Kaggle Competition, and annual Inter-uni Datathon in collaboration with other Australian Universities.
           </p>
         </div>
       </div>
