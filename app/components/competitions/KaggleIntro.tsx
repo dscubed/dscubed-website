@@ -115,6 +115,7 @@ export const AnimatedText = ({
   }, [isInView, controls, repeatDelay]);
 
   return (
+    // @ts-ignore
     <Wrapper className={className}>
       <span className="sr-only">{textArray.join(" ")}</span>
       <motion.span
