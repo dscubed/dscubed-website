@@ -86,7 +86,7 @@ const { src, button, title, description } = slide;
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#373737] rounded-[1%] transition-all duration-150 ease-out"
+          className="absolute top-0 left-0 w-full h-full bg-background rounded-[1%] transition-all duration-150 ease-out"
           style={{
             transform:
               current === index
@@ -98,7 +98,7 @@ const { src, button, title, description } = slide;
         </div>
 
         <article
-      className="relative p-[4vmin] text-white transition-opacity duration-1000 ease-in-out"
+      className="relative p-[4vmin] text-text-primary transition-opacity duration-1000 ease-in-out"
     >
     <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold mb-2 text-left">
       {title}
@@ -117,7 +117,7 @@ const { src, button, title, description } = slide;
           <a
             href={slide.link}
             rel="noopener noreferrer"
-            className="px-4 py-2 text-sm text-black bg-white border rounded-2xl hover:shadow-lg transition"
+            className="px-4 py-2 text-sm text-black bg-foreground border rounded-2xl hover:shadow-lg transition"
           >
             {button}
           </a>
@@ -143,13 +143,13 @@ const CarouselControl = ({
 }: CarouselControlProps) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+      className={`w-10 h-10 flex items-center mx-2 justify-center bg-btn-background hover:bg-btn-background-hover border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
         type === "previous" ? "rotate-180" : ""
       }`}
       title={title}
       onClick={handleClick}
     >
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      <IconArrowNarrowRight className="text-text-secondary" />
     </button>
   );
 };
