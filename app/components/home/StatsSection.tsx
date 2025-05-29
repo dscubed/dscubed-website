@@ -4,16 +4,16 @@ import Section from "@/app/components/Section";
 // Statistics (currently taken from old AboutSection)
 const stats = [
   {
-    amount: "550+",
+    amount: "500+",
     description: "Number of current members in 2025.",
   },
   {
-    amount: "2.1K",
-    description: "Instagram followers to date.",
+    amount: "2.1K+",
+    description: "Followers on Instagram.",
   },
   {
-    amount: "14",
-    description: "Lorem ipsum dolor sit amet consectetur.",
+    amount: "15+",
+    description: "Events held each semester.",
   },
 ];
 
