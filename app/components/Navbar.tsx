@@ -26,8 +26,8 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
     function toggleBlurNav () {
       const scrollTop = window.scrollY || document.documentElement.scrollTop
 
-      // On home page, only blur if scrolled down past the first viewport height
-      setBlurNav(pathname !== '/' || scrollTop > window.innerHeight)
+      // On home page, only blur if starting to scroll
+      setBlurNav(pathname !== '/' || scrollTop > 30)
     }
 
     toggleBlurNav()
@@ -41,8 +41,8 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
     <div className="sticky top-[-1px] z-20" id="navbar">
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
-      <nav {...rest} className={clsx('relative w-full pt-px', {
-        "backdrop-blur-lg bg-background-secondary/70": blurNav
+      <nav {...rest} className={clsx('relative w-full pt-px backdrop-blur-lg duration-500 transition-colors', {
+        "bg-background-secondary/70": blurNav
       }, className)}>
         <div className="px-5 py-3">
           <div className="relative max-w-screen-xl flex justify-between gap-3 mx-auto">
