@@ -49,9 +49,9 @@ export default function Prizes() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <Section>
+    <Section className="mb-80">
       {/* Header */}
-      <div className="text-center mb-16">
+      <div className="text-center">
         <motion.h2
           className="font-bold text-[clamp(1.75rem,5vw,3rem)] leading-tight"
           initial={{ opacity: 0, y: -50 }}
@@ -101,7 +101,7 @@ export default function Prizes() {
                 <p>2.62481</p>
               </div>
               {/* winner names */}
-              <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-4 w-64 h-80">
+              <div className="rounded-xl bg-background text-sm text-white text-center py-4 px-4 w-64 h-80">
                 <div className="font-bold text-2xl mt-3 mb-2">2ND PRIZE</div>
                 <div className="leading-relaxed mb-3 text-[#C4C4C4] text-lg text-center top-1/2">
                   <p>
@@ -190,7 +190,7 @@ export default function Prizes() {
               <div className="pb-2 text-xl font-bold">
                 <p>2.64055</p>
               </div>
-              <div className="rounded-xl bg-[#373737] text-sm text-white text-center py-4 px-4 w-64 h-64">
+              <div className="rounded-xl bg-background text-sm text-white text-center py-4 px-4 w-64 h-64">
                 <div className="font-bold text-2xl mt-3 mb-2">3RD PRIZE</div>
                 {/* Winner names */}
                 <p className="leading-relaxed mb-3 text-[#C4C4C4] text-lg text-center">

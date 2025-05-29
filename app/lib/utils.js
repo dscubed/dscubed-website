@@ -2,6 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import Compressor from 'compressorjs'
 import { v4 as uuidv4 } from 'uuid'
 import { isEqual } from 'underscore'
+import { clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+/**
+ * Merge class names and tailwind classes
+ * @param {string[]} inputs - List of class names
+ * @returns {string} Merged class names
+ */
+export function cn(...inputs) {
+  return twMerge(clsx(inputs))
+}
 
 // Map a range of values to another
 export function mapToRange (number, inMin, inMax, outMin, outMax) {

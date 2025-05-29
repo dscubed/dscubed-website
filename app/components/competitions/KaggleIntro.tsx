@@ -29,7 +29,7 @@ export default function KaggleIntro() {
         {/* Typing Animation for Long Text */}
         <AnimatedText
           text={[
-            "Kaggle is the world’s leading platform for data science and machine learning. It hosts real-world datasets, challenges and competitions where individuals and teams build solutions to complex problems. For our flagship competition, we source Kaggle datasets to provide you with practical, industry-relevant experience.",
+            "Kaggle is the world's leading platform for data science and machine learning. It hosts real-world datasets, challenges and competitions where individuals and teams build solutions to complex problems. For our flagship competition, we source Kaggle datasets to provide you with practical, industry-relevant experience.",
           ]}
           el="p"
           className="text-xl font-bold leading-relaxed" // Increased font size and bolded text
@@ -115,6 +115,7 @@ export const AnimatedText = ({
   }, [isInView, controls, repeatDelay]);
 
   return (
+    // @ts-ignore
     <Wrapper className={className}>
       <span className="sr-only">{textArray.join(" ")}</span>
       <motion.span
