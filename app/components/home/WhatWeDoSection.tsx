@@ -13,7 +13,7 @@ export default function WhatWeDoSection() {
         <ArrowRightIcon className="w-7 h-7 xs:w-6 xs:h-6 stroke-[0.2]" />
       </Link>
 
-      <h2 className="text-5xl sm:text-4xl">What We Do</h2>
+      <h2 className="text-5xl sm:text-4xl mb-10">What We Do</h2>
 
       <div className="grid grid-cols-4 gap-8 lg:grid-cols-2 lg:gap-y-16 xs:grid-cols-1">
         <div className="space-y-4">
