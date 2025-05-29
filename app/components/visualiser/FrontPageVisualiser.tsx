@@ -17,7 +17,7 @@ interface Props {
 
 // Main scene component that renders the 3D embedding space
 export default function Visualiser({ vocab, embeddings }: Props) {
-  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
+  const cameraRef = useRef<THREE.Camera | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showSpaceDust, setShowSpaceDust] = useState(true);
   const [cameraZ, setCameraZ] = useState(-40);
