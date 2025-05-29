@@ -11,17 +11,18 @@ import EventSection from "@/app/components/home/EventSection";
 import GallerySection from "@/app/components/home/GallerySection";
 import FAQSection from "@/app/components/home/FAQSection";
 import AboutSection from "@/app/components/home/AboutSection";
-import StatsCounterSection from "@/app/components/home/StatsCounterSection";
+import FrontPageEmbed from "./components/visualiser/frontpageembed";
 
 export default function Index() {
   return (
     <>
-      <HeroSection />
+      {/* <HeroSection /> */}
       <Navbar />
 
       <main className="relative bg-background-secondary z-10">
+        <FrontPageEmbed />
         {/* <IntroSection /> */}
-        <hr className="border-0 border-b border-border" />
+
         <WhatWeDoSection />
         <hr className="border-0 border-b border-border" />
         {/* <AimsSection />
