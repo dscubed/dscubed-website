@@ -11,8 +11,8 @@ export default function GallerySlides() {
   useEffectOnce(() => {
     var splide = new Splide(".splide", {
       type: "loop",
-      padding: "5rem",
-      gap: "2rem",
+      padding: "40px",
+      gap: "10px",
       interval: 4000,
       autoplay: "pause",
       intersection: {
@@ -35,7 +35,7 @@ export default function GallerySlides() {
           {data.map((item, index) => (
             <li className="splide__slide" key={index}>
               <Image
-                className="rounded-2xl object-cover w-full aspect-video"
+                className="rounded-2xl object-cover w-full aspect-video sm:aspect-[4/3] xs:aspect-[3/4]"
                 src={item.src}
                 width={640}
                 height={360}
@@ -45,7 +45,7 @@ export default function GallerySlides() {
           ))}
         </ul>
       </div>
-      <div className="splide__arrows sm:hidden flex justify-center mt-6 gap-4">
+      <div className="splide__arrows flex justify-center mt-6 gap-4">
         <button className="splide__arrow splide__arrow--prev flex w-12 h-12 rounded-full text-text-secondary hover:text-text-primary transition">
           <ChevronLeftIcon className="m-auto w-8"></ChevronLeftIcon>
         </button>
