@@ -14,7 +14,7 @@ export default function FAQItem ({
 
   return (
     <div
-      className="flex flex-col border-b border-border py-6 transition-all cursor-pointer overflow-hidden"
+      className="flex flex-col border-b-2 border-border py-6 transition-all cursor-pointer overflow-hidden"
       onClick={e => toggleAnswer(showAnswer ? false : true)}
     >
       <div className="grid grid-cols-[max-content,1fr] gap-x-4">

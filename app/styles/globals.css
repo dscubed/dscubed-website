@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animated Gradient for Hero Visualiser bg */
+@import "./animated-gradient-1.css"; 
+
 @layer base {
-  .colors-light {
+  /* Light mode is longer support as of 29 May 2025 */
+  /* .colors-light {
     --theme: 21 146 255;
     --background: 244 244 244;
     --background-secondary: 255 255 255;
@@ -21,23 +25,23 @@
     --platinum: 239 238 236;
     --gold: 247 241 228;
     --silver: 232 232 232;
-  }
+  } */
 
-  .colors-dark {
-    --theme: 21 146 255;
-    --background: 34 34 34;
-    --background-secondary: 24 24 24;
-    --foreground: 221 221 221;
-    --btn-background: 34 34 34;
-    --btn-background-hover: 40 40 40;
-    --border: 40 40 40;
+  .colors-light, .colors-dark {
+    --theme: 110 162 228;
+    --background: 30 35 50;
+    --background-secondary: 20 20 30;
+    --foreground: 221 223 230;
+    --btn-background: 25 25 35;
+    --btn-background-hover: 30 30 40;
+    --border: 35 38 50;
     --outline-border: 102 102 102;
-    --text-primary: 221 221 221;
-    --text-secondary: 152 152 152;
-    --selection: 21 146 255;
+    --text-primary: 221 223 230;
+    --text-secondary: 142 148 165;
+    --selection: 66 154 255;
     --error: 223 9 37;
-    --skeleton-background: 34 34 34;
-    --skeleton-content: 51 51 51;
+    --skeleton-background: 30 35 50;
+    --skeleton-content: 50 55 70;
     --platinum: 59 58 56;
     --gold: 69 51 14;
     --silver: 52 52 52;
@@ -113,3 +117,4 @@ html {
     opacity: 0;
   }
 }
+
