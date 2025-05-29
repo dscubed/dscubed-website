@@ -40,8 +40,9 @@ export default function Index() {
         <GallerySection />
         <hr className="border-0 border-b border-border" />
         <MapSection />
-        {/* <hr className="border-0 border-b border-border" /> */}
+        <hr className="border-0 border-b border-border" />
         <FAQSection />
+        <hr className="border-0 border-b border-border" />
       </main>
 
       <Footer />
