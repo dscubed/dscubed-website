@@ -27,13 +27,6 @@ export default function ProjectsPage() {
     <>
       <Navbar />
       <ProjectsHero />
-
-      <main className="relative bg-background-secondary z-10">
-        <div className="text-center my-8">
-          <h1 className="text-2xl font-bold">Projects Initiative</h1>
-        </div>
-        <hr className="border-0 border-b border-border" />
-      </main>
       <Footer />
     </>
   );
