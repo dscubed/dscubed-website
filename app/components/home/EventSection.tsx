@@ -8,7 +8,7 @@ import EventGallerySkeleton from '../events/EventGallerySkeleton'
 export default function EventSection () {
   return (
     <Section>
-      <h2 className="text-5xl sm:text-4xl text-center mx-auto mb-5 leading-tight">Upcoming Events</h2>
+      <h2 className="text-5xl sm:text-4xl text-center mx-auto mb-5 leading-tight">Our Events</h2>
 
       <Suspense fallback={<EventGallerySkeleton />}>
         <EventGallery range={[0, 3]} />
