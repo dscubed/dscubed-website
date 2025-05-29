@@ -3,6 +3,7 @@ import Footer from "@/app/components/Footer";
 import IntroSection from "@/app/components/home/IntroSection";
 import WhatWeDoSection from "@/app/components/home/WhatWeDoSection";
 import AimsSection from "@/app/components/home/AimsSection";
+import StatsSection from "@/app/components/home/StatsSection";
 import ReasonsSection from "@/app/components/home/ReasonsSection";
 import MapSection from "@/app/components/home/MapSection";
 import HeroSection from "@/app/components/home/HeroSection";
@@ -24,23 +25,36 @@ export default function Index() {
 
         <WhatWeDoSection />
         <hr className="border-0 border-b border-border" />
-        <AimsSection />
+        {/* <AimsSection />
+        <hr className="border-0 border-b border-border" /> */}
+        <StatsSection />
         <hr className="border-0 border-b border-border" />
-        <AboutSection />
-        <hr className="border-0 border-b border-border" />
-        <ReasonsSection />
-        <hr className="border-0 border-b border-border" />
-        {/* <MapSection /> */}
+        {/* <StatsCounterSection /> */}
+        {/* <hr className="border-0 border-b border-border" /> */}
+        {/* <AboutSection /> */}
+        {/* <hr className="border-0 border-b border-border" /> */}
+        {/* <ReasonsSection /> */}
         {/* <hr className="border-0 border-b border-border" /> */}
         {/* <FollowSection /> */}
         <EventSection />
         <hr className="border-0 border-b border-border" />
         <GallerySection />
         <hr className="border-0 border-b border-border" />
+        <MapSection />
+        <hr className="border-0 border-b border-border" />
         <FAQSection />
+        <hr className="border-0 border-b border-border" />
       </main>
 
       <Footer />
     </>
   );
 }
+
+/*
+- AimsSection is no longer needed
+- AboutSection turned into StatsSection with ReasonsSection style
+- ReasonSections is no longer needed
+- FollowSection to be ignored
+- MapSection to be put in once done
+*/
