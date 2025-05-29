@@ -21,14 +21,13 @@ export default function Index() {
 
       <main className="relative bg-background-secondary z-10">
         <FrontPageEmbed />
-        {/* <IntroSection /> */}
 
         <WhatWeDoSection />
-        <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b-2 border-border" />
         {/* <AimsSection />
         <hr className="border-0 border-b border-border" /> */}
         <StatsSection />
-        <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b-2 border-border" />
         {/* <StatsCounterSection /> */}
         {/* <hr className="border-0 border-b border-border" /> */}
         {/* <AboutSection /> */}
@@ -37,13 +36,12 @@ export default function Index() {
         {/* <hr className="border-0 border-b border-border" /> */}
         {/* <FollowSection /> */}
         <EventSection />
-        <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b-2 border-border" />
         <GallerySection />
-        <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b-2 border-border" />
         <MapSection />
-        <hr className="border-0 border-b border-border" />
+        <hr className="border-0 border-b-2 border-border" />
         <FAQSection />
-        <hr className="border-0 border-b border-border" />
       </main>
 
       <Footer />
