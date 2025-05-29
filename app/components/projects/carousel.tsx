@@ -98,9 +98,7 @@ const { src, button, title, description } = slide;
         </div>
 
         <article
-      className={`relative p-[4vmin] text-white transition-opacity duration-1000 ease-in-out ${
-        current === index ? "opacity-100 visible" : "opacity-0 invisible"
-      }`}
+      className="relative p-[4vmin] text-white transition-opacity duration-1000 ease-in-out"
     >
     <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold mb-2 text-left">
       {title}
