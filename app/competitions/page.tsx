@@ -51,9 +51,7 @@ export default function CompetitionsPage() {
         <EventTimeline />
 
         <hr className="border-0 border-b-2 border-border" />
-        <Section>
-          <Workshop />
-        </Section>
+        <Workshop />
 
         <hr className="border-0 border-b-2 border-border" />
         <FAQSection />
