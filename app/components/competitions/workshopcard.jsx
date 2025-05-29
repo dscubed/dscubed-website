@@ -1,6 +1,7 @@
 "use client";
 
 import YouTube from "react-youtube";
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 function WorkshopVideo(videoId) {
   if (videoId) {
