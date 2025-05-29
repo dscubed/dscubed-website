@@ -29,7 +29,7 @@ export default function GallerySlides() {
   }, []);
 
   return (
-    <div className="splide" role="group" aria-label="Gallery carousel">
+    <div className="splide cursor-grab" role="group" aria-label="Gallery carousel">
       <div className="splide__track rounded-md">
         <ul className="splide__list">
           {data.map((item, index) => (
