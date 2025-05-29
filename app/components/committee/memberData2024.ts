@@ -33,7 +33,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Hannah Luo',
     role: 'Events Director',
-    image: '/people/2024/hannah-luo.jpg',
+    image: '/people/2025/hannah-luo.jpg',
   },
   {
     name: 'Kevin Tang',
@@ -43,7 +43,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Michael Ren',
     role: 'IT Director',
-    image: '/people/2024/michael-ren.jpg',
+    image: '/people/2025/michael-ren.jpg',
   },
   {
     name: 'Ryan Li',
@@ -53,7 +53,7 @@ export const directors: { name: string, role: string, image?: string, filter?: s
   {
     name: 'Danielle Tran',
     role: 'Marketing Director',
-    image: '/people/2024/danielle-tran.png',
+    image: '/people/2025/danielle-tran.png',
   },
 ]
 
