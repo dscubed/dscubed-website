@@ -16,7 +16,7 @@ export default function FrontPageEmbed() {
   // router.push("/visualiser");
 
   return (
-    <div className="relative w-full mt-[-63px] shadow-[0_0_200px_50px_rgba(35,40,80,1)] border-b-2 border-b-[rgb(57,64,90)]">
+    <div className="relative w-full mt-[-63px] shadow-[0_100px_100px_-50px_rgba(35,40,80,1)] border-b-2 border-b-[rgb(57,64,90)]">
       {/* Gradient background */}
       <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-50"></div>
 
