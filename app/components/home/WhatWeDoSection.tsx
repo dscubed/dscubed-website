@@ -1,9 +1,18 @@
-import { Briefcase, Laptop, Users, Computer } from "lucide-react";
+'use client';
 import Section from "@/app/components/Section";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
 
 export default function WhatWeDoSection() {
   return (
-    <Section>
+    <Section className="!mt-8">
+      <button 
+        className="flex items-center justify-between relative py-6 px-8 border-2 border-border text-xl xs:text-lg rounded-3xl z-10 bg-background-secondary mb-32 sm:mb-16 w-full hover:bg-btn-background transition-colors"
+        onClick={() => window.location.href = "/visualiser"}
+      >
+        <span>Explore word embeddings visualiser</span>
+        <ArrowRightIcon className="w-7 h-7 xs:w-6 xs:h-6 stroke-[0.2]" />
+      </button>
+
       <h2 className="text-5xl sm:text-4xl">What We Do</h2>
 
       <div className="grid grid-cols-4 gap-8 lg:grid-cols-2 lg:gap-y-16 xs:grid-cols-1">
