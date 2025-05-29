@@ -81,7 +81,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
               </Link>
               <div className="block h-1/2 w-0 border-l-2 border-black/10 dark:border-white/10 my-auto"></div>
               <Link className="my-auto" href="/events">Events</Link>
-              <Link className="my-auto" href="/committee">Committee</Link>
+              <Link className="my-auto" href="/committee-2025">Committee</Link>
               <Link className="my-auto" href="/sponsors">Sponsors</Link>
               <Link className="my-auto px-4 py-2 bg-foreground text-background rounded-full" href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
             </div>
