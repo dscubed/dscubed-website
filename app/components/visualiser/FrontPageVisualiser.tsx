@@ -163,8 +163,8 @@ export default function Visualiser({ vocab, embeddings }: Props) {
       onTouchCancel={handleTouchCancel}
     >
       {/* <fog attach="fog" args={["#0d1117", 60, 200]} /> */}
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[10, 10, 10]} intensity={0.8} />
+      <ambientLight intensity={1} />
+      {/* <directionalLight position={[10, 10, 10]} intensity={0.8} /> */}
 
       {/* Main group for rotation - use dynamic offset */}
       <group
