@@ -23,6 +23,7 @@ export default function IntroSection () {
             Become a Member
           </Link>
         </div>
+        
         <Image
           className="w-full aspect-square object-cover rounded-2xl"
           src={image}
