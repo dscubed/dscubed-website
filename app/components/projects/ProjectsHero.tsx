@@ -2,10 +2,8 @@
 import { useState } from "react";
 import Spline from "@splinetool/react-spline";
 import { motion } from "framer-motion";
-import Carousel from "@/app/components/projects/carousel";
+// import Carousel from "@/app/components/projects/carousel";
 import Section from "../Section";
-import ThemeButton from "../ThemeButton";
-import { describe } from "node:test";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
