@@ -56,7 +56,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
             </div>
 
             {/* Desktop links */}
-            <div className="flex gap-6 md:hidden">
+            <div className="flex gap-6 lg:hidden">
               {/* <ThemeButton showText={false} state={themeState} /> */}
               {/* Discord Icon Button with Framer Motion */}
               <Link
@@ -83,13 +83,14 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
               <Link className="my-auto" href="/events">Events</Link>
               <Link className="my-auto" href="/committee-2025">Committee</Link>
               <Link className="my-auto" href="/competitions">Competition</Link>
+              <Link className="my-auto" href="/projects">Projects</Link>
               <Link className="my-auto" href="/visualiser">Visualiser</Link>
               <Link className="my-auto" href="/sponsors">Sponsors</Link>
               <Link className="my-auto px-4 py-2 bg-foreground text-background rounded-full" href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
             </div>
 
             {/* Mobile menu toggle */}
-            <button className="hidden md:block" onClick={() => setShowMenu(showMenu ? false : true)}>
+            <button className="hidden lg:block" onClick={() => setShowMenu(showMenu ? false : true)}>
               <Bars3Icon className="w-6 h-6" />
             </button>
           </div>
@@ -98,7 +99,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
 
         {/* Mobile links */}
         <div className={clsx("absolute hidden flex-col w-full bg-background-secondary top-full border-t border-border", {
-          'md:flex': showMenu,
+          'lg:flex': showMenu,
         })}>
           <Link className="p-4 border-b border-border flex items-center gap-4" href="/events">
             <span>Discord</span>
@@ -120,6 +121,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
           <Link className="p-4 border-b border-border" href="/events">Events</Link>
           <Link className="p-4 border-b border-border" href="/committee-2025">Committee</Link>
           <Link className="p-4 border-b border-border" href="/competitions">Competition</Link>
+          <Link className="p-4 border-b border-border" href="/projects">Projects</Link>
           <Link className="p-4 border-b border-border" href="/visualiser">Visualiser</Link>
           <Link className="p-4 border-b border-border" href="/sponsors">Sponsors</Link>
           <Link className="p-4 border-b border-border" href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" target="_blank">Membership</Link>
