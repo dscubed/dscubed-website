@@ -39,8 +39,8 @@ export default function Index() {
         <hr className="border-0 border-b-2 border-border" />
         <GallerySection />
         <hr className="border-0 border-b-2 border-border" />
-        <MapSection />
-        <hr className="border-0 border-b-2 border-border" />
+        {/* <MapSection /> */}
+        {/* <hr className="border-0 border-b-2 border-border" /> */}
         <FAQSection />
       </main>
 
