@@ -1,28 +1,31 @@
-## Installation
+## DSCubed Website
+
+DSCubed, formally known as the Data Science Student Society, is the defining community for students passionate about Data Science, Machine Learning, and AI. 
+
+Our mission is to equip students with the skills, connections, and community needed to excel in these fields through workshops, events, hands-on projects, and hackathons. 
+
+By fostering an inclusive and diverse environment and offering tailored learning resources and industry opportunities, we empower students to apply their skills to real-world challenges and prepare for impactful careers in Data Science, Machine Learning, and AI.
+
+Visit [dscubed.org.au](https://www.dscubed.org.au) to learn more.
+
+![Home page](https://www.dscubed.org.au/marketing/home.png)
+
+### Installation
 
 ```bash
 # Create .env.local file with required environment variables
-
 # Install packages
 npm i
 ```
 
 ### Testing Locally
-
 ```bash
 # Serve over HTTP
 npm run dev
-
 # Serve over HTTPS (optional)
 next dev --experimental-https 
 ```
 
-### Notes
+### Maintainers
 
-Supabase
-
-* When the domain changes, the callback URL must be updated in Supabase. Go to `Project / Authentication / URL Configuration` and set the new callback url under `Redirect URLs`. Make sure to include a wildcard `*` symbol at the end of the url because Google OAuth will return with query parameters.
-
-### Contributors
-
-[Michael Ren](https://github.com/micha31r), [Paul Su](https://github.com/psuuzu), [Kaylyn Thomson](https://github.com/kaylynthomson), [Ritu Devnani](https://github.com/Ritu-GD), [Arja Das](https://github.com/arjadas)
+* DSCubed IT Team
