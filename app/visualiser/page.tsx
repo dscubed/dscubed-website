@@ -109,7 +109,7 @@ export default function VisualiserPage() {
                 <Icon.Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://discord.gg/hFX4PJZ5MQ"
+                href="https://discord.gg/Q3gZcPQV63"
                 target="_blank"
                 rel="noopener noreferrer"
               >
