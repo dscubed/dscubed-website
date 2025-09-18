@@ -1,8 +1,17 @@
-import Section from '@/app/components/Section'
-import MemberCard from '@/app/components/committee/MemberCard'
-import Image from 'next/image'
+import Section from "@/app/components/Section";
+import MemberCard from "@/app/components/committee/MemberCard";
+import Image from "next/image";
+import { Executive } from "./types";
 
-export default function ExecutiveSection({ executives, teamPhoto }: { executives: { name: string, role: string, image?: string }[], teamPhoto?: string }) {
+type ExecutiveSectionProps = {
+  executives: Executive[];
+  teamPhoto?: string;
+};
+
+export default function ExecutiveSection({
+  executives,
+  teamPhoto,
+}: ExecutiveSectionProps) {
   return (
     <Section>
       <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
@@ -26,5 +35,5 @@ export default function ExecutiveSection({ executives, teamPhoto }: { executives
         </div>
       )}
     </Section>
-  )
+  );
 }
