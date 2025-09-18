@@ -1,9 +1,13 @@
-import Section from '@/app/components/Section'
-import { teams } from '@/app/components/committee/memberData2025'
-import MemberList from '@/app/components/committee/MemberList'
-import Image from 'next/image'
+import Section from "@/app/components/Section";
+import MemberList from "@/app/components/committee/MemberList";
+import Image from "next/image";
+import { Team } from "./types";
 
-export default function TeamsSection() {
+type TeamsSectionProps = {
+  teams: Team[];
+};
+
+export default function TeamsSection({ teams }: TeamsSectionProps) {
   return (
     <Section>
       <h2 className="text-3xl font-bold text-center mb-8">Teams</h2>
@@ -30,5 +34,5 @@ export default function TeamsSection() {
         </div>
       ))}
     </Section>
-  )
+  );
 }
