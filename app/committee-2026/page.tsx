@@ -8,6 +8,7 @@ import committeePhoto from "@/public/people/committee2025.jpg";
 import ExecutiveSection from "@/app/components/committee/ExecutiveSection";
 import DirectorSection from "@/app/components/committee/DirectorSection";
 import TeamsSection from "@/app/components/committee/TeamsSection";
+import CommitteeYearDropdown from "@/app/components/committee/CommitteeYearDropdown";
 
 // Import member data
 import {
@@ -45,16 +46,8 @@ export default function Committee2026Page() {
       <main>
         <Section>
           <div>
-            <h1 className="text-5xl mb-5 sm:text-4xl">2025 Committee</h1>
-            {new Date().getFullYear() > 2024 && (
-              <Link
-                className="flex gap-2 text-xl text-theme"
-                href="/committee-2024"
-              >
-                <span className="my-auto">Past Committee</span>
-                <ArrowRightIcon className="w-6 h-6 my-auto" />
-              </Link>
-            )}
+            <h1 className="text-5xl mb-5 sm:text-4xl">2026 Committee</h1>
+            <CommitteeYearDropdown />
           </div>
         </Section>
 

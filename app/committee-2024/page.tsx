@@ -7,6 +7,7 @@ import Section from "@/app/components/Section";
 import committeePhoto from "@/public/people/committee2024.png";
 import ExecutiveSection from "@/app/components/committee/ExecutiveSection";
 import DirectorSection from "@/app/components/committee/DirectorSection";
+import CommitteeYearDropdown from "@/app/components/committee/CommitteeYearDropdown";
 
 // Import member data for 2024
 import {
@@ -44,14 +45,7 @@ export default function Committee2024Page() {
         <Section>
           <div>
             <h1 className="text-5xl mb-5 sm:text-4xl">2024 Committee</h1>
-            <Link
-              className="flex gap-2 text-xl text-theme"
-              href="/committee-2025"
-            >
-              <ArrowLeftIcon className="w-6 h-6 my-auto" />{" "}
-              {/* Left arrow icon */}
-              <span className="my-auto">Present Committee</span>
-            </Link>
+            <CommitteeYearDropdown />
           </div>
         </Section>
 

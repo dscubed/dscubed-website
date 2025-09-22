@@ -81,7 +81,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
               </Link>
               <div className="block h-1/2 w-0 border-l-2 border-black/10 dark:border-white/10 my-auto"></div>
               <Link className="my-auto" href="/events">Events</Link>
-              <Link className="my-auto" href="/committee-2025">Committee</Link>
+              <Link className="my-auto" href="/committee-2026">Committee</Link>
               <Link className="my-auto" href="/competitions">Competition</Link>
               <Link className="my-auto" href="/projects">Projects</Link>
               <Link className="my-auto" href="/visualiser">Visualiser</Link>
