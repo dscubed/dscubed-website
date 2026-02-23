@@ -60,7 +60,7 @@ export default function Navbar ({ className = '', ...rest }: { className?: strin
               {/* <ThemeButton showText={false} state={themeState} /> */}
               {/* Discord Icon Button with Framer Motion */}
               <Link
-                href="https://discord.gg/fQf2BfnV"
+                href="https://discord.gg/aeZRatpkYm"
                 target="_blank"
                 className="my-auto"
               >
