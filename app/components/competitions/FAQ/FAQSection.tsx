@@ -42,7 +42,7 @@ export default function FAQSection () {
         <div className="flex gap-4 py-8">
           <Link
             className="flex gap-2 text-xl text-theme my-auto"
-            href="https://discord.gg/fQf2BfnV"
+            href="https://discord.gg/aeZRatpkYm"
           >
             <span className="my-auto">Ask questions to the Education team in our Discord server</span>
             <ArrowRightIcon className="w-6 h-6 my-auto" />
