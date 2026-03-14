@@ -10,6 +10,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 export default function VisualiserPage() {
+  const contact_email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
   const router = useRouter();
 
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
@@ -88,7 +89,7 @@ export default function VisualiserPage() {
             </p>
             <div className="flex gap-4">
               <a
-                href="mailto:hello@dscubed.org.au"
+                href={`mailto:${contact_email}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,17 +1,24 @@
-import { ArrowRightIcon } from '@heroicons/react/24/solid'
-import Section from '@/app/components/Section'
-import Link from 'next/link'
-import FAQListHome from '@/app/components/faq/FAQListHome'
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import Section from "@/app/components/Section";
+import Link from "next/link";
+import FAQListHome from "@/app/components/faq/FAQListHome";
 
-export default function FAQSection () {
+export default function FAQSection() {
+  const contact_email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
+
   return (
     <Section>
       <div className="grid grid-cols-[auto,1fr] lg:grid-cols-1 gap-10">
-        <h2 className="text-5xl sm:text-4xl max-w-lg sm:max-w-sm !leading-tight h-max">Frequently Asked Questions</h2>
+        <h2 className="text-5xl sm:text-4xl max-w-lg sm:max-w-sm !leading-tight h-max">
+          Frequently Asked Questions
+        </h2>
         <div>
           <FAQListHome />
           <div className="flex gap-4 py-8">
-            <Link className="flex gap-2 text-xl text-theme my-auto" href="mailto:hello@dscubed.org.au">
+            <Link
+              className="flex gap-2 text-xl text-theme my-auto"
+              href={`mailto:${contact_email}`}
+            >
               <span className="my-auto">Get In Touch</span>
               <ArrowRightIcon className="w-6 h-6 my-auto" />
             </Link>
@@ -19,5 +26,5 @@ export default function FAQSection () {
         </div>
       </div>
     </Section>
-  )
+  );
 }
