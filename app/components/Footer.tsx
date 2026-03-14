@@ -2,6 +2,7 @@ import Link from "next/link";
 import * as Icon from "react-bootstrap-icons";
 
 export default function Footer() {
+  const contact_email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
   return (
     <footer className="relative z-20 px-5 py-8 bg-background/40">
       <div className="flex flex-col gap-10 max-w-screen-xl mx-auto">
@@ -10,7 +11,7 @@ export default function Footer() {
             © {new Date().getFullYear()} DSCubed · Data Science Student Society
           </p>
           <div className="flex gap-8 md:mx-auto flex-wrap justify-center gap-y-6">
-            <Link href="mailto:hello@dscubed.org.au" target="_blank">
+            <Link href={`mailto:${contact_email}`} target="_blank">
               <Icon.EnvelopeFill className="w-5 h-5" />
             </Link>
             <Link href="https://instagram.com/dscubed.unimelb" target="_blank">
