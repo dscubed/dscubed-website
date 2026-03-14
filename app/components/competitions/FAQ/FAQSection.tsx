@@ -1,11 +1,11 @@
-'use client'
-import { ArrowRightIcon } from '@heroicons/react/24/solid'
-import Section from '@/app/components/Section'
-import Link from 'next/link'
-import FAQListComp from '@/app/components/competitions/FAQ/FAQListComp'
-import { motion } from 'framer-motion' // Use named import
+"use client";
+import { ArrowRightIcon } from "@heroicons/react/24/solid";
+import Section from "@/app/components/Section";
+import Link from "next/link";
+import FAQListComp from "@/app/components/competitions/FAQ/FAQListComp";
+import { motion } from "framer-motion"; // Use named import
 
-export default function FAQSection () {
+export default function FAQSection() {
   return (
     <Section>
       <motion.div
@@ -33,7 +33,8 @@ export default function FAQSection () {
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Find answers to common questions about the competition and get the information you need
+            Find answers to common questions about the competition and get the
+            information you need
           </motion.p>
         </div>
         <div className="w-full flex justify-start">
@@ -42,9 +43,11 @@ export default function FAQSection () {
         <div className="flex gap-4 py-8">
           <Link
             className="flex gap-2 text-xl text-theme my-auto"
-            href="https://discord.gg/fQf2BfnV"
+            href="https://discord.gg/Q3gZcPQV63"
           >
-            <span className="my-auto">Ask questions to the Education team in our Discord server</span>
+            <span className="my-auto">
+              Ask questions to the Education team in our Discord server
+            </span>
             <ArrowRightIcon className="w-6 h-6 my-auto" />
           </Link>
         </div>
@@ -57,8 +60,7 @@ export default function FAQSection () {
             <ArrowRightIcon className="w-6 h-6 my-auto" />
           </Link>
         </div>
-        
       </motion.div>
     </Section>
-  )
+  );
 }
