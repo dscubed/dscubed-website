@@ -1,5 +1,4 @@
 "use client";
-import FancyText from "@carefully-coded/react-text-gradient";
 
 interface FrontPageLayoutProps {
   handleButtonClick: () => void;
@@ -11,7 +10,8 @@ export function WelcomeText() {
     <>
       <div className="mb-5 mx-5 flex flex-col sm:items-center">
         <h1 className="text-5xl font-medium text-left sm:text-center">
-          The Leading<br/> Data Science Club at The University of Melbourne.
+          The Leading
+          <br /> Data Science Club at The University of Melbourne.
         </h1>
       </div>
 

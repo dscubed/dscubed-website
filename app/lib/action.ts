@@ -26,6 +26,7 @@ export async function createEvent(
   console.log("Processed image.");
 
   const supabase = createClient();
+  //@ts-expect-error - TODO: Remove supabase and admin later
   const fileName = createUniqueFileName(image.name);
 
   try {

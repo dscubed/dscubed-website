@@ -1,27 +1,26 @@
-'use client'
-import { updateEvent } from '@/app/lib/action'
-import { getToday, getOneYearFromToday } from '@/app/lib/utils'
-//@ts-expect-error
-import { useFormStatus } from 'react-dom'
-import { useFormStateFix } from '@/app/lib/utils'
-import Spinner from '@/app/components/Spinner'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+"use client";
+import { updateEvent } from "@/app/lib/action";
+import { getOneYearFromToday } from "@/app/lib/utils";
+import { useFormStatus } from "react-dom";
+import { useFormStateFix } from "@/app/lib/utils";
+import Spinner from "@/app/components/Spinner";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-function FormChild ({
+function FormChild({
   id,
   title,
   description,
   date,
-  link
+  link,
 }: {
-  id: number,
-  title: string,
-  description: string,
-  date: string,
-  link: string
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  link: string;
 }) {
-  const status = useFormStatus()
+  const status = useFormStatus();
 
   return (
     <>
@@ -78,29 +77,30 @@ function FormChild ({
         />
       </div>
 
-      <button 
+      <button
         className="flex gap-2 py-2 px-4 w-max font-medium text-center text-background bg-foreground rounded-full mt-10"
         disabled={status.pending}
       >
-        {status.pending && <Spinner className="invert my-auto" /> }
-        <span className="my-auto">{status.pending ? 'Processing...' : 'Update Event'}</span>
+        {status.pending && <Spinner className="invert my-auto" />}
+        <span className="my-auto">
+          {status.pending ? "Processing..." : "Update Event"}
+        </span>
       </button>
     </>
-  )
-  
+  );
 }
 
-export default function UpdateForm ({ ...data }) {
-  const [status, action] = useFormStateFix(updateEvent, {})
-  const router = useRouter()
+export default function UpdateForm({ ...data }) {
+  const [status, action] = useFormStateFix(updateEvent, {});
+  const router = useRouter();
 
   useEffect(() => {
     if (status.success) {
-      console.log('Redirecting.')
-      router.push('/admin')
-      router.refresh()
+      console.log("Redirecting.");
+      router.push("/admin");
+      router.refresh();
     }
-  }, [status])
+  }, [status, router]);
 
   return (
     <form className="flex flex-col gap-4 w-full mx-auto" action={action}>
@@ -120,5 +120,5 @@ export default function UpdateForm ({ ...data }) {
         link={data.link}
       />
     </form>
-  )
+  );
 }
