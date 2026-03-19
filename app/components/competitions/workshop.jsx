@@ -11,7 +11,7 @@ const workshops = [
     description: "This workshop will guide you through exploring, cleaning and preparing your data for machine learning",
     videoId: "https://www.youtube.com/embed/i3Slu6B63rs?si=EHexWYQ-fC7XH_rn",
     date: "30 April 2025",
-    time: "3 – 4:30 pm",
+    time: "3 - 4:30 pm",
     pdfLink: '/competitions/Workshop1Slides.pdf',
   },
   {
@@ -20,7 +20,7 @@ const workshops = [
     description: "This workshop will teach you how to build an evaluate different machine learning models to best solve a problem",
     videoId: "https://www.youtube.com/embed/cZBt3JWpO0k?si=UaRBMoNqBXZOWv4s",
     date: "2 May 2025",
-    time: "5 – 6:30 pm",
+    time: "5 - 6:30 pm",
     pdfLink: '/competitions/Workshop2Slides.pdf',
   },
 ];

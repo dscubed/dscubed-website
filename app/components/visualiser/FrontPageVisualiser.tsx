@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { Canvas } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
-import { UMAP } from "umap-js";
 import * as THREE from "three";
 import useRotation from "@/app/hooks/useRotation";
 import WordPoint from "./WordPointFront";
@@ -16,10 +15,9 @@ interface Props {
 }
 
 // Main scene component that renders the 3D embedding space
-export default function Visualiser({ vocab, embeddings }: Props) {
+export default function Visualiser({ vocab }: Props) {
   const cameraRef = useRef<THREE.Camera | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [showSpaceDust, setShowSpaceDust] = useState(true);
   const [cameraZ, setCameraZ] = useState(-40);
   const currentVocab = vocab;
 
@@ -60,11 +58,20 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     // return umap.fit(embeddings);
 
     // Return cached results to improve performance, suggested by @Tchanwangsa
-    return [[5.398126341474347,12.104259447220764,1.8080497581650483],[-1.981195477859582,6.763470758628738,9.060538942506216],[10.229667072486562,-0.15082564874835605,0.2561293094734186],[-8.230095896621705,3.207715060996656,-1.898982044488417],[4.982734172556226,-1.3711144563192816,9.712204659786991],[-1.8230601053545095,4.463904107174396,-7.883693960037585],[3.917340945751632,-7.609676182384553,1.256398542081088],[-3.937883504745913,13.061277763883474,-0.6022948786244067]]
-  
+    return [
+      [5.398126341474347, 12.104259447220764, 1.8080497581650483],
+      [-1.981195477859582, 6.763470758628738, 9.060538942506216],
+      [10.229667072486562, -0.15082564874835605, 0.2561293094734186],
+      [-8.230095896621705, 3.207715060996656, -1.898982044488417],
+      [4.982734172556226, -1.3711144563192816, 9.712204659786991],
+      [-1.8230601053545095, 4.463904107174396, -7.883693960037585],
+      [3.917340945751632, -7.609676182384553, 1.256398542081088],
+      [-3.937883504745913, 13.061277763883474, -0.6022948786244067],
+    ];
+
     // More horizontal layout
     // return [[5.9052106994984666,3.587539838625018,1.4671130190199329],[5.532083199404061,12.107611508841012,9.457897699668543],[4.458345348913334,3.3610853940865755,18.99981784237457],[-6.919250742504189,9.977096654736634,4.8610570029441815],[12.558629092892685,2.590050314227724,11.472880948949022],[-7.061819955861751,1.1408775276970917,6.546573648801712],[5.902792847345043,-5.222735177909473,12.775841849265891],[-3.9974260298444437,8.238906761143669,14.509944522809548]]
-  }, [embeddings]);
+  }, []);
 
   // Calculate the center
   const center = useMemo(() => {
@@ -86,63 +93,59 @@ export default function Visualiser({ vocab, embeddings }: Props) {
     return new THREE.Vector3(sumX / count, sumY / count, sumZ / count);
   }, [coords3d]);
 
-  useEffect(() => {
-    function updateGroupPosition() {
-      if (!cameraRef.current || !canvasRef.current) return;
+  const updateGroupPosition = useCallback(() => {
+    if (!cameraRef.current || !canvasRef.current) return;
 
-      let canvasRect = canvasRef.current.getBoundingClientRect();
+    let screenX = 0;
+    let screenY = 0;
+    const canvasRect = canvasRef.current.getBoundingClientRect();
 
-      if (window.innerWidth >= 1024) {
-        // > lg
-        screenX = canvasRect.width / 2 + Math.min(1280, canvasRect.width) / 5;
-        screenY = canvasRect.height / 2 - 20;
-        setCameraZ(-40);
-      } else if (window.innerWidth >= 640) {
-        // md - lg
-        screenX = canvasRect.width / 2;
-        screenY = 63 + 96 * 2 + 450 + 100;
-        setCameraZ(-60);
-      } else if (window.innerWidth >= 480) {
-        // sm
-        screenX = canvasRect.width / 2;
-        screenY = 63 + 96 * 2 + 450 + 40;
-        setCameraZ(-70);
-      } else {
-        // xs
-        screenX = canvasRect.width / 2;
-        screenY = 63 + 96 * 2 + 450 + 10;
-        setCameraZ(-70);
-      }
-
-      const pos = getTranslationToScreenPixel(
-        screenX,
-        screenY,
-        canvasRect.width,
-        canvasRect.height,
-        cameraRef.current,
-        0
-      );
-
-      updateDynamicOffset(pos.x, pos.y, pos.z);
+    if (window.innerWidth >= 1024) {
+      // > lg
+      screenX = canvasRect.width / 2 + Math.min(1280, canvasRect.width) / 5;
+      screenY = canvasRect.height / 2 - 20;
+      setCameraZ(-40);
+    } else if (window.innerWidth >= 640) {
+      // md - lg
+      screenX = canvasRect.width / 2;
+      screenY = 63 + 96 * 2 + 450 + 100;
+      setCameraZ(-60);
+    } else if (window.innerWidth >= 480) {
+      // sm
+      screenX = canvasRect.width / 2;
+      screenY = 63 + 96 * 2 + 450 + 40;
+      setCameraZ(-70);
+    } else {
+      // xs
+      screenX = canvasRect.width / 2;
+      screenY = 63 + 96 * 2 + 450 + 10;
+      setCameraZ(-70);
     }
 
-    const handleResize = () => {
-      requestAnimationFrame(updateGroupPosition);
-    };
+    const pos = getTranslationToScreenPixel(
+      screenX,
+      screenY,
+      canvasRect.width,
+      canvasRect.height,
+      cameraRef.current,
+      0,
+    );
 
-    if (cameraRef.current && canvasRef.current) updateGroupPosition();
+    updateDynamicOffset(pos.x, pos.y, pos.z);
+  }, [updateDynamicOffset]);
+
+  useEffect(() => {
+    const handleResize = () => requestAnimationFrame(updateGroupPosition);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
-  }, [cameraRef.current, canvasRef.current]);
-
+  }, [updateGroupPosition]);
 
   return (
     <Canvas
       key={cameraZ}
       ref={canvasRef}
       camera={{ position: [0, 0, cameraZ], fov: 50 }}
-      className="lg:!pointer-events-none select-none"
+      className="lg:pointer-events-none! select-none"
       style={{
         background: "transparent",
         height: "100%",
@@ -152,7 +155,10 @@ export default function Visualiser({ vocab, embeddings }: Props) {
         zIndex: 0,
         touchAction: "none",
       }}
-      onCreated={({ camera }) => cameraRef.current = camera}
+      onCreated={({ camera }) => {
+        cameraRef.current = camera;
+        updateGroupPosition();
+      }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -173,7 +179,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
         rotation={[rotation.x, rotation.y, 0]}
       >
         {/* Rotating dust layer inside the group - will rotate with the scene */}
-        {showSpaceDust && (<SpaceDust />)}
+        <SpaceDust />
 
         {/* Connect all word nodes with lines - adjust points relative to center */}
         {coords3d.map(([x1, y1, z1], i) =>
@@ -202,7 +208,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
               );
             }
             return null;
-          })
+          }),
         )}
 
         {/* Word Points - adjust position relative to center */}
@@ -215,7 +221,7 @@ export default function Visualiser({ vocab, embeddings }: Props) {
               [x - center.x, y - center.y, z - center.z] as [
                 number,
                 number,
-                number
+                number,
               ]
             }
           />
@@ -231,7 +237,7 @@ function getTranslationToScreenPixel(
   screenWidth: number,
   screenHeight: number,
   camera: THREE.Camera,
-  objectWorldZ = 0 // z-position of the object (default at origin)
+  objectWorldZ = 0, // z-position of the object (default at origin)
 ): THREE.Vector3 {
   // Convert pixel to Normalised Device Coordinates (NDC)
   const ndcX = (screenX / screenWidth) * 2 - 1;
@@ -246,7 +252,9 @@ function getTranslationToScreenPixel(
 
   // Compute intersection with object's Z plane
   const distance = (objectWorldZ - camera.position.z) / dir.z;
-  const targetWorldPos = camera.position.clone().add(dir.multiplyScalar(distance));
+  const targetWorldPos = camera.position
+    .clone()
+    .add(dir.multiplyScalar(distance));
 
   // Offset from origin (0,0,0) to required position
   return targetWorldPos; // This is the translation to apply to the object

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion, useAnimation, useInView, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -31,7 +31,7 @@ export default function KaggleIntro() {
           text={[
             "Kaggle is the world's leading platform for data science and machine learning. It hosts real-world datasets, challenges and competitions where individuals and teams build solutions to complex problems. For our flagship competition, we source Kaggle datasets to provide you with practical, industry-relevant experience.",
           ]}
-          el="p"
+
           className="text-xl font-bold leading-relaxed" // Increased font size and bolded text
           once
         />
@@ -49,7 +49,7 @@ export default function KaggleIntro() {
         viewport={{ once: true }}
       >
         <img
-          src={'/competitions/KagglePicture.jpg'}
+          src={"/competitions/KagglePicture.jpg"}
           className="rounded-lg shadow"
         ></img>
       </motion.div>
@@ -59,11 +59,10 @@ export default function KaggleIntro() {
 
 type AnimatedTextProps = {
   text: string | string[];
-  el?: keyof JSX.IntrinsicElements;
   className?: string;
   once?: boolean;
   repeatDelay?: number;
-  animation?: Variants; // Updated type
+  animation?: Variants;
 };
 
 const defaultAnimations: Variants = {
@@ -82,7 +81,6 @@ const defaultAnimations: Variants = {
 
 export const AnimatedText = ({
   text,
-  el: Wrapper = "p",
   className,
   once,
   repeatDelay,
@@ -115,16 +113,15 @@ export const AnimatedText = ({
   }, [isInView, controls, repeatDelay]);
 
   return (
-    // @ts-ignore
-    <Wrapper className={className}>
+    <motion.p className={className}>
       <span className="sr-only">{textArray.join(" ")}</span>
       <motion.span
         ref={ref}
         initial="hidden"
         animate={controls}
         variants={{
-          hidden: animation.hidden, // Fixed variants structure
-          visible: animation.visible, // Fixed variants structure
+          hidden: animation.hidden,
+          visible: animation.visible,
         }}
         aria-hidden
       >
@@ -147,6 +144,6 @@ export const AnimatedText = ({
           </span>
         ))}
       </motion.span>
-    </Wrapper>
+    </motion.p>
   );
 };
