@@ -7,10 +7,8 @@ interface SlideData {
   description: string;
   button: string;
   src: string;
-  link: string; 
+  link: string;
 }
-
-
 
 interface SlideProps {
   slide: SlideData;
@@ -24,7 +22,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
 
   const xRef = useRef(0);
   const yRef = useRef(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const animate = () => {
@@ -66,7 +64,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     event.currentTarget.style.opacity = "1";
   };
 
-const { src, button, title, description } = slide;
+  const { src, button, title, description } = slide;
 
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
@@ -93,38 +91,30 @@ const { src, button, title, description } = slide;
                 ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
                 : "none",
           }}
-        >
+        ></div>
 
-        </div>
+        <article className="relative p-[4vmin] text-text-primary transition-opacity duration-1000 ease-in-out">
+          <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold mb-2 text-left">
+            {title}
+          </h1>
+          <p className="text-sm md:text-base mb-4 text-left">{description}</p>
+          <img
+            src={src}
+            alt={title}
+            className="w-full h-58 object-cover rounded mx-auto mb-4 opacity-0 transition-opacity duration-300"
+            onLoad={imageLoaded}
+          />
 
-        <article
-      className="relative p-[4vmin] text-text-primary transition-opacity duration-1000 ease-in-out"
-    >
-    <h1 className="text-lg md:text-2xl lg:text-4xl font-semibold mb-2 text-left">
-      {title}
-    </h1>
-    <p className="text-sm md:text-base mb-4 text-left">
-      {description}
-    </p>
-    <img
-      src={src}
-      alt={title}
-      className="w-full h-58 object-cover rounded mx-auto mb-4"
-    />
-
-
-      <div className="flex justify-center mt-4">
-          <a
-            href={slide.link}
-            rel="noopener noreferrer"
-            className="px-4 py-2 text-sm text-black bg-foreground border rounded-2xl hover:shadow-lg transition"
-          >
-            {button}
-          </a>
-        </div>
-
-    </article>
-
+          <div className="flex justify-center mt-4">
+            <a
+              href={slide.link}
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm text-black bg-foreground border rounded-2xl hover:shadow-lg transition"
+            >
+              {button}
+            </a>
+          </div>
+        </article>
       </li>
     </div>
   );
@@ -189,8 +179,7 @@ export default function Carousel({ slides }: CarouselProps) {
         style={{
           width: `${slides.length * 100}%`,
           transform: `translateX(-${(100 / slides.length) * current}%)`,
-      }}
-
+        }}
       >
         {slides.map((slide, index) => (
           <Slide

@@ -1,24 +1,25 @@
-import Section from '@/app/components/Section'
-import { silver } from '@/app/components/sponsors/sponsorData'
-import SponsorCard from '@/app/components/sponsors/SponserCard'
+import Section from "@/app/components/Section";
+import { silver } from "@/app/components/sponsors/sponsorData";
+import SponsorCard from "@/app/components/sponsors/SponserCard";
+import type { Sponsor } from "@/app/components/sponsors/sponsorData";
 
-export default function SilverSponsorSection () {
+export default function SilverSponsorSection() {
   return (
     <Section>
       <h3 className="text-2xl text-center">Silver Sponsors</h3>
       <div className="flex justify-center lg:flex-col gap-4">
-        {silver.map((item: any, index) => (
+        {silver.map((item: Sponsor, index) => (
           <SponsorCard
-            color="rgb(var(--silver))"
+            color="var(--silver)"
             name={item.name}
             category={item.category}
             image={item.image}
             link={item.link}
-            filter={item.filter || ''}
+            filter={item.filter || ""}
             key={index}
           />
         ))}
       </div>
     </Section>
-  )
+  );
 }

@@ -3,7 +3,6 @@
 import Section from "@/app/components/Section";
 import { motion, useMotionValue, animate, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Bars3Icon } from "@heroicons/react/24/solid";
 
 function PrizeCounter({
   value,
@@ -23,7 +22,7 @@ function PrizeCounter({
 
       return animation.stop;
     }
-  }, [isInView, value]);
+  }, [isInView, value, count]);
 
   return <motion.span>{rounded}</motion.span>;
 }
@@ -72,7 +71,7 @@ export default function Prizes() {
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-1 mb-3 bg-blue-700">
               $<PrizeCounter value={150} isInView={isInView} />
             </div>
-            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-3/4">
+            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 text-0.8 h-3/4">
               2ND PRIZE
             </div>
           </motion.div>
@@ -90,7 +89,7 @@ export default function Prizes() {
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 mb-3 bg-blue-700">
               $<PrizeCounter value={200} isInView={isInView} />
             </div>
-            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-full">
+            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 text-0.8 h-full">
               1ST PRIZE
             </div>
           </motion.div>
@@ -108,7 +107,7 @@ export default function Prizes() {
             <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 mb-3 bg-blue-700">
               $<PrizeCounter value={100} isInView={isInView} />
             </div>
-            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 py-0 px-1 text-0.8 h-1/2">
+            <div className="my-0.3 mx-0.3 rounded-xl py-4 px-10 bg-zinc-800 text-0.8 h-1/2">
               3RD PRIZE
             </div>
           </motion.div>

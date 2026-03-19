@@ -20,17 +20,16 @@ const stats = [
 export default function StatsSection() {
   return (
     <Section>
-      <div className="grid grid-cols-[1fr,1fr] lg:grid-cols-1 lg:gap-20 sm:gap-10">
-        <div>
-          <div className="sticky max-w-md sm:max-w-none top-[calc(102.55px+20px)] space-y-4">
-            <h2 className="text-5xl sm:text-4xl">Club Stats</h2>
-            <p className="text-text-secondary text-lg leading-relaxed">
-              DSCubed is dedicated to promoting data science, analytics, and decision making skills across all disciplines.
-            </p>
-          </div>
+      <div className="flex gap-20 lg:gap-10 lg:flex-col">
+        <div className="sticky w-full max-w-1/2 lg:max-w-none top-[calc(102.55px+20px)] space-y-4 lg:static h-fit">
+          <h2 className="text-5xl sm:text-4xl">Club Stats</h2>
+          <p className="text-text-secondary text-lg leading-relaxed">
+            DSCubed is dedicated to promoting data science, analytics, and
+            decision making skills across all disciplines.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-0 max-w-lg lg:max-w-none space-y-20 sm:space-y-10">
+        <div className="grid grid-cols-1 gap-0 w-full max-w-1/2 lg:max-w-none space-y-20 sm:space-y-10 flex-1">
           {stats.map((stat, index) => (
             <div key={index}>
               <div className="space-y-1 rounded-md">

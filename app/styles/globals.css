@@ -1,67 +1,193 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
 
 /* Animated Gradient for Hero Visualiser bg */
-@import "./animated-gradient-1.css"; 
+@import "./animated-gradient-1.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Desktop-first Max-Width Breakpoints */
+@custom-variant 2xl (@media (max-width: 1535px));
+@custom-variant xl (@media (max-width: 1279px));
+@custom-variant lg (@media (max-width: 1023px));
+@custom-variant md (@media (max-width: 767px));
+@custom-variant sm (@media (max-width: 639px));
+@custom-variant xs (@media (max-width: 479px));
+
+@theme inline {
+  --breakpoint-2xl: 1535px;
+  --breakpoint-xl: 1279px;
+  --breakpoint-lg: 1023px;
+  --breakpoint-md: 767px;
+  --breakpoint-sm: 639px;
+  --breakpoint-xs: 479px;
+
+  --color-theme: var(--theme);
+  --color-background-secondary: var(--background-secondary);
+  --color-btn-background: var(--btn-background);
+  --color-btn-background-hover: var(--btn-background-hover);
+  --color-outline-border: var(--outline-border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-selection: var(--selection);
+  --color-error: var(--error);
+  --color-skeleton-background: var(--skeleton-background);
+  --color-skeleton-content: var(--skeleton-content);
+  --color-platinum: var(--platinum);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-inter, system-ui);
+  --font-mono: var(--font-geist-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
 
 @layer base {
-  /* Light mode is longer support as of 29 May 2025 */
-  /* .colors-light {
-    --theme: 21 146 255;
-    --background: 244 244 244;
-    --background-secondary: 255 255 255;
-    --foreground: 34 34 34;
-    --btn-background: 255 255 255;
-    --btn-background-hover: 250 250 250;
-    --border: 238 238 238;
-    --outline-border: 153 153 153;
-    --text-primary: 34 34 34;
-    --text-secondary: 116 116 116;
-    --selection: 21 146 255;
-    --error: 255 13 45;
-    --skeleton-background: 244 244 244;
-    --skeleton-content: 221 221 221;
-    --platinum: 239 238 236;
-    --gold: 247 241 228;
-    --silver: 232 232 232;
-  } */
-
-  .colors-light, .colors-dark {
-    --theme: 110 162 228;
-    --background: 30 35 50;
-    --background-secondary: 20 20 30;
-    --foreground: 221 223 230;
-    --btn-background: 30 35 50;
-    --btn-background-hover: 40 45 60;
-    --border: 35 38 50;
-    --outline-border: 102 102 102;
-    --text-primary: 221 223 230;
-    --text-secondary: 142 148 165;
-    --selection: 66 154 255;
-    --error: 223 9 37;
-    --skeleton-background: 30 35 50;
-    --skeleton-content: 50 55 70;
-    --platinum: 59 58 56;
-    --gold: 69 51 14;
-    --silver: 52 52 52;
+  :root, .colors-light {
+    --theme: rgb(110 162 228);
+    --background-secondary: rgb(20 20 30);
+    --btn-background: rgb(30 35 50);
+    --btn-background-hover: rgb(40 45 60);
+    --outline-border: rgb(102 102 102);
+    --text-primary: rgb(221 223 230);
+    --text-secondary: rgb(142 148 165);
+    --selection: rgb(66 154 255);
+    --error: rgb(223 9 37);
+    --skeleton-background: rgb(30 35 50);
+    --skeleton-content: rgb(50 55 70);
+    --platinum: rgb(59 58 56);
+    --gold: rgb(69 51 14);
+    --silver: rgb(52 52 52);
+    --radius: 0.625rem;
+    --background: rgb(244 244 244);
+    --foreground: rgb(34 34 34);
+    --card: rgb(255 255 255);
+    --card-foreground: rgb(23 23 23);
+    --popover: rgb(255 255 255);
+    --popover-foreground: rgb(23 23 23);
+    --primary: rgb(32 32 32);
+    --primary-foreground: rgb(250 250 250);
+    --secondary: rgb(247 247 247);
+    --secondary-foreground: rgb(32 32 32);
+    --muted: rgb(247 247 247);
+    --muted-foreground: rgb(115 115 115);
+    --accent: rgb(247 247 247);
+    --accent-foreground: rgb(32 32 32);
+    --destructive: rgb(220 38 38);
+    --border: rgb(229 229 229);
+    --input: rgb(229 229 229);
+    --ring: rgb(163 163 163);
+    --chart-1: rgb(234 88 12);
+    --chart-2: rgb(13 148 136);
+    --chart-3: rgb(30 64 175);
+    --chart-4: rgb(202 138 4);
+    --chart-5: rgb(161 98 7);
+    --sidebar: rgb(250 250 250);
+    --sidebar-foreground: rgb(23 23 23);
+    --sidebar-primary: rgb(32 32 32);
+    --sidebar-primary-foreground: rgb(250 250 250);
+    --sidebar-accent: rgb(247 247 247);
+    --sidebar-accent-foreground: rgb(32 32 32);
+    --sidebar-border: rgb(229 229 229);
+    --sidebar-ring: rgb(163 163 163);
   }
 
-  .colors-dark img {
-    /* Slightly dim images in dark mode */
+  .dark, .colors-dark {
+    --theme: rgb(110 162 228);
+    --background-secondary: rgb(20 20 30);
+    --btn-background: rgb(30 35 50);
+    --btn-background-hover: rgb(40 45 60);
+    --outline-border: rgb(102 102 102);
+    --text-primary: rgb(221 223 230);
+    --text-secondary: rgb(142 148 165);
+    --selection: rgb(66 154 255);
+    --error: rgb(223 9 37);
+    --skeleton-background: rgb(30 35 50);
+    --skeleton-content: rgb(50 55 70);
+    --platinum: rgb(59 58 56);
+    --gold: rgb(69 51 14);
+    --silver: rgb(52 52 52);
+    --background: rgb(30 35 50);
+    --foreground: rgb(221 223 230);
+    --card: rgb(32 32 32);
+    --card-foreground: rgb(250 250 250);
+    --popover: rgb(32 32 32);
+    --popover-foreground: rgb(250 250 250);
+    --primary: rgb(235 235 235);
+    --primary-foreground: rgb(32 32 32);
+    --secondary: rgb(42 42 42);
+    --secondary-foreground: rgb(250 250 250);
+    --muted: rgb(42 42 42);
+    --muted-foreground: rgb(163 163 163);
+    --accent: rgb(42 42 42);
+    --accent-foreground: rgb(250 250 250);
+    --destructive: rgb(239 68 68);
+    --border: rgb(255 255 255 / 10%);
+    --input: rgb(255 255 255 / 15%);
+    --ring: rgb(115 115 115);
+    --chart-1: rgb(99 102 241);
+    --chart-2: rgb(34 197 94);
+    --chart-3: rgb(234 179 8);
+    --chart-4: rgb(168 85 247);
+    --chart-5: rgb(239 68 68);
+    --sidebar: rgb(32 32 32);
+    --sidebar-foreground: rgb(250 250 250);
+    --sidebar-primary: rgb(99 102 241);
+    --sidebar-primary-foreground: rgb(250 250 250);
+    --sidebar-accent: rgb(42 42 42);
+    --sidebar-accent-foreground: rgb(250 250 250);
+    --sidebar-border: rgb(255 255 255 / 10%);
+    --sidebar-ring: rgb(115 115 115);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  .colors-dark img, .dark img {
     opacity: 0.9 !important;
   }
 
-  html {
-    @apply colors-light;
-  }
-
-  .dark {
-    @apply colors-dark;
-  }
-
   @media (prefers-color-scheme: dark) {
-    /* Set calendar icon color */
     input {
       color-scheme: dark;
     }
@@ -69,37 +195,23 @@
 
   html {
     font-size: 14px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
   }
 }
 
 @layer components {
-  /* Force Tailwind to be desktop-first */
-  /* max-w-screen properties are not generated for non-string values in tailwind.config.js */
-  /* therefore we must manually set it to the defaults */
-  .max-w-screen-2xl {
-    max-width: 1536px;
-  }
-  .max-w-screen-xl {
-    max-width: 1280px;
-  }
-  .max-w-screen-lg {
-    max-width: 1024px;
-  }
-  .max-w-screen-md {
-    max-width: 768px;
-  }
-  .max-w-screen-sm {
-    max-width: 640px;
-  }
-
-  /* Custom */
-  .max-w-screen-xs {
-    max-width: 480px;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
+  .max-w-screen-2xl { max-width: 1536px; }
+  .max-w-screen-xl { max-width: 1280px; }
+  .max-w-screen-lg { max-width: 1024px; }
+  .max-w-screen-md { max-width: 768px; }
+  .max-w-screen-sm { max-width: 640px; }
+  .max-w-screen-xs { max-width: 480px; }
 }
 
 ::-moz-selection {
@@ -117,4 +229,3 @@ html {
     opacity: 0;
   }
 }
-

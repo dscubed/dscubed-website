@@ -20,10 +20,10 @@ export default function VisualiserPage() {
     <>
       {/* Welcome modal */}
       {showWelcomeModal && (
-        <div className="fixed inset-0 z-[999] bg-black bg-opacity-80 flex items-center justify-center">
+        <div className="fixed inset-0 z-999 bg-black bg-opacity-80 flex items-center justify-center">
           <div className="bg-background text-foreground rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
             <h1 className="text-3xl font-bold mb-6">
-              Welcome to DSCubed's <br />
+              Welcome to DSCubed&apos;s <br />
               3D Word Embeddings Visualiser
             </h1>
             <p className="text-xl font-bold text-yellow-200 mb-6">

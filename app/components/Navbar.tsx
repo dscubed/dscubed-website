@@ -1,19 +1,14 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import Banner from "@/app/components/Banner";
 import { useEffect, useState } from "react";
+
 import { Bars3Icon } from "@heroicons/react/24/solid";
 import Logo from "@/app/components/Logo";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import path from "path";
 import { cn } from "../lib/utils";
-
-const ThemeButton = dynamic(() => import("@/app/components/ThemeButton"), {
-  ssr: false,
-});
+import Image from "next/image";
 
 export default function Navbar({
   className = "",
@@ -22,8 +17,6 @@ export default function Navbar({
   className?: string;
 }) {
   const [showMenu, setShowMenu] = useState(false);
-  // Share the same state across both theme buttons
-  const themeState = useState("");
   const [blurNav, setBlurNav] = useState(false);
   const pathname = usePathname();
 
@@ -39,22 +32,19 @@ export default function Navbar({
 
     window.addEventListener("scroll", toggleBlurNav);
     return () => window.removeEventListener("scroll", toggleBlurNav);
-  }, []);
+  }, [pathname]);
 
   return (
     // Use top: -1px to remove gap on some browsers
-    <div className="sticky top-[-1px] z-20" id="navbar">
+    <div className="sticky -top-px z-20" id="navbar">
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
       <nav
         {...rest}
         className={cn(
-          "relative w-full pt-px backdrop-blur-lg duration-500 transition-colors",
-          {
-            "bg-background-secondary/70": blurNav,
-            "bg-background-secondary duration-0": showMenu,
-          } as any,
-          className
+          "relative w-full pt-px backdrop-blur-lg duration-500 transition-all",
+          blurNav ? "bg-background-secondary/70" : "bg-transparent",
+          className,
         )}
       >
         <div className="px-5 py-3">
@@ -87,10 +77,13 @@ export default function Navbar({
                     repeatDelay: 2, // 2 seconds delay between animations
                   }}
                 >
-                  <img
+                  <Image
                     src="/competitions/discordicon.png"
                     alt="Discord"
+                    width={24}
+                    height={24}
                     className="w-6 h-6 saturate-0 brightness-200 contrast-150"
+                    priority={false}
                   />
                 </motion.div>
               </Link>
@@ -138,7 +131,7 @@ export default function Navbar({
             "absolute hidden flex-col w-full bg-background-secondary top-full border-t border-border",
             {
               "lg:flex": showMenu,
-            }
+            },
           )}
         >
           <Link
@@ -158,10 +151,13 @@ export default function Navbar({
                 repeatDelay: 2, // 2 seconds delay between animations
               }}
             >
-              <img
+              <Image
                 src="/competitions/discordicon.png"
                 alt="Discord"
+                width={24}
+                height={24}
                 className="w-6 h-6 saturate-0 brightness-200 contrast-150"
+                priority={false}
               />
             </motion.div>
           </Link>

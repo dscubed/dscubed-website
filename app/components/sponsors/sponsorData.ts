@@ -1,9 +1,17 @@
+export interface Sponsor {
+  name: string;
+  category: string;
+  image: string;
+  link: string;
+  filter?: string;
+}
+
 export const platinum = [
   {
-    name: 'IMC',
-    category: 'Financial services',
-    image: '/sponsors/logos/imc.svg',
-    link: 'https://www.imc.com/ap',
+    name: "IMC",
+    category: "Financial services",
+    image: "/sponsors/logos/imc.svg",
+    link: "https://www.imc.com/ap",
   },
   // {
   //   name: 'Melbourne Centre for Data Science',
@@ -11,78 +19,77 @@ export const platinum = [
   //   image: '/sponsors/logos/mcds.png',
   //   link: 'https://science.unimelb.edu.au/mcds',
   // },
-]
+];
 
 export const gold = [
   {
-    name: 'Jane Street',
-    category: 'Financial services',
-    image: '/sponsors/logos/jane-street.png',
-    link: 'https://www.janestreet.com/'
+    name: "Jane Street",
+    category: "Financial services",
+    image: "/sponsors/logos/jane-street.png",
+    link: "https://www.janestreet.com/",
   },
   {
-    name: 'Ernst & Young',
-    category: 'Professional services',
-    image: '/sponsors/logos/ey.svg',
-    link: 'https://www.ey.com/'
+    name: "Ernst & Young",
+    category: "Professional services",
+    image: "/sponsors/logos/ey.svg",
+    link: "https://www.ey.com/",
   },
-]
+];
 
 export const silver = [
   {
-    name: 'Accenture',
-    category: 'Professional services',
-    image: '/sponsors/logos/accenture.png',
-    link: 'https://www.accenture.com/au-en',
+    name: "Accenture",
+    category: "Professional services",
+    image: "/sponsors/logos/accenture.png",
+    link: "https://www.accenture.com/au-en",
   },
-
-]
+];
 
 export const partners = [
   {
-    name: 'Red Bull',
-    category: 'Beverage',
-    image: '/sponsors/logos/redbull.svg',
-    link: 'https://www.redbull.com/',
+    name: "Red Bull",
+    category: "Beverage",
+    image: "/sponsors/logos/redbull.svg",
+    link: "https://www.redbull.com/",
   },
-]
+];
 
 export const past = [
   {
-    name: 'Citadel',
-    category: 'Financial services',
-    image: '/sponsors/logos/citadel.svg',
-    link: 'https://www.citadel.com/'
+    name: "Citadel",
+    category: "Financial services",
+    image: "/sponsors/logos/citadel.svg",
+    link: "https://www.citadel.com/",
   },
   {
-    name: 'Macquarie',
-    category: 'Financial services',
-    image: '/sponsors/logos/macquarie.svg',
-    link: 'https://www.macquarie.com/'
+    name: "Macquarie",
+    category: "Financial services",
+    image: "/sponsors/logos/macquarie.svg",
+    link: "https://www.macquarie.com/",
   },
- 
+
   {
-    name: 'IBM',
-    category: 'Information technology',
-    image: '/sponsors/logos/ibm.svg',
-    link: 'https://www.ibm.com/'
-  },
-  {
-    name: 'Nasdaq',
-    category: 'Financial services',
-    image: '/sponsors/logos/nasdaq.svg',
-    link: 'https://www.nasdaq.com/'
+    name: "IBM",
+    category: "Information technology",
+    image: "/sponsors/logos/ibm.svg",
+    link: "https://www.ibm.com/",
   },
   {
-    name: 'Nomura',
-    category: 'Financial services',
-    image: '/sponsors/logos/nomura.svg',
-    link: 'https://www.nomura.com/'
+    name: "Nasdaq",
+    category: "Financial services",
+    image: "/sponsors/logos/nasdaq.svg",
+    link: "https://www.nasdaq.com/",
   },
   {
-    name: 'WhyHive',
-    category: 'Software',
-    image: '/sponsors/logos/whyhive.png',
-    link: 'https://www.whyhive.com/'
+    name: "Nomura",
+    category: "Financial services",
+    image: "/sponsors/logos/nomura.svg",
+    link: "https://www.nomura.com/",
   },
-]
+  {
+    name: "WhyHive",
+    category: "Software",
+    image: "/sponsors/logos/whyhive.png",
+    link: "https://www.whyhive.com/",
+  },
+];
