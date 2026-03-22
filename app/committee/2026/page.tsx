@@ -13,16 +13,17 @@ import TeamsSection from "@/app/components/committee/TeamsSection";
 import {
   executives,
   directors,
-} from "@/app/components/committee/memberData2025";
+  teams,
+} from "@/app/components/committee/memberData2026";
 
 export const metadata = {
   title: "Committee | DSCubed",
   description:
-    "Meet the team behind DSCubed. Introducing our committee for 2025.",
+    "Meet the team behind DSCubed. Introducing our committee for 2026.",
   openGraph: {
     title: "Committee | DSCubed",
     description:
-      "Meet the team behind DSCubed. Introducing our committee for 2025.",
+      "Meet the team behind DSCubed. Introducing our committee for 2026.",
     url: "/committee",
     siteName: "DSCubed",
     locale: "en_AU",
@@ -32,7 +33,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Committee | DSCubed",
     description:
-      "Meet the team behind DSCubed. Introducing our committee for 2025.",
+      "Meet the team behind DSCubed. Introducing our committee for 2026.",
   },
 };
 
@@ -44,7 +45,7 @@ export default function CommitteePage() {
       <main>
         <Section>
           <div>
-            <h1 className="text-5xl mb-5 sm:text-4xl">2025 Committee</h1>
+            <h1 className="text-5xl mb-5 sm:text-4xl">2026 Committee</h1>
             {new Date().getFullYear() > 2024 && (
               <Link
                 className="flex gap-2 text-xl text-theme"
@@ -76,7 +77,7 @@ export default function CommitteePage() {
         <DirectorSection directors={directors} />
 
         {/* <RepresentativeSection /> */}
-        <TeamsSection />
+        <TeamsSection teams={teams} directors={directors} />
       </main>
 
       <Footer />

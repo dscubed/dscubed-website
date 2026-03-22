@@ -1,215 +1,222 @@
 // Use the 'filter' property to set Tailwind css filters on images
 
-export const executives: { name: string, role: string, image?: string, filter?: string }[] = [
-  {
-    name: 'Nathan Luo',
-    role: 'President',
-    image: '/people/2024/nathan-luo.png',
-  },
-  {
-    name: 'Hanshi Tang',
-    role: 'Vice President',
-    image: '/people/2024/hanshi-tang.jpg',
-  },
-  {
-    name: 'Harshit Badam',
-    role: 'Secretary',
-    image: '/people/2024/harshit-badam.jpg',
-    filter: 'contrast-[1.1] saturate-[0.7] brightness-150',
-  },
-  {
-    name: 'Georgina Qiu',
-    role: 'Treasurer',
-    image: '/people/2024/georgina-qiu.jpg',
-  },
-]
+import { Director, ExecMember } from "./types";
 
-export const directors: { name: string, role: string, image?: string, filter?: string }[] = [
+export const executives: ExecMember[] = [
   {
-    name: 'Daksh Agrawal',
-    role: 'Education Director',
-    image: '/people/2024/daksh-agrawal.jpg',
+    name: "Nathan Luo",
+    role: "President",
+    image: "/people/2024/nathan-luo.png",
   },
   {
-    name: 'Hannah Luo',
-    role: 'Events Director',
-    image: '/people/2025/hannah-luo.jpg',
+    name: "Hanshi Tang",
+    role: "Vice President",
+    image: "/people/2024/hanshi-tang.jpg",
   },
   {
-    name: 'Kevin Tang',
-    role: 'Industry Director',
-    image: '/people/2024/kevin-tang.jpg',
+    name: "Harshit Badam",
+    role: "Secretary",
+    image: "/people/2024/harshit-badam.jpg",
+    filter: "contrast-[1.1] saturate-[0.7] brightness-150",
   },
   {
-    name: 'Michael Ren',
-    role: 'IT Director',
-    image: '/people/2025/michael-ren.jpg',
+    name: "Georgina Qiu",
+    role: "Treasurer",
+    image: "/people/2024/georgina-qiu.jpg",
   },
-  {
-    name: 'Ryan Li',
-    role: 'Design Director',
-    image: '/people/2024/ryan-li.jpg',
-  },
-  {
-    name: 'Danielle Tran',
-    role: 'Marketing Director',
-    image: '/people/2025/danielle-tran.png',
-  },
-]
+];
 
-export const representatives: { name: string, role: string, image?: string, filter?: string }[] = [
+export const directors: Director[] = [
   {
-    name: 'David Ponder',
-    role: 'Graduate Representative',
-    image: '/people/2024/david-ponder.jpg',
-    filter: 'contrast-[1.1] brightness-125',
+    name: "Daksh Agrawal",
+    team: "Education",
+    image: "/people/2024/daksh-agrawal.jpg",
   },
   {
-    name: 'Nan Sang',
-    role: 'Graduate Representative',
+    name: "Hannah Luo",
+    team: "Events",
+    image: "/people/2025/hannah-luo.jpg",
+  },
+  {
+    name: "Kevin Tang",
+    team: "Industry",
+    image: "/people/2024/kevin-tang.jpg",
+  },
+  {
+    name: "Michael Ren",
+    team: "IT",
+    image: "/people/2025/michael-ren.jpg",
+  },
+  {
+    name: "Ryan Li",
+    team: "Design",
+    image: "/people/2024/ryan-li.jpg",
+  },
+  {
+    name: "Danielle Tran",
+    team: "Marketing",
+    image: "/people/2025/danielle-tran.png",
+  },
+];
+
+export const representatives: {
+  name: string;
+  role: string;
+  image?: string;
+  filter?: string;
+}[] = [
+  {
+    name: "David Ponder",
+    role: "Graduate Representative",
+    image: "/people/2024/david-ponder.jpg",
+    filter: "contrast-[1.1] brightness-125",
+  },
+  {
+    name: "Nan Sang",
+    role: "Graduate Representative",
     // image: '',
   },
   {
-    name: 'Harshit Badam',
-    role: 'Undergraduate Representative',
+    name: "Harshit Badam",
+    role: "Undergraduate Representative",
     // image: '',
   },
   {
-    name: 'Jacky Liao',
-    role: 'Undergraduate Representative',
+    name: "Jacky Liao",
+    role: "Undergraduate Representative",
     // image: '',
   },
   {
-    name: 'Rania Aziz',
-    role: 'Undergraduate Representative',
+    name: "Rania Aziz",
+    role: "Undergraduate Representative",
     // image: '',
   },
   {
-    name: 'Dhruv Ajay',
-    role: 'Undergraduate Representative',
+    name: "Dhruv Ajay",
+    role: "Undergraduate Representative",
     // image: '',
   },
-]
+];
 
 // The default role for team members is set to '<Team name> Officer', so don't need to set it manually here
 
-export const teams: { 
-  name: string, 
+export const teams: {
+  name: string;
   members: {
-    name: string,
-    role?: string, 
-    image?: string,
-    filter?: string
-  }[] 
+    name: string;
+    role?: string;
+    image?: string;
+    filter?: string;
+  }[];
 }[] = [
   {
-    name: 'Education',
+    name: "Education",
     members: [
       {
-        name: 'Mikael Sutiono',
-        image: '/people/2024/mikael-sutiono.jpg',
+        name: "Mikael Sutiono",
+        image: "/people/2024/mikael-sutiono.jpg",
       },
       {
-        name: 'Jongho Park',
+        name: "Jongho Park",
         // image: '',
       },
       {
-        name: 'Keshav Prasath',
+        name: "Keshav Prasath",
         // image: '',
       },
     ],
   },
   {
-    name: 'Events',
+    name: "Events",
     members: [
       {
-        name: 'Nhat Anh Le',
-        image: '/people/2024/nhat-anh-le.jpg',
+        name: "Nhat Anh Le",
+        image: "/people/2024/nhat-anh-le.jpg",
       },
       {
-        name: 'Ayra Hani',
+        name: "Ayra Hani",
         // image: '',
       },
       {
-        name: 'Angus Chan',
-        image: '/people/2024/angus-chan.jpg',
+        name: "Angus Chan",
+        image: "/people/2024/angus-chan.jpg",
       },
       {
-        name: 'Davyn Sumardi',
-        image: '/people/2024/davyn-sumardi.jpg',
+        name: "Davyn Sumardi",
+        image: "/people/2024/davyn-sumardi.jpg",
       },
       {
-        name: 'Rayan Arain',
+        name: "Rayan Arain",
         // image: '',
       },
       {
-        name: 'Ayushi Chauhan',
-        image: '/people/2024/ayushi-chauhan.jpg',
+        name: "Ayushi Chauhan",
+        image: "/people/2024/ayushi-chauhan.jpg",
       },
       {
-        name: 'Madhumita Venkataraman',
+        name: "Madhumita Venkataraman",
         // image: '',
       },
       {
-        name: 'Paige Meng',
-        role: 'Graduate Officer',
+        name: "Paige Meng",
+        role: "Graduate Officer",
         // image: '',
       },
     ],
   },
   {
-    name: 'Industry',
+    name: "Industry",
     members: [
       {
-        name: 'Sarah Williams',
+        name: "Sarah Williams",
         // image: '',
       },
       {
-        name: 'Halley Dao',
+        name: "Halley Dao",
         // image: '',
       },
       {
-        name: 'Manan Saddi',
+        name: "Manan Saddi",
         // image: '',
       },
       {
-        name: 'Shashank Sanjay Bhat',
+        name: "Shashank Sanjay Bhat",
         // image: '',
       },
       {
-        name: 'Khushi Malhotra',
-        image: '/people/2024/khushi-malhotra.png',
+        name: "Khushi Malhotra",
+        image: "/people/2024/khushi-malhotra.png",
       },
     ],
   },
   {
-    name: 'Marketing',
+    name: "Marketing",
     members: [
       {
-        name: 'Navya Malhotra',
+        name: "Navya Malhotra",
         // image: '',
       },
       {
-        name: 'Saki Hiraoka',
+        name: "Saki Hiraoka",
         // image: '',
       },
       {
-        name: 'Rebecca Feng',
-        role: 'Design Director',
-        image: '/people/2024/rebecca-feng.jpg',
+        name: "Rebecca Feng",
+        role: "Design Director",
+        image: "/people/2024/rebecca-feng.jpg",
       },
       {
-        name: 'Danielle Tran',
+        name: "Danielle Tran",
         // image: '',
       },
       {
-        name: 'Ryan Li',
+        name: "Ryan Li",
         // image: '',
       },
       {
-        name: 'Jason Wang',
+        name: "Jason Wang",
         // image: '',
-      }
+      },
     ],
   },
   // {
@@ -221,4 +228,4 @@ export const teams: {
   //     },
   //   ]
   // },
-]
+];

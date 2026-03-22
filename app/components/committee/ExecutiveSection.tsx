@@ -1,14 +1,21 @@
-import Section from '@/app/components/Section'
-import MemberCard from '@/app/components/committee/MemberCard'
-import Image from 'next/image'
+import Section from "@/app/components/Section";
+import MemberCard from "@/app/components/committee/MemberCard";
+import Image from "next/image";
+import { ExecMember } from "./types";
 
-export default function ExecutiveSection({ executives, teamPhoto }: { executives: { name: string, role: string, image?: string }[], teamPhoto?: string }) {
+export default function ExecutiveSection({
+  executives,
+  teamPhoto,
+}: {
+  executives: ExecMember[];
+  teamPhoto?: string;
+}) {
   return (
     <Section>
       <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
       <div className="flex flex-wrap justify-center gap-5">
-        {executives.map((profile, index) => (
-          <div key={index} className="flex justify-center">
+        {executives.map((profile) => (
+          <div key={profile.name} className="flex justify-center">
             <MemberCard {...profile} />
           </div>
         ))}
@@ -26,5 +33,5 @@ export default function ExecutiveSection({ executives, teamPhoto }: { executives
         </div>
       )}
     </Section>
-  )
+  );
 }
