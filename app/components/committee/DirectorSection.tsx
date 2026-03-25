@@ -1,6 +1,6 @@
 import Section from "@/app/components/Section";
 import MemberCard from "@/app/components/committee/MemberCard";
-import { Director } from "./types";
+import { Director } from "./data/types";
 
 function getRole(director: Director): string {
   if (director.role) {

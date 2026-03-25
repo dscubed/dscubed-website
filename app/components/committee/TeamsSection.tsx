@@ -2,7 +2,7 @@ import Section from "@/app/components/Section";
 import MemberList from "@/app/components/committee/MemberList";
 import MemberListItem from "@/app/components/committee/MemberListItem";
 import Image from "next/image";
-import { Director, Team } from "./types";
+import { Director, Team } from "./data/types";
 
 export default function TeamsSection({
   teams,

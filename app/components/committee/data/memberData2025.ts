@@ -125,8 +125,8 @@ export const teams: Team[] = [
         image: "/people/2025/animesh-pandey.png",
       },
       {
-        name: "Geoffery Chen",
-        image: "/people/2025/geoffery-chen.png",
+        name: "Geoffrey Chen",
+        image: "/people/2025/geoffrey-chen.png",
       },
       {
         name: "Ishan Deshpande",

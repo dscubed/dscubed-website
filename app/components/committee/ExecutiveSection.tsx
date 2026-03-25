@@ -1,14 +1,14 @@
 import Section from "@/app/components/Section";
 import MemberCard from "@/app/components/committee/MemberCard";
-import Image from "next/image";
-import { ExecMember } from "./types";
+import Image, { StaticImageData } from "next/image";
+import { ExecMember } from "./data/types";
 
 export default function ExecutiveSection({
   executives,
   teamPhoto,
 }: {
   executives: ExecMember[];
-  teamPhoto?: string;
+  teamPhoto?: string | StaticImageData;
 }) {
   return (
     <Section>
