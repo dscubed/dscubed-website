@@ -91,7 +91,7 @@ export default function Navbar({
               <Link className="my-auto" href="/events">
                 Events
               </Link>
-              <Link className="my-auto" href="/committee-2025">
+              <Link className="my-auto" href="/committee/2026">
                 Committee
               </Link>
               <Link className="my-auto" href="/competitions">
