@@ -37,27 +37,27 @@ export default function FrontPageEmbed() {
           <div className="flex flex-col gap-10 max-w-screen-xl lg:max-w-125 mx-auto">
             <div className="grid gap-20 sm:gap-10">
               <div className="flex flex-col gap-10 my-auto max-w-xl">
-                <h1 className="text-5xl xs:text-4xl font-medium">
+                <h1 className="text-5xl xs:text-4xl font-display leading-tight xl:leading-snug">
                   <motion.span
-                    className="block leading-tight xl:leading-snug"
+                    className="block"
                     {...fadeUp(0.1, isFullyRevealed)}
                   >
                     The Leading{" "}
                   </motion.span>
                   <motion.span
-                    className="block leading-tight xl:leading-snug"
+                    className="block"
                     {...fadeUp(0.25, isFullyRevealed)}
                   >
                     Data Science Club at{" "}
                   </motion.span>
                   <motion.span
-                    className="block leading-tight xl:leading-snug"
+                    className="block"
                     {...fadeUp(0.4, isFullyRevealed)}
                   >
                     The University of{" "}
                   </motion.span>
                   <motion.span
-                    className="block leading-tight xl:leading-snug"
+                    className="block"
                     {...fadeUp(0.55, isFullyRevealed)}
                   >
                     Melbourne.

@@ -63,15 +63,27 @@ export default function useRotation(interactionEnabled = true) {
     return () => window.removeEventListener("mousemove", onMouseMove);
   }, []);
 
+  // Auto-spin speed (radians per second) — only active on mobile
+  const AUTO_SPIN_SPEED = 0.05;
+
   // Animation loop: lerp smoothCursor toward target, apply total rotation to group
   useEffect(() => {
     let rafId: number;
+    let lastTime: number | null = null;
 
-    const tick = () => {
+    const tick = (time: number) => {
+      const delta = lastTime !== null ? (time - lastTime) / 1000 : 0;
+      lastTime = time;
+
       smoothCursor.current.x +=
         (cursorTarget.current.x - smoothCursor.current.x) * LERP_FACTOR;
       smoothCursor.current.y +=
         (cursorTarget.current.y - smoothCursor.current.y) * LERP_FACTOR;
+
+      // Slow autospin on mobile (< 1024px) when not dragging
+      if (window.innerWidth < 1024 && !isDragging.current && enabledRef.current) {
+        dragRotation.current.y += AUTO_SPIN_SPEED * delta;
+      }
 
       const totalX = smoothCursor.current.x + dragRotation.current.x;
       const totalY = smoothCursor.current.y + dragRotation.current.y;
