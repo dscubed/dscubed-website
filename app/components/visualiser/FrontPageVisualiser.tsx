@@ -12,6 +12,8 @@ import SpaceGlows from "./SpaceGlows";
 interface Props {
   vocab: string[];
   embeddings: number[][] | null;
+  onLoaded?: () => void;
+  isFullyRevealed?: boolean;
 }
 
 interface LineData {
@@ -27,9 +29,11 @@ const DRAW_DURATION = 1.0; // seconds
 function AnimatedLines({
   lines,
   onComplete,
+  started,
 }: {
   lines: LineData[];
   onComplete: () => void;
+  started: boolean;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const geoRefs = useRef<THREE.BufferGeometry[]>([]);
@@ -84,7 +88,7 @@ function AnimatedLines({
   }, [lines]);
 
   useFrame((_, delta) => {
-    if (done.current || !readyRef.current) return;
+    if (done.current || !readyRef.current || !started) return;
     elapsed.current += delta;
 
     let allDone = true;
@@ -117,7 +121,7 @@ function AnimatedLines({
 }
 
 // Main scene component that renders the 3D embedding space
-export default function Visualiser({ vocab }: Props) {
+export default function Visualiser({ vocab, onLoaded, isFullyRevealed = false }: Props) {
   const cameraRef = useRef<THREE.Camera | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [cameraZ, setCameraZ] = useState(-40);
@@ -258,6 +262,10 @@ export default function Visualiser({ vocab }: Props) {
       onCreated={({ camera }) => {
         cameraRef.current = camera;
         updateGroupPosition();
+        if (onLoaded) {
+          // Delay briefly to let the canvas render its first frame
+          requestAnimationFrame(() => requestAnimationFrame(() => onLoaded()));
+        }
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -281,6 +289,7 @@ export default function Visualiser({ vocab }: Props) {
         {/* Animated lines — drawn from endpoint to endpoint at constant speed */}
         <AnimatedLines
           lines={lineData}
+          started={isFullyRevealed}
           onComplete={() => setLinesComplete(true)}
         />
 

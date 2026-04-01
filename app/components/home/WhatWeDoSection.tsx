@@ -3,12 +3,12 @@
 import Section from "@/app/components/Section";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { MotionDiv, MotionH2 } from './MotionDiv';
 
 export default function WhatWeDoSection() {
   return (
     <Section className="mt-8!">
-      <motion.div
+      <MotionDiv
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -21,9 +21,9 @@ export default function WhatWeDoSection() {
           <span>Explore word embeddings visualiser</span>
           <ArrowRightIcon className="w-7 h-7 xs:w-6 xs:h-6 stroke-[0.2]" />
         </Link>
-      </motion.div>
+      </MotionDiv>
 
-      <motion.h2
+      <MotionH2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
@@ -31,10 +31,10 @@ export default function WhatWeDoSection() {
         className="text-5xl sm:text-4xl mb-10"
       >
         What We Do
-      </motion.h2>
+      </MotionH2>
 
       <div className="grid grid-cols-4 gap-8 lg:grid-cols-2 lg:gap-y-16 xs:grid-cols-1">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -92,9 +92,9 @@ export default function WhatWeDoSection() {
             insights into internships and exclusive job listings through our
             newsletter.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -150,9 +150,9 @@ export default function WhatWeDoSection() {
             connect with peers in a supportive, collaborative learning
             environment.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -230,9 +230,9 @@ export default function WhatWeDoSection() {
             community that builds valuable connections with peers and industry
             professionals.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -301,7 +301,7 @@ export default function WhatWeDoSection() {
             Kaggle Competition, and annual Inter-uni Datathon in collaboration
             with other Australian Universities.
           </p>
-        </motion.div>
+        </MotionDiv>
       </div>
     </Section>
   );

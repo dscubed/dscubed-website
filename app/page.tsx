@@ -6,16 +6,11 @@ import EventSection from "@/app/components/home/EventSection";
 import GallerySection from "@/app/components/home/GallerySection";
 import FAQSection from "@/app/components/home/FAQSection";
 import FrontPageEmbed from "./components/visualiser/frontpageembed";
-// import IntroSection from "@/app/components/home/IntroSection";
-// import AimsSection from "@/app/components/home/AimsSection";
-// import AboutSection from "@/app/components/home/AboutSection";
-// import HeroSection from "@/app/components/home/HeroSection";
-// import MapSection from "@/app/components/home/MapSection";
-// import ReasonsSection from "@/app/components/home/ReasonsSection";
+import { HomeLoaderProvider } from "@/app/components/home/HomeLoaderContext";
 
 export default function Index() {
   return (
-    <>
+    <HomeLoaderProvider>
       {/* <HeroSection /> */}
       <Navbar />
 
@@ -45,7 +40,7 @@ export default function Index() {
       </main>
 
       <Footer />
-    </>
+    </HomeLoaderProvider>
   );
 }
 

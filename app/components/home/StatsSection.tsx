@@ -2,12 +2,13 @@
 import Section from "@/app/components/Section";
 import { useEffect, useRef } from "react";
 import {
-  motion,
   useInView,
   useMotionValue,
   useTransform,
   animate,
 } from "framer-motion";
+import { MotionDiv, MotionH3 } from "./MotionDiv";
+import { useHomeLoader } from "./HomeLoaderContext";
 
 // Statistics (currently taken from old AboutSection)
 const stats = [
@@ -38,6 +39,7 @@ function StatCounter({
   stat: (typeof stats)[0];
   index: number;
 }) {
+  const { isFullyRevealed } = useHomeLoader();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const count = useMotionValue(0);
@@ -47,17 +49,17 @@ function StatCounter({
   );
 
   useEffect(() => {
-    if (inView) {
+    if (inView && isFullyRevealed) {
       animate(count, stat.value, {
         duration: 2,
         delay: index * 0.2,
         ease: "easeOut",
       });
     }
-  }, [inView, stat.value, count, index]);
+  }, [inView, isFullyRevealed, stat.value, count, index]);
 
   return (
-    <motion.div
+    <MotionDiv
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -65,12 +67,12 @@ function StatCounter({
       transition={{ duration: 0.6, delay: index * 0.2 }}
     >
       <div className="space-y-1 rounded-md">
-        <motion.h3 className="text-8xl sm:text-7xl tracking-tight leading-none">
+        <MotionH3 className="text-8xl sm:text-7xl tracking-tight leading-none">
           {rounded}
-        </motion.h3>
+        </MotionH3>
         <p className="text-xl lg:text-lg leading-relaxed">{stat.description}</p>
       </div>
-    </motion.div>
+    </MotionDiv>
   );
 }
 
@@ -78,7 +80,7 @@ export default function StatsSection() {
   return (
     <Section>
       <div className="flex gap-20 lg:gap-10 lg:flex-col">
-        <motion.div
+        <MotionDiv
           className="sticky w-full max-w-1/2 lg:max-w-none top-[calc(102.55px+20px)] space-y-4 lg:static h-fit"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -90,7 +92,7 @@ export default function StatsSection() {
             DSCubed is dedicated to promoting data science, analytics, and
             decision making skills across all disciplines.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid grid-cols-1 gap-0 w-full max-w-1/2 lg:max-w-none space-y-20 sm:space-y-10 flex-1">
           {stats.map((stat, index) => (
