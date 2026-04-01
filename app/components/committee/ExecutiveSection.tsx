@@ -13,9 +13,9 @@ export default function ExecutiveSection({
   return (
     <Section>
       <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
-      <div className="flex flex-wrap justify-center gap-5">
+      <div className="grid grid-cols-5 justify-center gap-5">
         {executives.map((profile) => (
-          <div key={profile.name} className="flex justify-center">
+          <div key={profile.name} className="flex w-full justify-center">
             <MemberCard {...profile} />
           </div>
         ))}
