@@ -49,12 +49,12 @@ export default function TeamsSection({
 
               {/* Product Team Image */}
               {team.image && (
-                <div className="w-full h-96 overflow-hidden rounded-lg">
+                <div className="w-full overflow-hidden rounded-lg aspect-5/2">
                   <Image
                     src={team.image}
                     alt={`${teamName} Team`}
-                    width={1200}
-                    height={800}
+                    width={1600}
+                    height={900}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -146,12 +146,12 @@ export default function TeamsSection({
 
             {/* Team Image */}
             {team.image && (
-              <div className="w-full h-96 overflow-hidden rounded-lg">
+              <div className="w-full overflow-hidden rounded-lg aspect-5/2">
                 <Image
                   src={team.image}
                   alt={`${teamName} Team`}
-                  width={1200}
-                  height={800}
+                  width={1600}
+                  height={900}
                   className="w-full h-full object-cover"
                 />
               </div>
