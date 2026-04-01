@@ -6,6 +6,7 @@ import * as THREE from "three";
 import useRotation from "@/app/hooks/useRotation";
 import WordPoint from "./WordPointFront";
 import SpaceDust from "./SpaceDust";
+import SpaceGlows from "./SpaceGlows";
 
 // Props expected: vocab list and precomputed embeddings
 interface Props {
@@ -46,7 +47,7 @@ function AnimatedLines({
   );
 
   // Build Three.js objects once in an effect (avoids ref-during-render error)
-  const [ready, setReady] = useState(false);
+  const readyRef = useRef(false);
   useEffect(() => {
     const group = groupRef.current;
     if (!group) return;
@@ -70,12 +71,12 @@ function AnimatedLines({
       const mat = new THREE.LineBasicMaterial({
         color: "#ffffff",
         transparent: true,
-        opacity: 0.4,
+        opacity: 0.5,
       });
       group.add(new THREE.Line(geo, mat));
     });
 
-    setReady(true);
+    readyRef.current = true;
 
     return () => {
       geoRefs.current.forEach((g) => g.dispose());
@@ -83,7 +84,7 @@ function AnimatedLines({
   }, [lines]);
 
   useFrame((_, delta) => {
-    if (done.current || !ready) return;
+    if (done.current || !readyRef.current) return;
     elapsed.current += delta;
 
     let allDone = true;
@@ -274,6 +275,7 @@ export default function Visualiser({ vocab }: Props) {
         position={[dynamicXOffset, dynamicYOffset, dynamicZOffset]}
         rotation={[rotation.x, rotation.y, 0]}
       >
+        <SpaceGlows />
         <SpaceDust />
 
         {/* Animated lines — drawn from endpoint to endpoint at constant speed */}

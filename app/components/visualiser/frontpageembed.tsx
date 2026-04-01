@@ -20,11 +20,8 @@ export default function FrontPageEmbed() {
 
   return (
     <div className="relative w-full shadow-[0_100px_100px_-50px_rgba(35,40,80,1)] border-b-2 border-b-[rgb(57,64,90)]">
-      {/* Gradient background */}
-      <div className="animated-gradient-1 absolute inset-0 w-full h-full opacity-100"></div>
-
-      {/* Take up navbar space */}
-      <div className="h-16"></div>
+      {/* Background color */}
+      <div className="absolute inset-0 w-full h-full bg-[#12121d]"></div>
 
       <div className="relative w-full flex flex-col min-h-[calc(100svh-63px)] lg:min-h-max lg:h-[calc(63px+96px*2+450px+450px)] sm:h-[calc(63px+96px*2+450px+350px)] xs:h-[calc(63px+96px*2+450px+300px)]">
         <div className="z-10 relative px-5 py-20 lg:py-24 lg:pb-8 my-auto lg:my-0 pointer-events-none">
@@ -65,9 +62,7 @@ export default function FrontPageEmbed() {
                   enthusiasts, providing an unparalleled platform for students
                   who are passionate about Data Science.
                 </motion.p>
-                <motion.div
-                  {...fadeUp(0.9)}
-                >
+                <motion.div {...fadeUp(0.9)}>
                   <Link
                     target="_blank"
                     href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/"
