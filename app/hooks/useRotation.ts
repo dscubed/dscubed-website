@@ -5,8 +5,9 @@ import { Group } from "three";
  * Custom hook to handle 3D rotation functionality.
  * - Cursor position passively tilts the scene (parallax effect).
  * - Click-drag adds on top of the cursor tilt.
+ * - interactionEnabled: false locks out all input (used during load animation).
  */
-export default function useRotation() {
+export default function useRotation(interactionEnabled = true) {
   const groupRef = useRef<Group>(null);
 
   // Accumulated rotation from drag
@@ -36,16 +37,21 @@ export default function useRotation() {
     setDynamicZOffset(z);
   }, []);
 
-  // Max tilt from cursor in radians (~15 degrees each axis)
   const CURSOR_STRENGTH_X = 0.2;
   const CURSOR_STRENGTH_Y = 0.3;
   const LERP_FACTOR = 0.04;
   const rotationSensitivity = 0.005;
 
-  // Track cursor position globally and map to target rotation
+  // Keep a ref so the rAF / event handlers always see the latest value
+  const enabledRef = useRef(interactionEnabled);
+  useEffect(() => {
+    enabledRef.current = interactionEnabled;
+  }, [interactionEnabled]);
+
+  // Track cursor position globally → cursor parallax target
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
-      // Normalize cursor to -1..1 relative to window center
+      if (!enabledRef.current) return;
       const nx = (e.clientX / window.innerWidth) * 2 - 1;
       const ny = (e.clientY / window.innerHeight) * 2 - 1;
       cursorTarget.current = {
@@ -87,6 +93,7 @@ export default function useRotation() {
 
   const handlePointerDown = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
+      if (!enabledRef.current) return;
       isDragging.current = true;
       previousPosition.current = { x: event.clientX, y: event.clientY };
       (event.target as HTMLDivElement).setPointerCapture(event.pointerId);
@@ -96,7 +103,7 @@ export default function useRotation() {
 
   const handlePointerMove = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!isDragging.current || !previousPosition.current) return;
+      if (!enabledRef.current || !isDragging.current || !previousPosition.current) return;
 
       const deltaX = event.clientX - previousPosition.current.x;
       const deltaY = event.clientY - previousPosition.current.y;
@@ -136,6 +143,7 @@ export default function useRotation() {
   // --- Touch handlers ---
 
   const handleTouchStart = useCallback((event: React.TouchEvent) => {
+    if (!enabledRef.current) return;
     if (event.touches.length === 1) {
       isDragging.current = true;
       touchStart.current = {
@@ -146,7 +154,7 @@ export default function useRotation() {
   }, []);
 
   const handleTouchMove = useCallback((event: React.TouchEvent) => {
-    if (!isDragging.current || !touchStart.current) return;
+    if (!enabledRef.current || !isDragging.current || !touchStart.current) return;
     if (event.touches.length !== 1) return;
 
     const touch = event.touches[0];
@@ -186,7 +194,6 @@ export default function useRotation() {
     handleTouchMove,
     handleTouchEnd,
     handleTouchCancel,
-    // kept for API compatibility
     setAutoRotateEnabled: () => {},
   };
 }
