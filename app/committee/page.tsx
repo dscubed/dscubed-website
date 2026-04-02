@@ -9,9 +9,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function CommitteePage() {
   const COMMITTEES = [
-    { year: 2024, image: "/people/committee2024.png" },
-    { year: 2025, image: "/people/committee2025.jpg" },
     { year: 2026, image: "/people/committee2026.png" },
+    { year: 2025, image: "/people/committee2025.jpg" },
+    { year: 2024, image: "/people/committee2024.png" },
   ];
 
   return (
@@ -75,7 +75,7 @@ function CommitteePageCard({ year, image }: { year: number; image: string }) {
           height={400}
           alt={`${year} committee picture`}
         />
-        <div className="absolute bottom-0 left-0 right-0 top-1/2 bg-linear-to-t from-black/60 group-hover:from-white/0 to-transparent duration-300 transition" />
+        <div className="absolute bottom-0 left-0 right-0 top-1/2 bg-linear-to-t from-black/60 group-hover:from-black/50 to-transparent duration-300 transition" />
 
         <div className="absolute bottom-0 left-0 right-0 flex justify-between p-3">
           <h3 className="text-white font-medium leading-tight tracking-wide text-2xl sm:text-xl text-ellipsis overflow-hidden">
