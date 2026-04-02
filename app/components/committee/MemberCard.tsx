@@ -1,8 +1,17 @@
 import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 import GenericAvatar from "@/app/components/committee/GenericAvatar";
+import { ExecMember } from "./data/types";
 
 // Use the 'filter' prop to set Tailwind css filters on the image
+
+// if role is External Vice President or Internal Vice President, split into two lines for better display
+function splitLine(role: string): boolean {
+  if (role == "External Vice President" || role == "Internal Vice President") {
+    return true;
+  }
+  return false;
+}
 
 export default function MemberCard({
   name,
@@ -16,12 +25,12 @@ export default function MemberCard({
   filter?: string;
 }) {
   return (
-    <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-lg bg-background transition-all duration-300 hover:scale-105 group">
+    <div className="relative w-full aspect-3/4 rounded-2xl overflow-hidden shadow-lg bg-background transition-all duration-300 hover:scale-105 group">
       {image ? (
         <Image
           className={clsx(
             "object-cover w-full h-full absolute inset-0",
-            filter
+            filter,
           )}
           src={image}
           fill
@@ -36,14 +45,21 @@ export default function MemberCard({
       )}
       {/* Stronger, taller gradient overlay */}
       <div className="absolute inset-0 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
-        <div className="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black/90 via-black/60 to-black/0" />
+        <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black/70 via-black/30 to-black/0" />
       </div>
       {/* Text overlay */}
       <div className="absolute bottom-0 left-0 w-full p-5 flex flex-col items-start z-10">
-        <span className="uppercase text-blue-400 font-bold text-sm tracking-widest mb-1 drop-shadow-md">
-          {role}
+        <span className="uppercase text-accent font-bold text-md tracking-wide mb-1 drop-shadow-md">
+          {splitLine(role) ? (
+            <>
+              {role.split(" ")[0]} <br /> {role.split(" ")[1]}{" "}
+              {role.split(" ")[2]}
+            </>
+          ) : (
+            role
+          )}
         </span>
-        <span className="text-white font-semibold text-2xl drop-shadow-md leading-tight">
+        <span className="text-white text-2xl drop-shadow-md leading-tight tracking-wide">
           {name}
         </span>
       </div>

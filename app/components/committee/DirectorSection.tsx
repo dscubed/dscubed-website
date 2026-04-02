@@ -14,7 +14,7 @@ function getRole(director: Director): string {
   } else if (director.team == "AI @ DSCubed") {
     return "AI @ DSCubed";
   }
-  return `${director.team} Director`;
+  return `${director.team}`;
 }
 
 export default function DirectorSection({

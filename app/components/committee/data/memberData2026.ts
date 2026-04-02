@@ -6,12 +6,12 @@ export const executives: ExecMember[] = [
   {
     name: "Jake Paul",
     role: "President",
-    image: "/people/2026/jake-paul.jpg",
+    image: "/people/2026/jake-paul.png",
   },
   {
     name: "Geoffrey Chen",
     role: "Internal Vice President",
-    image: "/people/2026/geoffrey-chen.jpg",
+    image: "/people/2026/geoffrey-chen.png",
   },
   {
     name: "Rania Aziz",
