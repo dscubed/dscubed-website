@@ -11,27 +11,34 @@ export default function ExecutiveSection({
   teamPhoto?: string | StaticImageData;
 }) {
   return (
-    <Section>
-      <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
-      <div className="flex flex-wrap justify-center gap-5">
-        {executives.map((profile) => (
-          <div key={profile.name} className="flex justify-center">
-            <MemberCard {...profile} />
+    <Section className = "mt-16 mb-0">
+      <div className="flex flex-col gap-8">
+        <h2 className="text-[32px] font-medium text-[#B9B9B9]">EXECS & DIRECTORS</h2>
+        {teamPhoto && (
+          <div className="w-full overflow-hidden rounded-[20px]" style={{ height: '670px' }}>
+            <Image
+              src={teamPhoto}
+              alt="Executive Team"
+              width={1200}
+              height={600}
+              className="w-full h-full object-cover"
+            />
           </div>
-        ))}
+        )}
       </div>
-      {/* Conditionally render the team photo */}
-      {teamPhoto && (
-        <div className="w-full h-180 overflow-hidden rounded-lg">
-          <Image
-            src={teamPhoto}
-            alt="Executive Team"
-            width={1200}
-            height={600}
-            className="w-full rounded-lg object-cover"
-          />
+      <div className="flex flex-col gap-5">
+        <h2 className="text-[40px] font-medium text-white pl-[12px]">EXECUTIVES</h2>
+        <div className="grid grid-cols-5 gap-[12px]">
+          {executives.map((profile) => (
+            <div key={profile.name} >
+              <MemberCard {...profile} />
+            </div>
+          ))}
         </div>
-      )}
+      </div>
+
+
+      
     </Section>
   );
 }
