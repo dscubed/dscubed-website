@@ -11,128 +11,136 @@ export default function TeamsSection({
   teams: Team[];
   directors: Director[];
 }) {
-  // Extract Product Director from directors
+  // 1. Extract Product Director -- MemberData
   const productDirector = directors.find(
     (d) =>
-      d.team === "Product" ||
+      d.team === "Products" || 
       d.role?.toLowerCase().includes("product director"),
   );
 
-  // Extract Leads from directors (since they have their own sub-teams under Product)
+  // 2. Extract Leads 
+  // These will trigger the vertical "Featured" variant in MemberListItem
   const productLeads = directors.filter(
     (d) =>
-      ["AI", "C3", "IT"].includes(d.team as string) ||
-      (d.team === null && d.role?.toLowerCase().includes("lead")),
+      ["AI", "Connect3", "IT"].includes(d.team as string) ||
+      (d.role?.toLowerCase().includes("lead")),
   );
 
   return (
     <Section>
-      <h2 className="text-3xl font-bold text-center mb-8">Teams</h2>
+      <h2 className="text-[#B9B9B9] font-inter text-[32px] font-medium leading-normal not-italic text-start mb-8">
+      Teams
+      </h2>
+
       {teams.map((team, teamIndex) => {
-        const teamName = team.name || team.team || "";
-        const isProduct =
-          team.team === "Product" || teamName.toLowerCase() === "product";
+        const teamName = team.team || "";
+        const isProduct = teamName === "Products";
 
         if (isProduct) {
           // Group normal members by sub-team for Product team
-          const c3Members =
-            team.members.filter((m) => m.productTeam === "C3") || [];
-          const aiMembers =
-            team.members.filter((m) => m.productTeam === "AI") || [];
-          const itMembers =
-            team.members.filter((m) => m.productTeam === "IT") || [];
+          const c3Members = team.members.filter((m) => m.productTeam === "Connect3") || [];
+          const aiMembers = team.members.filter((m) => m.productTeam === "AI") || [];
+          const itMembers = team.members.filter((m) => m.productTeam === "IT") || [];
 
           return (
             <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-              {/* Product Team Name */}
-              <h3 className="text-4xl font-bold text-center">{teamName}</h3>
-
               {/* Product Team Image */}
               {team.image && (
-                <div className="w-full h-96 overflow-hidden rounded-lg">
+                <div className="w-full h-[650px] aspect-[275/147] overflow-hidden rounded-[20px]">
                   <Image
                     src={team.image}
                     alt={`${teamName} Team`}
                     width={1200}
-                    height={800}
+                    height={650}
                     className="w-full h-full object-cover"
                   />
                 </div>
               )}
 
-              {/* Product Leads */}
-              <div className="flex flex-col justify-center gap-5 mt-4">
-                <div className="flex justify-center flex-wrap gap-4">
+              {/* Product Team Name */}
+              <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
+                {teamName}
+              </h3>
+
+              {/* Product Leads (Vertical Cards Section) */}
+              <div className="flex flex-col items-center gap-5 mt-4">
+                <div className="flex justify-start flex-wrap gap-8">
                   {productDirector && (
-                    <div className="w-70 flex-col items-center text-center">
+                    <div className="w-[189px] flex-col items-start text-start">
                       <MemberListItem
                         {...productDirector}
-                        role={productDirector.role || "Product Director"}
+                        role={productDirector.role || "Products"}
+                        variant = "featured"
                       />
                     </div>
                   )}
                   {productLeads.map((lead, idx) => (
                     <div
                       key={`lead-${idx}`}
-                      className="w-70 flex-col items-center text-center"
+                      className="w-[189px] flex-col items-center text-start"
                     >
                       <MemberListItem
                         {...lead}
-                        role={lead.role || `${lead.team} Lead`}
+                        // Explicitly passing "Lead" triggers the vertical variant
+                        role={lead.role || `${lead.team}`}
+                        variant = "featured"
                       />
                     </div>
                   ))}
                 </div>
 
-                {/* C3 Sub-Team */}
+                {/* C3 Sub-Team (Horizontal Cards) */}
                 {c3Members.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">
-                      Connect3
-                    </h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
-                      {c3Members.map((profile, idx) => (
-                        <MemberListItem
-                          key={idx}
-                          role="Connect3 Officer"
-                          {...profile}
-                        />
-                      ))}
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">Connect3</h4>
+                    <div className="flex justify-center w-full">
+                      <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+                        {c3Members.map((profile, idx) => (
+                          <MemberListItem
+                            key={idx}
+                            role="Connect3 Officer"
+                            {...profile}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
-
-                {/* AI Sub-Team */}
-                {aiMembers.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">AI</h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
-                      {aiMembers.map((profile, idx) => (
-                        <MemberListItem
-                          key={idx}
-                          role="AI Officer"
-                          {...profile}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* IT Sub-Team */}
+                
+                {/* IT Sub-Team (Horizontal Cards) */}
                 {itMembers.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">IT</h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
-                      {itMembers.map((profile, idx) => (
-                        <MemberListItem
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">IT</h4>
+                    <div className="flex justify-center w-full">
+                      <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+                        {itMembers.map((profile, idx) => (
+                          <MemberListItem
                           key={idx}
                           role="IT Officer"
                           {...profile}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                          />
+                          ))}
+                          </div>
+                          </div>
+                          </div>
                 )}
+                {/* AI Sub-Team (Horizontal Cards) */}
+                {aiMembers.length > 0 && (
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">AI</h4>
+                    <div className="flex justify-center w-full">
+                      <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+                        {aiMembers.map((profile, idx) => (
+                          <MemberListItem
+                          key={idx}
+                          role="AI Engineer"
+                          {...profile}
+                          />
+                          ))}
+                          </div>
+                          </div>
+                          </div>
+                  )}
               </div>
             </div>
           );
@@ -141,23 +149,20 @@ export default function TeamsSection({
         // Standard rendering for other teams
         return (
           <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-            {/* Team Name */}
-            <h3 className="text-4xl font-bold text-center">{teamName}</h3>
-
-            {/* Team Image */}
             {team.image && (
-              <div className="w-full h-96 overflow-hidden rounded-lg">
+              <div className="w-full h-[650px] aspect-[275/147] overflow-hidden rounded-[20px]">
                 <Image
                   src={team.image}
                   alt={`${teamName} Team`}
                   width={1200}
-                  height={800}
+                  height={650}
                   className="w-full h-full object-cover"
                 />
               </div>
             )}
-
-            {/* Members List */}
+            <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
+              {teamName}
+            </h3>
             <MemberList teams={[team]} directors={directors} />
           </div>
         );

@@ -33,7 +33,7 @@ export type ExecRoles =
   | "Treasurer";
 
 export type Teams =
-  | "HR"
+  | "Human Resources"
   | "Education"
   | "Events"
   | "Industry"
@@ -41,6 +41,6 @@ export type Teams =
   | "Design" // Removed in 2025
   | "IT" // Merged into Product as of 2026
   | "AI @ DSCubed" // Merged into Product as of 2026
-  | "Product"; // New team as of 2026, combining AI, C3 and IT
+  | "Products"; // New team as of 2026, combining AI, C3 and IT
 
-export type ProductTeams = "AI" | "C3" | "IT";
+export type ProductTeams = "AI" | "Connect3" | "IT";

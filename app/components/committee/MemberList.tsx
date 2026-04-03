@@ -29,7 +29,7 @@ export default function MemberList({
                 d.role?.toLowerCase().includes(team.name.toLowerCase())),
           )
           .map((director) => {
-            let defaultRole = `${teamName} Director`;
+            let defaultRole = `${teamName}`;
             if (isDSCubedAI(teamName)) {
               defaultRole = "AI @ DSCubed";
             }
@@ -37,6 +37,7 @@ export default function MemberList({
               name: director.name,
               role: (director.role as string) || defaultRole,
               image: director.image,
+              variant: "featured"
             };
           });
 
@@ -56,19 +57,24 @@ export default function MemberList({
               </div>
             )}
 
-            {/* Officers Row */}
-            <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+    {/* Officers Row */}
+            <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
               {team.members.map((profile, profileIndex) => {
                 const officerRole = isDSCubedAI(teamName)
                   ? "AI @ DSCubed"
                   : `${teamName} Officer`;
 
                 return (
+                  <div 
+                    key={profileIndex} 
+                    className="w-[250px] flex-none" 
+                    >
                   <MemberListItem
                     role={officerRole}
                     {...profile}
                     key={profileIndex}
                   />
+                  </div>
                 );
               })}
             </div>

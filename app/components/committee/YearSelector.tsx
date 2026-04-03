@@ -17,7 +17,7 @@ export function YearSelector() {
   const pathname = usePathname();
 
   // Extract year from pathname
-  const selectedYear = parseInt(pathname.split("/").pop() || "2025", 10);
+  const selectedYear = parseInt(pathname.split("/").pop() || "2026", 10);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

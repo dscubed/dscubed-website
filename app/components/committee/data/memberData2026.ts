@@ -45,12 +45,12 @@ export const directors: Director[] = [
   },
   {
     name: "Charmaine Yang",
-    team: "HR",
+    team: "Human Resources",
     image: "/people/2025/charmaine-yang.png",
   },
   {
     name: "Pavan Dev",
-    team: "HR",
+    team: "Human Resources",
     image: "/people/2025/pavan-dev.png",
   },
   {
@@ -65,7 +65,7 @@ export const directors: Director[] = [
   },
   {
     name: "Tanat Chanwangsa",
-    team: "Product",
+    team: "Products",
     image: "/people/2025/tanat-chanwangsa.png",
   },
   {
@@ -75,7 +75,7 @@ export const directors: Director[] = [
   },
   {
     name: "Elyse Lee",
-    team: "C3",
+    team: "Connect3",
     image: "/people/2025/elyse-lee.png",
   },
 ];
@@ -110,7 +110,7 @@ export const teams: Team[] = [
     ],
   },
   {
-    team: "HR",
+    team: "Human Resources",
     image: "/people/2025-teams/HR-Team.png",
     members: [
       { name: "Hyunjae Ha", image: "/people/2025/hyunjae-ha.png" },
@@ -148,7 +148,7 @@ export const teams: Team[] = [
     ],
   },
   {
-    team: "Product",
+    team: "Products",
     image: "/people/2025-teams/Product-Team.png",
     members: [
       {
@@ -194,72 +194,72 @@ export const teams: Team[] = [
       {
         name: "Achal Jhawar",
         image: "/people/2025/achal-jhawar.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Andre Phan",
         image: "/people/2025/andre-phan.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Emma Xu",
         image: "/people/2025/emma-xu.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "John Ling",
         image: "/people/2025/john-ling.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Michael Tran",
         image: "/people/2025/michael-tran.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Nirav Pandey",
         image: "/people/2025/nirav-pandey.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Nitesh Kumar",
         image: "/people/2025/nitesh-kumar.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Peter Nguyen",
         image: "/people/2025/peter-nguyen.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Rasheed Mohammed",
         image: "/people/2025/rasheed-mohammed.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Shahira Jasmine",
         image: "/people/2025/shahira-jasmine.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Harguan Sehgal",
         image: "/people/2025/harguan-sehgal.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Keyur Gohel",
         image: "/people/2025/keyur-gohel.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Sri Vishwanath",
         image: "/people/2025/sri-vishwanath.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
       {
         name: "Vishesh Manik",
         image: "/people/2025/vishesh-manik.png",
-        productTeam: "C3",
+        productTeam: "Connect3",
       },
     ],
   },
