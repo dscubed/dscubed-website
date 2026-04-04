@@ -6,7 +6,7 @@ function getRole(director: Director): string {
   if (director.role) {
     return director.role;
   } else if (
-    director.team == "C3" ||
+    director.team == "Connect3" ||
     director.team == "AI" ||
     director.team == "IT"
   ) {

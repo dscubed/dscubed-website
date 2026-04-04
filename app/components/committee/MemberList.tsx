@@ -1,5 +1,6 @@
 import MemberListItem from "@/app/components/committee/MemberListItem";
 import { Director, Team } from "./data/types";
+import MemberCard from "./MemberCard";
 
 // The default role is set to '<Team name> Officer', so don't need to set it in members.js
 
@@ -37,7 +38,7 @@ export default function MemberList({
               name: director.name,
               role: (director.role as string) || defaultRole,
               image: director.image,
-              variant: "featured"
+              variant: "featured",
             };
           });
 
@@ -51,13 +52,13 @@ export default function MemberList({
                     key={`director-${directorIndex}`}
                     className="w-70 flex-col items-center text-center"
                   >
-                    <MemberListItem {...director} />
+                    <MemberCard {...director} />
                   </div>
                 ))}
               </div>
             )}
 
-    {/* Officers Row */}
+            {/* Officers Row */}
             <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
               {team.members.map((profile, profileIndex) => {
                 const officerRole = isDSCubedAI(teamName)
@@ -65,15 +66,12 @@ export default function MemberList({
                   : `${teamName} Officer`;
 
                 return (
-                  <div 
-                    key={profileIndex} 
-                    className="w-[250px] flex-none" 
-                    >
-                  <MemberListItem
-                    role={officerRole}
-                    {...profile}
-                    key={profileIndex}
-                  />
+                  <div key={profileIndex} className="w-[250px] flex-none">
+                    <MemberListItem
+                      role={officerRole}
+                      {...profile}
+                      key={profileIndex}
+                    />
                   </div>
                 );
               })}
