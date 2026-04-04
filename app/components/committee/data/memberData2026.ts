@@ -222,8 +222,8 @@ export const teams: Team[] = [
         productTeam: "C3",
       },
       {
-        name: "Nitesh Kumar",
-        image: "/people/2026/nitesh-kumar.png",
+        name: "Nitesh Palai",
+        image: "/people/2026/nitesh-palai.png",
         productTeam: "C3",
       },
       {
@@ -252,8 +252,8 @@ export const teams: Team[] = [
         productTeam: "C3",
       },
       {
-        name: "Sri Vishwanath",
-        image: "/people/2026/sri-vishwanath.png",
+        name: "Sri Ram Vishwanath",
+        image: "/people/2026/sri-ram-vishwanath.png",
         productTeam: "C3",
       },
       {
