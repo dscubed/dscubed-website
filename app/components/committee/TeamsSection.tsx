@@ -11,12 +11,14 @@ export default function TeamsSection({
   teams: Team[];
   directors: Director[];
 }) {
+  // 1. Extract Product Director -- MemberData
   const productDirector = directors.find(
     (d) =>
       d.team === "Products" ||
       d.role?.toLowerCase().includes("product director")
   );
 
+  // 2. Extract Leads 
   const productLeads = directors.filter(
     (d) =>
       ["AI", "Connect3", "IT"].includes(d.team as string) ||
@@ -34,12 +36,14 @@ export default function TeamsSection({
         const isProduct = teamName === "Products";
 
         if (isProduct) {
+          // Group normal members by sub-team for Product team
           const c3Members = team.members.filter((m) => m.productTeam === "Connect3") || [];
           const aiMembers = team.members.filter((m) => m.productTeam === "AI") || [];
           const itMembers = team.members.filter((m) => m.productTeam === "IT") || [];
 
           return (
             <div key={teamIndex} className="flex flex-col gap-5 mb-10">
+               {/* Product Team Image */}
               {team.image && (
                 <div className="w-full h-[650px] aspect-[275/147] overflow-hidden rounded-[20px]">
                   <Image
@@ -52,10 +56,12 @@ export default function TeamsSection({
                 </div>
               )}
 
+               {/* Product Team Name */}
               <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
                 {teamName}
               </h3>
 
+              {/* Product Leads (Vertical Cards Section) */}
               <div className="flex flex-col items-center gap-5 mt-4">
                 <div className="flex justify-center flex-wrap gap-8 w-full">
                   {productDirector && (
@@ -80,7 +86,7 @@ export default function TeamsSection({
                     </div>
                   ))}
                 </div>
-
+                {/* C3 Sub-Team (Horizontal Cards) */}
                 {c3Members.length > 0 && (
                   <div className="mt-8 w-full">
                     <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">Connect3</h4>
@@ -94,6 +100,7 @@ export default function TeamsSection({
                   </div>
                 )}
 
+                {/* IT Sub-Team (Horizontal Cards) */}
                 {itMembers.length > 0 && (
                   <div className="mt-8 w-full">
                     <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">IT</h4>
@@ -107,6 +114,7 @@ export default function TeamsSection({
                   </div>
                 )}
 
+                {/* AI Sub-Team (Horizontal Cards) */}
                 {aiMembers.length > 0 && (
                   <div className="mt-8 w-full">
                     <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">AI</h4>
@@ -124,6 +132,7 @@ export default function TeamsSection({
           );
         }
 
+        // Standard rendering for other teams
         return (
           <div key={teamIndex} className="flex flex-col gap-5 mb-10">
             {team.image && (
