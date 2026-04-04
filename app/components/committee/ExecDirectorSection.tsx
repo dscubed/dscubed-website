@@ -74,7 +74,7 @@ export default function ExecDirectorSection({
       <CardGroup
         title="EXECUTIVES"
         items={executives}
-        widthClass="w-[calc((100%-48px)/5)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+        widthClass="w-[calc((100%-48px)/5)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
       />
       <CardGroup
         title="OPERATIONS"
@@ -84,7 +84,7 @@ export default function ExecDirectorSection({
           role: getRole(d),
           image: d.image,
         }))}
-        widthClass="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+        widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
       />
       <CardGroup
         title="PRODUCTS"
@@ -94,7 +94,7 @@ export default function ExecDirectorSection({
           role: getRole(d),
           image: d.image,
         }))}
-        widthClass="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+        widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
       />
     </div>
   );

@@ -122,12 +122,12 @@ export const teams: Team[] = [
     team: "Industry",
     image: "/people/2026-teams/2026-industry.png",
     members: [
-      { name: "Angelo Vinluan", image: "/people/2026/angelo-vinluan.png" },
+      { name: "Angelo Vinluan" },
       { name: "Eliza Zhang", image: "/people/2026/eliza-zhang.png" },
       { name: "Jesselyn Lim", image: "/people/2026/jesselyn-lim.png" },
       { name: "Kalkin Raheja", image: "/people/2026/kalkin-raheja.png" },
       { name: "Luca Xu", image: "/people/2026/luca-xu.png" },
-      { name: "Paige Nguyen", image: "/people/2026/paige-nguyen.png" },
+      { name: "Paige Nguyen" },
       { name: "Sam Bajracharya", image: "/people/2026/sam-bajracharya.png" },
       {
         name: "Thiviru Wanninayaka",

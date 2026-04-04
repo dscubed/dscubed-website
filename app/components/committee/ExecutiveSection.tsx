@@ -43,7 +43,7 @@ export default function ExecutiveSection({
           >
             <FeaturedCard
               {...profile}
-              className="w-[calc((100%-48px)/5)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+              className="w-[calc((100%-48px)/5)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
             />
           </motion.div>
         ))}

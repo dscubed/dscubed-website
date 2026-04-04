@@ -102,7 +102,7 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
             role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
             image: d.image,
           }))}
-          widthClass="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+          widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
         />
       )}
 

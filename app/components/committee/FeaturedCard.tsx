@@ -55,8 +55,8 @@ export default function FeaturedCard({
         <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black/70 via-black/30 to-black/0" />
       </div>
       {/* Text overlay */}
-      <div className="absolute bottom-0 left-0 w-full p-5 sm:p-3 flex flex-col items-start z-10">
-        <span className="uppercase text-accent font-bold text-base md:text-sm sm:text-xs tracking-wide mb-1 drop-shadow-md">
+      <div className="absolute bottom-0 left-0 w-full p-4 sm:p-3 flex flex-col items-start z-10">
+        <span className="uppercase text-accent font-bold text-base lg:text-sm sm:text-xs tracking-wide mb-1 drop-shadow-md">
           {splitLine(role) ? (
             <>
               {role.split(" ")[0]} <br /> {role.split(" ")[1]}{" "}
@@ -66,7 +66,7 @@ export default function FeaturedCard({
             role
           )}
         </span>
-        <span className="text-white text-xl md:text-lg sm:text-base drop-shadow-md leading-tight tracking-wide">
+        <span className="text-white text-xl lg:text-lg sm:text-base drop-shadow-md leading-tight tracking-wide">
           {name}
         </span>
       </div>

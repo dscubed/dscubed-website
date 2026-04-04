@@ -56,7 +56,7 @@ function DirectorGroup({
               delay: 0.1 + index * 0.08,
               ease: "easeOut",
             }}
-            className="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+            className="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
           >
             <FeaturedCard
               name={profile.name}
