@@ -40,9 +40,7 @@ function DirectorGroup({
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex items-baseline gap-3 uppercase"
       >
-        <h2 className="font-medium text-white sm:text-xl text-3xl">
-          {title}
-        </h2>
+        <h2 className="font-medium text-white sm:text-xl text-3xl">{title}</h2>
         <span className="text-2xl sm:text-lg font-medium text-[#B9B9B9]">
           {subtitle}
         </span>

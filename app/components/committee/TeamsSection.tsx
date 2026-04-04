@@ -3,6 +3,7 @@ import MemberList from "@/app/components/committee/MemberList";
 import MemberListItem from "@/app/components/committee/MemberListItem";
 import Image from "next/image";
 import { Director, Team } from "./data/types";
+import MemberCard from "./MemberCard";
 
 export default function TeamsSection({
   teams,
@@ -11,27 +12,29 @@ export default function TeamsSection({
   teams: Team[];
   directors: Director[];
 }) {
-  // Extract Product Director from directors
+  // 1. Extract Product Director -- MemberData
   const productDirector = directors.find(
     (d) =>
-      d.team === "Product" ||
+      d.team === "Products" ||
       d.role?.toLowerCase().includes("product director"),
   );
 
-  // Extract Leads from directors (since they have their own sub-teams under Product)
+  // 2. Extract Leads
   const productLeads = directors.filter(
     (d) =>
       ["AI", "C3", "IT"].includes(d.team as string) ||
-      (d.team === null && d.role?.toLowerCase().includes("lead")),
+      d.role?.toLowerCase().includes("lead"),
   );
 
   return (
     <Section>
-      <h2 className="text-3xl font-bold text-center mb-8">Teams</h2>
+      <h2 className="text-[#B9B9B9] font-inter text-[32px] font-medium leading-normal not-italic text-start mb-8">
+        Teams
+      </h2>
+
       {teams.map((team, teamIndex) => {
-        const teamName = team.name || team.team || "";
-        const isProduct =
-          team.team === "Product" || teamName.toLowerCase() === "product";
+        const teamName = team.team || "";
+        const isProduct = teamName === "Products";
 
         if (isProduct) {
           // Group normal members by sub-team for Product team
@@ -44,9 +47,6 @@ export default function TeamsSection({
 
           return (
             <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-              {/* Product Team Name */}
-              <h3 className="text-4xl font-bold text-center">{teamName}</h3>
-
               {/* Product Team Image */}
               {team.image && (
                 <div className="w-full overflow-hidden rounded-lg aspect-5/2">
@@ -60,75 +60,80 @@ export default function TeamsSection({
                 </div>
               )}
 
-              {/* Product Leads */}
-              <div className="flex flex-col justify-center gap-5 mt-4">
-                <div className="flex justify-center flex-wrap gap-4">
+              {/* Product Team Name */}
+              <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
+                {teamName}
+              </h3>
+
+              {/* Product Leads (Vertical Cards Section) */}
+              <div className="flex flex-col items-center gap-5 mt-4">
+                <div className="flex justify-center flex-wrap gap-8 w-full">
                   {productDirector && (
-                    <div className="w-70 flex-col items-center text-center">
-                      <MemberListItem
+                    <div className="w-[189px] flex-col items-start text-start">
+                      <MemberCard
                         {...productDirector}
-                        role={productDirector.role || "Product Director"}
+                        role={productDirector.role || "Products"}
                       />
                     </div>
                   )}
                   {productLeads.map((lead, idx) => (
                     <div
                       key={`lead-${idx}`}
-                      className="w-70 flex-col items-center text-center"
+                      className="w-[189px] flex-col items-center text-start"
                     >
-                      <MemberListItem
+                      <MemberCard
                         {...lead}
-                        role={lead.role || `${lead.team} Lead`}
+                        role={lead.role || `${lead.team}`}
                       />
                     </div>
                   ))}
                 </div>
-
-                {/* C3 Sub-Team */}
+                {/* C3 Sub-Team (Horizontal Cards) */}
                 {c3Members.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
                       Connect3
                     </h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+                    <div className="flex flex-wrap justify-center gap-6 w-full">
                       {c3Members.map((profile, idx) => (
-                        <MemberListItem
-                          key={idx}
-                          role="Connect3 Officer"
-                          {...profile}
-                        />
+                        <div key={idx} className="w-[250px] flex-none">
+                          <MemberListItem
+                            role="Connect3 Officer"
+                            {...profile}
+                          />
+                        </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* AI Sub-Team */}
-                {aiMembers.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">AI</h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
-                      {aiMembers.map((profile, idx) => (
-                        <MemberListItem
-                          key={idx}
-                          role="AI Officer"
-                          {...profile}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* IT Sub-Team */}
+                {/* IT Sub-Team (Horizontal Cards) */}
                 {itMembers.length > 0 && (
-                  <div className="mt-8">
-                    <h4 className="text-2xl font-bold text-center mb-6">IT</h4>
-                    <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
+                      IT
+                    </h4>
+                    <div className="flex flex-wrap justify-center gap-6 w-full">
                       {itMembers.map((profile, idx) => (
-                        <MemberListItem
-                          key={idx}
-                          role="IT Officer"
-                          {...profile}
-                        />
+                        <div key={idx} className="w-[250px] flex-none">
+                          <MemberListItem role="IT Officer" {...profile} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* AI Sub-Team (Horizontal Cards) */}
+                {aiMembers.length > 0 && (
+                  <div className="mt-8 w-full">
+                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
+                      AI
+                    </h4>
+                    <div className="flex flex-wrap justify-center gap-6 w-full">
+                      {aiMembers.map((profile, idx) => (
+                        <div key={idx} className="w-[250px] flex-none">
+                          <MemberListItem role="AI Engineer" {...profile} />
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -141,10 +146,6 @@ export default function TeamsSection({
         // Standard rendering for other teams
         return (
           <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-            {/* Team Name */}
-            <h3 className="text-4xl font-bold text-center">{teamName}</h3>
-
-            {/* Team Image */}
             {team.image && (
               <div className="w-full overflow-hidden rounded-lg aspect-5/2">
                 <Image
@@ -156,8 +157,9 @@ export default function TeamsSection({
                 />
               </div>
             )}
-
-            {/* Members List */}
+            <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
+              {teamName}
+            </h3>
             <MemberList teams={[team]} directors={directors} />
           </div>
         );

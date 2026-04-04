@@ -65,7 +65,7 @@ export const directors: Director[] = [
   },
   {
     name: "Tanat Chanwangsa",
-    team: "Product",
+    team: "Products",
     image: "/people/2026/tanat-chanwangsa.png",
   },
   {
@@ -148,8 +148,8 @@ export const teams: Team[] = [
     ],
   },
   {
-    team: "Product",
-    image: "/people/2026-teams/2026-product.png",
+    team: "Products",
+    image: "/people/2026-teams/2026-products.png",
     members: [
       {
         name: "Ishan Deshpande",

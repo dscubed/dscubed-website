@@ -1,5 +1,6 @@
 import MemberListItem from "@/app/components/committee/MemberListItem";
 import { Director, Team } from "./data/types";
+import MemberCard from "./MemberCard";
 
 // The default role is set to '<Team name> Officer', so don't need to set it in members.js
 
@@ -29,7 +30,7 @@ export default function MemberList({
                 d.role?.toLowerCase().includes(team.name.toLowerCase())),
           )
           .map((director) => {
-            let defaultRole = `${teamName} Director`;
+            let defaultRole = `${teamName}`;
             if (isDSCubedAI(teamName)) {
               defaultRole = "AI @ DSCubed";
             }
@@ -37,6 +38,7 @@ export default function MemberList({
               name: director.name,
               role: (director.role as string) || defaultRole,
               image: director.image,
+              variant: "featured",
             };
           });
 
@@ -50,25 +52,27 @@ export default function MemberList({
                     key={`director-${directorIndex}`}
                     className="w-70 flex-col items-center text-center"
                   >
-                    <MemberListItem {...director} />
+                    <MemberCard {...director} />
                   </div>
                 ))}
               </div>
             )}
 
             {/* Officers Row */}
-            <div className="grid grid-cols-4 lg:grid-cols-2 sm:grid-cols-1 gap-4">
+            <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
               {team.members.map((profile, profileIndex) => {
                 const officerRole = isDSCubedAI(teamName)
                   ? "AI @ DSCubed"
                   : `${teamName} Officer`;
 
                 return (
-                  <MemberListItem
-                    role={officerRole}
-                    {...profile}
-                    key={profileIndex}
-                  />
+                  <div key={profileIndex} className="w-[250px] flex-none">
+                    <MemberListItem
+                      role={officerRole}
+                      {...profile}
+                      key={profileIndex}
+                    />
+                  </div>
                 );
               })}
             </div>
