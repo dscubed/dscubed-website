@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import MemberCard from "@/app/components/committee/MemberCard";
+import FeaturedCard from "@/app/components/committee/FeaturedCard";
 import { GroupHeading } from "./GroupHeading";
 import { Director, ExecMember } from "./data/types";
 
@@ -21,7 +21,7 @@ function getRole(director: Director): string {
   return `${director.team}`;
 }
 
-function CardGroup({
+export function CardGroup({
   title,
   subtitle,
   items,
@@ -51,7 +51,7 @@ function CardGroup({
             }}
             className={widthClass}
           >
-            <MemberCard {...item} />
+            <FeaturedCard {...item} />
           </motion.div>
         ))}
       </div>

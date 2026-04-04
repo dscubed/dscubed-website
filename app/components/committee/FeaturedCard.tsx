@@ -13,7 +13,7 @@ function splitLine(role: string): boolean {
   return false;
 }
 
-export default function MemberCard({
+export default function FeaturedCard({
   name,
   role,
   image,

@@ -1,6 +1,6 @@
-import MemberListItem from "@/app/components/committee/MemberListItem";
+import MemberListCard from "@/app/components/committee/MemberListCard";
 import { Director, Team } from "./data/types";
-import MemberCard from "./MemberCard";
+import FeaturedCard from "./FeaturedCard";
 
 // The default role is set to '<Team name> Officer', so don't need to set it in members.js
 
@@ -52,7 +52,7 @@ export default function MemberList({
                     key={`director-${directorIndex}`}
                     className="w-70 flex-col items-center text-center"
                   >
-                    <MemberCard {...director} />
+                    <FeaturedCard {...director} />
                   </div>
                 ))}
               </div>
@@ -66,8 +66,11 @@ export default function MemberList({
                   : `${teamName} Officer`;
 
                 return (
-                  <div key={profileIndex} className="w-[250px] flex-none">
-                    <MemberListItem
+                  <div
+                    key={profileIndex}
+                    className="w-[250px] sm:w-[140px] flex-none"
+                  >
+                    <MemberListCard
                       role={officerRole}
                       {...profile}
                       key={profileIndex}

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import MemberCard from "@/app/components/committee/MemberCard";
+import FeaturedCard from "@/app/components/committee/FeaturedCard";
 import { StaticImageData } from "next/image";
 import { ExecMember } from "./data/types";
 
@@ -39,9 +39,12 @@ export default function ExecutiveSection({
               delay: 0.1 + index * 0.08,
               ease: "easeOut",
             }}
-            className="w-[calc((100%-48px)/5)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+            className="flex flex-wrap justify-center gap-3"
           >
-            <MemberCard {...profile} />
+            <FeaturedCard
+              {...profile}
+              className="w-[calc((100%-48px)/5)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+            />
           </motion.div>
         ))}
       </div>

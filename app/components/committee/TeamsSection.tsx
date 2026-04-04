@@ -3,11 +3,12 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import MemberCard from "./MemberCard";
-import MemberListItem from "./MemberListItem";
+import FeaturedCard from "./FeaturedCard";
+import MemberListCard from "./MemberListCard";
 import { GroupHeading } from "./GroupHeading";
 import { SectionHeading } from "./SectionHeading";
 import { Director, Team } from "./data/types";
+import { CardGroup } from "./ExecDirectorSection";
 
 function isDSCubedAI(team: string | null | undefined) {
   return team === "AI @ DSCubed" || team === "AI@DSCubed";
@@ -92,32 +93,17 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
         </motion.div>
       )}
 
-      {/* Team name */}
-      <GroupHeading title={teamName} inView={inView} />
-
-      {/* Directors */}
+      {/* Name + Directors */}
       {teamDirectors.length > 0 && (
-        <div className="flex justify-center flex-wrap gap-4">
-          {teamDirectors.map((d, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.4,
-                delay: 0.15 + i * 0.08,
-                ease: "easeOut",
-              }}
-              className="w-[189px]"
-            >
-              <MemberCard
-                name={d.name}
-                role={d.role || `${d.team}`}
-                image={d.image}
-              />
-            </motion.div>
-          ))}
-        </div>
+        <CardGroup
+          title={teamName}
+          items={teamDirectors.map((d) => ({
+            name: d.name,
+            role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
+            image: d.image,
+          }))}
+          widthClass="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+        />
       )}
 
       {/* Members */}
@@ -167,9 +153,9 @@ function MemberGroup({
               delay: delay + i * 0.04,
               ease: "easeOut",
             }}
-            className="w-[250px] flex-none"
+            className="w-[250px] sm:w-[150px] flex-none"
           >
-            <MemberListItem
+            <MemberListCard
               name={member.name}
               image={member.image}
               role={member.role}

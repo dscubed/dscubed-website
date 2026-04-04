@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import MemberCard from "@/app/components/committee/MemberCard";
+import FeaturedCard from "@/app/components/committee/FeaturedCard";
 import { Director } from "./data/types";
 
 function getRole(director: Director): string {
@@ -58,7 +58,7 @@ function DirectorGroup({
             }}
             className="w-[calc((100%-60px)/6)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
           >
-            <MemberCard
+            <FeaturedCard
               name={profile.name}
               role={getRole(profile)}
               image={profile.image}
