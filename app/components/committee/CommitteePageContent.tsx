@@ -5,10 +5,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
-import ExecutiveSection from "@/app/components/committee/ExecutiveSection";
-import DirectorSection from "@/app/components/committee/DirectorSection";
+import ExecDirectorSection from "@/app/components/committee/ExecDirectorSection";
 import TeamsSection from "@/app/components/committee/TeamsSection";
 import { CommitteePageHeader } from "@/app/components/committee/CommitteePageHeader";
+import { SectionHeading } from "@/app/components/committee/SectionHeading";
 import { Director, ExecMember, Team } from "./data/types";
 
 interface CommitteePageContentProps {
@@ -27,7 +27,10 @@ export function CommitteePageContent({
   teams,
 }: CommitteePageContentProps) {
   const execPhotoRef = useRef(null);
-  const execPhotoInView = useInView(execPhotoRef, { once: true, margin: "-100px" });
+  const execPhotoInView = useInView(execPhotoRef, {
+    once: true,
+    margin: "-100px",
+  });
 
   return (
     <>
@@ -51,37 +54,37 @@ export function CommitteePageContent({
         </motion.div>
 
         <div className="flex flex-col bg-background py-12 px-8 gap-6">
-          <motion.div
-            ref={execPhotoRef}
-            initial={{ opacity: 0, y: 40 }}
-            animate={execPhotoInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col gap-4 sm:gap-2"
-          >
-            <h2 className="text-2xl sm:text-lg font-medium text-[#B9B9B9]">
-              EXECS & DIRECTORS
-            </h2>
-            <Image
-              className="w-full min-h-80 aspect-video object-cover rounded-xl brightness-[1.1] saturate-[1.2]"
-              src={execsPhoto || ""}
-              alt={"Executive team photo"}
-              width={1280}
-              height={720}
+          {/* Execs & Directors section heading + team photo */}
+          <div className="flex flex-col gap-4 sm:gap-2">
+            <SectionHeading>Execs & Directors</SectionHeading>
+            {execsPhoto && (
+              <motion.div
+                ref={execPhotoRef}
+                initial={{ opacity: 0, y: 40 }}
+                animate={execPhotoInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <Image
+                  className="w-full min-h-80 aspect-video object-cover rounded-xl brightness-[1.1] saturate-[1.2]"
+                  src={execsPhoto}
+                  alt={"Executive team photo"}
+                  width={1280}
+                  height={720}
+                />
+              </motion.div>
+            )}
+          </div>
+
+          {/* Merged Exec + Director cards */}
+          {executives && directors && (
+            <ExecDirectorSection
+              executives={executives}
+              directors={directors}
             />
-          </motion.div>
-
-          {/* Executive Section - rendered if executives data provided */}
-          {executives && executives.length > 0 && (
-            <ExecutiveSection executives={executives} teamPhoto={execsPhoto} />
-          )}
-
-          {/* Director Section - rendered if directors data provided */}
-          {directors && directors.length > 0 && (
-            <DirectorSection directors={directors} />
           )}
         </div>
 
-        {/* Teams Section - rendered if teams data provided */}
+        {/* Teams Section */}
         {teams && teams.length > 0 && (
           <TeamsSection teams={teams} directors={directors || []} />
         )}

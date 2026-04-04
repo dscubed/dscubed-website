@@ -1,9 +1,185 @@
-import Section from "@/app/components/Section";
-import MemberList from "@/app/components/committee/MemberList";
-import MemberListItem from "@/app/components/committee/MemberListItem";
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { Director, Team } from "./data/types";
 import MemberCard from "./MemberCard";
+import MemberListItem from "./MemberListItem";
+import { GroupHeading } from "./GroupHeading";
+import { SectionHeading } from "./SectionHeading";
+import { Director, Team } from "./data/types";
+
+function isDSCubedAI(team: string | null | undefined) {
+  return team === "AI @ DSCubed" || team === "AI@DSCubed";
+}
+
+function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const teamName = team.name || team.team || "";
+  const isProduct = team.team === "Products";
+
+  // Find directors for this team
+  const teamDirectors = isProduct
+    ? [
+        ...directors.filter(
+          (d) =>
+            d.team === "Products" ||
+            d.role?.toLowerCase().includes("product director"),
+        ),
+        ...directors.filter(
+          (d) =>
+            ["AI", "C3", "IT"].includes(d.team as string) ||
+            d.role?.toLowerCase().includes("lead"),
+        ),
+      ]
+    : directors
+        .filter(
+          (d) =>
+            d.team === team.team ||
+            (d.team === null &&
+              team.name &&
+              d.role?.toLowerCase().includes(team.name.toLowerCase())),
+        )
+        .map((d) => ({
+          ...d,
+          role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
+        }));
+
+  // Group members by sub-team for product, or flat list for standard
+  const subTeams = isProduct
+    ? [
+        {
+          name: "Connect3",
+          role: "Connect3 Officer",
+          members: team.members.filter((m) => m.productTeam === "C3"),
+        },
+        {
+          name: "IT",
+          role: "IT Officer",
+          members: team.members.filter((m) => m.productTeam === "IT"),
+        },
+        {
+          name: "AI",
+          role: "AI Engineer",
+          members: team.members.filter((m) => m.productTeam === "AI"),
+        },
+      ].filter((s) => s.members.length > 0)
+    : null;
+
+  const officerRole = isDSCubedAI(teamName)
+    ? "AI @ DSCubed"
+    : `${teamName} Officer`;
+
+  return (
+    <div ref={ref} className="flex flex-col gap-5">
+      {/* Team photo */}
+      {team.image && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="w-full overflow-hidden rounded-lg aspect-5/2"
+        >
+          <Image
+            src={team.image}
+            alt={`${teamName} Team`}
+            width={1600}
+            height={900}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      )}
+
+      {/* Team name */}
+      <GroupHeading title={teamName} inView={inView} />
+
+      {/* Directors */}
+      {teamDirectors.length > 0 && (
+        <div className="flex justify-center flex-wrap gap-4">
+          {teamDirectors.map((d, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.4,
+                delay: 0.15 + i * 0.08,
+                ease: "easeOut",
+              }}
+              className="w-[189px]"
+            >
+              <MemberCard
+                name={d.name}
+                role={d.role || `${d.team}`}
+                image={d.image}
+              />
+            </motion.div>
+          ))}
+        </div>
+      )}
+
+      {/* Members */}
+      {subTeams
+        ? subTeams.map((sub, subIndex) => (
+            <MemberGroup
+              key={subIndex}
+              title={sub.name}
+              members={sub.members.map((m) => ({ ...m, role: sub.role }))}
+              inView={inView}
+              delay={0.2 + subIndex * 0.1}
+            />
+          ))
+        : team.members.length > 0 && (
+            <MemberGroup
+              members={team.members.map((m) => ({ ...m, role: officerRole }))}
+              inView={inView}
+              delay={0.2}
+            />
+          )}
+    </div>
+  );
+}
+
+function MemberGroup({
+  title,
+  members,
+  inView,
+  delay = 0,
+}: {
+  title?: string;
+  members: { name: string; image?: string; role: string }[];
+  inView: boolean;
+  delay?: number;
+}) {
+  return (
+    <div className="flex flex-col gap-4 mt-4">
+      {title && <GroupHeading title={title} inView={inView} />}
+      <div className="flex flex-wrap justify-center gap-4 w-full">
+        {members.map((member, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.3,
+              delay: delay + i * 0.04,
+              ease: "easeOut",
+            }}
+            className="w-[250px] flex-none"
+          >
+            <MemberListItem
+              name={member.name}
+              image={member.image}
+              role={member.role}
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function TeamsSection({
   teams,
@@ -12,158 +188,12 @@ export default function TeamsSection({
   teams: Team[];
   directors: Director[];
 }) {
-  // 1. Extract Product Director -- MemberData
-  const productDirector = directors.find(
-    (d) =>
-      d.team === "Products" ||
-      d.role?.toLowerCase().includes("product director"),
-  );
-
-  // 2. Extract Leads
-  const productLeads = directors.filter(
-    (d) =>
-      ["AI", "C3", "IT"].includes(d.team as string) ||
-      d.role?.toLowerCase().includes("lead"),
-  );
-
   return (
-    <Section>
-      <h2 className="text-[#B9B9B9] font-inter text-[32px] font-medium leading-normal not-italic text-start mb-8">
-        Teams
-      </h2>
-
-      {teams.map((team, teamIndex) => {
-        const teamName = team.team || "";
-        const isProduct = teamName === "Products";
-
-        if (isProduct) {
-          // Group normal members by sub-team for Product team
-          const c3Members =
-            team.members.filter((m) => m.productTeam === "C3") || [];
-          const aiMembers =
-            team.members.filter((m) => m.productTeam === "AI") || [];
-          const itMembers =
-            team.members.filter((m) => m.productTeam === "IT") || [];
-
-          return (
-            <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-              {/* Product Team Image */}
-              {team.image && (
-                <div className="w-full overflow-hidden rounded-lg aspect-5/2">
-                  <Image
-                    src={team.image}
-                    alt={`${teamName} Team`}
-                    width={1600}
-                    height={900}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
-
-              {/* Product Team Name */}
-              <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
-                {teamName}
-              </h3>
-
-              {/* Product Leads (Vertical Cards Section) */}
-              <div className="flex flex-col items-center gap-5 mt-4">
-                <div className="flex justify-center flex-wrap gap-8 w-full">
-                  {productDirector && (
-                    <div className="w-[189px] flex-col items-start text-start">
-                      <MemberCard
-                        {...productDirector}
-                        role={productDirector.role || "Products"}
-                      />
-                    </div>
-                  )}
-                  {productLeads.map((lead, idx) => (
-                    <div
-                      key={`lead-${idx}`}
-                      className="w-[189px] flex-col items-center text-start"
-                    >
-                      <MemberCard
-                        {...lead}
-                        role={lead.role || `${lead.team}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-                {/* C3 Sub-Team (Horizontal Cards) */}
-                {c3Members.length > 0 && (
-                  <div className="mt-8 w-full">
-                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
-                      Connect3
-                    </h4>
-                    <div className="flex flex-wrap justify-center gap-6 w-full">
-                      {c3Members.map((profile, idx) => (
-                        <div key={idx} className="w-[250px] flex-none">
-                          <MemberListItem
-                            role="Connect3 Officer"
-                            {...profile}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* IT Sub-Team (Horizontal Cards) */}
-                {itMembers.length > 0 && (
-                  <div className="mt-8 w-full">
-                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
-                      IT
-                    </h4>
-                    <div className="flex flex-wrap justify-center gap-6 w-full">
-                      {itMembers.map((profile, idx) => (
-                        <div key={idx} className="w-[250px] flex-none">
-                          <MemberListItem role="IT Officer" {...profile} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* AI Sub-Team (Horizontal Cards) */}
-                {aiMembers.length > 0 && (
-                  <div className="mt-8 w-full">
-                    <h4 className="text-white text-3xl font-medium font-['Inter'] mb-6 text-start">
-                      AI
-                    </h4>
-                    <div className="flex flex-wrap justify-center gap-6 w-full">
-                      {aiMembers.map((profile, idx) => (
-                        <div key={idx} className="w-[250px] flex-none">
-                          <MemberListItem role="AI Engineer" {...profile} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        }
-
-        // Standard rendering for other teams
-        return (
-          <div key={teamIndex} className="flex flex-col gap-5 mb-10">
-            {team.image && (
-              <div className="w-full overflow-hidden rounded-lg aspect-5/2">
-                <Image
-                  src={team.image}
-                  alt={`${teamName} Team`}
-                  width={1600}
-                  height={900}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-            <h3 className="text-white font-inter text-[40px] font-medium leading-normal not-italic text-start">
-              {teamName}
-            </h3>
-            <MemberList teams={[team]} directors={directors} />
-          </div>
-        );
-      })}
-    </Section>
+    <div className="flex flex-col py-12 px-8 gap-10">
+      <SectionHeading>Teams</SectionHeading>
+      {teams.map((team, index) => (
+        <TeamBlock key={index} team={team} directors={directors} />
+      ))}
+    </div>
   );
 }
