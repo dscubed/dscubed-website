@@ -27,25 +27,40 @@ export function CommitteePageContent({
       <Navbar />
 
       <main>
-        <div className="px-2 mx-auto max-w-screen-xl">
+        <div className="pt-8 pb-8 px-6 mx-auto max-w-screen-xl">
           <CommitteePageHeader />
-          <Image
-            className="w-full max-w-screen-2xl min-h-80 aspect-video mx-auto rounded-2xl object-cover brightness-[1.1] saturate-[1.2]"
-            src={committeePhoto}
-            alt={"Committee group photo"}
-            width={1280}
-          />
         </div>
+        <Image
+          className="w-full min-h-80 aspect-video object-cover brightness-[1.1] saturate-[1.2]"
+          src={committeePhoto}
+          alt={"Committee group photo"}
+          width={1280}
+        />
 
-        {/* Executive Section - rendered if executives data provided */}
-        {executives && executives.length > 0 && (
-          <ExecutiveSection executives={executives} teamPhoto={execsPhoto} />
-        )}
+        <div className="flex flex-col bg-background py-12 px-8 gap-6">
+          <div className="flex flex-col gap-4 sm:gap-2">
+            <h2 className="text-2xl sm:text-lg font-medium text-[#B9B9B9]">
+              EXECS & DIRECTORS
+            </h2>
+            <Image
+              className="w-full min-h-80 aspect-video object-cover rounded-xl brightness-[1.1] saturate-[1.2]"
+              src={execsPhoto || ""}
+              alt={"Executive team photo"}
+              width={1280}
+              height={720}
+            />
+          </div>
 
-        {/* Director Section - rendered if directors data provided */}
-        {directors && directors.length > 0 && (
-          <DirectorSection directors={directors} />
-        )}
+          {/* Executive Section - rendered if executives data provided */}
+          {executives && executives.length > 0 && (
+            <ExecutiveSection executives={executives} teamPhoto={execsPhoto} />
+          )}
+
+          {/* Director Section - rendered if directors data provided */}
+          {directors && directors.length > 0 && (
+            <DirectorSection directors={directors} />
+          )}
+        </div>
 
         {/* Teams Section - rendered if teams data provided */}
         {teams && teams.length > 0 && (

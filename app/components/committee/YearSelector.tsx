@@ -41,12 +41,12 @@ export function YearSelector() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          "flex items-center gap-2 px-5 py-3 bg-background font-medium",
-          isOpen ? "rounded-t-xl" : "rounded-xl",
+          "flex items-center gap-3 sm:gap-2 px-4 py-3 sm:px-2 sm:py-1.5 bg-background font-semibold text-xl sm:text-base",
+          isOpen ? "rounded-t-lg" : "rounded-lg",
         )}
       >
-        <span className="font-bold text-white">Year:</span>
-        <span className="text-accent font-semibold">{selectedYear}</span>
+        <span className="text-white tracking-wide">Year:</span>
+        <span className="text-accent">{selectedYear}</span>
         <ChevronDownIcon
           className={`w-4 h-4 text-accent transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
@@ -59,7 +59,7 @@ export function YearSelector() {
             <button
               key={page.year}
               onClick={() => handleSelect(page.year)}
-              className={`w-full py-3 text-center font-semibold transition-colors duration-100 ${
+              className={`w-full py-2  sm:py-1.5 text-center text-lg sm:text-base font-semibold transition-colors duration-100 ${
                 page.year === selectedYear
                   ? "bg-accent text-white"
                   : "text-accent hover:bg-white/5"

@@ -1,6 +1,5 @@
-import Section from "@/app/components/Section";
 import MemberCard from "@/app/components/committee/MemberCard";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import { ExecMember } from "./data/types";
 
 export default function ExecutiveSection({
@@ -11,27 +10,22 @@ export default function ExecutiveSection({
   teamPhoto?: string | StaticImageData;
 }) {
   return (
-    <Section>
-      <h2 className="text-5xl font-bold text-center mb-8">Executives</h2>
-      <div className="grid grid-cols-5 justify-center gap-5">
-        {executives.map((profile) => (
-          <div key={profile.name} className="flex w-full justify-center">
+    <div className="flex flex-col gap-3">
+      <div className="flex items-baseline gap-3">
+        <h2 className="sm:text-xl text-3xl font-medium text-white uppercase">
+          EXECUTIVES
+        </h2>
+      </div>
+      <div className="flex flex-wrap justify-center gap-3">
+        {executives.map((profile, index) => (
+          <div
+            key={index}
+            className="w-[calc((100%-48px)/5)] md:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+          >
             <MemberCard {...profile} />
           </div>
         ))}
       </div>
-      {/* Conditionally render the team photo */}
-      {teamPhoto && (
-        <div className="w-full h-180 overflow-hidden rounded-lg">
-          <Image
-            src={teamPhoto}
-            alt="Executive Team"
-            width={1200}
-            height={600}
-            className="w-full rounded-lg object-cover"
-          />
-        </div>
-      )}
-    </Section>
+    </div>
   );
 }
