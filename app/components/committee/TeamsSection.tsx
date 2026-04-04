@@ -7,8 +7,15 @@ import FeaturedCard from "./FeaturedCard";
 import MemberListCard from "./MemberListCard";
 import { GroupHeading } from "./GroupHeading";
 import { SectionHeading } from "./SectionHeading";
-import { Director, Team } from "./data/types";
+import { Director, ProductTeams, Team } from "./data/types";
 import { CardGroup } from "./ExecDirectorSection";
+
+const PRODUCT_TEAMS: string[] = [
+  "Products",
+  "AI",
+  "C3",
+  "IT Products",
+] satisfies (ProductTeams | "Products")[];
 
 function isDSCubedAI(team: string | null | undefined) {
   return team === "AI @ DSCubed" || team === "AI@DSCubed";
@@ -23,18 +30,7 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
 
   // Find directors for this team
   const teamDirectors = isProduct
-    ? [
-        ...directors.filter(
-          (d) =>
-            d.team === "Products" ||
-            d.role?.toLowerCase().includes("product director"),
-        ),
-        ...directors.filter(
-          (d) =>
-            ["AI", "C3", "IT"].includes(d.team as string) ||
-            d.role?.toLowerCase().includes("lead"),
-        ),
-      ]
+    ? directors.filter((d) => d.team !== null && PRODUCT_TEAMS.includes(d.team))
     : directors
         .filter(
           (d) =>
@@ -59,7 +55,7 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
         {
           name: "IT",
           role: "IT Officer",
-          members: team.members.filter((m) => m.productTeam === "IT"),
+          members: team.members.filter((m) => m.productTeam === "IT Products"),
         },
         {
           name: "AI",
@@ -81,14 +77,14 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full overflow-hidden rounded-lg aspect-5/2"
+          className="relative w-full overflow-hidden rounded-lg aspect-2/1 md:aspect-3/2"
         >
           <Image
             src={team.image}
             alt={`${teamName} Team`}
-            width={1600}
-            height={900}
-            className="w-full h-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover object-bottom"
           />
         </motion.div>
       )}
@@ -112,7 +108,10 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
             <MemberGroup
               key={subIndex}
               title={sub.name}
-              members={sub.members.map((m) => ({ ...m, role: sub.role }))}
+              members={sub.members.map((m) => ({
+                ...m,
+                role: m.productRole ? `C3 ${m.productRole}` : sub.role,
+              }))}
               inView={inView}
               delay={0.2 + subIndex * 0.1}
             />

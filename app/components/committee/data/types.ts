@@ -13,6 +13,7 @@ export interface CommitteeMember {
   image?: string;
   filter?: string;
   productTeam?: ProductTeams; // Only for Product team members, indicates which sub-team they belong to
+  productRole?: C3Roles; // Only for C3 members, indicates their specific role
 }
 
 export interface ExecMember extends CommitteeMember {
@@ -43,4 +44,6 @@ export type Teams =
   | "AI @ DSCubed" // Merged into Product as of 2026
   | "Products"; // New team as of 2026, combining AI, C3 and IT
 
-export type ProductTeams = "AI" | "C3" | "IT";
+export type ProductTeams = "AI" | "C3" | "IT Products";
+
+export type C3Roles = "Partnerships" | "Marketing" | "Design" | "Developer";

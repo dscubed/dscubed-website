@@ -53,7 +53,7 @@ export function CommitteePageContent({
           />
         </motion.div>
 
-        <div className="flex flex-col bg-background py-12 px-8 gap-6">
+        <div className="flex flex-col bg-background py-12 px-8 md:px-6 sm:px-4 gap-6">
           {/* Execs & Directors section heading + team photo */}
           <div className="flex flex-col gap-4 sm:gap-2">
             <SectionHeading>Execs & Directors</SectionHeading>
@@ -63,14 +63,15 @@ export function CommitteePageContent({
                 initial={{ opacity: 0, y: 40 }}
                 animate={execPhotoInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, ease: "easeOut" }}
+                className="relative w-full overflow-hidden rounded-lg aspect-2/1 md:aspect-3/2"
               >
                 <Image
-                  className="w-full min-h-80 aspect-video object-cover rounded-xl brightness-[1.1] saturate-[1.2]"
                   src={execsPhoto}
                   alt={"Executive team photo"}
-                  width={1280}
+                  fill
+                  sizes="100vw"
                   loading="eager"
-                  height={720}
+                  className="object-cover object-center"
                 />
               </motion.div>
             )}

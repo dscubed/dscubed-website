@@ -4,16 +4,18 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import FeaturedCard from "@/app/components/committee/FeaturedCard";
 import { GroupHeading } from "./GroupHeading";
-import { Director, ExecMember } from "./data/types";
+import { Director, ExecMember, ProductTeams } from "./data/types";
+
+const PRODUCT_TEAMS: string[] = ["Products", "AI", "C3", "IT Products"] satisfies (ProductTeams | "Products")[];
+
+function isProductDirector(director: Director): boolean {
+  return director.team !== null && PRODUCT_TEAMS.includes(director.team);
+}
 
 function getRole(director: Director): string {
   if (director.role) {
     return director.role;
-  } else if (
-    director.team == "C3" ||
-    director.team == "AI" ||
-    director.team == "IT"
-  ) {
+  } else if (isProductDirector(director) && director.team !== "Products") {
     return `${director.team} Lead`;
   } else if (director.team == "AI @ DSCubed") {
     return "AI @ DSCubed";
@@ -66,8 +68,8 @@ export default function ExecDirectorSection({
   executives: ExecMember[];
   directors: Director[];
 }) {
-  const operationsDirectors = directors.slice(0, 6);
-  const productsDirectors = directors.slice(6);
+  const operationsDirectors = directors.filter((d) => !isProductDirector(d));
+  const productsDirectors = directors.filter((d) => isProductDirector(d));
 
   return (
     <div className="flex flex-col gap-8">
@@ -86,16 +88,18 @@ export default function ExecDirectorSection({
         }))}
         widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
       />
-      <CardGroup
-        title="PRODUCTS"
-        subtitle="DIRECTORS & LEADS"
-        items={productsDirectors.map((d) => ({
-          name: d.name,
-          role: getRole(d),
-          image: d.image,
-        }))}
-        widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
-      />
+      {productsDirectors.length > 0 && (
+        <CardGroup
+          title="PRODUCTS"
+          subtitle="DIRECTORS & LEADS"
+          items={productsDirectors.map((d) => ({
+            name: d.name,
+            role: getRole(d),
+            image: d.image,
+          }))}
+          widthClass="w-[calc((100%-60px)/6)] lg:w-[calc((100%-24px)/3)] sm:w-[calc((100%-12px)/2)]"
+        />
+      )}
     </div>
   );
 }
