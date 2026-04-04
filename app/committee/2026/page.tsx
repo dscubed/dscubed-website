@@ -1,4 +1,4 @@
-import committeePhoto from "@/public/people/committee2025.jpg";
+import committeePhoto from "@/public/people/committee2026.png";
 import {
   executives,
   directors,
@@ -31,7 +31,7 @@ export default function CommitteePage() {
   return (
     <CommitteePageContent
       committeePhoto={committeePhoto}
-      execsPhoto="/people/2025-teams/Execs-Directors.png"
+      execsPhoto="/people/2026-teams/2026-execs.png"
       executives={executives}
       directors={directors}
       teams={teams}

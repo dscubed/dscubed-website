@@ -14,7 +14,7 @@ function getRole(director: Director): string {
   } else if (director.team == "AI @ DSCubed") {
     return "AI @ DSCubed";
   }
-  return `${director.team} Director`;
+  return `${director.team}`;
 }
 
 export default function DirectorSection({
@@ -25,15 +25,14 @@ export default function DirectorSection({
   return (
     <Section>
       <h2 className="text-4xl font-bold text-center mb-8">Directors</h2>
-      <div className="flex flex-wrap justify-center gap-5">
+      <div className="grid grid-cols-5 gap-5">
         {directors.map((profile, index) => (
-          <div key={index} className="flex justify-center">
-            <MemberCard
-              name={profile.name}
-              role={getRole(profile)}
-              image={profile.image}
-            />
-          </div>
+          <MemberCard
+            key={index}
+            name={profile.name}
+            role={getRole(profile)}
+            image={profile.image}
+          />
         ))}
       </div>
     </Section>
