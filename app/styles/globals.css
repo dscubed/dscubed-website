@@ -69,6 +69,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   --font-sans: var(--font-inter, system-ui);
+  --font-display: var(--font-supreme, system-ui);
   --font-mono: var(--font-geist-mono);
 
   --radius-sm: calc(var(--radius) - 4px);

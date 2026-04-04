@@ -2,39 +2,34 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { Group } from "three";
 
 /**
- * Custom hook to handle 3D rotation functionality
- * @returns Rotation state and event handlers for pointer interactions
+ * Custom hook to handle 3D rotation functionality.
+ * - Cursor position passively tilts the scene (parallax effect).
+ * - Click-drag adds on top of the cursor tilt.
+ * - interactionEnabled: false locks out all input (used during load animation).
  */
-export default function useRotation() {
-  // Ref for the main group to be rotated
+export default function useRotation(interactionEnabled = true) {
   const groupRef = useRef<Group>(null);
 
-  // Touch handlers
-  const [isDragging, setIsDragging] = useState(false);
-  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(
-    null
-  );
+  // Accumulated rotation from drag
+  const dragRotation = useRef({ x: 0, y: 0 });
 
-  // State for rotation and offset
-  const [previousPosition, setPreviousPosition] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
-  const [autoRotateEnabled, setAutoRotateEnabled] = useState(true);
-  const [rotation, setRotation] = useState<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
+  // Cursor parallax target (updated on mousemove)
+  const cursorTarget = useRef({ x: 0, y: 0 });
+  // Smoothed cursor rotation (lerped in rAF)
+  const smoothCursor = useRef({ x: 0, y: 0 });
 
-  // Dyanamic Offsets
+  // Drag state
+  const isDragging = useRef(false);
+  const previousPosition = useRef<{ x: number; y: number } | null>(null);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  // Expose rotation as state so the group re-renders
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+
+  // Dynamic position offsets (for layout positioning)
   const [dynamicXOffset, setDynamicXOffset] = useState(0);
   const [dynamicYOffset, setDynamicYOffset] = useState(0);
   const [dynamicZOffset, setDynamicZOffset] = useState(0);
-
-  // Auto-rotation - much slower speed, always active
-  const autoRotationSpeed = useRef(0.0005);
-  const lastFrameTime = useRef(Date.now());
-  const rotationSensitivity = 0.005;
 
   const updateDynamicOffset = useCallback((x: number, y: number, z: number) => {
     setDynamicXOffset(x);
@@ -42,148 +37,158 @@ export default function useRotation() {
     setDynamicZOffset(z);
   }, []);
 
-  // Auto-rotation animation
+  const CURSOR_STRENGTH_X = 0.2;
+  const CURSOR_STRENGTH_Y = 0.3;
+  const LERP_FACTOR = 0.04;
+  const rotationSensitivity = 0.005;
+
+  // Keep a ref so the rAF / event handlers always see the latest value
+  const enabledRef = useRef(interactionEnabled);
   useEffect(() => {
-    let animationFrameId: number;
+    enabledRef.current = interactionEnabled;
+  }, [interactionEnabled]);
 
-    const autoRotate = () => {
-      if (groupRef.current && !isDragging && autoRotateEnabled) {
-        // Calculate time elapsed since last frame for smooth rotation regardless of framerate
-        const now = Date.now();
-        const deltaTime = now - lastFrameTime.current;
-        lastFrameTime.current = now;
+  // Track cursor position globally → cursor parallax target
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      if (!enabledRef.current) return;
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = (e.clientY / window.innerHeight) * 2 - 1;
+      cursorTarget.current = {
+        x: -ny * CURSOR_STRENGTH_X,
+        y: nx * CURSOR_STRENGTH_Y,
+      };
+    };
+    window.addEventListener("mousemove", onMouseMove);
+    return () => window.removeEventListener("mousemove", onMouseMove);
+  }, []);
 
-        // Apply rotation - using delta time for smooth motion
-        const rotationAmount = autoRotationSpeed.current * deltaTime;
+  // Auto-spin speed (radians per second) — only active on mobile
+  const AUTO_SPIN_SPEED = 0.05;
 
-        // Update rotation state
-        setRotation((prev) => ({
-          x: prev.x,
-          y: prev.y + rotationAmount, // Rotate around Y axis
-        }));
+  // Animation loop: lerp smoothCursor toward target, apply total rotation to group
+  useEffect(() => {
+    let rafId: number;
+    let lastTime: number | null = null;
 
-        // Apply rotation directly to the group
-        groupRef.current.rotation.y += rotationAmount;
+    const tick = (time: number) => {
+      const delta = lastTime !== null ? (time - lastTime) / 1000 : 0;
+      lastTime = time;
+
+      smoothCursor.current.x +=
+        (cursorTarget.current.x - smoothCursor.current.x) * LERP_FACTOR;
+      smoothCursor.current.y +=
+        (cursorTarget.current.y - smoothCursor.current.y) * LERP_FACTOR;
+
+      // Slow autospin on mobile (< 1024px) when not dragging
+      if (window.innerWidth < 1024 && !isDragging.current && enabledRef.current) {
+        dragRotation.current.y += AUTO_SPIN_SPEED * delta;
       }
 
-      // Continue animation loop
-      animationFrameId = requestAnimationFrame(autoRotate);
+      const totalX = smoothCursor.current.x + dragRotation.current.x;
+      const totalY = smoothCursor.current.y + dragRotation.current.y;
+
+      if (groupRef.current) {
+        groupRef.current.rotation.x = totalX;
+        groupRef.current.rotation.y = totalY;
+      }
+
+      setRotation({ x: totalX, y: totalY });
+      rafId = requestAnimationFrame(tick);
     };
 
-    // Start animation loop
-    lastFrameTime.current = Date.now();
-    animationFrameId = requestAnimationFrame(autoRotate);
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
 
-    // Cleanup animation on unmount
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [isDragging, autoRotateEnabled]);
+  // --- Pointer (mouse) drag handlers ---
 
-  // Pointer down handler
   const handlePointerDown = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      setIsDragging(true);
-      setPreviousPosition({ x: event.clientX, y: event.clientY });
-      // Capture the pointer
+      if (!enabledRef.current) return;
+      isDragging.current = true;
+      previousPosition.current = { x: event.clientX, y: event.clientY };
       (event.target as HTMLDivElement).setPointerCapture(event.pointerId);
     },
     []
   );
 
-  // Pointer move handler
   const handlePointerMove = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!isDragging || !previousPosition || !groupRef.current) return;
+      if (!enabledRef.current || !isDragging.current || !previousPosition.current) return;
 
-      const deltaX = event.clientX - previousPosition.x;
-      const deltaY = event.clientY - previousPosition.y;
+      const deltaX = event.clientX - previousPosition.current.x;
+      const deltaY = event.clientY - previousPosition.current.y;
 
-      // Adjust sensitivity as needed (lower value = less sensitive)
-      const newRotation = {
-        x: rotation.x + deltaY * rotationSensitivity,
-        y: rotation.y + deltaX * rotationSensitivity,
+      dragRotation.current = {
+        x: dragRotation.current.x + deltaY * rotationSensitivity,
+        y: dragRotation.current.y + deltaX * rotationSensitivity,
       };
 
-      setRotation(newRotation);
-      groupRef.current.rotation.x = newRotation.x;
-      groupRef.current.rotation.y = newRotation.y;
-
-      setPreviousPosition({ x: event.clientX, y: event.clientY });
+      previousPosition.current = { x: event.clientX, y: event.clientY };
     },
-    [isDragging, previousPosition, rotation]
+    []
   );
 
-  // Pointer up handler
   const handlePointerUp = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      if (isDragging) {
-        setIsDragging(false);
-        setPreviousPosition(null);
-        // Release the pointer capture
+      if (isDragging.current) {
+        isDragging.current = false;
+        previousPosition.current = null;
         (event.target as HTMLDivElement).releasePointerCapture(event.pointerId);
       }
     },
-    [isDragging]
+    []
   );
 
-  // Pointer leave handler
   const handlePointerLeave = useCallback(
     (event: React.PointerEvent<HTMLDivElement>) => {
-      // Only release if dragging and leaving
-      if (isDragging) {
-        setIsDragging(false);
-        setPreviousPosition(null);
-        // Release the pointer capture
+      if (isDragging.current) {
+        isDragging.current = false;
+        previousPosition.current = null;
         (event.target as HTMLDivElement).releasePointerCapture(event.pointerId);
       }
     },
-    [isDragging]
+    []
   );
 
-  // --- Touch event handlers for mobile support ---
+  // --- Touch handlers ---
 
   const handleTouchStart = useCallback((event: React.TouchEvent) => {
+    if (!enabledRef.current) return;
     if (event.touches.length === 1) {
-      setIsDragging(true);
-      setTouchStart({
+      isDragging.current = true;
+      touchStart.current = {
         x: event.touches[0].clientX,
         y: event.touches[0].clientY,
-      });
+      };
     }
   }, []);
 
-  const handleTouchMove = useCallback(
-    (event: React.TouchEvent) => {
-      if (!isDragging || !touchStart || !groupRef.current) return;
-      if (event.touches.length !== 1) return;
+  const handleTouchMove = useCallback((event: React.TouchEvent) => {
+    if (!enabledRef.current || !isDragging.current || !touchStart.current) return;
+    if (event.touches.length !== 1) return;
 
-      const touch = event.touches[0];
-      const deltaX = touch.clientX - touchStart.x;
-      const deltaY = touch.clientY - touchStart.y;
+    const touch = event.touches[0];
+    const deltaX = touch.clientX - touchStart.current.x;
+    const deltaY = touch.clientY - touchStart.current.y;
 
-      const newRotation = {
-        x: rotation.x + deltaY * rotationSensitivity,
-        y: rotation.y + deltaX * rotationSensitivity,
-      };
+    dragRotation.current = {
+      x: dragRotation.current.x + deltaY * rotationSensitivity,
+      y: dragRotation.current.y + deltaX * rotationSensitivity,
+    };
 
-      setRotation(newRotation);
-      groupRef.current.rotation.x = newRotation.x;
-      groupRef.current.rotation.y = newRotation.y;
-
-      setTouchStart({ x: touch.clientX, y: touch.clientY });
-    },
-    [isDragging, touchStart, rotation]
-  );
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
 
   const handleTouchEnd = useCallback(() => {
-    setIsDragging(false);
-    setTouchStart(null);
+    isDragging.current = false;
+    touchStart.current = null;
   }, []);
 
   const handleTouchCancel = useCallback(() => {
-    setIsDragging(false);
-    setTouchStart(null);
+    isDragging.current = false;
+    touchStart.current = null;
   }, []);
 
   return {
@@ -201,6 +206,6 @@ export default function useRotation() {
     handleTouchMove,
     handleTouchEnd,
     handleTouchCancel,
-    setAutoRotateEnabled,
+    setAutoRotateEnabled: () => {},
   };
 }
