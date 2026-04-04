@@ -1,4 +1,8 @@
+"use client";
+
 import Image, { StaticImageData } from "next/image";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import ExecutiveSection from "@/app/components/committee/ExecutiveSection";
@@ -22,6 +26,9 @@ export function CommitteePageContent({
   directors,
   teams,
 }: CommitteePageContentProps) {
+  const execPhotoRef = useRef(null);
+  const execPhotoInView = useInView(execPhotoRef, { once: true, margin: "-100px" });
+
   return (
     <>
       <Navbar />
@@ -30,15 +37,27 @@ export function CommitteePageContent({
         <div className="pt-8 pb-8 px-6 mx-auto max-w-screen-xl">
           <CommitteePageHeader />
         </div>
-        <Image
-          className="w-full min-h-80 aspect-video object-cover brightness-[1.1] saturate-[1.2]"
-          src={committeePhoto}
-          alt={"Committee group photo"}
-          width={1280}
-        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Image
+            className="w-full min-h-80 aspect-video object-cover brightness-[1.1] saturate-[1.2]"
+            src={committeePhoto}
+            alt={"Committee group photo"}
+            width={1280}
+          />
+        </motion.div>
 
         <div className="flex flex-col bg-background py-12 px-8 gap-6">
-          <div className="flex flex-col gap-4 sm:gap-2">
+          <motion.div
+            ref={execPhotoRef}
+            initial={{ opacity: 0, y: 40 }}
+            animate={execPhotoInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col gap-4 sm:gap-2"
+          >
             <h2 className="text-2xl sm:text-lg font-medium text-[#B9B9B9]">
               EXECS & DIRECTORS
             </h2>
@@ -49,7 +68,7 @@ export function CommitteePageContent({
               width={1280}
               height={720}
             />
-          </div>
+          </motion.div>
 
           {/* Executive Section - rendered if executives data provided */}
           {executives && executives.length > 0 && (

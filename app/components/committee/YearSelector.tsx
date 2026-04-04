@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { cn } from "@/app/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const PAGES = [
   { year: 2026, href: "/committee/2026" },
@@ -47,29 +48,43 @@ export function YearSelector() {
       >
         <span className="text-white tracking-wide">Year:</span>
         <span className="text-accent">{selectedYear}</span>
-        <ChevronDownIcon
-          className={`w-4 h-4 text-accent transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-        />
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <ChevronDownIcon className="w-4 h-4 text-accent" />
+        </motion.span>
       </button>
 
       {/* Dropdown */}
-      {isOpen && (
-        <div className="absolute top-full left-0 right-0 bg-background rounded-b-xl overflow-hidden shadow-xl z-10 animate-in fade-in zoom-in-95 duration-150">
-          {PAGES.map((page) => (
-            <button
-              key={page.year}
-              onClick={() => handleSelect(page.year)}
-              className={`w-full py-2  sm:py-1.5 text-center text-lg sm:text-base font-semibold transition-colors duration-100 ${
-                page.year === selectedYear
-                  ? "bg-accent text-white"
-                  : "text-accent hover:bg-white/5"
-              }`}
-            >
-              {page.year}
-            </button>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="absolute top-full left-0 right-0 bg-background rounded-b-xl overflow-hidden shadow-xl z-10"
+          >
+            {PAGES.map((page, index) => (
+              <motion.button
+                key={page.year}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.05 }}
+                onClick={() => handleSelect(page.year)}
+                className={`w-full py-2 sm:py-1.5 text-center text-lg sm:text-base font-semibold transition-colors duration-100 ${
+                  page.year === selectedYear
+                    ? "bg-accent text-white"
+                    : "text-accent hover:bg-white/5"
+                }`}
+              >
+                {page.year}
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
