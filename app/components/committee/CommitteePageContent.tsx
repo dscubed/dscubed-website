@@ -69,6 +69,7 @@ export function CommitteePageContent({
                   src={execsPhoto}
                   alt={"Executive team photo"}
                   width={1280}
+                  loading="eager"
                   height={720}
                 />
               </motion.div>

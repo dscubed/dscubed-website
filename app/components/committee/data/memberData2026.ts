@@ -111,7 +111,7 @@ export const teams: Team[] = [
   },
   {
     team: "HR",
-    image: "/people/2026-teams/2026-HR.png",
+    image: "/people/2026-teams/2026-hr.png",
     members: [
       { name: "Hyunjae Ha", image: "/people/2026/hyunjae-ha.png" },
       { name: "Sabrina Nguyen", image: "/people/2026/sabrina-nguyen.png" },
