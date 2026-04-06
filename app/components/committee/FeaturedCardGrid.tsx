@@ -102,17 +102,20 @@ function getItemWidthClass(layout: CardGridLayout): string {
 // Card Grid Component
 // ------------------------------------------------------------------
 
+interface FeaturedCardGridProps {
+  title: string;
+  subtitle?: string;
+  items: { name: string; role: string; image?: string; filter?: string }[];
+  /** Layout config specifying number of columns per line at each screen size, and optional gap size in px (default 12) */
+  layout: CardGridLayout;
+}
+
 export function FeaturedCardGrid({
   title,
   subtitle,
   items,
   layout,
-}: {
-  title: string;
-  subtitle?: string;
-  items: { name: string; role: string; image?: string; filter?: string }[];
-  layout: CardGridLayout;
-}) {
+}: FeaturedCardGridProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const gap = layout.gap ?? 12;
