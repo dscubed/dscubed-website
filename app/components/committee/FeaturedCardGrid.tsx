@@ -120,7 +120,7 @@ export function FeaturedCardGrid({
 
   return (
     <div ref={ref} className="flex flex-col gap-3">
-      <GroupHeading title={title} subtitle={subtitle} inView={inView} />
+      <GroupHeading title={title} subtitle={subtitle} />
       <div
         className="flex flex-wrap justify-center"
         style={{ gap: `${gap}px` }}

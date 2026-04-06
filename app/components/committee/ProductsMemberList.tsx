@@ -23,11 +23,9 @@ const SUB_TEAMS: SubTeamConfig[] = [
 
 export default function ProductsMemberList({
   members,
-  inView,
   delay = 0,
 }: {
   members: ProductCommitteeMember[];
-  inView: boolean;
   delay?: number;
 }) {
   const groups = SUB_TEAMS.map((config) => ({
@@ -39,11 +37,10 @@ export default function ProductsMemberList({
     <>
       {groups.map((group, i) => (
         <div key={group.productTeam} className="flex flex-col gap-4 mt-4">
-          <GroupHeading title={group.name} inView={inView} />
+          <GroupHeading title={group.name} />
           <MemberList
             team={group.teamPrefix}
             members={group.members}
-            inView={inView}
             delay={delay + i * 0.1}
           />
         </div>

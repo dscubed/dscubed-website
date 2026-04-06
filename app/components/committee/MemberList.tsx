@@ -1,22 +1,24 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import MemberListCard from "./MemberListCard";
 import { CommitteeMember } from "./data/types";
 
 export default function MemberList({
   team,
   members,
-  inView,
   delay = 0,
 }: {
   team: string;
   members: CommitteeMember[];
-  inView: boolean;
   delay?: number;
 }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+
   return (
-    <div className="flex flex-wrap justify-center gap-4 w-full">
+    <div ref={ref} className="flex flex-wrap justify-center gap-4 w-full">
       {members.map((member, i) => (
         <motion.div
           key={i}

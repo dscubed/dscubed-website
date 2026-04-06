@@ -77,19 +77,10 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
 
       {/* Members */}
       {isProduct ? (
-        <ProductsMemberList
-          members={team.members}
-          inView={inView}
-          delay={0.2}
-        />
+        <ProductsMemberList members={team.members} delay={0.2} />
       ) : (
         team.members.length > 0 && (
-          <MemberList
-            team={teamName}
-            members={team.members}
-            inView={inView}
-            delay={0.2}
-          />
+          <MemberList team={teamName} members={team.members} delay={0.2} />
         )
       )}
     </div>
