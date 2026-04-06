@@ -1,87 +1,43 @@
-import MemberListCard from "@/app/components/committee/MemberListCard";
-import { Director, Team } from "./data/types";
-import FeaturedCard from "./FeaturedCard";
+"use client";
 
-// The default role is set to '<Team name> Officer', so don't need to set it in members.js
-
-function isDSCubedAI(team: string | null | undefined) {
-  return team === "AI @ DSCubed" || team === "AI@DSCubed";
-}
+import { motion } from "framer-motion";
+import MemberListCard from "./MemberListCard";
+import { CommitteeMember } from "./data/types";
 
 export default function MemberList({
-  teams,
-  directors,
+  team,
+  members,
+  inView,
+  delay = 0,
 }: {
-  teams: Team[];
-  directors: Director[];
+  team: string;
+  members: CommitteeMember[];
+  inView: boolean;
+  delay?: number;
 }) {
   return (
-    <div className="grid grid-cols-1 gap-x-10 gap-y-20 justify-center sm:gap-y-10">
-      {teams.map((team, teamIndex) => {
-        const teamName = team.name || team.team || "";
-
-        // Find all directors for the current team
-        const teamDirectors = directors
-          .filter(
-            (d) =>
-              d.team === team.team ||
-              (d.team === null &&
-                team.name &&
-                d.role?.toLowerCase().includes(team.name.toLowerCase())),
-          )
-          .map((director) => {
-            let defaultRole = `${teamName}`;
-            if (isDSCubedAI(teamName)) {
-              defaultRole = "AI @ DSCubed";
-            }
-            return {
-              name: director.name,
-              role: (director.role as string) || defaultRole,
-              image: director.image,
-              variant: "featured",
-            };
-          });
-
-        return (
-          <div className="flex flex-col justify-center gap-5" key={teamIndex}>
-            {/* Directors Row */}
-            {teamDirectors.length > 0 && (
-              <div className="flex justify-center gap-4">
-                {teamDirectors.map((director, directorIndex) => (
-                  <div
-                    key={`director-${directorIndex}`}
-                    className="w-70 flex-col items-center text-center"
-                  >
-                    <FeaturedCard {...director} />
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Officers Row */}
-            <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
-              {team.members.map((profile, profileIndex) => {
-                const officerRole = isDSCubedAI(teamName)
-                  ? "AI @ DSCubed"
-                  : `${teamName} Officer`;
-
-                return (
-                  <div
-                    key={profileIndex}
-                    className="w-[250px] sm:w-[140px] flex-none"
-                  >
-                    <MemberListCard
-                      role={officerRole}
-                      {...profile}
-                      key={profileIndex}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })}
+    <div className="flex flex-wrap justify-center gap-4 w-full">
+      {members.map((member, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{
+            duration: 0.3,
+            delay: delay + i * 0.04,
+            ease: "easeOut",
+          }}
+          className="w-[250px] sm:w-[150px] flex-none"
+        >
+          <MemberListCard
+            name={member.name}
+            image={member.image}
+            filter={member.filter}
+            team={team}
+            displayRole={member.displayRole}
+          />
+        </motion.div>
+      ))}
     </div>
   );
 }

@@ -211,6 +211,7 @@
   .max-w-screen-md { max-width: 768px; }
   .max-w-screen-sm { max-width: 640px; }
   .max-w-screen-xs { max-width: 480px; }
+
 }
 
 ::-moz-selection {

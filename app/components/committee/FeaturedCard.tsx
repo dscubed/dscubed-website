@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 import GenericAvatar from "@/app/components/committee/GenericAvatar";
-import { ExecMember } from "./data/types";
 
 // Use the 'filter' prop to set Tailwind css filters on the image
 
@@ -55,7 +54,7 @@ export default function FeaturedCard({
         <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black/70 via-black/30 to-black/0" />
       </div>
       {/* Text overlay */}
-      <div className="absolute bottom-0 left-0 w-full p-4 sm:p-3 flex flex-col items-start z-10">
+      <div className="absolute bottom-0 left-0 w-full p-2.5 flex flex-col items-start z-10">
         <span className="uppercase text-accent font-bold text-base lg:text-sm sm:text-xs tracking-wide mb-1 drop-shadow-md">
           {splitLine(role) ? (
             <>
