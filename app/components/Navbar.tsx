@@ -162,7 +162,7 @@ export default function Navbar({
           <Link className="p-4 border-b border-border" href="/events">
             Events
           </Link>
-          <Link className="p-4 border-b border-border" href="/committee-2025">
+          <Link className="p-4 border-b border-border" href="/committee">
             Committee
           </Link>
           <Link className="p-4 border-b border-border" href="/competitions">

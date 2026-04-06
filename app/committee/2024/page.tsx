@@ -13,7 +13,7 @@ export const metadata = {
     title: "Past Committee | DSCubed",
     description:
       "Meet the team behind DSCubed. Introducing our past committee for 2024.",
-    url: "/committee-2024",
+    url: "/committee/2024",
     siteName: "DSCubed",
     locale: "en_AU",
     type: "website",
