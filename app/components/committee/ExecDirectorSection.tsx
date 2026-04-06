@@ -1,4 +1,5 @@
 "use client";
+
 import { Director, ExecMember, ProductTeams } from "./data/types";
 import { FeaturedCardGrid } from "./FeaturedCardGrid";
 
@@ -53,7 +54,7 @@ export default function ExecDirectorSection({
           role: getRole(d),
           image: d.image,
         }))}
-        layout={{ columns: { default: 6, lg: 3, sm: 2 } }}
+        layout={{ columns: { default: 6, lg: 4, md: 3, sm: 2 } }}
       />
       {productsDirectors.length > 0 && (
         <FeaturedCardGrid
@@ -64,7 +65,7 @@ export default function ExecDirectorSection({
             role: getRole(d),
             image: d.image,
           }))}
-          layout={{ columns: { default: 6, lg: 3, sm: 2 } }}
+          layout={{ columns: { default: 6, lg: 4, md: 3, sm: 2 } }}
         />
       )}
     </div>

@@ -71,7 +71,7 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
             role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
             image: d.image,
           }))}
-          layout={{ columns: { default: 6, lg: 3, sm: 2 } }}
+          layout={{ columns: { default: 6, lg: 4, md: 3, sm: 2 } }}
         />
       )}
 
