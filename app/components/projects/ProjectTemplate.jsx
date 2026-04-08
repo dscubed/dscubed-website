@@ -15,7 +15,7 @@ export default function ProjectTemplate() {
                 <h2 className="font-akira-expanded font-bold text-[25px] leading-[100%] tracking-[0%] mb-20">
                     Your Subtitle Here
                 </h2>
-                <p className="font-inter font-normal text-[24px] leading-[100%] tracking-[0%] leading-[32px] ">
+                <p className="font-normal text-[24px] leading-[100%] tracking-[0%] leading-[32px] ">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
                 </p>
 

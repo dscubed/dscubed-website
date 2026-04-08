@@ -1,27 +1,133 @@
 "use client";
 
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Line } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import useRotation from "@/app/hooks/useRotation";
 import WordPoint from "./WordPointFront";
 import SpaceDust from "./SpaceDust";
+import SpaceGlows from "./SpaceGlows";
 
 // Props expected: vocab list and precomputed embeddings
 interface Props {
   vocab: string[];
   embeddings: number[][] | null;
+  onLoaded?: () => void;
+  isFullyRevealed?: boolean;
+}
+
+interface LineData {
+  start: [number, number, number];
+  end: [number, number, number];
+  length: number;
+}
+
+// Draws all lines simultaneously from their start point outward.
+// All lines complete within `duration` seconds (longest line sets the pace).
+const DRAW_DURATION = 1.0; // seconds
+
+function AnimatedLines({
+  lines,
+  onComplete,
+  started,
+}: {
+  lines: LineData[];
+  onComplete: () => void;
+  started: boolean;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const geoRefs = useRef<THREE.BufferGeometry[]>([]);
+  const elapsed = useRef(0);
+  const done = useRef(false);
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  // Find longest line — that one takes exactly DRAW_DURATION, shorter ones finish sooner
+  const maxLength = useMemo(
+    () => Math.max(...lines.map((l) => l.length), 0.001),
+    [lines],
+  );
+
+  // Build Three.js objects once in an effect (avoids ref-during-render error)
+  const readyRef = useRef(false);
+  useEffect(() => {
+    const group = groupRef.current;
+    if (!group) return;
+
+    // Clear previous children
+    while (group.children.length) group.remove(group.children[0]);
+    geoRefs.current = [];
+
+    lines.forEach((line) => {
+      const positions = new Float32Array([
+        line.start[0],
+        line.start[1],
+        line.start[2],
+        line.start[0],
+        line.start[1],
+        line.start[2],
+      ]);
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+      geoRefs.current.push(geo);
+      const mat = new THREE.LineBasicMaterial({
+        color: "#ffffff",
+        transparent: true,
+        opacity: 0.5,
+      });
+      group.add(new THREE.Line(geo, mat));
+    });
+
+    readyRef.current = true;
+
+    return () => {
+      geoRefs.current.forEach((g) => g.dispose());
+    };
+  }, [lines]);
+
+  useFrame((_, delta) => {
+    if (done.current || !readyRef.current || !started) return;
+    elapsed.current += delta;
+
+    let allDone = true;
+
+    lines.forEach((line, i) => {
+      // Each line's speed = its length / DRAW_DURATION * (maxLength / line.length)
+      // Simplified: progress = elapsed / DRAW_DURATION * (maxLength / line.length)
+      // But we want ALL lines done by DRAW_DURATION, so:
+      // progress_i = elapsed / (DRAW_DURATION * line.length / maxLength)
+      const lineDuration = DRAW_DURATION * (line.length / maxLength);
+      const t = Math.min(1, elapsed.current / lineDuration);
+      if (t < 1) allDone = false;
+
+      const geo = geoRefs.current[i];
+      if (!geo) return;
+      const pos = geo.attributes.position.array as Float32Array;
+      pos[3] = line.start[0] + (line.end[0] - line.start[0]) * t;
+      pos[4] = line.start[1] + (line.end[1] - line.start[1]) * t;
+      pos[5] = line.start[2] + (line.end[2] - line.start[2]) * t;
+      geo.attributes.position.needsUpdate = true;
+    });
+
+    if (allDone) {
+      done.current = true;
+      onCompleteRef.current();
+    }
+  });
+
+  return <group ref={groupRef} />;
 }
 
 // Main scene component that renders the 3D embedding space
-export default function Visualiser({ vocab }: Props) {
+export default function Visualiser({ vocab, onLoaded, isFullyRevealed = false }: Props) {
   const cameraRef = useRef<THREE.Camera | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [cameraZ, setCameraZ] = useState(-40);
+  const [linesComplete, setLinesComplete] = useState(false);
   const currentVocab = vocab;
 
-  // Use the rotation hook for rotation handling and dynamic offset
   const {
     groupRef,
     rotation,
@@ -37,27 +143,9 @@ export default function Visualiser({ vocab }: Props) {
     handleTouchStart,
     handleTouchEnd,
     handleTouchCancel,
-  } = useRotation();
+  } = useRotation(linesComplete);
 
-  // Project high-dimensional embeddings to 3D using UMAP
   const coords3d = useMemo(() => {
-    // if (!embeddings || embeddings.length === 0) {
-    //   return [];
-    // }
-
-    // const umap = new UMAP({
-    //   nComponents: 3,
-    //   nNeighbors: Math.min(15, embeddings.length - 1),
-    //   spread: 12,
-    //   minDist: 0.5,
-    // });
-
-    // // Get coordinates
-    // // console.log(JSON.stringify(umap.fit(embeddings)))
-
-    // return umap.fit(embeddings);
-
-    // Return cached results to improve performance, suggested by @Tchanwangsa
     return [
       [5.398126341474347, 12.104259447220764, 1.8080497581650483],
       [-1.981195477859582, 6.763470758628738, 9.060538942506216],
@@ -68,20 +156,15 @@ export default function Visualiser({ vocab }: Props) {
       [3.917340945751632, -7.609676182384553, 1.256398542081088],
       [-3.937883504745913, 13.061277763883474, -0.6022948786244067],
     ];
-
-    // More horizontal layout
-    // return [[5.9052106994984666,3.587539838625018,1.4671130190199329],[5.532083199404061,12.107611508841012,9.457897699668543],[4.458345348913334,3.3610853940865755,18.99981784237457],[-6.919250742504189,9.977096654736634,4.8610570029441815],[12.558629092892685,2.590050314227724,11.472880948949022],[-7.061819955861751,1.1408775276970917,6.546573648801712],[5.902792847345043,-5.222735177909473,12.775841849265891],[-3.9974260298444437,8.238906761143669,14.509944522809548]]
   }, []);
 
-  // Calculate the center
   const center = useMemo(() => {
     if (!coords3d || coords3d.length === 0) {
       return new THREE.Vector3(0, 0, 0);
     }
-    // Find sum of x y and z coordinates of all points
-    let sumX = 0;
-    let sumY = 0;
-    let sumZ = 0;
+    let sumX = 0,
+      sumY = 0,
+      sumZ = 0;
     for (const coord of coords3d) {
       const [x, y, z] = coord;
       sumX += x;
@@ -89,9 +172,34 @@ export default function Visualiser({ vocab }: Props) {
       sumZ += z;
     }
     const count = coords3d.length;
-    // Returns average of all points as center
     return new THREE.Vector3(sumX / count, sumY / count, sumZ / count);
   }, [coords3d]);
+
+  // Precompute line data (centered coords + length)
+  const lineData = useMemo<LineData[]>(() => {
+    const result: LineData[] = [];
+    for (let i = 0; i < coords3d.length; i++) {
+      for (let j = i + 1; j < coords3d.length; j++) {
+        const [x1, y1, z1] = coords3d[i];
+        const [x2, y2, z2] = coords3d[j];
+        const start: [number, number, number] = [
+          x1 - center.x,
+          y1 - center.y,
+          z1 - center.z,
+        ];
+        const end: [number, number, number] = [
+          x2 - center.x,
+          y2 - center.y,
+          z2 - center.z,
+        ];
+        const length = Math.sqrt(
+          (x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2,
+        );
+        result.push({ start, end, length });
+      }
+    }
+    return result;
+  }, [coords3d, center]);
 
   const updateGroupPosition = useCallback(() => {
     if (!cameraRef.current || !canvasRef.current) return;
@@ -101,22 +209,18 @@ export default function Visualiser({ vocab }: Props) {
     const canvasRect = canvasRef.current.getBoundingClientRect();
 
     if (window.innerWidth >= 1024) {
-      // > lg
       screenX = canvasRect.width / 2 + Math.min(1280, canvasRect.width) / 5;
       screenY = canvasRect.height / 2 - 20;
       setCameraZ(-40);
     } else if (window.innerWidth >= 640) {
-      // md - lg
       screenX = canvasRect.width / 2;
       screenY = 63 + 96 * 2 + 450 + 100;
       setCameraZ(-60);
     } else if (window.innerWidth >= 480) {
-      // sm
       screenX = canvasRect.width / 2;
       screenY = 63 + 96 * 2 + 450 + 40;
       setCameraZ(-70);
     } else {
-      // xs
       screenX = canvasRect.width / 2;
       screenY = 63 + 96 * 2 + 450 + 10;
       setCameraZ(-70);
@@ -158,6 +262,10 @@ export default function Visualiser({ vocab }: Props) {
       onCreated={({ camera }) => {
         cameraRef.current = camera;
         updateGroupPosition();
+        if (onLoaded) {
+          // Delay briefly to let the canvas render its first frame
+          requestAnimationFrame(() => requestAnimationFrame(() => onLoaded()));
+        }
       }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -168,55 +276,28 @@ export default function Visualiser({ vocab }: Props) {
       onTouchEnd={handleTouchEnd}
       onTouchCancel={handleTouchCancel}
     >
-      {/* <fog attach="fog" args={["#0d1117", 60, 200]} /> */}
       <ambientLight intensity={1} />
-      {/* <directionalLight position={[10, 10, 10]} intensity={0.8} /> */}
 
-      {/* Main group for rotation - use dynamic offset */}
       <group
         ref={groupRef}
         position={[dynamicXOffset, dynamicYOffset, dynamicZOffset]}
         rotation={[rotation.x, rotation.y, 0]}
       >
-        {/* Rotating dust layer inside the group - will rotate with the scene */}
+        <SpaceGlows />
         <SpaceDust />
 
-        {/* Connect all word nodes with lines - adjust points relative to center */}
-        {coords3d.map(([x1, y1, z1], i) =>
-          coords3d.map(([x2, y2, z2], j) => {
-            if (i < j) {
-              // Adjust points for the line
-              const p1: [number, number, number] = [
-                x1 - center.x,
-                y1 - center.y,
-                z1 - center.z,
-              ];
-              const p2: [number, number, number] = [
-                x2 - center.x,
-                y2 - center.y,
-                z2 - center.z,
-              ];
-              return (
-                <Line
-                  key={`conn-${i}-${j}`}
-                  points={[p1, p2]} // Use adjusted points as tuples
-                  color={"#ffffff"}
-                  lineWidth={1}
-                  opacity={0.4}
-                  transparent
-                />
-              );
-            }
-            return null;
-          }),
-        )}
+        {/* Animated lines — drawn from endpoint to endpoint at constant speed */}
+        <AnimatedLines
+          lines={lineData}
+          started={isFullyRevealed}
+          onComplete={() => setLinesComplete(true)}
+        />
 
-        {/* Word Points - adjust position relative to center */}
+        {/* Word points — visible immediately */}
         {coords3d.map(([x, y, z], i) => (
           <WordPoint
             key={`word-${i}`}
             word={currentVocab[i]}
-            // Adjust position
             position={
               [x - center.x, y - center.y, z - center.z] as [
                 number,
@@ -237,25 +318,20 @@ function getTranslationToScreenPixel(
   screenWidth: number,
   screenHeight: number,
   camera: THREE.Camera,
-  objectWorldZ = 0, // z-position of the object (default at origin)
+  objectWorldZ = 0,
 ): THREE.Vector3 {
-  // Convert pixel to Normalised Device Coordinates (NDC)
   const ndcX = (screenX / screenWidth) * 2 - 1;
   const ndcY = -(screenY / screenHeight) * 2 + 1;
 
-  // Create a point in NDC at the object's Z-depth
   const ndc = new THREE.Vector3(ndcX, ndcY, 0.5);
   ndc.unproject(camera);
 
-  // Ray from camera to unprojected point
   const dir = ndc.sub(camera.position).normalize();
 
-  // Compute intersection with object's Z plane
   const distance = (objectWorldZ - camera.position.z) / dir.z;
   const targetWorldPos = camera.position
     .clone()
     .add(dir.multiplyScalar(distance));
 
-  // Offset from origin (0,0,0) to required position
-  return targetWorldPos; // This is the translation to apply to the object
+  return targetWorldPos;
 }

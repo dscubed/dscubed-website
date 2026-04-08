@@ -30,6 +30,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: baseURL + '/committee/2026',
+      lastModified: serverUpdatedAt,
+      changeFrequency: 'yearly',
+      priority: 0.85, // Higher priority for the most recent committee
+    },
+    {
+      url: baseURL + '/committee/2025',
+      lastModified: serverUpdatedAt,
+      changeFrequency: 'yearly',
+      priority: 0.8,
+    },
+    {
+      url: baseURL + '/committee/2024',
+      lastModified: serverUpdatedAt,
+      changeFrequency: 'yearly',
+      priority: 0.75, // Lower priority for older committees
+    },
+    {
       url: baseURL + '/sponsors',
       lastModified: serverUpdatedAt,
       changeFrequency: 'monthly',

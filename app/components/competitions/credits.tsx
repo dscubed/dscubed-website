@@ -1,4 +1,4 @@
-import MemberListItem from "@/app/components/committee/MemberListItem";
+import MemberListCard from "@/app/components/committee/MemberListCard";
 import { credits } from "@/app/components/competitions/aflkaggle";
 import Section from "@/app/components/Section";
 
@@ -12,7 +12,7 @@ export default function CreditsSection() {
         <div className="grid grid-cols-5 lg:grid-cols-2 sm:grid-cols-1 gap-3 justify-center">
           {credits.map((team, teamIndex) =>
             team.members.map((member, memberIndex) => (
-              <MemberListItem
+              <MemberListCard
                 key={`${teamIndex}-${memberIndex}`}
                 name={member.name}
                 role={member.role || `${team.name} Officer`}

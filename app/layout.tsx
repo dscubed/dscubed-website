@@ -1,7 +1,7 @@
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { inter } from "@/app/fonts";
+import { geistMono, inter, supreme } from "@/app/fonts";
 import "@/app/styles/globals.css";
 import clsx from "clsx";
 
@@ -39,9 +39,18 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={clsx("dark", inter.className)}>
+    <html
+      lang="en"
+      className={clsx(
+        "dark",
+        geistMono.variable,
+        inter.variable,
+        inter.className,
+        supreme.variable,
+      )}
+    >
       <head>{/* <link rel="author" href="humans.txt" /> */}</head>
-      <body className="flex flex-col w-screen min-h-screen bg-background-secondary text-foreground">
+      <body className="flex flex-col w-full min-h-screen bg-background-secondary text-foreground overflow-x-hidden">
         <GoogleTagManager gtmId="GTM-KN9FSD73" />
         <GoogleAnalytics gaId="G-TKV7XZHY72" />
         <Analytics />

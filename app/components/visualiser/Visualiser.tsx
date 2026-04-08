@@ -97,7 +97,7 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
   // Compute k-nearest neighbors to a word vector
   const findNearestNeighbors = (embedding: number[], k: number = 5) => {
     const distances = currentEmbeddings.map((e) =>
-      cosineDistance(e, embedding)
+      cosineDistance(e, embedding),
     );
     const sortedIndexes = distances
       .map((d, i) => ({ index: i, distance: d }))
@@ -135,7 +135,7 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
     if (!validateWord(newWord)) return;
     if (!model) {
       setValidationError(
-        "Model is still loading. Please try again in a moment."
+        "Model is still loading. Please try again in a moment.",
       );
       return;
     }
@@ -275,7 +275,7 @@ export default function Visualiser({ vocab, embeddings, onLoaded }: Props) {
                   const idx = currentVocab.indexOf(word);
                   if (idx !== -1) {
                     const neighbors = findNearestNeighbors(
-                      currentEmbeddings[idx]
+                      currentEmbeddings[idx],
                     );
                     setNearestIndexes(neighbors);
                   }
