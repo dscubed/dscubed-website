@@ -20,6 +20,38 @@ function isDSCubedAI(team: string | null | undefined) {
   return team === "AI @ DSCubed" || team === "AI@DSCubed";
 }
 
+function isProductDirector(director: Director): boolean {
+  return director.team !== null && PRODUCT_TEAMS.includes(director.team);
+}
+
+function getDirectorRole(director: Director, fallbackRole: string): string {
+  if (director.role) {
+    return director.role;
+  }
+  // For product team leads (AI, C3, IT Products), format as "{Team} Lead"
+  if (isProductDirector(director) && director.team !== "Products") {
+    return `${director.team} Lead`;
+  }
+  return fallbackRole;
+}
+
+function getProductDirectors(directors: Director[]): Director[] {
+  return directors.filter((d) => d.team && PRODUCT_TEAMS.includes(d.team));
+}
+
+function getOperationsDirectors(
+  team: Team,
+  directors: Director[],
+  defaultRole: string,
+): Director[] {
+  return directors
+    .filter((d) => d.team === team.team) // Only include directors with matching team
+    .map((d) => ({
+      ...d,
+      role: d.role || defaultRole,
+    }));
+}
+
 function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -28,19 +60,12 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
   const isProduct = team.team === "Products";
 
   const teamDirectors = isProduct
-    ? directors.filter((d) => d.team !== null && PRODUCT_TEAMS.includes(d.team))
-    : directors
-        .filter(
-          (d) =>
-            d.team === team.team ||
-            (d.team === null &&
-              team.name &&
-              d.role?.toLowerCase().includes(team.name.toLowerCase())),
-        )
-        .map((d) => ({
-          ...d,
-          role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
-        }));
+    ? getProductDirectors(directors)
+    : getOperationsDirectors(
+        team,
+        directors,
+        isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName,
+      );
 
   return (
     <div ref={ref} className="flex flex-col gap-5">
@@ -68,7 +93,10 @@ function TeamBlock({ team, directors }: { team: Team; directors: Director[] }) {
           title={teamName}
           items={teamDirectors.map((d) => ({
             name: d.name,
-            role: d.role || (isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName),
+            role: getDirectorRole(
+              d,
+              isDSCubedAI(teamName) ? "AI @ DSCubed" : teamName,
+            ),
             image: d.image,
           }))}
           layout={{ columns: { default: 6, lg: 4, md: 3, sm: 2 } }}

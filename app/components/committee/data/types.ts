@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 /**
  * Base configuration for any team.
  * @template TTeam - Specifies the underlying team identifier type.
@@ -94,3 +96,18 @@ export type Teams =
 
 /** Exclusive list of recognized product sub-teams. */
 export type ProductTeams = "AI" | "C3" | "IT Products";
+
+/** Full type encompassing all executive and director data */
+export interface ExecsDirectorsData {
+  executives: ExecMember[];
+  directors: Director[];
+  image?: string | StaticImageData;
+}
+
+/** Full yearly Committee Data type */
+export interface CommitteeData {
+  year: number;
+  image: string | StaticImageData;
+  execsDirectors: ExecsDirectorsData;
+  teams?: Team[];
+}

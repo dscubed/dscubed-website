@@ -1,6 +1,15 @@
 // Use the 'filter' property to set Tailwind css filters on images
 
-import { Director, ExecMember, Team } from "./types";
+import {
+  CommitteeData,
+  Director,
+  ExecMember,
+  ExecsDirectorsData,
+  Team,
+} from "./types";
+
+import execsPhoto from "@/public/people/2026-teams/2026-execs.png";
+import committeePhoto from "@/public/people/committee2026.png";
 
 export const executives: ExecMember[] = [
   {
@@ -280,3 +289,16 @@ export const teams: Team[] = [
     ],
   },
 ];
+
+export const execsDirectors: ExecsDirectorsData = {
+  executives,
+  directors,
+  image: execsPhoto,
+};
+
+export const committeeData2026: CommitteeData = {
+  year: 2026,
+  image: committeePhoto,
+  execsDirectors: execsDirectors,
+  teams,
+};

@@ -1,8 +1,4 @@
-import committeePhoto from "@/public/people/committee2024.png";
-import {
-  executives,
-  directors,
-} from "@/app/components/committee/data/memberData2024";
+import { committeeData2024 } from "@/app/components/committee/data/memberData2024";
 import { CommitteePageContent } from "@/app/components/committee/CommitteePageContent";
 
 export const metadata = {
@@ -27,11 +23,5 @@ export const metadata = {
 };
 
 export default function PastCommitteePage() {
-  return (
-    <CommitteePageContent
-      committeePhoto={committeePhoto}
-      executives={executives}
-      directors={directors}
-    />
-  );
+  return <CommitteePageContent committeeData={committeeData2024} />;
 }

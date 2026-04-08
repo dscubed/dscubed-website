@@ -3,6 +3,7 @@ import {
   executives,
   directors,
   teams,
+  committeeData2026,
 } from "@/app/components/committee/data/memberData2026";
 import { CommitteePageContent } from "@/app/components/committee/CommitteePageContent";
 
@@ -28,13 +29,5 @@ export const metadata = {
 };
 
 export default function CommitteePage() {
-  return (
-    <CommitteePageContent
-      committeePhoto={committeePhoto}
-      execsPhoto="/people/2026-teams/2026-execs.png"
-      executives={executives}
-      directors={directors}
-      teams={teams}
-    />
-  );
+  return <CommitteePageContent committeeData={committeeData2026} />;
 }

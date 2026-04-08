@@ -1,6 +1,7 @@
 // Use the 'filter' property to set Tailwind css filters on images
 
-import { Director, ExecMember } from "./types";
+import { CommitteeData, Director, ExecMember, ExecsDirectorsData, Team } from "./types";
+import committeePhoto from "@/public/people/committee2024.png";
 
 export const executives: ExecMember[] = [
   {
@@ -57,175 +58,74 @@ export const directors: Director[] = [
     team: "Marketing",
     image: "/people/2025/danielle-tran.png",
   },
-];
-
-export const representatives: {
-  name: string;
-  role: string;
-  image?: string;
-  filter?: string;
-}[] = [
+  // Representatives — no team affiliation, role shown directly
   {
     name: "David Ponder",
+    team: null,
     role: "Graduate Representative",
     image: "/people/2024/david-ponder.jpg",
     filter: "contrast-[1.1] brightness-125",
   },
+  { name: "Nan Sang", team: null, role: "Graduate Representative" },
+  { name: "Harshit Badam", team: null, role: "Undergraduate Representative" },
+  { name: "Jacky Liao", team: null, role: "Undergraduate Representative" },
+  { name: "Rania Aziz", team: null, role: "Undergraduate Representative" },
+  { name: "Dhruv Ajay", team: null, role: "Undergraduate Representative" },
+];
+
+export const teams: Team[] = [
   {
-    name: "Nan Sang",
-    role: "Graduate Representative",
-    // image: '',
+    team: "Education",
+    members: [
+      { name: "Mikael Sutiono", image: "/people/2024/mikael-sutiono.jpg" },
+      { name: "Jongho Park" },
+      { name: "Keshav Prasath" },
+    ],
   },
   {
-    name: "Harshit Badam",
-    role: "Undergraduate Representative",
-    // image: '',
+    team: "Events",
+    members: [
+      { name: "Nhat Anh Le", image: "/people/2024/nhat-anh-le.jpg" },
+      { name: "Ayra Hani" },
+      { name: "Angus Chan", image: "/people/2024/angus-chan.jpg" },
+      { name: "Davyn Sumardi", image: "/people/2024/davyn-sumardi.jpg" },
+      { name: "Rayan Arain" },
+      { name: "Ayushi Chauhan", image: "/people/2024/ayushi-chauhan.jpg" },
+      { name: "Madhumita Venkataraman" },
+      { name: "Paige Meng", displayRole: "Graduate" },
+    ],
   },
   {
-    name: "Jacky Liao",
-    role: "Undergraduate Representative",
-    // image: '',
+    team: "Industry",
+    members: [
+      { name: "Sarah Williams" },
+      { name: "Halley Dao" },
+      { name: "Manan Saddi" },
+      { name: "Shashank Sanjay Bhat" },
+      { name: "Khushi Malhotra", image: "/people/2024/khushi-malhotra.png" },
+    ],
   },
   {
-    name: "Rania Aziz",
-    role: "Undergraduate Representative",
-    // image: '',
-  },
-  {
-    name: "Dhruv Ajay",
-    role: "Undergraduate Representative",
-    // image: '',
+    team: "Marketing",
+    members: [
+      { name: "Navya Malhotra" },
+      { name: "Saki Hiraoka" },
+      { name: "Rebecca Feng", displayRole: "Design", image: "/people/2024/rebecca-feng.jpg" },
+      { name: "Danielle Tran" },
+      { name: "Ryan Li" },
+      { name: "Jason Wang" },
+    ],
   },
 ];
 
-// The default role for team members is set to '<Team name> Officer', so don't need to set it manually here
+export const execsDirectors: ExecsDirectorsData = {
+  executives,
+  directors,
+};
 
-export const teams: {
-  name: string;
-  members: {
-    name: string;
-    role?: string;
-    image?: string;
-    filter?: string;
-  }[];
-}[] = [
-  {
-    name: "Education",
-    members: [
-      {
-        name: "Mikael Sutiono",
-        image: "/people/2024/mikael-sutiono.jpg",
-      },
-      {
-        name: "Jongho Park",
-        // image: '',
-      },
-      {
-        name: "Keshav Prasath",
-        // image: '',
-      },
-    ],
-  },
-  {
-    name: "Events",
-    members: [
-      {
-        name: "Nhat Anh Le",
-        image: "/people/2024/nhat-anh-le.jpg",
-      },
-      {
-        name: "Ayra Hani",
-        // image: '',
-      },
-      {
-        name: "Angus Chan",
-        image: "/people/2024/angus-chan.jpg",
-      },
-      {
-        name: "Davyn Sumardi",
-        image: "/people/2024/davyn-sumardi.jpg",
-      },
-      {
-        name: "Rayan Arain",
-        // image: '',
-      },
-      {
-        name: "Ayushi Chauhan",
-        image: "/people/2024/ayushi-chauhan.jpg",
-      },
-      {
-        name: "Madhumita Venkataraman",
-        // image: '',
-      },
-      {
-        name: "Paige Meng",
-        role: "Graduate Officer",
-        // image: '',
-      },
-    ],
-  },
-  {
-    name: "Industry",
-    members: [
-      {
-        name: "Sarah Williams",
-        // image: '',
-      },
-      {
-        name: "Halley Dao",
-        // image: '',
-      },
-      {
-        name: "Manan Saddi",
-        // image: '',
-      },
-      {
-        name: "Shashank Sanjay Bhat",
-        // image: '',
-      },
-      {
-        name: "Khushi Malhotra",
-        image: "/people/2024/khushi-malhotra.png",
-      },
-    ],
-  },
-  {
-    name: "Marketing",
-    members: [
-      {
-        name: "Navya Malhotra",
-        // image: '',
-      },
-      {
-        name: "Saki Hiraoka",
-        // image: '',
-      },
-      {
-        name: "Rebecca Feng",
-        role: "Design Director",
-        image: "/people/2024/rebecca-feng.jpg",
-      },
-      {
-        name: "Danielle Tran",
-        // image: '',
-      },
-      {
-        name: "Ryan Li",
-        // image: '',
-      },
-      {
-        name: "Jason Wang",
-        // image: '',
-      },
-    ],
-  },
-  // {
-  //   name: 'IT',
-  //   members: [
-  //     {
-  //       name: '',
-  //       image: '',
-  //     },
-  //   ]
-  // },
-];
+export const committeeData2024: CommitteeData = {
+  year: 2024,
+  image: committeePhoto,
+  execsDirectors,
+  teams,
+};
