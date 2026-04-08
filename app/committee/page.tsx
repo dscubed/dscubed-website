@@ -25,9 +25,11 @@ export default function CommitteePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <h1 className="text-5xl sm:text-4xl">Committee</h1>
-            <p className="text-lg text-text-secondary">
-              Meet the people who make it all happen throughout the years.
+            <h1 className="text-5xl sm:text-4xl text-center mx-auto mb-5 leading-tight">
+              The DSCubed Committee
+            </h1>
+            <p className="text-xl text-text-secondary text-center mx-auto leading-relaxed!">
+              Meet our committee members throughout the years.
             </p>
           </motion.div>
         </Section>
