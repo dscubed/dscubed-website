@@ -114,7 +114,6 @@ export const teams: Team[] = [
       { name: "Meghan Wuisan", image: "/people/2026/meghan-wuisan.png" },
       { name: "Rachel Chen", image: "/people/2026/rachel-chen.png" },
       { name: "Rajit Khandelwal", image: "/people/2026/rajit-khandelwal.png" },
-      { name: "Rudra Tiwari", image: "/people/2026/rudra-tiwari.png" },
       { name: "Tianyu Shen", image: "/people/2026/tianyu-shen.png" },
     ],
   },
