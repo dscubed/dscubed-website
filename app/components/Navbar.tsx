@@ -93,7 +93,7 @@ export default function Navbar({
             <Link className="my-auto" href="/committee">
               Committee
             </Link>
-            <Link className="my-auto" href="/competitions">
+            <Link className="my-auto" href="https://kaggle.dscubed.org.au/">
               Competition
             </Link>
             <Link className="my-auto" href="/projects">
