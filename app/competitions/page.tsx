@@ -1,15 +1,14 @@
+import { redirect } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Navbar from "@/app/components/Navbar";
-import Section from "@/app/components/Section";
 import Workshop from "@/app/components/competitions/workshop";
 import EventTimeline from "../components/competitions/timeline";
 import KaggleIntro from "@/app/components/competitions/KaggleIntro";
 import WhatsInItForMeSection from "@/app/components/competitions/WhatsInItForMeSection";
 import FAQSection from "../components/competitions/FAQ/FAQSection";
 import Title from "@/app/components/competitions/Title";
-import ScrollUpButton from "@/app/components/competitions/ScrollUpButton";
 import Leaderboard from "../components/competitions/Leaderboard";
-import CreditsSection from "@/app/components/competitions/credits"; // Corrected import path
+import CreditsSection from "@/app/components/competitions/credits";
 
 export const metadata = {
   title: "Competitions | DSCubed",
@@ -30,6 +29,12 @@ export const metadata = {
 };
 
 export default function CompetitionsPage() {
+  redirect("https://kaggle.dscubed.org.au/");
+}
+
+/** Kaggle page has now been moved to "http://kaggle.dscubed.org.au" */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function KagglePage() {
   return (
     <>
       <Navbar />
@@ -58,7 +63,6 @@ export default function CompetitionsPage() {
 
         <hr className="border-0 border-b-2 border-border" />
         <CreditsSection />
-
       </main>
       <Footer />
     </>
