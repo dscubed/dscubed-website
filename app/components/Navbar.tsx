@@ -17,8 +17,11 @@ export default function Navbar({
   className?: string;
 }) {
   const [showMenu, setShowMenu] = useState(false);
-  const [blurNav, setBlurNav] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+  // Every page except home is blurred from the first paint, so only the home
+  // page starts transparent and waits for a scroll
+  const [blurNav, setBlurNav] = useState(!isHome);
 
   useEffect(() => {
     function toggleBlurNav() {
@@ -36,14 +39,24 @@ export default function Navbar({
 
   return (
     // Use top: -1px to remove gap on some browsers
-    <div className="sticky -top-px z-20" id="navbar">
+    <div
+      className={cn(
+        "z-20",
+        // On the home page the navbar floats over the hero so it can be
+        // fully transparent until the user starts scrolling
+        isHome ? "fixed top-0 left-0 w-full" : "sticky -top-px",
+      )}
+      id="navbar"
+    >
       {/* <Banner text="We Are Recruiting For 2024" link="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/dscubed/" /> */}
 
       <nav
         {...rest}
         className={cn(
-          "relative w-full pt-px backdrop-blur-lg duration-500 transition-all px-5 py-3",
-          blurNav ? "bg-background-secondary/70" : "bg-transparent",
+          "relative w-full pt-px duration-500 transition-all px-5 py-3 border-b",
+          blurNav
+            ? "bg-background-secondary/70 backdrop-blur-lg border-white/5"
+            : "bg-transparent backdrop-blur-none border-transparent",
           className,
         )}
       >
