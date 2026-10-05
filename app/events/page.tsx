@@ -3,10 +3,13 @@ import Navbar from "@/app/components/Navbar";
 import Paginator from "@/app/components/events/Paginator";
 import Section from "@/app/components/Section";
 import EventGallery from "@/app/components/events/EventGallery";
-import { fetchEventCount } from "../lib/data";
+import { fetchEventCount } from "@/app/lib/notion";
 import { pageToRange } from "@/app/lib/utils.server";
 import { Suspense } from "react";
 import EventGallerySkeleton from "@/app/components/events/EventGallerySkeleton";
+
+// Notion image links expire after ~1 hour, so refetch well before then
+export const revalidate = 300;
 
 export const metadata = {
   title: "Events | DSCubed",
@@ -29,12 +32,12 @@ export const metadata = {
 export default async function EventsPage({
   searchParams,
 }: {
-  searchParams: { page: number };
+  searchParams: Promise<{ page?: string }>;
 }) {
   const limit = 16;
   const count = await fetchEventCount();
   const pageCount = Math.ceil(count! / limit);
-  const page = Math.min(Math.max(Number(searchParams.page || 1), 1), pageCount);
+  const page = Math.min(Math.max(Number((await searchParams).page || 1), 1), pageCount);
   const range = pageToRange(page, limit) as [number, number];
 
   return (

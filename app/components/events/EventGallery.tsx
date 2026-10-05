@@ -1,4 +1,4 @@
-import { fetchEvents } from '@/app/lib/data'
+import { fetchEvents } from '@/app/lib/notion'
 import EventCard from "@/app/components/events/EventCard"
 
 export default async function EventGallery ({ range = [0, 3] }: { range: [number, number] }) {

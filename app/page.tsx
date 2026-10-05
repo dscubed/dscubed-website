@@ -8,6 +8,9 @@ import FAQSection from "@/app/components/home/FAQSection";
 import FrontPageEmbed from "./components/visualiser/frontpageembed";
 import { HomeLoaderProvider } from "@/app/components/home/HomeLoaderContext";
 
+// Notion image links expire after ~1 hour, so refetch well before then
+export const revalidate = 300;
+
 export default function Index() {
   return (
     <HomeLoaderProvider>

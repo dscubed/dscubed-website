@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { fetchMostRecentEventUpdatedAt } from '@/app/lib/data'
+import { fetchMostRecentEventUpdatedAt } from '@/app/lib/notion'
 
 const baseURL = 'https://' + process.env.DOMAIN_URL || 'localhost:3000'
 const serverUpdatedAt = new Date() // Value updated on deployment
